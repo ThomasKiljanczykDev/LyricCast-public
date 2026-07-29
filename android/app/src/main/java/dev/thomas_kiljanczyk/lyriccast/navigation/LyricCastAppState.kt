@@ -1,0 +1,84 @@
+/*
+ * Created by Tomasz Kiljanczyk on 9/7/25, 2:43 PM
+ * Copyright (c) 2025 . All rights reserved.
+ * Last modified 9/7/25, 2:14 PM
+ */
+
+package dev.thomas_kiljanczyk.lyriccast.navigation
+
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.Stable
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
+import kotlinx.coroutines.CoroutineScope
+import java.util.UUID
+
+@Composable
+fun rememberLyricCastAppState(
+    navController: NavHostController = rememberNavController(),
+    coroutineScope: CoroutineScope = rememberCoroutineScope(),
+): LyricCastAppState {
+    return remember(
+        navController,
+        coroutineScope,
+    ) {
+        LyricCastAppState(
+            navController = navController,
+        )
+    }
+}
+
+@Stable
+class LyricCastAppState(
+    val navController: NavHostController,
+) {
+    fun navigateToSettings() {
+        navController.navigate(SettingsRoute) {
+            launchSingleTop = true
+            restoreState = true
+        }
+    }
+
+    fun navigateToSongEditor(songId: UUID? = null) {
+        navController.navigate(SongEditorRoute(songId = songId?.toString())) {
+            launchSingleTop = true
+        }
+    }
+
+    fun navigateToSetlistEditor(setlistId: UUID? = null, presentation: List<UUID>? = null) {
+        navController.navigate(
+            SetlistEditorRoute(
+                setlistId = setlistId?.toString(),
+                presentation = presentation?.map { it.toString() }
+            )
+        ) {
+            launchSingleTop = true
+        }
+    }
+
+    fun navigateToCategoryManager() {
+        navController.navigate(CategoryManagerRoute) {
+            launchSingleTop = true
+        }
+    }
+
+    fun navigateToSessionClient() {
+        navController.navigate(SessionClientRoute) {
+            launchSingleTop = true
+        }
+    }
+
+    fun navigateToSongControls(songId: UUID) {
+        navController.navigate(SongControlsRoute(songId = songId.toString())) {
+            launchSingleTop = true
+        }
+    }
+
+    fun navigateToSetlistControls(setlistId: UUID) {
+        navController.navigate(SetlistControlsRoute(setlistId = setlistId.toString())) {
+            launchSingleTop = true
+        }
+    }
+}

@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Created by Tomasz Kiljanczyk on 9/7/25, 9:14 PM
+  ~ Copyright (c) 2025 . All rights reserved.
+  ~ Last modified 9/7/25, 9:07 PM
+  -->
+
+<resources>
+    <!-- Titles -->
+    <string name="title_category_manager">Zarządzaj kategoriami</string>
+    <string name="title_categories">Kategorie</string>
+    <string name="title_settings">Ustawienia</string>
+    <string name="title_song_editor">Edytor piosenek</string>
+    <string name="title_setlist_editor">Edytor list</string>
+    <string name="title_controls">Sterowanie</string>
+    <string name="title_setlists">Listy</string>
+    <string name="title_songs">Piosenki</string>
+
+    <!-- Hints -->
+    <string name="title_session_client">Sesja</string>
+    <string name="hint_song_title">Tytuł piosenki</string>
+    <string name="hint_song_category">Kategoria</string>
+    <string name="hint_setlist_name">Nazwa listy</string>
+    <string name="hint_session_name">Nazwa sesji</string>
+    <string name="hint_import_format">Format</string>
+
+    <!-- Option/Action Menu -->
+
+    <!-- Launch Activity -->
+    <string name="launch_activity_go_to_settings">Przejdź do ustawień</string>
+    <string name="dialog_fragment_start_session_missing_permissions">" Odrzuciłeś uprawnienia wymagane dla funkcji sesji. Proszę włączyć je w ustawieniach."</string>
+    <string name="ignore">Ignoruj</string>
+
+    <!-- Main Activity -->
+    <string name="main_activity_loading_file">Wczytywanie pliku …</string>
+    <string name="main_activity_import_delete_all_before_import">Usuń wszystko przed importem</string>
+    <string name="main_activity_import_replace_on_conflict">Podmień w przypadku konfliktu</string>
+    <string name="main_activity_import_dialog_title">Import</string>
+    <string name="main_activity_import_incorrect_file_format">Niewłaściwy format pliku</string>
+    <string name="main_activity_export_preparing_data">Przygotowywanie danych …</string>
+    <string name="main_activity_export_saving_json">Zapisywanie do tymczasowego katalogu …</string>
+    <string name="main_activity_export_saving_zip">Zapisywanie paczki zip …</string>
+    <string name="main_activity_export_deleting_temp">Usuwanie tymczasowego katalogu …</string>
+    <string name="export_saving_json">Zapisywanie danych JSON…</string>
+    <string name="export_creating_zip">Tworzenie pliku ZIP…</string>
+    <string name="export_cleaning_temp">Usuwanie plików tymczasowych…</string>
+    <string name="main_activity_action_menu_export_selected">Eksportuj zaznaczone</string>
+    <string name="main_activity_menu_export">Eksportuj wszystko</string>
+    <string name="main_activity_menu_import">Importuj</string>
+    <string name="main_activity_button_add_song">Dodaj piosenkę</string>
+    <string name="main_activity_button_add_setlist">Dodaj listę</string>
+    <string name="main_activity_setlist_is_empty">List jest pusta!</string>
+
+
+    <!-- Song/Setlist Controls -->
+    <string name="main_activity_cannot_join_session">Nie można dołączyć do innej sesji podczas hostowania własnej</string>
+    <string name="main_activity_missing_permissions">Odrzuciłeś niektóre uprawnienia. Wybrane funkcje, takie jak sesje, nie będą działać.</string>
+    <string name="controls_previous">Poprzedni</string>
+    <string name="controls_next">Następny</string>
+
+    <!-- Editors -->
+    <string name="editor_button_save">Zapisz</string>
+    <string name="editor_button_add">Dodaj</string>
+
+    <!-- Category Manager -->
+    <string name="category_manager_hint_category_name">Nazwa</string>
+    <string name="category_manager_hint_category_color">Kolor</string>
+    <string name="category_manager_add_category">Dodawanie kategorii</string>
+    <string name="category_manager_edit_category">Edycja kategorii</string>
+    <string name="category_manager_name_already_used">Nazwa kategorii jest już zajęta</string>
+    <string name="category_manager_enter_name">Proszę podać nazwę kategorii</string>
+    <string name="category_manager_save_failed">Nie udało się zapisać kategorii</string>
+    <string name="category_manager_delete_failed">Nie udało się usunąć kategorii</string>
+
+    <!-- Setlist Editor -->
+    <string name="setlist_editor_hint_selected">Zaznaczone</string>
+    <string name="setlist_editor_button_pick_songs">Wybierz piosenki</string>
+    <string name="setlist_editor_empty_warning">Puste listy są niedozwolone!</string>
+    <string name="setlist_editor_name_already_used">Nazwa listy już zajęta</string>
+    <string name="setlist_editor_enter_name">Proszę podać nazwę listy</string>
+    <string name="setlist_editor_save_failed">Nie udało się zapisać listy</string>
+    <string name="setlist_editor_load_failed">Nie udało się wczytać listy</string>
+    <string name="setlist_editor_setlist_not_found">Nie znaleziono listy</string>
+    <string name="setlist_editor_must_have_songs">Lista musi zawierać co najmniej jedną piosenkę</string>
+    <string name="setlist_editor_delete_failed">Nie udało się usunąć list</string>
+    <string name="setlist_editor_validation_failed">Nie można zapisać listy - walidacja nie powiodła się</string>
+
+    <!-- Song Editor -->
+    <string name="song_editor_hint_enter_lyrics">Wprowadź słowa</string>
+    <string name="song_editor_input_section_name">Nazwa sekcji</string>
+    <string name="song_editor_input_new_section">NOWA SEKCJA</string>
+    <string name="song_editor_input_new_section_template">NOWA SEKCJA</string>
+    <string name="song_editor_button_move_left">Przesuń w lewo</string>
+    <string name="song_editor_button_move_right">Przesuń w prawo</string>
+    <string name="song_editor_button_delete_section">Usuń sekcję</string>
+    <string name="song_editor_title_already_used">Tytuł piosenki już zajęty</string>
+    <string name="song_editor_enter_title">Proszę podać tytuł piosenki</string>
+    <string name="song_editor_enter_section_name">Proszę podać nazwę sekcji</string>
+
+    <!-- Category -->
+    <string name="category_color_maroon">Kasztanowy</string>
+    <string name="category_color_tomato">Pomidorowy</string>
+    <string name="category_color_golden">Złoty</string>
+    <string name="category_color_olive">Oliwkowy</string>
+    <string name="category_color_cyan">Cyjan</string>
+    <string name="category_color_turquoise">Turkusowy</string>
+    <string name="category_color_royal_blue">Królewski niebieski</string>
+    <string name="category_color_violet">Fioletowy</string>
+    <string name="category_color_pink">Różowy</string>
+    <string name="category_color_navajo_white">Beżowy</string>
+    <string name="category_color_slate_gray">Popielaty</string>
+    <string name="category_color_gray">Szary</string>
+    <string name="category_color_steel_blue">Stalowonienieski</string>
+    <string name="category_all">WSZYSTKIE</string>
+    <string name="category_none">BRAK</string>
+    <string name="category_label">Kategoria</string>
+    <string name="main_activity_tab_join_session">Dołącz do sesji</string>
+    <string name="dialog_fragment_choose_session_title">Wybierz sesję</string>
+    <string name="dialog_fragment_choose_session_looking_for_session">Szukam sesji…</string>
+    <string name="dialog_fragment_start_session_title">Rozpoczynanie sesji</string>
+    <string name="dialog_fragment_start_session_start">Rozpocznij</string>
+    <string name="session_client_connected">Połączono się z sesją</string>
+    <string name="session_client_disconnected">Sesja rozłączona</string>
+    <string name="session_client_failed_to_connect">Połączenie z sesją nie powiodło się</string>
+    <string name="session_client_failed_to_start_lookup">Szukanie sesji nie powiodło się</string>
+    <string name="session_client_connecting">Łączenie</string>
+    <string name="session_client_connecting_please_wait">Proszę czekać…</string>
+    <string name="edit">Edytuj</string>
+    <string name="close">Zamknij</string>
+    <string name="action_save">Zapisz</string>
+    <string name="dialog_fragment_start_session_session_start_failed">Rozpoczęcie sesji nie powiodło się</string>
+    <string name="dialog_fragment_start_session_session_start_missing_permissions">Rozpoczęcie sesji nie powiodło się z powodu brakujących uprawnień</string>
+    <string name="dialog_fragment_start_session_error_empty_name">Proszę podać nazwę sesji</string>
+    <string name="settings_title">Ustawienia</string>
+    <string name="navigate_up">Wróć</string>
+    <string name="category_manager_name_too_long">Nazwa kategorii przekracza maksymalną długość %d znaków</string>
+    <string name="field_error">Błąd pola</string>
+    <string name="more_options">Więcej opcji</string>
+
+    <!-- Delete Operations -->
+    <string name="delete_songs_failed">Usuwanie piosenki nie powiodło się</string>
+    <string name="delete_setlists_failed">Usuwanie listy nie powiodło się</string>
+
+    <!-- Song Editor -->
+    <string name="song_editor_sections_must_have_names">Wszystkie sekcje muszą mieć nazwę</string>
+    <string name="song_editor_save_failed">Zapisywanie piosenki nie powiodło się</string>
+    <string name="song_editor_song_not_found">Nie znaleziono piosenki</string>
+    <string name="song_editor_load_failed">Wczytywanie piosenki nie powiodło się</string>
+
+    <!-- Progress Dialog -->
+    <string name="progress_processing">Przetwarzanie…</string>
+
+    <!-- Missing translations -->
+    <string name="setlist_name">Nazwa listy</string>
+    <string name="no_songs_in_setlist">Brak piosenek na liście. Dotknij + aby dodać piosenki.</string>
+    <string name="add_song">Dodaj piosenkę</string>
+    <string name="navigate_back">Wstecz</string>
+    <string name="save">Zapisz</string>
+    <string name="confirm">Potwierdź</string>
+    <string name="duplicate">Duplikuj</string>
+    <string name="delete">Usuń</string>
+    <string name="drag_handle">Uchwyt do przeciągania</string>
+    <string name="error_name_empty">Nazwa nie może być pusta</string>
+    <string name="error_name_already_in_use">Nazwa jest już używana</string>
+    <string name="all_categories">Wszystkie kategorie</string>
+    <string name="category">Kategoria</string>
+    <string name="show_selected_only">Pokaż tylko wybrane</string>
+    <string name="no_songs_found">Nie znaleziono piosenek</string>
+    <string name="setlist_editor_title">Edytor list</string>
+    <string name="main_activity_import_successful">Import zakończony pomyślnie</string>
+    <string name="main_activity_import_failed">Import nie powiódł się</string>
+</resources>
+

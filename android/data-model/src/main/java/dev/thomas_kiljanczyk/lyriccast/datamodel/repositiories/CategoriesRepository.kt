@@ -1,0 +1,21 @@
+/*
+ * Created by Tomasz Kiljanczyk on 9/7/25, 2:43 PM
+ * Copyright (c) 2025 . All rights reserved.
+ * Last modified 9/7/25, 1:38 PM
+ */
+
+package dev.thomas_kiljanczyk.lyriccast.datamodel.repositiories
+
+import dev.thomas_kiljanczyk.lyriccast.datamodel.models.Category
+import kotlinx.coroutines.flow.Flow
+import java.util.UUID
+
+interface CategoriesRepository {
+
+    fun getAllCategories(): Flow<List<Category>>
+
+    suspend fun upsertCategory(category: Category)
+
+    suspend fun deleteCategories(categoryIds: Collection<UUID>)
+
+}

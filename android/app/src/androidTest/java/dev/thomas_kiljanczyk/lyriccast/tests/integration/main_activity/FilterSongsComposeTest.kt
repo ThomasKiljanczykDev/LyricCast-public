@@ -1,0 +1,155 @@
+/*
+ * Created by Tomasz Kiljanczyk on 9/8/25, 12:20 AM
+ * Copyright (c) 2025 . All rights reserved.
+ * Last modified 9/8/25, 12:16 AM
+ */
+
+package dev.thomas_kiljanczyk.lyriccast.tests.integration.main_activity
+
+import android.graphics.Color
+import androidx.compose.ui.test.assertIsDisplayed
+import androidx.compose.ui.test.filterToOne
+import androidx.compose.ui.test.hasText
+import androidx.compose.ui.test.junit4.createAndroidComposeRule
+import androidx.compose.ui.test.onChildren
+import androidx.compose.ui.test.onNodeWithTag
+import androidx.compose.ui.test.onNodeWithText
+import androidx.compose.ui.test.performClick
+import androidx.compose.ui.test.performTextInput
+import androidx.test.ext.junit.runners.AndroidJUnit4
+import androidx.test.filters.SmallTest
+import dagger.hilt.android.testing.HiltAndroidRule
+import dagger.hilt.android.testing.HiltAndroidTest
+import dev.thomas_kiljanczyk.lyriccast.datamodel.models.Category
+import dev.thomas_kiljanczyk.lyriccast.datamodel.models.Song
+import dev.thomas_kiljanczyk.lyriccast.datamodel.repositiories.CategoriesRepository
+import dev.thomas_kiljanczyk.lyriccast.datamodel.repositiories.SongsRepository
+import dev.thomas_kiljanczyk.lyriccast.shared.testing.TestTags
+import dev.thomas_kiljanczyk.lyriccast.ui.main.MainActivity
+import kotlinx.coroutines.test.runTest
+import org.junit.Before
+import org.junit.Ignore
+import org.junit.Rule
+import org.junit.Test
+import org.junit.runner.RunWith
+import javax.inject.Inject
+
+@HiltAndroidTest
+@RunWith(AndroidJUnit4::class)
+@SmallTest
+class FilterSongsComposeTest {
+
+    private companion object {
+        val category = Category("TEST CATEGORY", Color.RED)
+
+        const val SONG_TITLE = "FilterSongsTest 1"
+        val song1 = Song(
+            title = "$SONG_TITLE 1",
+            lyrics = listOf(),
+            presentation = listOf(),
+            category = category
+        )
+        val song2 = Song(title = "$SONG_TITLE 2", lyrics = listOf(), presentation = listOf())
+        val song3 = Song(title = "FilterSongsTest 2", lyrics = listOf(), presentation = listOf())
+    }
+
+    @get:Rule(order = 0)
+    val hiltRule = HiltAndroidRule(this)
+
+    @get:Rule(order = 1)
+    val composeTestRule = createAndroidComposeRule<MainActivity>()
+
+    @Inject
+    lateinit var songsRepository: SongsRepository
+
+    @Inject
+    lateinit var categoriesRepository: CategoriesRepository
+
+    @Before
+    fun setup() = runTest {
+        hiltRule.inject()
+
+        // Add test data
+        categoriesRepository.upsertCategory(category)
+        songsRepository.upsertSong(song1)
+        songsRepository.upsertSong(song2)
+        songsRepository.upsertSong(song3)
+    }
+
+    @Test
+    fun songsAreFilteredByTitle() {
+        // Wait for all songs to appear
+        composeTestRule.waitUntil(5000) {
+            composeTestRule.onAllNodes(hasText(song1.title)).fetchSemanticsNodes().isNotEmpty()
+        }
+
+        // Verify all songs are displayed initially
+        composeTestRule.onNodeWithText(song1.title).assertIsDisplayed()
+        composeTestRule.onNodeWithText(song2.title).assertIsDisplayed()
+        composeTestRule.onNodeWithText(song3.title).assertIsDisplayed()
+
+        // Filter by title
+        composeTestRule.onNodeWithText("Song title").performTextInput(SONG_TITLE)
+
+        // Wait for filter to apply
+        composeTestRule.waitUntil(3000) {
+            try {
+                composeTestRule.onNodeWithText(song3.title).assertDoesNotExist()
+                true
+            } catch (_: AssertionError) {
+                false
+            }
+        }
+
+        // Verify filtered results
+        composeTestRule.onNodeWithText(song1.title).assertIsDisplayed()
+        composeTestRule.onNodeWithText(song2.title).assertIsDisplayed()
+        composeTestRule.onNodeWithText(song3.title).assertDoesNotExist()
+    }
+
+    @Test
+    @Ignore("TODO: the test has problems with matching items within a dropdown")
+    fun songsAreFilteredByCategory() {
+        // Wait for all songs to appear
+        composeTestRule.waitUntil(5000) {
+            composeTestRule.onAllNodes(hasText(song1.title)).fetchSemanticsNodes().isNotEmpty()
+        }
+
+        // Verify all songs are displayed initially
+        composeTestRule.onNodeWithText(song1.title).assertIsDisplayed()
+        composeTestRule.onNodeWithText(song2.title).assertIsDisplayed()
+        composeTestRule.onNodeWithText(song3.title).assertIsDisplayed()
+
+        // Click on category dropdown
+        composeTestRule.onNodeWithTag(TestTags.categoryDropdown).performClick()
+
+        // Select the test category
+        composeTestRule.waitUntil(3000) {
+            try {
+                composeTestRule.onNodeWithTag(TestTags.categoryDropdown)
+                    .onChildren()
+                    .filterToOne(hasText(category.name))
+                    .performClick()
+                true
+            } catch (_: AssertionError) {
+                false
+            }
+        }
+
+        // Wait for filter to apply
+        composeTestRule.waitUntil(3000) {
+            try {
+                composeTestRule.onNodeWithText(song2.title).assertDoesNotExist()
+                composeTestRule.onNodeWithText(song3.title).assertDoesNotExist()
+                true
+            } catch (_: AssertionError) {
+                false
+            }
+        }
+
+        // Verify only song with category is shown
+        composeTestRule.onNodeWithText(song1.title).assertIsDisplayed()
+        composeTestRule.onNodeWithText(song2.title).assertDoesNotExist()
+        composeTestRule.onNodeWithText(song3.title).assertDoesNotExist()
+    }
+}
