@@ -8,9 +8,9 @@ package dev.thomas_kiljanczyk.lyriccast.domain.models
 
 import dev.thomas_kiljanczyk.lyriccast.common.extensions.normalize
 import dev.thomas_kiljanczyk.lyriccast.datamodel.models.Setlist
+import java.util.UUID
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.toImmutableList
-import java.util.UUID
 
 data class SetlistItem(
     val id: UUID,

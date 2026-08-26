@@ -38,7 +38,6 @@ import dev.thomas_kiljanczyk.lyriccast.R
 import dev.thomas_kiljanczyk.lyriccast.domain.models.CategoryItem
 import dev.thomas_kiljanczyk.lyriccast.ui.shared.theme.LyricCastTheme
 
-
 @OptIn(ExperimentalMaterial3ExpressiveApi::class)
 @Composable
 fun CategoryListItem(
@@ -108,45 +107,42 @@ fun CategoryListItem(
 
 @PreviewLightDark
 @Composable
-fun CategoryListItemCheckboxSelectedPreview() {
+private fun CategoryListItemCheckboxSelectedPreview() {
     LyricCastTheme {
         Surface {
-            CategoryListItem(
-                item = CategoryItem(
-                    name = "Sample Category",
-                    color = R.color.red,
-                    isSelected = true
-                ), onCategorySelected = { _, _ -> })
+            CategoryListItem(item = CategoryItem(
+                name = "Sample Category",
+                color = R.color.red,
+                isSelected = true
+            ), onCategorySelected = { _, _ -> })
         }
     }
 }
 
 @PreviewLightDark
 @Composable
-fun CategoryListItemCheckboxNotSelectedPreview() {
+private fun CategoryListItemCheckboxNotSelectedPreview() {
     LyricCastTheme {
         Surface {
-            CategoryListItem(
-                item = CategoryItem(
-                    name = "Sample Category",
-                    color = R.color.red,
-                    isSelected = false
-                ), onCategorySelected = { _, _ -> })
+            CategoryListItem(item = CategoryItem(
+                name = "Sample Category",
+                color = R.color.red,
+                isSelected = false
+            ), onCategorySelected = { _, _ -> })
         }
     }
 }
 
 @PreviewLightDark
 @Composable
-fun CategoryListItemNoCheckboxPreview() {
+private fun CategoryListItemNoCheckboxPreview() {
     LyricCastTheme {
         Surface {
-            CategoryListItem(
-                item = CategoryItem(
-                    name = "Sample Category",
-                    color = R.color.red,
-                    isSelected = false
-                ), onCategorySelected = { _, _ -> })
+            CategoryListItem(item = CategoryItem(
+                name = "Sample Category",
+                color = R.color.red,
+                isSelected = false
+            ), onCategorySelected = { _, _ -> })
         }
     }
 }
@@ -172,10 +168,9 @@ fun CategoryList(
     }
 }
 
-
 @PreviewLightDark
 @Composable
-fun CategoryListPreview() {
+private fun CategoryListPreview() {
     LyricCastTheme {
         Surface {
             CategoryList(categories = List(3) { index ->

@@ -7,9 +7,9 @@
 package dev.thomas_kiljanczyk.lyriccast.domain.use_case.song_editor
 
 import dev.thomas_kiljanczyk.lyriccast.datamodel.repositiories.SongsRepository
+import javax.inject.Inject
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
-import javax.inject.Inject
 
 /**
  * Use case for retrieving all song titles for validation purposes.

@@ -18,10 +18,10 @@ import com.google.android.gms.nearby.connection.EndpointDiscoveryCallback
 import com.google.android.gms.nearby.connection.Strategy
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dev.thomas_kiljanczyk.lyriccast.shared.gms_nearby.GmsNearbyConstants
+import javax.inject.Inject
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.persistentListOf
 import kotlinx.collections.immutable.toImmutableList
-import javax.inject.Inject
 
 interface ChooseSessionDialogState {
     val devices: ImmutableList<GmsNearbySessionItem>
@@ -62,7 +62,6 @@ class ChooseSessionDialogViewModel @Inject constructor(
 
     private val deviceMap = mutableMapOf<String, GmsNearbySessionItem>()
     private var endpointDiscoveryCallback: EndpointDiscoveryCallback? = null
-
 
     fun onEvent(event: ChooseSessionDialogEvent) {
         when (event) {

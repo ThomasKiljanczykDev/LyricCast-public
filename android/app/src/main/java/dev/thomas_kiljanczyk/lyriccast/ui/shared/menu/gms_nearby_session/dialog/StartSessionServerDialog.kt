@@ -24,6 +24,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
@@ -74,10 +75,11 @@ fun StartSessionServerDialog(
     }
 
     // Handle advertising state changes
+    val currentOnSessionStarted by rememberUpdatedState(onSessionStarted)
     LaunchedEffect(state.advertisingState) {
         when (state.advertisingState) {
             GmsNearbySessionServerContext.AdvertisingState.ADVERTISING -> {
-                onSessionStarted()
+                currentOnSessionStarted()
             }
 
             else -> { /* Handle in UI */
@@ -148,6 +150,8 @@ fun StartSessionServerDialog(
     )
 }
 
+@Suppress("UnusedParameter") // advertisingState is kept for API symmetry with the stateful overload; not yet
+// surfaced in this stateless UI.
 @Composable
 fun StartSessionServerDialogStateless(
     sessionName: String,

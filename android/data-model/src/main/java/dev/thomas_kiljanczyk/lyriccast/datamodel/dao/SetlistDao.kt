@@ -15,8 +15,11 @@ import androidx.room.Transaction
 import dev.thomas_kiljanczyk.lyriccast.datamodel.models.room.SetlistEntity
 import dev.thomas_kiljanczyk.lyriccast.datamodel.models.room.SetlistSongCrossRef
 import dev.thomas_kiljanczyk.lyriccast.datamodel.models.room.SongWithLyricsAndCategory
-import kotlinx.coroutines.flow.Flow
 import java.util.UUID
+import kotlinx.coroutines.flow.Flow
+
+// SQLite caps the number of bound query parameters (~999); chunk well below that limit.
+private const val DELETE_CHUNK_SIZE = 500
 
 @Dao
 interface SetlistDao {
@@ -80,7 +83,7 @@ interface SetlistDao {
         // Delete existing songs for all setlists in bulk
         val setlistIds = setlistsWithSongs.keys.map { it.id }
         if (setlistIds.isNotEmpty()) {
-            setlistIds.chunked(500).forEach { setlistIdsChunk ->
+            setlistIds.chunked(DELETE_CHUNK_SIZE).forEach { setlistIdsChunk ->
                 deleteSetlistSongs(setlistIdsChunk)
             }
         }

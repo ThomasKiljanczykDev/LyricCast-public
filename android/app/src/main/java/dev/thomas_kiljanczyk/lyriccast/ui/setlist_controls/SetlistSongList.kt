@@ -116,7 +116,7 @@ fun SetlistSongList(
 
 @PreviewLightDark
 @Composable
-fun PreviewSongListItem() {
+private fun PreviewSongListItem() {
     LyricCastTheme {
         Surface {
             Column(

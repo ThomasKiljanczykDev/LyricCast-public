@@ -8,12 +8,11 @@ package dev.thomas_kiljanczyk.lyriccast.common.tests
 
 import com.google.common.truth.Truth.assertThat
 import dev.thomas_kiljanczyk.lyriccast.common.helpers.FileHelper
+import java.io.File
 import org.junit.After
 import org.junit.Assert.fail
 import org.junit.Before
 import org.junit.Test
-import java.io.File
-
 
 class FileHelperTest {
 
@@ -66,5 +65,4 @@ class FileHelperTest {
         assertThat(testFile.exists()).isTrue()
         assertThat(testFile.readText()).isEqualTo(TEST_FILE_CONTENT)
     }
-
 }

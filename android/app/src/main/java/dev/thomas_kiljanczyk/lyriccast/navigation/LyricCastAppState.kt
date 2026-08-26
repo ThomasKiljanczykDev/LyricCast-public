@@ -12,8 +12,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
-import kotlinx.coroutines.CoroutineScope
 import java.util.UUID
+import kotlinx.coroutines.CoroutineScope
 
 @Composable
 fun rememberLyricCastAppState(

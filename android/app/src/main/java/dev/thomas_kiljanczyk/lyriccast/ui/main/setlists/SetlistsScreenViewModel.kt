@@ -19,6 +19,8 @@ import dev.thomas_kiljanczyk.lyriccast.domain.models.DeleteSetlistsResult
 import dev.thomas_kiljanczyk.lyriccast.domain.models.SetlistItem
 import dev.thomas_kiljanczyk.lyriccast.domain.use_case.main.DeleteSetlistsUseCase
 import dev.thomas_kiljanczyk.lyriccast.domain.use_case.main.ExportSetlistsUseCase
+import java.io.OutputStream
+import javax.inject.Inject
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.toImmutableList
 import kotlinx.coroutines.Dispatchers
@@ -30,8 +32,6 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
-import java.io.OutputStream
-import javax.inject.Inject
 
 interface SetlistsScreenState {
     val searchQuery: String
@@ -61,6 +61,8 @@ class MutableSetlistsScreenState : SetlistsScreenState {
     }
 }
 
+private const val SEARCH_DEBOUNCE_MS = 300L
+
 @OptIn(FlowPreview::class)
 @HiltViewModel
 class SetlistsScreenViewModel @Inject constructor(
@@ -79,7 +81,7 @@ class SetlistsScreenViewModel @Inject constructor(
             _state.searchQuery = query
         }.launchIn(viewModelScope)
 
-        searchQueryFlow.debounce(300).onEach {
+        searchQueryFlow.debounce(SEARCH_DEBOUNCE_MS).onEach {
             _state.debouncedSearchQuery = _state.searchQuery
         }.launchIn(viewModelScope)
 

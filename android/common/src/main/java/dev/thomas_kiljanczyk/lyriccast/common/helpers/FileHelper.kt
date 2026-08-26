@@ -7,16 +7,15 @@
 package dev.thomas_kiljanczyk.lyriccast.common.helpers
 
 import android.util.Log
+import java.io.File
+import java.io.InputStream
+import java.io.OutputStream
 import net.lingala.zip4j.io.inputstream.ZipInputStream
 import net.lingala.zip4j.io.outputstream.ZipOutputStream
 import net.lingala.zip4j.model.LocalFileHeader
 import net.lingala.zip4j.model.ZipParameters
 import net.lingala.zip4j.model.enums.CompressionLevel
 import net.lingala.zip4j.model.enums.CompressionMethod
-import java.io.File
-import java.io.InputStream
-import java.io.OutputStream
-
 
 object FileHelper {
     private const val TAG = "FileHelper"
@@ -28,7 +27,7 @@ object FileHelper {
         ZipInputStream(inputStream).use { zipInputStream ->
             while (true) {
                 val entry: LocalFileHeader = zipInputStream.nextEntry ?: break
-                val filePath = "${targetLocation}/${entry.fileName}"
+                val filePath = "$targetLocation/${entry.fileName}"
 
                 if (entry.isDirectory) {
                     createDirectory(filePath)
@@ -72,7 +71,7 @@ object FileHelper {
     ) {
         val fileList = directory.listFiles() ?: return
         for (file in fileList) {
-            val outputFilePath = "${outputPath}/${file.name}"
+            val outputFilePath = "$outputPath/${file.name}"
             if (file.isDirectory) {
                 zipDirectory(outputStream, file, parameters, outputFilePath)
                 continue

@@ -1,14 +1,19 @@
 *.iml
 .gradle
 local.properties
-.idea/caches
-.idea/libraries
-.idea/modules.xml
-.idea/workspace.xml
-.idea/navEditor.xml
-.idea/assetWizardSettings.xml
-.idea/androidTestResultsUserPreferences.xml
-.idea/deploymentTargetSelector.xml
+.idea/*
+!.idea/.gitignore
+!.idea/codeStyles/
+!.idea/inspectionProfiles/
+!.idea/copyright/
+!.idea/dictionaries/
+!.idea/runConfigurations/
+!.idea/misc.xml
+!.idea/vcs.xml
+!.idea/compiler.xml
+!.idea/gradle.xml
+!.idea/kotlinc.xml
+!.idea/detekt.xml
 .DS_Store
 build/
 /captures
@@ -17,3 +22,4 @@ build/
 .kotlin
 
 /app/release/
+temp/

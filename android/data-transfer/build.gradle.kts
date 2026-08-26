@@ -6,8 +6,8 @@
 
 plugins {
     alias(libs.plugins.android.library)
-    alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.serialization)
+    alias(libs.plugins.lyriccast.kotlin.quality)
 }
 
 android {
@@ -35,7 +35,7 @@ android {
     }
 
     namespace = "dev.thomas_kiljanczyk.datatransfer"
-    compileSdk = 36
+    compileSdk = 37
 }
 
 dependencies {

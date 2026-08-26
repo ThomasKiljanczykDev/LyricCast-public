@@ -92,6 +92,7 @@ fun SettingsCardGroup(
                 modifier = Modifier.fillMaxWidth(),
                 shape = when {
                     isFirst && isLast -> RoundedCornerShape(16.dp)
+
                     isFirst -> RoundedCornerShape(
                         topStart = 16.dp,
                         topEnd = 16.dp,
@@ -126,7 +127,6 @@ private class SettingsCardGroupScopeImpl : SettingsCardGroupScope {
         items.add(content)
     }
 }
-
 
 @Composable
 fun <T> SettingsRowWithDialog(
@@ -259,7 +259,7 @@ fun SettingsSlider(
 
 @PreviewLightDark
 @Composable
-fun PreviewSettingsCategory() {
+private fun PreviewSettingsCategory() {
     LyricCastTheme {
         Surface {
             SettingsCategory(title = "General", content = {
@@ -290,7 +290,7 @@ fun PreviewSettingsCategory() {
 
 @PreviewLightDark
 @Composable
-fun PreviewSettingsCardGroup() {
+private fun PreviewSettingsCardGroup() {
     LyricCastTheme {
         Surface {
             SettingsCardGroup {
@@ -340,7 +340,7 @@ fun PreviewSettingsCardGroup() {
 
 @PreviewLightDark
 @Composable
-fun PreviewSettingsRowWithDialog() {
+private fun PreviewSettingsRowWithDialog() {
     LyricCastTheme {
         Surface {
             SettingsRowWithDialog(
@@ -357,10 +357,9 @@ fun PreviewSettingsRowWithDialog() {
     }
 }
 
-
 @PreviewLightDark
 @Composable
-fun PreviewSettingsCheckbox() {
+private fun PreviewSettingsCheckbox() {
     LyricCastTheme {
         Surface {
             SettingsCheckbox(
@@ -374,7 +373,7 @@ fun PreviewSettingsCheckbox() {
 
 @PreviewLightDark
 @Composable
-fun PreviewSettingsSlider() {
+private fun PreviewSettingsSlider() {
     LyricCastTheme {
         Surface {
             SettingsSlider(

@@ -20,13 +20,13 @@ import dagger.hilt.android.HiltAndroidApp
 import dev.thomas_kiljanczyk.lyriccast.shared.cast.CastMessagingContext
 import dev.thomas_kiljanczyk.lyriccast.shared.cast.CastSessionListener
 import dev.thomas_kiljanczyk.lyriccast.ui.shared.misc.settings.ControlButtonHeightOption
+import javax.inject.Inject
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
 @HiltAndroidApp
 class LyricCastApplication : Application() {
@@ -86,7 +86,6 @@ class LyricCastApplication : Application() {
 
         DynamicColors.applyToActivitiesIfAvailable(this)
 
-
         // Initialize default values in DataStore
         CoroutineScope(Dispatchers.IO).launch {
             dataStore.updateData { currentSettings ->
@@ -97,7 +96,7 @@ class LyricCastApplication : Application() {
                         .setBlankOnStart(false)
                         .setBackgroundColor("Black")
                         .setFontColor("White")
-                        .setMaxFontSize(90)
+                        .setMaxFontSize(DEFAULT_MAX_FONT_SIZE)
                         .build()
                 } else {
                     currentSettings

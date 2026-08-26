@@ -7,8 +7,8 @@
 package dev.thomas_kiljanczyk.lyriccast.datamodel.repositiories
 
 import dev.thomas_kiljanczyk.lyriccast.datamodel.models.Setlist
-import kotlinx.coroutines.flow.Flow
 import java.util.UUID
+import kotlinx.coroutines.flow.Flow
 
 interface SetlistsRepository {
 
@@ -19,5 +19,4 @@ interface SetlistsRepository {
     suspend fun upsertSetlist(setlist: Setlist)
 
     suspend fun deleteSetlists(setlistIds: Collection<UUID>)
-
 }

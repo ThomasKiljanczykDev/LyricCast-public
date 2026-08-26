@@ -40,10 +40,10 @@ import androidx.compose.ui.window.DialogProperties
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import dev.thomas_kiljanczyk.lyriccast.R
 import dev.thomas_kiljanczyk.lyriccast.ui.shared.theme.LyricCastTheme
-import kotlinx.collections.immutable.ImmutableList
-import kotlinx.collections.immutable.persistentListOf
 import kotlin.uuid.ExperimentalUuidApi
 import kotlin.uuid.Uuid
+import kotlinx.collections.immutable.ImmutableList
+import kotlinx.collections.immutable.persistentListOf
 
 @OptIn(ExperimentalUuidApi::class)
 @Composable
@@ -62,11 +62,10 @@ fun ChooseSessionDialog(
         }
     }
 
-    ChooseSessionDialog(
-        state = viewModel.state, onDismiss = onDismiss, onSessionSelected = { item ->
-            viewModel.pickDevice(item)
-            onSessionSelected(item.endpointId)
-        })
+    ChooseSessionDialog(state = viewModel.state, onDismiss = onDismiss, onSessionSelected = { item ->
+        viewModel.pickDevice(item)
+        onSessionSelected(item.endpointId)
+    })
 
     if (viewModel.state.isConnecting) {
         ConnectingDialog()
@@ -153,11 +152,10 @@ private fun ChooseSessionDialogContent(
                     verticalArrangement = Arrangement.spacedBy(8.dp)
                 ) {
                     items(devices, key = { device -> device.endpointId }) { device ->
-                        SessionItem(
-                            device = device, onClick = {
-                                view.performHapticFeedback(android.view.HapticFeedbackConstants.VIRTUAL_KEY)
-                                onSessionSelected(device)
-                            })
+                        SessionItem(device = device, onClick = {
+                            view.performHapticFeedback(android.view.HapticFeedbackConstants.VIRTUAL_KEY)
+                            onSessionSelected(device)
+                        })
                     }
                 }
             }
@@ -174,7 +172,6 @@ private fun SessionItem(
             containerColor = MaterialTheme.colorScheme.surfaceContainerLow
         )
     ) {
-
         Text(
             modifier = Modifier.padding(16.dp),
             text = device.deviceName,
@@ -204,52 +201,49 @@ private fun ConnectingDialog() {
 
 @PreviewLightDark
 @Composable
-fun PreviewChooseSessionDialog() {
+private fun PreviewChooseSessionDialog() {
     LyricCastTheme {
         Surface {
-            ChooseSessionDialog(
-                state = MutableChooseSessionDialogState().apply {
-                    devices = persistentListOf(
-                        GmsNearbySessionItem("endpoint1", "John's Tablet"),
-                        GmsNearbySessionItem("endpoint2", "Jack's Phone"),
-                        GmsNearbySessionItem("endpoint3", "Jane's Tablet")
-                    )
-                    hasError = false
-                    selectedEndpointId = null
-                    isConnecting = false
-                })
+            ChooseSessionDialog(state = MutableChooseSessionDialogState().apply {
+                devices = persistentListOf(
+                    GmsNearbySessionItem("endpoint1", "John's Tablet"),
+                    GmsNearbySessionItem("endpoint2", "Jack's Phone"),
+                    GmsNearbySessionItem("endpoint3", "Jane's Tablet")
+                )
+                hasError = false
+                selectedEndpointId = null
+                isConnecting = false
+            })
         }
     }
 }
 
 @PreviewLightDark
 @Composable
-fun PreviewChooseSessionDialogLoading() {
+private fun PreviewChooseSessionDialogLoading() {
     LyricCastTheme {
         Surface {
-            ChooseSessionDialog(
-                state = MutableChooseSessionDialogState().apply {
-                    devices = persistentListOf()
-                    hasError = false
-                    selectedEndpointId = null
-                    isConnecting = false
-                })
+            ChooseSessionDialog(state = MutableChooseSessionDialogState().apply {
+                devices = persistentListOf()
+                hasError = false
+                selectedEndpointId = null
+                isConnecting = false
+            })
         }
     }
 }
 
 @PreviewLightDark
 @Composable
-fun PreviewChooseSessionDialogError() {
+private fun PreviewChooseSessionDialogError() {
     LyricCastTheme {
         Surface {
-            ChooseSessionDialog(
-                state = MutableChooseSessionDialogState().apply {
-                    devices = persistentListOf()
-                    hasError = true
-                    selectedEndpointId = null
-                    isConnecting = false
-                })
+            ChooseSessionDialog(state = MutableChooseSessionDialogState().apply {
+                devices = persistentListOf()
+                hasError = true
+                selectedEndpointId = null
+                isConnecting = false
+            })
         }
     }
 }

@@ -59,28 +59,27 @@ fun CategoryManagerScreen(
     var categoryToEdit by remember { mutableStateOf<CategoryItem?>(null) }
     var showAddCategoryDialog by remember { mutableStateOf(false) }
 
-    Scaffold(
-        topBar = {
-            CategoryManagerTopBar(
-                onNavigateUp = onNavigateUp,
-                selectedCount = state.categories.count { it.isSelected },
-                onCancelSelection = onCancelSelection,
-                onDelete = onDelete,
-                onEdit = {
-                    val selectedCategory = state.categories.firstOrNull { it.isSelected }
-                    categoryToEdit = selectedCategory
-                    if (selectedCategory != null) {
-                        showAddCategoryDialog = true
-                        onItemSelected(
-                            selectedCategory,
-                            false
-                        )
-                    }
-                },
-                onAdd = {
+    Scaffold(topBar = {
+        CategoryManagerTopBar(
+            onNavigateUp = onNavigateUp,
+            selectedCount = state.categories.count { it.isSelected },
+            onCancelSelection = onCancelSelection,
+            onDelete = onDelete,
+            onEdit = {
+                val selectedCategory = state.categories.firstOrNull { it.isSelected }
+                categoryToEdit = selectedCategory
+                if (selectedCategory != null) {
                     showAddCategoryDialog = true
-                })
-        }) { paddingValues ->
+                    onItemSelected(
+                        selectedCategory,
+                        false
+                    )
+                }
+            },
+            onAdd = {
+                showAddCategoryDialog = true
+            })
+    }) { paddingValues ->
         CategoryList(
             categories = state.categories,
             onCategorySelected = onItemSelected,
@@ -105,10 +104,9 @@ fun CategoryManagerScreen(
     }
 }
 
-
 @PreviewLightDark
 @Composable
-fun CategoryManagerScreenPreview() {
+private fun CategoryManagerScreenPreview() {
     LyricCastTheme {
         CategoryManagerScreen(
             state = MutableCategoryManagerState().apply {

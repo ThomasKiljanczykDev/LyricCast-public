@@ -29,5 +29,4 @@ class CustomMediaRouteActionProvider(context: Context) : MediaRouteActionProvide
     override fun setDialogFactory(factory: MediaRouteDialogFactory) {
         this.factory = factory
     }
-
 }

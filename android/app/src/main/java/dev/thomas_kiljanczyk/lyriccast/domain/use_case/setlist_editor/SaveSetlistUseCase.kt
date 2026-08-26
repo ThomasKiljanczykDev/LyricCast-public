@@ -51,8 +51,12 @@ class SaveSetlistUseCase @Inject constructor(
             if (nameValidation != NameValidationState.VALID) {
                 val errorMessage = when (nameValidation) {
                     NameValidationState.EMPTY -> UiText.StringResource(R.string.setlist_editor_enter_name)
-                    NameValidationState.ALREADY_IN_USE -> UiText.StringResource(R.string.setlist_editor_name_already_used)
-                    NameValidationState.VALID -> throw IllegalStateException()
+
+                    NameValidationState.ALREADY_IN_USE ->
+                        UiText.StringResource(R.string.setlist_editor_name_already_used)
+
+                    NameValidationState.VALID ->
+                        throw IllegalStateException("Unreachable: VALID name did not pass validation")
                 }
                 return SaveSetlistResult.ValidationError(errorMessage)
             }

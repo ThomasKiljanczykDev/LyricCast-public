@@ -29,15 +29,14 @@ import dev.thomas_kiljanczyk.lyriccast.shared.misc.LyricCastMessagingContext
 import dev.thomas_kiljanczyk.lyriccast.shared.misc.SessionServerCommand
 import dev.thomas_kiljanczyk.lyriccast.shared.misc.SessionServerMessage
 import dev.thomas_kiljanczyk.lyriccast.ui.shared.misc.settings.ControlButtonHeightOption
+import java.util.UUID
+import javax.inject.Inject
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
-import java.util.UUID
-import javax.inject.Inject
-
 
 interface SongControlsState {
     val songTitle: String
@@ -56,7 +55,6 @@ class MutableSongControlsState : SongControlsState {
     override var isBlanked by mutableStateOf(true)
     override var buttonHeight by mutableIntStateOf(ControlButtonHeightOption.DEFAULT.value)
 }
-
 
 @HiltViewModel
 class SongControlsViewModel @Inject constructor(

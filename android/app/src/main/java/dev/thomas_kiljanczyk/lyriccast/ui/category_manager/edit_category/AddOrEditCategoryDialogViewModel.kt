@@ -19,12 +19,12 @@ import dev.thomas_kiljanczyk.lyriccast.domain.use_case.category_manager.GetCateg
 import dev.thomas_kiljanczyk.lyriccast.domain.use_case.category_manager.SaveCategoryUseCase
 import dev.thomas_kiljanczyk.lyriccast.domain.use_case.category_manager.ValidateCategoryNameUseCase
 import dev.thomas_kiljanczyk.lyriccast.ui.shared.misc.colorItems
+import java.util.UUID
+import javax.inject.Inject
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
-import java.util.UUID
-import javax.inject.Inject
 
 interface AddOrEditCategoryState {
     val id: UUID?
@@ -54,11 +54,11 @@ class AddOrEditCategoryDialogViewModel @Inject constructor(
     private val _state = MutableAddOrEditCategoryState()
     val state: AddOrEditCategoryState get() = _state
 
-    private var _categoryNames: Set<String> = setOf()
+    private var categoryNamesState: Set<String> = setOf()
 
     init {
         getCategoryNamesUseCase()
-            .onEach { categoryNames -> _categoryNames = categoryNames }
+            .onEach { newCategoryNames -> categoryNamesState = newCategoryNames }
             .flowOn(Dispatchers.Default).launchIn(viewModelScope)
     }
 
@@ -86,9 +86,9 @@ class AddOrEditCategoryDialogViewModel @Inject constructor(
 
                 val initialName = _state.initialName
                 val categoryNames = if (initialName == null) {
-                    _categoryNames
+                    categoryNamesState
                 } else {
-                    _categoryNames - initialName
+                    categoryNamesState - initialName
                 }
 
                 val validationResult =
@@ -110,12 +110,10 @@ class AddOrEditCategoryDialogViewModel @Inject constructor(
 
                 submit()
             }
-
         }
     }
 
     private suspend fun submit() {
         saveCategoryUseCase(_state.name, _state.color.value, _state.id)
     }
-
 }

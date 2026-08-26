@@ -62,7 +62,6 @@ class SessionClientViewModel @Inject constructor(
 
     private var currentEndpointId: String? = null
 
-
     private fun handlePayload(payload: ByteArray?) {
         val payloadString = payload?.decodeToString() ?: return
 
@@ -85,10 +84,9 @@ class SessionClientViewModel @Inject constructor(
             endpointId: String, connectionInfo: ConnectionInfo
         ) {
             super.onConnectionInitiated(endpointId, connectionInfo)
-            connectionsClient.acceptConnection(
-                endpointId, SimpleNearbyPayloadCallback {
-                    handlePayload(it)
-                })
+            connectionsClient.acceptConnection(endpointId, SimpleNearbyPayloadCallback {
+                handlePayload(it)
+            })
         }
 
         override fun onConnectionResult(

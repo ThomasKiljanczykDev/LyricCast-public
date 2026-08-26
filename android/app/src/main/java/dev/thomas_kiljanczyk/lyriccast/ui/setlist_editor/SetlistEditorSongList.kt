@@ -48,12 +48,11 @@ import androidx.compose.ui.zIndex
 import dev.thomas_kiljanczyk.lyriccast.domain.models.SongItem
 import dev.thomas_kiljanczyk.lyriccast.ui.shared.components.SwipeToRevealBox
 import dev.thomas_kiljanczyk.lyriccast.ui.shared.theme.LyricCastTheme
+import java.util.UUID
 import kotlinx.collections.immutable.persistentListOf
 import kotlinx.collections.immutable.persistentMapOf
 import sh.calvin.reorderable.ReorderableItem
 import sh.calvin.reorderable.rememberReorderableLazyListState
-import java.util.UUID
-
 
 @Composable
 fun SetlistEditorSongList(
@@ -78,8 +77,7 @@ fun SetlistEditorSongList(
             .padding(horizontal = 16.dp),
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
-        itemsIndexed(
-            items = songs, key = { _, item -> item.id }) { index, songItem ->
+        itemsIndexed(items = songs, key = { _, item -> item.id }) { index, songItem ->
             ReorderableItem(reorderableLazyListState, key = songItem.id) { isDragging ->
                 SetlistSongItem(
                     draggableHandleModifier = Modifier.draggableHandle(onDragStarted = {
@@ -110,7 +108,6 @@ fun SetlistEditorSongList(
         }
     }
 }
-
 
 @OptIn(ExperimentalFoundationApi::class, ExperimentalMaterial3ExpressiveApi::class)
 @Composable
@@ -143,6 +140,10 @@ private fun SetlistSongItem(
             modifier = Modifier
                 .zIndex(if (isDragging) 1f else 0f)
                 .fillMaxWidth()
+                .border(
+                    width = 3.dp, color = animatedBorderColor, shape = CardDefaults.shape
+                )
+                .clip(CardDefaults.shape)
                 .combinedClickable(
                     onClick = {
                         if (isInSelectionMode) {
@@ -150,10 +151,6 @@ private fun SetlistSongItem(
                         }
                     }, onLongClick = onLongPress
                 )
-                .border(
-                    width = 3.dp, color = animatedBorderColor, shape = CardDefaults.shape
-                )
-                .clip(CardDefaults.shape)
         ) {
             ListItem(
                 headlineContent = {

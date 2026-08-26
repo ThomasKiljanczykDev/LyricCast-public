@@ -270,14 +270,14 @@ fun SessionClientScreen(
     }
 }
 
-
 @PreviewLightDark
 @Composable
-fun PreviewSessionClientScreen() {
+private fun PreviewSessionClientScreen() {
     LyricCastTheme {
         SessionClientScreen(
             songTitle = "Amazing Grace",
-            slideText = "Amazing grace, how sweet the sound\nThat saved a wretch like me\nI once was lost, but now am found\nWas blind, but now I see",
+            slideText = "Amazing grace, how sweet the sound\nThat saved a wretch like me\n" +
+                "I once was lost, but now am found\nWas blind, but now I see",
             currentSlide = 0, // 0-based index for SongInfo component
             totalSlideCount = 4,
             snackbarHostState = remember { SnackbarHostState() },
@@ -288,7 +288,7 @@ fun PreviewSessionClientScreen() {
 
 @PreviewLightDark
 @Composable
-fun PreviewSessionClientScreenEmpty() {
+private fun PreviewSessionClientScreenEmpty() {
     LyricCastTheme {
         SessionClientScreen(
             songTitle = "",

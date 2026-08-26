@@ -66,9 +66,9 @@ private fun AnimatedFilledIconButton(
 
     val animatedCornerRadius by animateDpAsState(
         targetValue = when {
-            isPressed -> pressedRadius // While pressed, show pressed state
-            isAnimating -> pressedRadius // During animation trigger, show pressed state briefly
-            else -> normalRadius // Normal state
+            isPressed -> pressedRadius
+            isAnimating -> pressedRadius
+            else -> normalRadius
         },
         finishedListener = { isAnimating = false },
         animationSpec = MaterialTheme.motionScheme.defaultSpatialSpec(),
@@ -234,7 +234,7 @@ fun ControlButtons(
 
 @PreviewLightDark
 @Composable
-fun PreviewControlButtons() {
+private fun PreviewControlButtons() {
     var isBlanked by remember { mutableStateOf(false) }
 
     LyricCastTheme {

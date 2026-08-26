@@ -12,7 +12,9 @@ import dev.thomas_kiljanczyk.lyriccast.domain.models.UiText
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.persistentListOf
 
-// TODO: Tweak the colors so they don't require different text colors when text is above them
+// TODO: Tweak the colors so they don't require different text colors when text is above them.
+// Deferred to the Material3 color-token rework (app-style pass).
+@Suppress("ForbiddenComment")
 val colorItems: ImmutableList<ColorItem> = persistentListOf(
     ColorItem(
         UiText.StringResource(R.string.category_color_maroon),

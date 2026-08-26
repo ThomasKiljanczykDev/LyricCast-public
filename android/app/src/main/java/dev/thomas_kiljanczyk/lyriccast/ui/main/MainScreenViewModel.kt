@@ -19,11 +19,11 @@ import dev.thomas_kiljanczyk.lyriccast.domain.models.UiText
 import dev.thomas_kiljanczyk.lyriccast.domain.use_case.main.ExportDataUseCase
 import dev.thomas_kiljanczyk.lyriccast.domain.use_case.main.ImportDataUseCase
 import dev.thomas_kiljanczyk.lyriccast.shared.gms_nearby.GmsNearbySessionServerContext
-import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.onEach
 import java.io.InputStream
 import java.io.OutputStream
 import javax.inject.Inject
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 
 interface MainScreenState {
     val selectedTab: MainTab
@@ -122,5 +122,4 @@ class MainScreenViewModel @Inject constructor(
             false
         }
     }
-
 }

@@ -48,6 +48,8 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import dev.thomas_kiljanczyk.lyriccast.ui.shared.theme.LyricCastTheme
 
+private const val MAX_SWIPE_OFFSET_DP = 200
+
 enum class SwipeDirection {
     LEFT,
     RIGHT,
@@ -93,8 +95,8 @@ class SwipeToRevealState {
 
     fun updateOffset(
         newOffset: Dp,
-        minOffset: Dp = (-200).dp,
-        maxOffset: Dp = 200.dp
+        minOffset: Dp = -MAX_SWIPE_OFFSET_DP.dp,
+        maxOffset: Dp = MAX_SWIPE_OFFSET_DP.dp
     ) {
         currentOffsetX = newOffset.coerceIn(minOffset, maxOffset)
         targetOffsetX = currentOffsetX
@@ -243,7 +245,9 @@ fun SwipeToRevealBox(
         }
 
         // Right swipe background (revealed when swiping right)
-        if (displayOffsetX > 0.dp && (swipeDirection == SwipeDirection.RIGHT || swipeDirection == SwipeDirection.BOTH)) {
+        if (displayOffsetX > 0.dp &&
+            (swipeDirection == SwipeDirection.RIGHT || swipeDirection == SwipeDirection.BOTH)
+        ) {
             SwipeBackground(
                 modifier = Modifier.matchParentSize(),
                 icon = rightIcon,
@@ -272,8 +276,16 @@ fun SwipeToRevealBox(
                             onDragEnd = {
                                 hapticFeedback.performHapticFeedback(HapticFeedbackType.GestureEnd)
                                 state.onDragEnd(
-                                    leftThreshold = if (swipeDirection != SwipeDirection.RIGHT) leftSwipeThreshold else null,
-                                    rightThreshold = if (swipeDirection != SwipeDirection.LEFT) rightSwipeThreshold else null,
+                                    leftThreshold = if (swipeDirection != SwipeDirection.RIGHT) {
+                                        leftSwipeThreshold
+                                    } else {
+                                        null
+                                    },
+                                    rightThreshold = if (swipeDirection != SwipeDirection.LEFT) {
+                                        rightSwipeThreshold
+                                    } else {
+                                        null
+                                    },
                                     onSwipeLeft = onSwipeLeft,
                                     onSwipeRight = onSwipeRight
                                 )

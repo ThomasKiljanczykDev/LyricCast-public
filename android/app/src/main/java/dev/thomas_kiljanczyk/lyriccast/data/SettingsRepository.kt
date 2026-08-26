@@ -11,9 +11,9 @@ import dev.thomas_kiljanczyk.lyriccast.application.AppSettings
 import dev.thomas_kiljanczyk.lyriccast.ui.shared.misc.settings.ColorOption
 import dev.thomas_kiljanczyk.lyriccast.ui.shared.misc.settings.ControlButtonHeightOption
 import dev.thomas_kiljanczyk.lyriccast.ui.shared.misc.settings.ThemeOption
-import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 import javax.inject.Singleton
+import kotlinx.coroutines.flow.Flow
 
 @Singleton
 class SettingsRepository @Inject constructor(
@@ -69,4 +69,3 @@ class SettingsRepository @Inject constructor(
         }
     }
 }
-

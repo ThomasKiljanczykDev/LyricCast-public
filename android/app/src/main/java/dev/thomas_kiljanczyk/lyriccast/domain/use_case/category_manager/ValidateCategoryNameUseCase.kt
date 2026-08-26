@@ -20,7 +20,6 @@ class ValidateCategoryNameUseCase @Inject constructor() {
         const val MAX_LENGTH = 30
     }
 
-
     /**
      * Validates a category name against business rules.
      *

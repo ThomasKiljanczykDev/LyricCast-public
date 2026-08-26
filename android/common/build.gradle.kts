@@ -6,7 +6,7 @@
 
 plugins {
     alias(libs.plugins.android.library)
-    alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.lyriccast.kotlin.quality)
 }
 
 android {
@@ -40,7 +40,7 @@ android {
         }
     }
     namespace = "dev.thomas_kiljanczyk.lyriccast.common"
-    compileSdk = 36
+    compileSdk = 37
 }
 
 dependencies {

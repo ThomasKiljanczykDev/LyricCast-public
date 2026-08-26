@@ -22,6 +22,8 @@ import dev.thomas_kiljanczyk.lyriccast.domain.use_case.main.DeleteSongsUseCase
 import dev.thomas_kiljanczyk.lyriccast.domain.use_case.main.ExportSongsUseCase
 import dev.thomas_kiljanczyk.lyriccast.ui.shared.state.MutableSongFilterState
 import dev.thomas_kiljanczyk.lyriccast.ui.shared.state.SongFilterState
+import java.io.OutputStream
+import javax.inject.Inject
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.toImmutableList
 import kotlinx.coroutines.Dispatchers
@@ -33,8 +35,6 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
-import java.io.OutputStream
-import javax.inject.Inject
 
 interface SongsScreenState {
     val isInSelectionMode: Boolean
@@ -63,6 +63,8 @@ class MutableSongsScreenState : SongsScreenState {
     }
 }
 
+private const val SEARCH_DEBOUNCE_MS = 300L
+
 @OptIn(FlowPreview::class)
 @HiltViewModel
 class SongsScreenViewModel @Inject constructor(
@@ -88,7 +90,7 @@ class SongsScreenViewModel @Inject constructor(
             _state.debouncedFilterState.selectedCategory = category
         }.launchIn(viewModelScope)
 
-        searchQueryFlow.debounce(300).onEach {
+        searchQueryFlow.debounce(SEARCH_DEBOUNCE_MS).onEach {
             _state.debouncedFilterState.searchText = _state.filterState.searchText
         }.launchIn(viewModelScope)
 

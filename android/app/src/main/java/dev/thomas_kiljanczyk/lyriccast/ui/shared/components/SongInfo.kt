@@ -52,7 +52,7 @@ fun SongInfo(
 
 @PreviewLightDark
 @Composable
-fun PreviewSongInfo() {
+private fun PreviewSongInfo() {
     LyricCastTheme {
         Surface {
             SongInfo(

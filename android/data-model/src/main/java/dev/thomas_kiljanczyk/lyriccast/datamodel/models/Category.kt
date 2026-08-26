@@ -27,5 +27,4 @@ data class Category(
     override fun compareTo(other: Category): Int {
         return name.compareTo(other.name)
     }
-
 }

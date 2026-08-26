@@ -19,6 +19,8 @@ import dev.thomas_kiljanczyk.lyriccast.domain.use_case.setlist_editor.GetAllSong
 import dev.thomas_kiljanczyk.lyriccast.domain.use_case.shared.GetCategoriesWithNullOptionUseCase
 import dev.thomas_kiljanczyk.lyriccast.ui.shared.state.MutableSongFilterState
 import dev.thomas_kiljanczyk.lyriccast.ui.shared.state.SongFilterState
+import java.util.UUID
+import javax.inject.Inject
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.PersistentList
 import kotlinx.collections.immutable.persistentListOf
@@ -31,8 +33,6 @@ import kotlinx.coroutines.flow.debounce
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
-import java.util.UUID
-import javax.inject.Inject
 
 interface SetlistSongSelectionDialogState {
     val allAvailableSongs: ImmutableList<SongItem>
@@ -51,6 +51,8 @@ class MutableSetlistSongSelectionDialogState : SetlistSongSelectionDialogState {
         debouncedFilterState.filterSongs(allAvailableSongs).sorted().toImmutableList()
     }
 }
+
+private const val SEARCH_DEBOUNCE_MS = 300L
 
 @OptIn(FlowPreview::class)
 @HiltViewModel
@@ -71,7 +73,7 @@ class SetlistSongSelectionDialogViewModel @Inject constructor(
             _state.filterState.searchText = query
         }.launchIn(viewModelScope)
 
-        searchQueryFlow.debounce(300).onEach {
+        searchQueryFlow.debounce(SEARCH_DEBOUNCE_MS).onEach {
             _state.debouncedFilterState.searchText = _state.filterState.searchText
         }.launchIn(viewModelScope)
 

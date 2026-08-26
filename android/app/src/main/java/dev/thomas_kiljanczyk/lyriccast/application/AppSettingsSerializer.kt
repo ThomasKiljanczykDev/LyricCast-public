@@ -18,6 +18,8 @@ import dev.thomas_kiljanczyk.lyriccast.ui.shared.misc.settings.ControlButtonHeig
 import java.io.InputStream
 import java.io.OutputStream
 
+internal const val DEFAULT_MAX_FONT_SIZE = 90
+
 object AppSettingsSerializer : Serializer<AppSettings> {
     override val defaultValue: AppSettings = AppSettings.getDefaultInstance()
 
@@ -53,7 +55,7 @@ object AppSettingsSerializer : Serializer<AppSettings> {
             settingsBuilder.fontColor = ColorOption.WHITE.value
         }
         if (settingsBuilder.maxFontSize == 0) {
-            settingsBuilder.maxFontSize = 90
+            settingsBuilder.maxFontSize = DEFAULT_MAX_FONT_SIZE
         }
     }
 }

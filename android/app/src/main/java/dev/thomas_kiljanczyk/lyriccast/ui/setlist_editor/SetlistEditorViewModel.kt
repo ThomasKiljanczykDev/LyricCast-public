@@ -29,12 +29,12 @@ import dev.thomas_kiljanczyk.lyriccast.domain.use_case.setlist_editor.LoadSetlis
 import dev.thomas_kiljanczyk.lyriccast.domain.use_case.setlist_editor.SaveSetlistUseCase
 import dev.thomas_kiljanczyk.lyriccast.domain.use_case.setlist_editor.ValidateSetlistNameUseCase
 import dev.thomas_kiljanczyk.lyriccast.shared.enums.NameValidationState
+import java.util.UUID
+import javax.inject.Inject
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
-import java.util.UUID
-import javax.inject.Inject
 
 data class SetlistSongItem(
     val song: SongItem, val id: UUID = UUIDv7.randomUUID(), val isSelected: Boolean = false
@@ -77,7 +77,6 @@ class SetlistEditorViewModel @Inject constructor(
     private var setlistId: UUID = UUIDv7.randomUUID()
     private var editedSetlist: Setlist? = null
     private var setlistNames: Set<String> = setOf()
-
 
     init {
         getSetlistNamesUseCase()

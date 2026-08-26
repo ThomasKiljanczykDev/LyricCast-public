@@ -63,8 +63,11 @@ class SaveSongUseCase @Inject constructor(
             if (titleValidation != NameValidationState.VALID) {
                 val errorMessage = when (titleValidation) {
                     NameValidationState.EMPTY -> UiText.StringResource(R.string.song_editor_enter_title)
+
                     NameValidationState.ALREADY_IN_USE -> UiText.StringResource(R.string.song_editor_title_already_used)
-                    NameValidationState.VALID -> throw IllegalStateException()
+
+                    NameValidationState.VALID ->
+                        throw IllegalStateException("Unreachable: VALID title did not pass validation")
                 }
                 return SaveSongResult.ValidationError(errorMessage)
             }

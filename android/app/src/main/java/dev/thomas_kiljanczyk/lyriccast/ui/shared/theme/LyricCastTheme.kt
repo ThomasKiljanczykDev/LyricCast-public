@@ -122,6 +122,7 @@ fun LyricCastTheme(
         }
 
         useDarkTheme -> darkScheme
+
         else -> lightScheme
     }
 
@@ -131,4 +132,3 @@ fun LyricCastTheme(
         content = content
     )
 }
-

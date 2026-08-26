@@ -19,12 +19,12 @@ import dev.thomas_kiljanczyk.lyriccast.ui.shared.misc.settings.ColorOption
 import dev.thomas_kiljanczyk.lyriccast.ui.shared.misc.settings.ControlButtonHeightOption
 import dev.thomas_kiljanczyk.lyriccast.ui.shared.misc.settings.SettingsConstants
 import dev.thomas_kiljanczyk.lyriccast.ui.shared.misc.settings.ThemeOption
+import javax.inject.Inject
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.persistentListOf
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import javax.inject.Inject
 
 interface SettingsState {
     val theme: ThemeOption

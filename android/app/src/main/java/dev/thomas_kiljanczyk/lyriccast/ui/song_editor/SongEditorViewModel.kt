@@ -25,15 +25,14 @@ import dev.thomas_kiljanczyk.lyriccast.domain.use_case.song_editor.LoadSongUseCa
 import dev.thomas_kiljanczyk.lyriccast.domain.use_case.song_editor.SaveSongUseCase
 import dev.thomas_kiljanczyk.lyriccast.domain.use_case.song_editor.ValidateSongTitleUseCase
 import dev.thomas_kiljanczyk.lyriccast.shared.enums.NameValidationState
+import java.util.UUID
+import javax.inject.Inject
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.persistentListOf
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
-import java.util.UUID
-import javax.inject.Inject
-
 
 data class LyricsSection(
     val name: String, val content: String = ""
@@ -64,7 +63,10 @@ class MutableSongEditorState : SongEditorState {
     override var sectionNameValidationState by mutableStateOf(NameValidationState.VALID)
 
     override val canSave by derivedStateOf {
-        titleValidationState == NameValidationState.VALID && sectionNameValidationState == NameValidationState.VALID && songTitle.isNotBlank() && lyricsSections.all { it.isNotBlank() }
+        titleValidationState == NameValidationState.VALID &&
+            sectionNameValidationState == NameValidationState.VALID &&
+            songTitle.isNotBlank() &&
+            lyricsSections.all { it.isNotBlank() }
     }
 }
 

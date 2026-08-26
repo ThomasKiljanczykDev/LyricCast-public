@@ -8,18 +8,19 @@ package dev.thomas_kiljanczyk.lyriccast.domain.models
 
 import dev.thomas_kiljanczyk.lyriccast.common.extensions.normalize
 import dev.thomas_kiljanczyk.lyriccast.datamodel.models.Song
+import java.util.UUID
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.ImmutableMap
 import kotlinx.collections.immutable.toImmutableList
 import kotlinx.collections.immutable.toImmutableMap
-import java.util.UUID
 
 /**
  * Represents a song item, including metadata, lyrics, and presentation details.
  *
  * @param id The unique identifier for the song.
  * @param title The title of the song.
- * @param lyricsMap A map containing lyrics sections where the key is the section name and the value is the section text.
+ * @param lyricsMap A map containing lyrics sections where the key is the section name and the value is the
+ * section text.
  * @param presentation A list defining the order of lyrics sections for presentation purposes.
  * @param category The category associated with this song, if any.
  * @param isSelected Indicates whether this song item is currently selected.

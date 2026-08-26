@@ -48,15 +48,17 @@ import dev.thomas_kiljanczyk.lyriccast.domain.models.SetlistItem
 import dev.thomas_kiljanczyk.lyriccast.ui.shared.components.LyricCastTextField
 import dev.thomas_kiljanczyk.lyriccast.ui.shared.preview.PreviewData
 import dev.thomas_kiljanczyk.lyriccast.ui.shared.theme.LyricCastTheme
-import kotlinx.coroutines.launch
 import java.util.UUID
+import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SetlistsScreen(
     snackbarHostState: SnackbarHostState = remember { SnackbarHostState() },
     onNavigateToSetlistControls: (UUID) -> Unit = {},
-    viewModel: SetlistsScreenViewModel = hiltViewModel(viewModelStoreOwner = LocalActivity.current!! as ViewModelStoreOwner)
+    viewModel: SetlistsScreenViewModel = hiltViewModel(
+        viewModelStoreOwner = LocalActivity.current!! as ViewModelStoreOwner
+    )
 ) {
     val state = viewModel.state
 
@@ -109,8 +111,7 @@ fun SetlistsScreen(
                 .fillMaxSize()
                 .padding(horizontal = 16.dp)
         ) {
-            items(
-                items = setlists, key = { it.id }) { setlistItem ->
+            items(items = setlists, key = { it.id }) { setlistItem ->
                 val setlistIsEmptyString = stringResource(R.string.main_activity_setlist_is_empty)
                 SetlistItem(
                     modifier = Modifier.animateItem(),
@@ -138,7 +139,6 @@ fun SetlistsScreen(
         }
     }
 }
-
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
@@ -185,7 +185,6 @@ private fun SetlistItem(
         )
     }
 }
-
 
 @PreviewLightDark
 @Composable

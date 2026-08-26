@@ -12,8 +12,8 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import dev.thomas_kiljanczyk.lyriccast.datamodel.models.room.CategoryEntity
-import kotlinx.coroutines.flow.Flow
 import java.util.UUID
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface CategoryDao {

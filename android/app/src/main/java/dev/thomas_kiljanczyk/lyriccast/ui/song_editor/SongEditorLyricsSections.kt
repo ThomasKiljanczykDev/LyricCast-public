@@ -193,11 +193,19 @@ fun SongEditorLyricsSections(
                             itemsIndexed(sections) { index, tab ->
                                 val isSelected = index == currentSectionIndex
                                 val animatedCardColor by animateColorAsState(
-                                    if (isSelected) MaterialTheme.colorScheme.surfaceDim else MaterialTheme.colorScheme.surfaceBright,
+                                    if (isSelected) {
+                                        MaterialTheme.colorScheme.surfaceDim
+                                    } else {
+                                        MaterialTheme.colorScheme.surfaceBright
+                                    },
                                     label = "CardColor"
                                 )
                                 val animatedTextColor by animateColorAsState(
-                                    if (isSelected) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.secondary,
+                                    if (isSelected) {
+                                        MaterialTheme.colorScheme.primary
+                                    } else {
+                                        MaterialTheme.colorScheme.secondary
+                                    },
                                     label = "TextColor"
                                 )
 
@@ -242,7 +250,7 @@ fun SongEditorLyricsSections(
 
 @PreviewLightDark
 @Composable
-fun PreviewSongEditorLyricsSections() {
+private fun PreviewSongEditorLyricsSections() {
     LyricCastTheme {
         val previewState = MutableSongEditorState().apply {
             songTitle = "Sample Song"

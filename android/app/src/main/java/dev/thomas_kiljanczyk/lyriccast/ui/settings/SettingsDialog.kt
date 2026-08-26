@@ -72,7 +72,7 @@ fun <T> SettingsDialog(
 
 @PreviewLightDark
 @Composable
-fun PreviewSettingsDialog() {
+private fun PreviewSettingsDialog() {
     LyricCastTheme {
         Surface {
             SettingsDialog(

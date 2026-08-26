@@ -55,10 +55,10 @@ import dev.thomas_kiljanczyk.lyriccast.ui.shared.components.CategoryDropdown
 import dev.thomas_kiljanczyk.lyriccast.ui.shared.components.LyricCastTextField
 import dev.thomas_kiljanczyk.lyriccast.ui.shared.preview.PreviewData
 import dev.thomas_kiljanczyk.lyriccast.ui.shared.theme.LyricCastTheme
+import java.util.UUID
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.toImmutableList
 import kotlinx.coroutines.launch
-import java.util.UUID
 
 @Composable
 fun SongEditorScreen(
@@ -132,28 +132,27 @@ fun SongEditorScreen(
     onAddNewSection: (String, suspend () -> Unit) -> Unit = { _, _ -> },
     onSave: () -> Unit = {}
 ) {
-    Scaffold(
-        topBar = {
-            TopAppBar(
-                title = { Text(stringResource(R.string.title_song_editor)) },
-                navigationIcon = {
-                    IconButton(onClick = onNavigateUp) {
-                        Icon(
-                            imageVector = Icons.AutoMirrored.Rounded.ArrowBack,
-                            contentDescription = stringResource(R.string.navigate_up)
-                        )
-                    }
-                },
-                actions = {
-                    FilledTonalButton(
-                        onClick = onSave,
-                        enabled = state.canSave,
-                        modifier = Modifier.padding(end = 16.dp)
-                    ) {
-                        Text(stringResource(R.string.action_save))
-                    }
-                })
-        }) { paddingValues ->
+    Scaffold(topBar = {
+        TopAppBar(
+            title = { Text(stringResource(R.string.title_song_editor)) },
+            navigationIcon = {
+                IconButton(onClick = onNavigateUp) {
+                    Icon(
+                        imageVector = Icons.AutoMirrored.Rounded.ArrowBack,
+                        contentDescription = stringResource(R.string.navigate_up)
+                    )
+                }
+            },
+            actions = {
+                FilledTonalButton(
+                    onClick = onSave,
+                    enabled = state.canSave,
+                    modifier = Modifier.padding(end = 16.dp)
+                ) {
+                    Text(stringResource(R.string.action_save))
+                }
+            })
+    }) { paddingValues ->
         Column(
             verticalArrangement = Arrangement.spacedBy(16.dp),
             modifier = Modifier
@@ -306,7 +305,7 @@ private fun PreviewSongEditorCategoryDropdownNoSelection() {
 
 @Composable
 @PreviewLightDark
-fun PreviewSongEditorScreen() {
+private fun PreviewSongEditorScreen() {
     val sectionName = PreviewData.amazingGrace.presentation.first()
     LyricCastTheme {
         val previewState = MutableSongEditorState().apply {

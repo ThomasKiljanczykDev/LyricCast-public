@@ -44,9 +44,9 @@ import dev.thomas_kiljanczyk.lyriccast.ui.shared.components.LyricCastSpinner
 import dev.thomas_kiljanczyk.lyriccast.ui.shared.components.LyricCastTextField
 import dev.thomas_kiljanczyk.lyriccast.ui.shared.misc.colorItems
 import dev.thomas_kiljanczyk.lyriccast.ui.shared.theme.LyricCastTheme
-import kotlinx.coroutines.launch
 import kotlin.uuid.ExperimentalUuidApi
 import kotlin.uuid.Uuid
+import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3ExpressiveApi::class)
 @Composable
@@ -90,7 +90,6 @@ fun AddOrEditCategoryForm(
                 onOptionSelected = {
                     onColorChange(it)
                 }) {
-
                 Row(
                     horizontalArrangement = Arrangement.spacedBy(8.dp),
                     verticalAlignment = Alignment.CenterVertically,
@@ -110,10 +109,9 @@ fun AddOrEditCategoryForm(
     }
 }
 
-
 @PreviewLightDark
 @Composable
-fun PreviewAddOrEditCategoryForm() {
+private fun PreviewAddOrEditCategoryForm() {
     LyricCastTheme {
         Surface(modifier = Modifier.height(500.dp)) {
             AddOrEditCategoryForm(
@@ -166,7 +164,6 @@ fun AddOrEditCategoryDialog(
     )
 }
 
-
 @Composable
 fun AddOrEditCategoryDialog(
     state: AddOrEditCategoryState,
@@ -184,10 +181,9 @@ fun AddOrEditCategoryDialog(
             }
         )
     }, confirmButton = {
-        TextButton(
-            enabled = state.isValid, onClick = {
-                onSubmit()
-            }) {
+        TextButton(enabled = state.isValid, onClick = {
+            onSubmit()
+        }) {
             Text(
                 text = stringResource(R.string.editor_button_save)
             )
@@ -207,7 +203,7 @@ fun AddOrEditCategoryDialog(
 
 @PreviewLightDark
 @Composable
-fun PreviewAddOrEditCategoryDialog_Add() {
+private fun PreviewAddOrEditCategoryDialog_Add() {
     LyricCastTheme {
         Surface {
             AddOrEditCategoryDialog(
@@ -225,7 +221,7 @@ fun PreviewAddOrEditCategoryDialog_Add() {
 
 @PreviewLightDark
 @Composable
-fun PreviewAddOrEditCategoryDialog_Edit() {
+private fun PreviewAddOrEditCategoryDialog_Edit() {
     LyricCastTheme {
         Surface {
             AddOrEditCategoryDialog(

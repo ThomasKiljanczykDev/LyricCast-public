@@ -6,9 +6,9 @@
 
 plugins {
     alias(libs.plugins.android.library)
-    alias(libs.plugins.kotlin.android)
     alias(libs.plugins.ksp)
     alias(libs.plugins.hilt)
+    alias(libs.plugins.lyriccast.kotlin.quality)
 }
 
 android {
@@ -36,7 +36,7 @@ android {
     }
 
     namespace = "dev.thomas_kiljanczyk.lyriccast.datamodel"
-    compileSdk = 36
+    compileSdk = 37
 }
 
 dependencies {

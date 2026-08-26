@@ -16,6 +16,8 @@ import dev.thomas_kiljanczyk.lyriccast.datamodel.repositiories.CategoriesReposit
 import dev.thomas_kiljanczyk.lyriccast.domain.models.CategoryItem
 import dev.thomas_kiljanczyk.lyriccast.domain.models.DeleteCategoriesResult
 import dev.thomas_kiljanczyk.lyriccast.domain.use_case.category_manager.DeleteCategoriesUseCase
+import java.util.UUID
+import javax.inject.Inject
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.PersistentList
 import kotlinx.collections.immutable.persistentListOf
@@ -24,8 +26,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
-import java.util.UUID
-import javax.inject.Inject
 
 interface CategoryManagerState {
     val categories: ImmutableList<CategoryItem>

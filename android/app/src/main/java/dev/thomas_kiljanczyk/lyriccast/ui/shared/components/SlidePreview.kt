@@ -54,11 +54,12 @@ fun SlidePreview(
 
 @PreviewLightDark
 @Composable
-fun PreviewSlidePreview() {
+private fun PreviewSlidePreview() {
     LyricCastTheme {
         Surface {
             SlidePreview(
-                slideText = "Amazing grace, how sweet the sound\nThat saved a wretch like me\nI once was lost, but now am found\nWas blind, but now I see"
+                slideText = "Amazing grace, how sweet the sound\nThat saved a wretch like me\n" +
+                    "I once was lost, but now am found\nWas blind, but now I see"
             )
         }
     }

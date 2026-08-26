@@ -18,5 +18,4 @@ object ImportSongXmlParserFactory {
             SongXmlParserType.OPEN_SONG -> OpenSongXmlParser(fileDir)
         }
     }
-
 }

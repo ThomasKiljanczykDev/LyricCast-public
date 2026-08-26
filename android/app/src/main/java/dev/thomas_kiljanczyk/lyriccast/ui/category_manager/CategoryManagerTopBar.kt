@@ -112,7 +112,7 @@ fun CategoryManagerTopBar(
 
 @PreviewLightDark
 @Composable
-fun CategoryManagerTopBarPreview_NotHasSelection() {
+private fun CategoryManagerTopBarPreview_NotHasSelection() {
     LyricCastTheme {
         Surface {
             CategoryManagerTopBar(selectedCount = 0)
@@ -122,7 +122,7 @@ fun CategoryManagerTopBarPreview_NotHasSelection() {
 
 @PreviewLightDark
 @Composable
-fun CategoryManagerTopBarPreview_HasSingleSelection() {
+private fun CategoryManagerTopBarPreview_HasSingleSelection() {
     LyricCastTheme {
         Surface {
             CategoryManagerTopBar(selectedCount = 1)
@@ -132,7 +132,7 @@ fun CategoryManagerTopBarPreview_HasSingleSelection() {
 
 @PreviewLightDark
 @Composable
-fun CategoryManagerTopBarPreview_HasMultipleSelections() {
+private fun CategoryManagerTopBarPreview_HasMultipleSelections() {
     LyricCastTheme {
         Surface {
             CategoryManagerTopBar(selectedCount = 5)

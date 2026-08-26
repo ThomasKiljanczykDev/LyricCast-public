@@ -101,10 +101,9 @@ fun LyricCastTextField(
     }
 }
 
-
 @PreviewLightDark
 @Composable
-fun PreviewLyricCastTextField_Default() {
+private fun PreviewLyricCastTextField_Default() {
     LyricCastTheme {
         Surface {
             LyricCastTextField(
@@ -118,7 +117,7 @@ fun PreviewLyricCastTextField_Default() {
 
 @PreviewLightDark
 @Composable
-fun PreviewLyricCastTextField_Error() {
+private fun PreviewLyricCastTextField_Error() {
     LyricCastTheme {
         Surface {
             LyricCastTextField(
@@ -134,7 +133,7 @@ fun PreviewLyricCastTextField_Error() {
 
 @PreviewLightDark
 @Composable
-fun PreviewLyricCastTextField_MaxLength() {
+private fun PreviewLyricCastTextField_MaxLength() {
     LyricCastTheme {
         Surface {
             LyricCastTextField(
@@ -149,7 +148,7 @@ fun PreviewLyricCastTextField_MaxLength() {
 
 @PreviewLightDark
 @Composable
-fun PreviewLyricCastTextField_Multiline() {
+private fun PreviewLyricCastTextField_Multiline() {
     LyricCastTheme {
         Surface {
             LyricCastTextField(

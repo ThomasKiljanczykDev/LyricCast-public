@@ -7,8 +7,8 @@
 package dev.thomas_kiljanczyk.lyriccast.datamodel.repositiories
 
 import dev.thomas_kiljanczyk.lyriccast.datamodel.models.Song
-import kotlinx.coroutines.flow.Flow
 import java.util.UUID
+import kotlinx.coroutines.flow.Flow
 
 interface SongsRepository {
 
@@ -19,5 +19,4 @@ interface SongsRepository {
     suspend fun upsertSong(song: Song)
 
     suspend fun deleteSongs(songIds: Collection<UUID>)
-
 }

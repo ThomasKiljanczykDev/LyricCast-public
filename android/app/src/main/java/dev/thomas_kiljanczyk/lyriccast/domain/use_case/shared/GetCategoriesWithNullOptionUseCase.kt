@@ -8,11 +8,11 @@ package dev.thomas_kiljanczyk.lyriccast.domain.use_case.shared
 
 import dev.thomas_kiljanczyk.lyriccast.datamodel.repositiories.CategoriesRepository
 import dev.thomas_kiljanczyk.lyriccast.domain.models.CategoryItem
+import javax.inject.Inject
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.toImmutableList
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
-import javax.inject.Inject
 
 /**
  * Use case for retrieving categories with a null option for "no category" selection.

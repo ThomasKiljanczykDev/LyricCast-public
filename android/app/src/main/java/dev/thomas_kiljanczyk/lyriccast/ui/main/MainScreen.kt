@@ -48,6 +48,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -76,10 +77,10 @@ import dev.thomas_kiljanczyk.lyriccast.ui.main.songs.SongsScreenViewModel
 import dev.thomas_kiljanczyk.lyriccast.ui.shared.components.ProgressDialog
 import dev.thomas_kiljanczyk.lyriccast.ui.shared.menu.gms_nearby_session.dialog.StartSessionServerDialog
 import dev.thomas_kiljanczyk.lyriccast.ui.shared.theme.LyricCastTheme
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import java.io.OutputStream
 import java.util.UUID
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 enum class MainTab(val titleRes: Int, val icon: ImageVector) {
     SONGS(R.string.title_songs, Icons.Rounded.MusicNote),
@@ -177,29 +178,31 @@ fun MainScreen(
     var pendingStartSessionDialog by remember { mutableStateOf(false) }
 
     // Reset selection modes when switching tabs
+    val currentOnSongsExitSelectionMode by rememberUpdatedState(onSongsExitSelectionMode)
+    val currentOnSetlistsExitSelectionMode by rememberUpdatedState(onSetlistsExitSelectionMode)
     LaunchedEffect(state.selectedTab) {
         when (state.selectedTab) {
             MainTab.SONGS -> {
                 // Exit setlists selection mode when switching to songs
                 if (setlistsState.isInSelectionMode) {
-                    onSetlistsExitSelectionMode()
+                    currentOnSetlistsExitSelectionMode()
                 }
             }
 
             MainTab.SETLISTS -> {
                 // Exit songs selection mode when switching to setlists
                 if (songsState.isInSelectionMode) {
-                    onSongsExitSelectionMode()
+                    currentOnSongsExitSelectionMode()
                 }
             }
 
             MainTab.JOIN_SESSION -> {
                 // Exit both selection modes when switching to join session
                 if (songsState.isInSelectionMode) {
-                    onSongsExitSelectionMode()
+                    currentOnSongsExitSelectionMode()
                 }
                 if (setlistsState.isInSelectionMode) {
-                    onSetlistsExitSelectionMode()
+                    currentOnSetlistsExitSelectionMode()
                 }
             }
         }
@@ -227,7 +230,6 @@ fun MainScreen(
             showPermissionsRejectedDialog = true
         }
     }
-
 
     // Activity launchers
     val exportAllLauncher = rememberLauncherForActivityResult(
@@ -350,8 +352,12 @@ fun MainScreen(
                 topBar = {
                     AnimatedContent(
                         targetState = when {
-                            songsState.isInSelectionMode && state.selectedTab == MainTab.SONGS -> "songs_selection"
-                            setlistsState.isInSelectionMode && state.selectedTab == MainTab.SETLISTS -> "setlists_selection"
+                            songsState.isInSelectionMode && state.selectedTab == MainTab.SONGS ->
+                                "songs_selection"
+
+                            setlistsState.isInSelectionMode && state.selectedTab == MainTab.SETLISTS ->
+                                "setlists_selection"
+
                             else -> "normal"
                         },
                         transitionSpec = { fadeIn() togetherWith fadeOut() },
@@ -431,7 +437,6 @@ fun MainScreen(
                                     if (allPermissionsGranted) {
                                         showStartSessionDialog = true
                                     } else {
-                                        // Request permissions first, mark that we want to show start session dialog after
                                         pendingStartSessionDialog = true
                                         permissionRequestLauncher.launch(LyricCastApplication.PERMISSIONS)
                                     }
@@ -615,7 +620,6 @@ fun MainScreen(
     }
 }
 
-
 @PreviewLightDark
 @Composable
 private fun MainScreenPreview() {
@@ -640,4 +644,3 @@ private fun MainScreenPreview() {
         )
     }
 }
-

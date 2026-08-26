@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.ExposedDropdownMenu
 import androidx.compose.material3.ExposedDropdownMenuAnchorType
 import androidx.compose.material3.ExposedDropdownMenuBox
 import androidx.compose.material3.ExposedDropdownMenuDefaults
@@ -83,7 +84,7 @@ fun <T> LyricCastSpinner(
 
 @PreviewLightDark
 @Composable
-fun PreviewLyricCastSpinner() {
+private fun PreviewLyricCastSpinner() {
     LyricCastTheme {
         Surface(modifier = Modifier.height(500.dp)) {
             Column(modifier = Modifier.fillMaxWidth()) {

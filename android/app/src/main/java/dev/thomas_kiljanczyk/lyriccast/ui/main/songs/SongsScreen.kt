@@ -31,16 +31,17 @@ import dev.thomas_kiljanczyk.lyriccast.ui.shared.components.SongFilters
 import dev.thomas_kiljanczyk.lyriccast.ui.shared.components.SongItem
 import dev.thomas_kiljanczyk.lyriccast.ui.shared.preview.PreviewData
 import dev.thomas_kiljanczyk.lyriccast.ui.shared.theme.LyricCastTheme
+import java.util.UUID
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.toImmutableList
-import java.util.UUID
-
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SongsScreen(
     onNavigateToSongControls: (UUID) -> Unit = {},
-    viewModel: SongsScreenViewModel = hiltViewModel(viewModelStoreOwner = LocalActivity.current!! as ViewModelStoreOwner)
+    viewModel: SongsScreenViewModel = hiltViewModel(
+        viewModelStoreOwner = LocalActivity.current!! as ViewModelStoreOwner
+    )
 ) {
     val state = viewModel.state
     val categories by viewModel.categories.collectAsState(initial = emptyList())
@@ -117,7 +118,6 @@ fun SongsScreen(
         }
     }
 }
-
 
 @PreviewLightDark
 @Composable

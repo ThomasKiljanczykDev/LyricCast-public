@@ -12,9 +12,9 @@ import dev.thomas_kiljanczyk.lyriccast.datamodel.repositiories.SetlistsRepositor
 import dev.thomas_kiljanczyk.lyriccast.datamodel.repositiories.SongsRepository
 import dev.thomas_kiljanczyk.lyriccast.domain.models.DeleteSongsResult
 import dev.thomas_kiljanczyk.lyriccast.domain.models.UiText
-import kotlinx.coroutines.flow.first
 import java.util.UUID
 import javax.inject.Inject
+import kotlinx.coroutines.flow.first
 
 /**
  * Use case for deleting songs with business logic validation.

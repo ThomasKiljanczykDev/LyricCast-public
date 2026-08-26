@@ -12,9 +12,9 @@ import dev.thomas_kiljanczyk.lyriccast.datamodel.repositiories.CategoriesReposit
 import dev.thomas_kiljanczyk.lyriccast.datamodel.repositiories.SongsRepository
 import dev.thomas_kiljanczyk.lyriccast.domain.models.DeleteCategoriesResult
 import dev.thomas_kiljanczyk.lyriccast.domain.models.UiText
-import kotlinx.coroutines.flow.first
 import java.util.UUID
 import javax.inject.Inject
+import kotlinx.coroutines.flow.first
 
 /**
  * Use case for deleting categories with business logic validation.

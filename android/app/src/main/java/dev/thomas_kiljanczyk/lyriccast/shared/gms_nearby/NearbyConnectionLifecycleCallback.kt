@@ -20,7 +20,6 @@ open class NearbyConnectionLifecycleCallback : ConnectionLifecycleCallback() {
         connectionInfo: ConnectionInfo
     ) {
         connectionInfoMap[endpointId] = connectionInfo
-
     }
 
     protected open fun onConnectionResult(
@@ -28,7 +27,6 @@ open class NearbyConnectionLifecycleCallback : ConnectionLifecycleCallback() {
         connectionInfo: ConnectionInfo?,
         result: ConnectionResolution
     ) {
-
     }
 
     final override fun onConnectionResult(
@@ -44,7 +42,6 @@ open class NearbyConnectionLifecycleCallback : ConnectionLifecycleCallback() {
     }
 
     protected open fun onDisconnected(endpointId: String, connectionInfo: ConnectionInfo?) {
-
     }
 
     final override fun onDisconnected(endpointId: String) {

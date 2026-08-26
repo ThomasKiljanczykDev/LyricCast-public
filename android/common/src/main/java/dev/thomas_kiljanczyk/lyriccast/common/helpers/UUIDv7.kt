@@ -35,6 +35,7 @@ object UUIDv7 {
      *
      * @return A ByteArray of 16 bytes representing the UUIDv7.
      */
+    @Suppress("MagicNumber") // Byte-level bit-packing masks/shifts read clearer as literals than named constants.
     private fun randomBytes(): ByteArray {
         val value = ByteArray(16).also { numberGenerator.nextBytes(it) }
 
@@ -59,14 +60,15 @@ object UUIDv7 {
      * @param offset The starting index in the ByteArray.
      * @return A Long value constructed from 8 bytes starting at the given offset.
      */
+    @Suppress("MagicNumber") // Byte-level bit-packing masks/shifts read clearer as literals than named constants.
     private fun ByteArray.toLong(offset: Int = 0): Long {
         return ((this[offset].toLong() and 0xFF) shl 56) or
-                ((this[offset + 1].toLong() and 0xFF) shl 48) or
-                ((this[offset + 2].toLong() and 0xFF) shl 40) or
-                ((this[offset + 3].toLong() and 0xFF) shl 32) or
-                ((this[offset + 4].toLong() and 0xFF) shl 24) or
-                ((this[offset + 5].toLong() and 0xFF) shl 16) or
-                ((this[offset + 6].toLong() and 0xFF) shl 8) or
-                (this[offset + 7].toLong() and 0xFF)
+            ((this[offset + 1].toLong() and 0xFF) shl 48) or
+            ((this[offset + 2].toLong() and 0xFF) shl 40) or
+            ((this[offset + 3].toLong() and 0xFF) shl 32) or
+            ((this[offset + 4].toLong() and 0xFF) shl 24) or
+            ((this[offset + 5].toLong() and 0xFF) shl 16) or
+            ((this[offset + 6].toLong() and 0xFF) shl 8) or
+            (this[offset + 7].toLong() and 0xFF)
     }
 }

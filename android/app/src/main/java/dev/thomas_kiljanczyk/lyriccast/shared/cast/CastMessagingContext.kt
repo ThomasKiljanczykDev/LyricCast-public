@@ -92,5 +92,4 @@ class CastMessagingContext(
             castSession.sendMessage(CONTROL_NAMESPACE, messageJson)
         }
     }
-
 }

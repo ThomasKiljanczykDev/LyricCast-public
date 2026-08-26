@@ -16,8 +16,11 @@ import androidx.room.Update
 import dev.thomas_kiljanczyk.lyriccast.datamodel.models.room.LyricsSectionEntity
 import dev.thomas_kiljanczyk.lyriccast.datamodel.models.room.SongEntity
 import dev.thomas_kiljanczyk.lyriccast.datamodel.models.room.SongWithLyricsAndCategory
-import kotlinx.coroutines.flow.Flow
 import java.util.UUID
+import kotlinx.coroutines.flow.Flow
+
+// SQLite caps the number of bound query parameters (~999); chunk well below that limit.
+private const val DELETE_CHUNK_SIZE = 500
 
 @Dao
 interface SongDao {
@@ -65,7 +68,7 @@ interface SongDao {
         // Delete existing lyrics for all songs in bulk
         val songIds = songsWithLyrics.keys.map { it.id }
         if (songIds.isNotEmpty()) {
-            songIds.chunked(500).forEach { songIdsChunk ->
+            songIds.chunked(DELETE_CHUNK_SIZE).forEach { songIdsChunk ->
                 deleteLyricsSectionsForSongs(songIdsChunk)
             }
         }

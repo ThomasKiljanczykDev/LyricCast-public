@@ -63,7 +63,7 @@ fun SettingsTopBar(onNavigateUp: () -> Unit) {
 
 @PreviewLightDark
 @Composable
-fun PreviewSettingsTopBar() {
+private fun PreviewSettingsTopBar() {
     LyricCastTheme {
         SettingsTopBar(onNavigateUp = {})
     }
@@ -202,7 +202,7 @@ fun SettingsScreen(
 
 @PreviewLightDark
 @Composable
-fun PreviewSettingsScreen() {
+private fun PreviewSettingsScreen() {
     LyricCastTheme {
         val state = remember {
             MutableSettingsState().apply {
@@ -214,9 +214,12 @@ fun PreviewSettingsScreen() {
                 ).toImmutableList()
                 buttonHeight = ControlButtonHeightOption.SMALL
                 buttonHeightOptions = listOf(
-                    ControlButtonHeightOption.SMALL to UiText.StringResource(R.string.preference_controls_buttons_height_small),
-                    ControlButtonHeightOption.MEDIUM to UiText.StringResource(R.string.preference_controls_buttons_height_medium),
-                    ControlButtonHeightOption.LARGE to UiText.StringResource(R.string.preference_controls_buttons_height_large)
+                    ControlButtonHeightOption.SMALL to
+                        UiText.StringResource(R.string.preference_controls_buttons_height_small),
+                    ControlButtonHeightOption.MEDIUM to
+                        UiText.StringResource(R.string.preference_controls_buttons_height_medium),
+                    ControlButtonHeightOption.LARGE to
+                        UiText.StringResource(R.string.preference_controls_buttons_height_large)
                 ).toImmutableList()
                 isBlankEnabled = true
                 backgroundColor = ColorOption.BLACK

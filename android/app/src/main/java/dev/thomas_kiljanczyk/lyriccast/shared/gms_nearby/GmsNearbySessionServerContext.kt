@@ -135,7 +135,6 @@ class GmsNearbySessionServerContext(
         }
     }
 
-
     fun stopServer() {
         connectionsClient.stopAdvertising()
         connectionsClient.stopAllEndpoints()

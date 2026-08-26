@@ -46,9 +46,9 @@ import dev.thomas_kiljanczyk.lyriccast.ui.shared.components.SongFilters
 import dev.thomas_kiljanczyk.lyriccast.ui.shared.components.SongItem
 import dev.thomas_kiljanczyk.lyriccast.ui.shared.misc.BaseColors
 import dev.thomas_kiljanczyk.lyriccast.ui.shared.theme.LyricCastTheme
+import java.util.UUID
 import kotlinx.collections.immutable.toImmutableList
 import kotlinx.collections.immutable.toPersistentList
-import java.util.UUID
 
 @Composable
 fun SetlistSongSelectionDialog(
@@ -101,30 +101,29 @@ fun SetlistSongSelectionDialog(
             shape = RoundedCornerShape(28.dp),
             color = MaterialTheme.colorScheme.surface
         ) {
-            Scaffold(
-                topBar = {
-                    TopAppBar(
-                        title = { Text(stringResource(R.string.setlist_editor_button_pick_songs)) },
-                        navigationIcon = {
-                            IconButton(onClick = onDismiss) {
-                                Icon(
-                                    Icons.Rounded.Close,
-                                    contentDescription = stringResource(R.string.close)
-                                )
-                            }
-                        },
-                        actions = {
-                            Button(
-                                onClick = onConfirm, modifier = Modifier.padding(end = 8.dp)
-                            ) {
-                                Text(stringResource(R.string.confirm))
-                            }
-                        },
-                        colors = TopAppBarDefaults.topAppBarColors(
-                            containerColor = Color.Transparent
-                        )
+            Scaffold(topBar = {
+                TopAppBar(
+                    title = { Text(stringResource(R.string.setlist_editor_button_pick_songs)) },
+                    navigationIcon = {
+                        IconButton(onClick = onDismiss) {
+                            Icon(
+                                Icons.Rounded.Close,
+                                contentDescription = stringResource(R.string.close)
+                            )
+                        }
+                    },
+                    actions = {
+                        Button(
+                            onClick = onConfirm, modifier = Modifier.padding(end = 8.dp)
+                        ) {
+                            Text(stringResource(R.string.confirm))
+                        }
+                    },
+                    colors = TopAppBarDefaults.topAppBarColors(
+                        containerColor = Color.Transparent
                     )
-                }) { paddingValues ->
+                )
+            }) { paddingValues ->
                 Column(
                     modifier = Modifier
                         .fillMaxSize()
@@ -139,7 +138,6 @@ fun SetlistSongSelectionDialog(
                         onShowOnlySelectedToggle = onShowOnlySelectedToggle,
                         showSelectedFilter = true
                     )
-
 
                     // Songs list
                     if (state.filteredAvailableSongs.isEmpty()) {
@@ -180,7 +178,6 @@ fun SetlistSongSelectionDialog(
         }
     }
 }
-
 
 @PreviewLightDark
 @Composable

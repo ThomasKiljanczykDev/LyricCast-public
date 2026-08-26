@@ -36,8 +36,8 @@ import dev.thomas_kiljanczyk.lyriccast.ui.shared.components.SongInfo
 import dev.thomas_kiljanczyk.lyriccast.ui.shared.misc.settings.ControlButtonHeightOption
 import dev.thomas_kiljanczyk.lyriccast.ui.shared.preview.PreviewData
 import dev.thomas_kiljanczyk.lyriccast.ui.shared.theme.LyricCastTheme
-import kotlinx.coroutines.launch
 import java.util.UUID
+import kotlinx.coroutines.launch
 
 @Composable
 fun SetlistControlsScreen(
@@ -53,7 +53,6 @@ fun SetlistControlsScreen(
         viewModel.loadSetlist(setlistId)
         viewModel.sendSlide()
     }
-
 
     SetlistControlsScreen(
         state = viewModel.state,
@@ -94,25 +93,24 @@ fun SetlistControlsScreen(
         listState.animateScrollToItem(state.currentSongPosition)
     }
 
-    Scaffold(
-        topBar = {
-            TopAppBar(title = { Text(stringResource(R.string.title_controls)) }, navigationIcon = {
-                IconButton(onClick = onNavigateUp) {
-                    Icon(
-                        imageVector = Icons.AutoMirrored.Rounded.ArrowBack,
-                        contentDescription = null
-                    )
-                }
-            }, actions = {
-                CastButton(size = 48.dp)
-                IconButton(onClick = onNavigateToSettings) {
-                    Icon(
-                        imageVector = Icons.Rounded.Settings,
-                        contentDescription = stringResource(R.string.settings_title)
-                    )
-                }
-            })
-        }) { paddingValues ->
+    Scaffold(topBar = {
+        TopAppBar(title = { Text(stringResource(R.string.title_controls)) }, navigationIcon = {
+            IconButton(onClick = onNavigateUp) {
+                Icon(
+                    imageVector = Icons.AutoMirrored.Rounded.ArrowBack,
+                    contentDescription = null
+                )
+            }
+        }, actions = {
+            CastButton(size = 48.dp)
+            IconButton(onClick = onNavigateToSettings) {
+                Icon(
+                    imageVector = Icons.Rounded.Settings,
+                    contentDescription = stringResource(R.string.settings_title)
+                )
+            }
+        })
+    }) { paddingValues ->
         Column(
             modifier = Modifier
                 .fillMaxSize()
@@ -145,19 +143,18 @@ fun SetlistControlsScreen(
                 onNextClick = onNextClick,
                 onBlankClick = onBlankClick,
                 isPreviousEnabled = state.currentSlide > 0 || state.currentSongPosition > 0,
-                isNextEnabled = state.currentSlide < state.totalSlideCount - 1 || state.currentSongPosition < state.songs.size - 1,
+                isNextEnabled = state.currentSlide < state.totalSlideCount - 1 ||
+                    state.currentSongPosition < state.songs.size - 1,
                 modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)
             )
         }
     }
 }
 
-
 @PreviewLightDark
 @Composable
-fun PreviewSetlistControlsScreen() {
+private fun PreviewSetlistControlsScreen() {
     LyricCastTheme {
-
         SetlistControlsScreen(
             state = MutableSetlistControlsState().apply {
                 songs = PreviewData.sampleSongsWithLyrics

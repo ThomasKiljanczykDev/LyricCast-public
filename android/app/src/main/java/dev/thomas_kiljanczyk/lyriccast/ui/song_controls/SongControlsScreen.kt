@@ -35,8 +35,8 @@ import dev.thomas_kiljanczyk.lyriccast.ui.shared.components.SlidePreview
 import dev.thomas_kiljanczyk.lyriccast.ui.shared.components.SongInfo
 import dev.thomas_kiljanczyk.lyriccast.ui.shared.misc.settings.ControlButtonHeightOption
 import dev.thomas_kiljanczyk.lyriccast.ui.shared.theme.LyricCastTheme
-import kotlinx.coroutines.launch
 import java.util.UUID
+import kotlinx.coroutines.launch
 
 @Composable
 fun SongControlsScreen(
@@ -148,7 +148,7 @@ fun SongControlsScreen(
 
 @PreviewLightDark
 @Composable
-fun PreviewSongControlsScreen() {
+private fun PreviewSongControlsScreen() {
     LyricCastTheme {
         SongControlsScreen(
             state = MutableSongControlsState().apply {

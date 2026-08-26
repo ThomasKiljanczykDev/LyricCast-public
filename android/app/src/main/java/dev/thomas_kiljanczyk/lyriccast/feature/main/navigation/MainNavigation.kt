@@ -15,8 +15,8 @@ import androidx.navigation.navDeepLink
 import dev.thomas_kiljanczyk.lyriccast.navigation.DeepLinkConstants
 import dev.thomas_kiljanczyk.lyriccast.navigation.MainRoute
 import dev.thomas_kiljanczyk.lyriccast.ui.main.MainScreen
-import kotlinx.serialization.Serializable
 import java.util.UUID
+import kotlinx.serialization.Serializable
 
 @Serializable
 data object MainBaseRoute

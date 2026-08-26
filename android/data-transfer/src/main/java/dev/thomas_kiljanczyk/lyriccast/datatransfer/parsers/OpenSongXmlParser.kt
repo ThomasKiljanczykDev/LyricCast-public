@@ -11,10 +11,10 @@ import android.util.Xml
 import dev.thomas_kiljanczyk.lyriccast.common.helpers.FileHelper
 import dev.thomas_kiljanczyk.lyriccast.datatransfer.models.OpenSongDto
 import dev.thomas_kiljanczyk.lyriccast.datatransfer.models.SongDto
-import org.xmlpull.v1.XmlPullParser
-import org.xmlpull.v1.XmlPullParserException
 import java.io.File
 import java.io.InputStream
+import org.xmlpull.v1.XmlPullParser
+import org.xmlpull.v1.XmlPullParserException
 
 internal class OpenSongXmlParser(filesDir: File) : ImportSongXmlParser(filesDir) {
 
@@ -58,7 +58,7 @@ internal class OpenSongXmlParser(filesDir: File) : ImportSongXmlParser(filesDir)
         try {
             parser.nextTag()
         } catch (e: XmlPullParserException) {
-            Log.e(TAG, "Encountered error for song in '${category}' category")
+            Log.e(TAG, "Encountered error for song in '$category' category")
             throw e
         }
         parser.require(XmlPullParser.START_TAG, null, "song")
@@ -108,7 +108,7 @@ internal class OpenSongXmlParser(filesDir: File) : ImportSongXmlParser(filesDir)
 
     private fun skip(parser: XmlPullParser) {
         if (parser.eventType != XmlPullParser.START_TAG) {
-            throw IllegalStateException()
+            throw IllegalStateException("Expected START_TAG to skip, but was ${parser.eventType}")
         }
         var depth = 1
         while (depth != 0) {

@@ -8,7 +8,6 @@ import com.google.protobuf.gradle.id
 
 plugins {
     alias(libs.plugins.android.application)
-    alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.serialization)
     alias(libs.plugins.ksp)
     alias(libs.plugins.androidx.navigationSafeArgs)
@@ -17,6 +16,7 @@ plugins {
     alias(libs.plugins.google.googleServices)
     alias(libs.plugins.firebase.crashlytics)
     alias(libs.plugins.compose.compiler)
+    alias(libs.plugins.lyriccast.kotlin.quality)
 }
 
 android {
@@ -81,7 +81,7 @@ android {
         }
     }
     namespace = "dev.thomas_kiljanczyk.lyriccast"
-    compileSdk = 36
+    compileSdk = 37
 }
 
 dependencies {

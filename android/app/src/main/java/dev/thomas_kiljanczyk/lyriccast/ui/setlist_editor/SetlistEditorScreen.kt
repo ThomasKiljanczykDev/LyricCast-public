@@ -54,8 +54,8 @@ import dev.thomas_kiljanczyk.lyriccast.ui.setlist_editor.songs.SetlistSongSelect
 import dev.thomas_kiljanczyk.lyriccast.ui.shared.components.LyricCastTextField
 import dev.thomas_kiljanczyk.lyriccast.ui.shared.preview.PreviewData
 import dev.thomas_kiljanczyk.lyriccast.ui.shared.theme.LyricCastTheme
-import kotlinx.coroutines.launch
 import java.util.UUID
+import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class)
 @Composable
@@ -212,7 +212,6 @@ fun SetlistEditorScreen(
     }
 }
 
-
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun SetlistEditorTopBar(
@@ -290,7 +289,6 @@ private fun SetlistEditorTopBar(
         }
     }
 }
-
 
 @PreviewLightDark
 @Composable

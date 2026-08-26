@@ -157,7 +157,6 @@ abstract class DataTransferRepositoryBaseImpl : DataTransferRepository {
                 return@map song
             }.toMutableList()
 
-
         val allSongs = getAllSongs()
         val songTitles = allSongs.map { it.title }.toSet()
 

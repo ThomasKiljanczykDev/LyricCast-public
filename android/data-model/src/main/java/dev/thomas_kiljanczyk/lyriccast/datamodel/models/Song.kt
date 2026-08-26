@@ -46,4 +46,3 @@ data class Song(
         return SongDto(title, lyricsMap, presentation.toList(), category?.name ?: "")
     }
 }
-

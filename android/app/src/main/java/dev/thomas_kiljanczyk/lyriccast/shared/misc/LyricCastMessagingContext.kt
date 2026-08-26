@@ -18,6 +18,8 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.serialization.json.Json
 
+private const val MESSAGE_DEBOUNCE_MS = 500L
+
 @OptIn(FlowPreview::class)
 class LyricCastMessagingContext(
     private val castMessagingContext: CastMessagingContext,
@@ -29,11 +31,11 @@ class LyricCastMessagingContext(
     private val gmsNearbyBroadcastMessage = MutableSharedFlow<String>()
 
     init {
-        googleCastContentMessage.debounce(500).onEach { message ->
+        googleCastContentMessage.debounce(MESSAGE_DEBOUNCE_MS).onEach { message ->
             castMessagingContext.sendContentMessage(message)
         }.launchIn(CoroutineScope(Dispatchers.IO))
 
-        gmsNearbyBroadcastMessage.debounce(500).onEach { message ->
+        gmsNearbyBroadcastMessage.debounce(MESSAGE_DEBOUNCE_MS).onEach { message ->
             gmsNearbySessionServerContext.broadcastMessage(message)
         }.launchIn(CoroutineScope(Dispatchers.IO))
     }

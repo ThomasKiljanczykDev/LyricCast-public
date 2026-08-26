@@ -7,8 +7,8 @@
 package dev.thomas_kiljanczyk.lyriccast.datamodel.repositiories
 
 import dev.thomas_kiljanczyk.lyriccast.datamodel.models.Category
-import kotlinx.coroutines.flow.Flow
 import java.util.UUID
+import kotlinx.coroutines.flow.Flow
 
 interface CategoriesRepository {
 
@@ -17,5 +17,4 @@ interface CategoriesRepository {
     suspend fun upsertCategory(category: Category)
 
     suspend fun deleteCategories(categoryIds: Collection<UUID>)
-
 }

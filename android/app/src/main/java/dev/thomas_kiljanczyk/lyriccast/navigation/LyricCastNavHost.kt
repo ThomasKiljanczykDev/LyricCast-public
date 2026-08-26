@@ -62,7 +62,6 @@ data class SetlistControlsRoute(val setlistId: String)
  *
  * @param appState Application state containing navigation controller and app-level state
  * @param activity Component activity reference for screens that require it
- * @param onShowSnackbar Callback for showing snackbar messages
  * @param modifier Modifier for the NavHost
  * @param startDestination Starting destination for the navigation graph
  */
@@ -71,7 +70,6 @@ fun LyricCastNavHost(
     appState: LyricCastAppState,
     activity: ComponentActivity,
     modifier: Modifier = Modifier,
-    onShowSnackbar: suspend (String, String?) -> Boolean = { _, _ -> false },
     startDestination: Any = MainRoute,
 ) {
     val navController = appState.navController

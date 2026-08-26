@@ -31,5 +31,4 @@ class StringsExtensionsTest(private val text: String, private val normalizedText
     fun stringIsNormalized() {
         assertThat(text.normalize()).isEqualTo(normalizedText)
     }
-
 }

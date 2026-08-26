@@ -49,8 +49,10 @@ object PreviewData {
         id = UUIDv7.randomUUID(),
         title = "Amazing Grace",
         lyricsMap = persistentMapOf(
-            "Verse 1" to "Amazing grace how sweet the sound\nThat saved a wretch like me\nI once was lost but now am found\nWas blind but now I see",
-            "Verse 2" to "'Twas grace that taught my heart to fear\nAnd grace my fears relieved\nHow precious did that grace appear\nThe hour I first believed",
+            "Verse 1" to "Amazing grace how sweet the sound\nThat saved a wretch like me\n" +
+                "I once was lost but now am found\nWas blind but now I see",
+            "Verse 2" to "'Twas grace that taught my heart to fear\nAnd grace my fears relieved\n" +
+                "How precious did that grace appear\nThe hour I first believed",
             "Chorus" to "Amazing grace how sweet the sound\nThat saved a wretch like me"
         ),
         presentation = persistentListOf("Verse 1", "Chorus", "Verse 2", "Chorus"),
@@ -61,9 +63,14 @@ object PreviewData {
         id = UUIDv7.randomUUID(),
         title = "How Great Thou Art",
         lyricsMap = persistentMapOf(
-            "Verse 1" to "O Lord my God when I in awesome wonder\nConsider all the worlds thy hands have made\nI see the stars I hear the rolling thunder\nThy power throughout the universe displayed",
-            "Chorus" to "Then sings my soul my Savior God to thee\nHow great thou art how great thou art\nThen sings my soul my Savior God to thee\nHow great thou art how great thou art",
-            "Verse 2" to "When through the woods and forest glades I wander\nAnd hear the birds sing sweetly in the trees\nWhen I look down from lofty mountain grandeur\nAnd hear the brook and feel the gentle breeze"
+            "Verse 1" to "O Lord my God when I in awesome wonder\n" +
+                "Consider all the worlds thy hands have made\n" +
+                "I see the stars I hear the rolling thunder\nThy power throughout the universe displayed",
+            "Chorus" to "Then sings my soul my Savior God to thee\nHow great thou art how great thou art\n" +
+                "Then sings my soul my Savior God to thee\nHow great thou art how great thou art",
+            "Verse 2" to "When through the woods and forest glades I wander\n" +
+                "And hear the birds sing sweetly in the trees\n" +
+                "When I look down from lofty mountain grandeur\nAnd hear the brook and feel the gentle breeze"
         ),
         presentation = persistentListOf("Verse 1", "Chorus", "Verse 2", "Chorus"),
         category = hymnsCategory
@@ -73,9 +80,14 @@ object PreviewData {
         id = UUIDv7.randomUUID(),
         title = "Be Still My Soul",
         lyricsMap = persistentMapOf(
-            "Verse 1" to "Be still my soul the Lord is on thy side\nBear patiently the cross of grief or pain\nLeave to thy God to order and provide\nIn every change He faithful will remain",
-            "Verse 2" to "Be still my soul thy God doth undertake\nTo guide the future as He has the past\nThy hope thy confidence let nothing shake\nAll now mysterious shall be bright at last",
-            "Chorus" to "Be still my soul when dearest friends depart\nAnd all is darkened in the vale of tears\nThen shalt thou better know His love His heart\nWho comes to soothe thy sorrow and thy fears"
+            "Verse 1" to "Be still my soul the Lord is on thy side\n" +
+                "Bear patiently the cross of grief or pain\n" +
+                "Leave to thy God to order and provide\nIn every change He faithful will remain",
+            "Verse 2" to "Be still my soul thy God doth undertake\nTo guide the future as He has the past\n" +
+                "Thy hope thy confidence let nothing shake\nAll now mysterious shall be bright at last",
+            "Chorus" to "Be still my soul when dearest friends depart\n" +
+                "And all is darkened in the vale of tears\n" +
+                "Then shalt thou better know His love His heart\nWho comes to soothe thy sorrow and thy fears"
         ),
         presentation = persistentListOf("Verse 1", "Chorus", "Verse 2", "Chorus"),
         category = hymnsCategory
