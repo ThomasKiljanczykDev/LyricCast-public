@@ -1,10 +1,10 @@
 /*
- * Created by Tomasz Kiljanczyk on 7/29/26, 2:38 PM
+ * Created by Tomasz Kiljanczyk on 8/27/26, 12:00 PM
  * Copyright (c) 2026 . All rights reserved.
- * Last modified 7/29/26, 2:35 PM
+ * Last modified 8/27/26, 12:00 PM
  */
 
-package dev.thomas_kiljanczyk.lyriccast.tools.gplayscreenshots
+package dev.thomas_kiljanczyk.lyriccast.tools.readmescreenshots
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -18,9 +18,8 @@ import androidx.compose.ui.unit.dp
 /**
  * On a real phone, Scaffold reserves space for the gesture-navigation inset at the bottom of the
  * screen. Layoutlib never dispatches real window insets, so that inset resolves to zero and a
- * full-bleed screen (a card or button row filling the remaining Scaffold space) renders flush
- * against the canvas edge — its bottom corners look clipped instead of rounded. This fakes that
- * inset so the store screenshots match what the screen looks like on-device.
+ * full-bleed screen renders flush against the canvas edge -- its bottom corners look clipped
+ * instead of rounded. This fakes that inset so the rendered screenshots match the device.
  */
 private val SIMULATED_GESTURE_NAV_INSET = 24.dp
 

@@ -59,7 +59,7 @@
             <option value="$PROJECT_DIR$/feature/song" />
             <option value="$PROJECT_DIR$/feature/song/impl" />
             <option value="$PROJECT_DIR$/tools" />
-            <option value="$PROJECT_DIR$/tools/gplay-screenshots" />
+            <option value="$PROJECT_DIR$/tools/readme-screenshots" />
           </set>
         </option>
       </GradleProjectSettings>

@@ -172,4 +172,46 @@ object PreviewData {
         howGreatThouArt.copy(isSelected = true),
         beStillMySoul
     ).toImmutableList()
+
+    // Demo data for the rendered README screenshots. Kept apart from the preview fixtures above:
+    // those carry placeholder rows and uncategorised songs, which are fine in the IDE and wrong in
+    // a README. Lyrics are Lorem ipsum so they read the same in every locale.
+    const val sampleLyrics: String =
+        "Lorem ipsum\ndolor sit amet\nconsectetur adipiscing elit\n" +
+            "sed do eiusmod tempor incididunt\nut labore et dolore"
+
+    val goodStuffCategory = CategoryItem(Category(name = "GOOD STUFF", color = -12490271))
+    val favoritesCategory = CategoryItem(Category(name = "FAVORITES", color = -2448096))
+    val mehCategory = CategoryItem(Category(name = "MEH", color = -40121))
+
+    val screenshotCategories = listOf(
+        goodStuffCategory,
+        favoritesCategory,
+        mehCategory
+    ).toImmutableList()
+
+    val screenshotCategoriesWithNull = listOf(
+        null,
+        *screenshotCategories.toTypedArray()
+    ).toImmutableList()
+
+    private fun screenshotSong(title: String, category: CategoryItem?) = SongItem(
+        id = UUIDv7.randomUUID(),
+        title = title,
+        lyricsMap = persistentMapOf("Verse 1" to sampleLyrics, "Chorus" to sampleLyrics),
+        presentation = persistentListOf("Verse 1", "Chorus"),
+        category = category
+    )
+
+    val aSong = screenshotSong("A Song", goodStuffCategory)
+    val awesomeSong = screenshotSong("Awesome Song", favoritesCategory)
+    val greatSong = screenshotSong("Great Song", favoritesCategory)
+    val magnificentSong = screenshotSong("Magnificent Song", mehCategory)
+    val theSong = screenshotSong("THE Song", goodStuffCategory)
+
+    val screenshotSongs = listOf(
+        aSong, awesomeSong, greatSong, magnificentSong, theSong
+    ).toImmutableList()
+
+    const val screenshotSetlistName: String = "A Setlist"
 }

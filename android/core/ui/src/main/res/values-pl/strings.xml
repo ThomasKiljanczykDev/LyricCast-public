@@ -12,4 +12,15 @@
     <string name="hint_song_title">Tytuł piosenki</string>
     <string name="navigate_up">Wróć</string>
     <string name="setlist_editor_hint_selected">Zaznaczone</string>
+
+    <!-- Demo data for the rendered README screenshots (tools:readme-screenshots) -->
+    <string name="demo_category_good_stuff">DOBRE RZECZY</string>
+    <string name="demo_category_favorites">ULUBIONE</string>
+    <string name="demo_category_meh">TAKIE SOBIE</string>
+    <string name="demo_song_a">Pewna piosenka</string>
+    <string name="demo_song_awesome">Świetna piosenka</string>
+    <string name="demo_song_great">Wspaniała piosenka</string>
+    <string name="demo_song_magnificent">Wyśmienita piosenka</string>
+    <string name="demo_song_the">TA piosenka</string>
+    <string name="demo_setlist_name">Pewna lista</string>
 </resources>

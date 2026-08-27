@@ -1,5 +1,0 @@
-build/
-
-# Rendered by :updateDebugScreenshotTest, fully reproducible from source -- not a regression
-# baseline (nothing runs :validateDebugScreenshotTest in CI), just compositor input.
-src/screenshotTestDebug/reference/

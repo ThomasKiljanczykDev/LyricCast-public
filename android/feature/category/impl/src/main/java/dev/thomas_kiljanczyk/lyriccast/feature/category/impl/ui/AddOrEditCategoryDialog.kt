@@ -175,10 +175,11 @@ fun AddOrEditCategoryDialog(
     onNameChange: (String) -> Unit = {},
     onSubmit: () -> Unit = {},
     onDismiss: () -> Unit = {},
+    modifier: Modifier = Modifier
 ) {
     AlertDialog(
         onDismissRequest = { onDismiss() },
-        modifier = Modifier.testTag(TestTags.ADD_EDIT_CATEGORY_DIALOG),
+        modifier = modifier.testTag(TestTags.ADD_EDIT_CATEGORY_DIALOG),
         title = {
             Text(
                 text = if (state.id != null) {

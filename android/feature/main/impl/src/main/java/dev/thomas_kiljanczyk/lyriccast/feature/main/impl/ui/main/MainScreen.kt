@@ -170,7 +170,16 @@ fun MainScreen(
     onSetlistsExitSelectionMode: () -> Unit,
     onSetlistsDeleteSelected: suspend () -> Unit,
     onSetlistsExportSelected: suspend (Uri) -> Unit,
-    windowSizeClass: WindowSizeClass = currentWindowSizeClass()
+    windowSizeClass: WindowSizeClass = currentWindowSizeClass(),
+    // The tab bodies default to the Hilt-backed screens, which is what the app wants and what a
+    // render outside an Activity cannot build. `:tools:readme-screenshots` passes state-driven
+    // ones instead, so the README shots are of this screen rather than a rebuilt lookalike.
+    songsContent: @Composable () -> Unit = {
+        SongsScreen(onNavigateToSongControls = onNavigateToSongControls)
+    },
+    setlistsContent: @Composable () -> Unit = {
+        SetlistsScreen(onNavigateToSetlistControls = onNavigateToSetlistControls)
+    }
 ) {
     val context = LocalContext.current
     val activity = LocalActivity.current
@@ -580,13 +589,9 @@ fun MainScreen(
                         .padding(paddingValues)
                 ) { selectedTab ->
                     when (selectedTab) {
-                        MainTab.SONGS -> SongsScreen(
-                            onNavigateToSongControls = onNavigateToSongControls
-                        )
+                        MainTab.SONGS -> songsContent()
 
-                        MainTab.SETLISTS -> SetlistsScreen(
-                            onNavigateToSetlistControls = onNavigateToSetlistControls
-                        )
+                        MainTab.SETLISTS -> setlistsContent()
 
                         MainTab.JOIN_SESSION -> {
                             // This tab doesn't show content, just launches activity

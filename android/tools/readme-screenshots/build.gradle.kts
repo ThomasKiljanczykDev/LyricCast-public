@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace = "dev.thomas_kiljanczyk.lyriccast.tools.gplayscreenshots"
+    namespace = "dev.thomas_kiljanczyk.lyriccast.tools.readmescreenshots"
     experimentalProperties["android.experimental.enableScreenshotTest"] = true
 }
 
@@ -35,12 +35,15 @@ dependencies {
     screenshotDependency(projects.core.designsystem)
     screenshotDependency(projects.core.model)
     screenshotDependency(projects.core.common)
-    screenshotDependency(projects.feature.main.impl)
-    screenshotDependency(projects.feature.setlist.impl)
-    screenshotDependency(projects.feature.session.impl)
-    screenshotDependency(projects.feature.settings.impl)
     screenshotDependency(projects.core.playback)
     screenshotDependency(projects.core.dataTransfer)
+    screenshotDependency(projects.core.sync)
+    screenshotDependency(projects.feature.category.impl)
+    screenshotDependency(projects.feature.main.impl)
+    screenshotDependency(projects.feature.session.impl)
+    screenshotDependency(projects.feature.setlist.impl)
+    screenshotDependency(projects.feature.settings.impl)
+    screenshotDependency(projects.feature.song.impl)
 
     screenshotDependency(libs.androidx.compose.ui)
     screenshotDependency(libs.androidx.compose.ui.tooling.preview)

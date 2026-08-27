@@ -77,10 +77,11 @@ fun ChooseSessionDialog(
 fun ChooseSessionDialog(
     state: ChooseSessionDialogState,
     onDismiss: () -> Unit = {},
-    onSessionSelected: (GmsNearbySessionItem) -> Unit = {}
+    onSessionSelected: (GmsNearbySessionItem) -> Unit = {},
+    modifier: Modifier = Modifier
 ) {
     AlertDialog(
-        onDismissRequest = onDismiss, title = {
+        modifier = modifier, onDismissRequest = onDismiss, title = {
             Text(text = stringResource(R.string.dialog_fragment_choose_session_title))
         }, text = {
             ChooseSessionDialogContent(

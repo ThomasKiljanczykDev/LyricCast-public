@@ -23,6 +23,11 @@ Category manager is accessible through the action menu on the main screen.
 You can name the category and set a color for easier identification.
 Category name must be unique.
 
+<p float="left">
+  <img src="docs/images/LyricCast-categories-1.png" alt="Category Editor - category list" height="640">
+  <img src="docs/images/LyricCast-categories-2.png" alt="Category Editor - add/edit category dialog" height="640">
+</p>
+
 ### Songs
 
 The app includes a song editor that allows you to create and edit songs.
@@ -30,7 +35,10 @@ The song editor allows you to set the song title, assign a category, and add lyr
 Lyrics are split in sections which can be then shown on the screen one after another.
 Song title must be unique.
 
-<img src="docs/images/LyricCast-songs-1.png" alt="Songs - song list" height="640">
+<p float="left">
+  <img src="docs/images/LyricCast-songs-1.png" alt="Songs - song list" height="640">
+  <img src="docs/images/LyricCast-songs-2.png" alt="Songs - song editor" height="640">
+</p>
 
 ### Setlists
 
@@ -44,7 +52,10 @@ You can also duplicate songs withing the setlist by long pressing the song and s
 in the action menu.
 Setlist name must be unique.
 
-<img src="docs/images/LyricCast-setlists-2.png" alt="Setlists - setlist editor" height="640">
+<p float="left">
+  <img src="docs/images/LyricCast-setlists-1.png" alt="Setlists - setlist list" height="640">
+  <img src="docs/images/LyricCast-setlists-2.png" alt="Setlists - setlist editor" height="640">
+</p>
 
 ### Import/Export
 
@@ -63,6 +74,8 @@ directly from a file manager or another app's share sheet, or via a `lyriccast:/
 every case the format is still confirmed explicitly in the import dialog before anything is
 written to the database.
 
+<img src="docs/images/LyricCast-import-1.png" alt="Import Dialog" height="640">
+
 ## Cast lyrics using Google Cast.
 
 *LyricCast* allows you to cast lyrics to your TV screen using Google Cast.
@@ -73,7 +86,10 @@ You can blank the screen from the song/setlist controls if need be.
 The cast lyrics will be automatically resized to fit the screen with a maximum font size set in the
 settings.
 
-<img src="docs/images/LyricCast-cast-1.png" alt="Controls - the lyrics-display/control screen" height="640">
+<p float="left">
+  <img src="docs/images/LyricCast-cast-1.png" alt="Controls - song" height="640">
+  <img src="docs/images/LyricCast-cast-2.png" alt="Controls - setlist" height="640">
+</p>
 
 ## Start a session and let others join in.
 
@@ -83,7 +99,10 @@ The session feature is based
 on [Nearby Connections API](https://developers.google.com/nearby/connections/overview).
 A session host cannot join another session.
 
-<img src="docs/images/LyricCast-session-1.png" alt="Session - client view" height="640">
+<p float="left">
+  <img src="docs/images/LyricCast-session-1.png" alt="Session - choose session dialog" height="640">
+  <img src="docs/images/LyricCast-session-2.png" alt="Session - client view" height="640">
+</p>
 
 ## First-run onboarding
 
@@ -161,8 +180,8 @@ This project consists of:
 * `feature/*/impl` - one module per user-facing feature area (`category`, `main`, `session`,
   `setlist`, `settings`, `song`), each owning its own screens, ViewModels, and navigation routes
 * `baselineprofile` - macrobenchmark module generating a baseline profile for the `app` module
-* `tools/gplay-screenshots` - a Compose Screenshot Testing module that renders store-style
-  screenshots from the app's real composables (see [Testing](#testing) below); it ships no code to
+* `tools/readme-screenshots` - a Compose Screenshot Testing module that renders the screenshots on
+  this page from the app's real composables (see [Testing](#testing) below); it ships no code to
   users
 
 ## Architecture components
@@ -232,12 +251,12 @@ tests:
 
 ## Screenshot Testing
 
-`tools/gplay-screenshots` uses [Compose Screenshot
-Testing](https://developer.android.com/studio/preview/compose-screenshot-testing) to render a
-handful of hero screens (Songs, Setlist editor, Settings, Session client, the lyrics-display/
-controls screen) against the real production composables and `PreviewData` fixtures, in every
-locale the app ships. It is where the images on this page come from; it contributes no code to the
-shipped app.
+Every screenshot on this page is rendered by `tools/readme-screenshots` with [Compose Screenshot
+Testing](https://developer.android.com/studio/preview/compose-screenshot-testing), against the real
+production composables and the shared `ScreenshotData` fixtures -- English, phone, dark theme. A
+screen change is reflected in the docs by re-running the renderer and copying the PNGs over, no
+emulator involved; see [its README](tools/readme-screenshots/README.md) for the command and the
+render-to-file mapping. It contributes no code to the shipped app.
 
 ## Test Structure
 

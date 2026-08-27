@@ -1,0 +1,6 @@
+build/
+
+# Rendered by :updateDebugScreenshotTest. The PNGs that ship in the README are copied out of here
+# into `android/docs/images/` by hand; these raw renders are reproducible from source and nothing
+# validates them as a baseline, so they stay out of the repo.
+src/screenshotTestDebug/reference/

@@ -72,8 +72,8 @@ jobs:
 
       # Not part of `build`, and its reference PNGs are gitignored, so nothing else notices when
       # the screenshot tool drifts behind the composables it renders.
-      - name: Compile Play Store screenshot tests
-        run: ./gradlew :tools:gplay-screenshots:compileDebugScreenshotTestKotlin --stacktrace
+      - name: Compile README screenshot tests
+        run: ./gradlew :tools:readme-screenshots:compileDebugScreenshotTestKotlin --stacktrace
 
   unit-tests:
     name: Unit tests
