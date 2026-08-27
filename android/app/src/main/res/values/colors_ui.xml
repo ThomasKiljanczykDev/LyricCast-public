@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?><!--
-  ~ Created by Tomasz Kiljanczyk on 25/01/2025, 18:55
-  ~ Copyright (c) 2025 . All rights reserved.
-  ~ Last modified 08/12/2024, 19:50
+  ~ Created by Tomasz Kiljanczyk on 2/8/26, 1:18 AM
+  ~ Copyright (c) 2026 . All rights reserved.
+  ~ Last modified 2/8/26, 12:55 AM
   -->
 
-<resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- fix status bar color in action mode -->
-    <color name="abc_decor_view_status_guard" tools:override="true">@android:color/transparent
-    </color>
-    <color name="abc_decor_view_status_guard_light" tools:override="true">
-        @android:color/transparent
-    </color>
+<resources>
+    <color name="primary">#00668B</color>
+    <color name="secondary">#4E616C</color>
+    <color name="accent">#657985</color>
 
-    <color name="placeholder_card_color_1">@color/maroon</color>
-    <color name="error_Indeterminate_progress_bar">@color/red</color>
+    <color name="dark_text">#191C1E</color>
+    <color name="bright_text">#F0F0F3</color>
 
-    <color name="text">@color/dark_text</color>
+    <color name="background_1">#F9FCFF</color>
+    <color name="background_2">#FFFFFF</color>
+    <color name="background_3">#E0F3FF</color>
+    <color name="background_4">#DCE3E9</color>
 
-    <color name="button_text_1">@color/bright_text</color>
+    <color name="icon_primary">#191C1E</color>
+
     <color name="button_text_2">@color/dark_text</color>
-    <color name="button_background">@color/background_4</color>
 </resources>

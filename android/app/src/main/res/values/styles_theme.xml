@@ -27,7 +27,7 @@
         <item name="appBarLayoutStyle">@style/Widget.LyricCast.AppBarLayout.Static</item>
 
         <item name="toolbarNavigationButtonStyle">
-            @style/Widget.LyricCast.Toolbar.Button.Navigation
+            @style/Widget.AppCompat.Toolbar.Button.Navigation
         </item>
         <item name="actionModeStyle">@style/Widget.LyricCast.ActionMode</item>
         <item name="android:actionOverflowButtonStyle">
