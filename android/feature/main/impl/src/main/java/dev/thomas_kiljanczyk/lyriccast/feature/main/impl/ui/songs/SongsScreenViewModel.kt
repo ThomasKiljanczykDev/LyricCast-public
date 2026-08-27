@@ -6,6 +6,7 @@
 
 package dev.thomas_kiljanczyk.lyriccast.feature.main.impl.ui.songs
 
+import android.net.Uri
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -13,6 +14,7 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import dev.thomas_kiljanczyk.lyriccast.common.io.UriStreamDataSource
 import dev.thomas_kiljanczyk.lyriccast.core.data.repository.CategoriesRepository
 import dev.thomas_kiljanczyk.lyriccast.core.domain.use_case.main.DeleteSongsUseCase
 import dev.thomas_kiljanczyk.lyriccast.core.domain.use_case.main.ExportSongsUseCase
@@ -23,16 +25,14 @@ import dev.thomas_kiljanczyk.lyriccast.core.model.SongItem
 import dev.thomas_kiljanczyk.lyriccast.core.ui.list.SelectionListController
 import dev.thomas_kiljanczyk.lyriccast.core.ui.state.MutableSongFilterState
 import dev.thomas_kiljanczyk.lyriccast.core.ui.state.SongFilterState
-import java.io.OutputStream
 import javax.inject.Inject
 import kotlin.time.Duration.Companion.milliseconds
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.toImmutableList
 import kotlinx.coroutines.FlowPreview
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.debounce
-import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 
@@ -53,6 +53,7 @@ class SongsScreenViewModel @Inject constructor(
     getAllSongsForSelectionUseCase: GetAllSongsForSelectionUseCase,
     categoriesRepository: CategoriesRepository,
     private val exportSongsUseCase: ExportSongsUseCase,
+    private val uriStreams: UriStreamDataSource,
     private val deleteSongsUseCase: DeleteSongsUseCase
 ) : ViewModel(), SongsScreenState {
 
@@ -128,19 +129,15 @@ class SongsScreenViewModel @Inject constructor(
         return result
     }
 
-    fun exportSelectedSongs(cacheDir: String, outputStream: OutputStream): Flow<Int> =
-        flow {
-            isExporting = true
-            try {
-                exportSongsUseCase(
-                    cacheDir,
-                    outputStream,
-                    controller.selectedItems
-                ).collect { progressResId ->
-                    emit(progressResId)
-                }
-            } finally {
-                isExporting = false
+    suspend fun exportSelectedSongs(destination: Uri) {
+        isExporting = true
+        try {
+            val cacheDir = uriStreams.cacheDirPath()
+            uriStreams.withOutputStream(destination) { outputStream ->
+                exportSongsUseCase(cacheDir, outputStream, controller.selectedItems).collect()
             }
+        } finally {
+            isExporting = false
         }
+    }
 }

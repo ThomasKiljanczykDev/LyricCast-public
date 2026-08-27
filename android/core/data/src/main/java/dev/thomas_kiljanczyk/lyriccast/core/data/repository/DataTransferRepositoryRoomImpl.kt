@@ -7,6 +7,8 @@
 package dev.thomas_kiljanczyk.lyriccast.core.data.repository
 
 import androidx.room.Transaction
+import dev.thomas_kiljanczyk.lyriccast.common.di.Dispatcher
+import dev.thomas_kiljanczyk.lyriccast.common.di.LyricCastDispatchers
 import dev.thomas_kiljanczyk.lyriccast.core.database.dao.CategoryDao
 import dev.thomas_kiljanczyk.lyriccast.core.database.dao.SetlistDao
 import dev.thomas_kiljanczyk.lyriccast.core.database.dao.SongDao
@@ -17,18 +19,21 @@ import dev.thomas_kiljanczyk.lyriccast.core.database.model.SongEntity
 import dev.thomas_kiljanczyk.lyriccast.core.model.Category
 import dev.thomas_kiljanczyk.lyriccast.core.model.Setlist
 import dev.thomas_kiljanczyk.lyriccast.core.model.Song
-import kotlinx.coroutines.Dispatchers
+import javax.inject.Inject
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.withContext
 
-internal class DataTransferRepositoryRoomImpl(
+internal class DataTransferRepositoryRoomImpl @Inject constructor(
     private val categoryDao: CategoryDao,
     private val songDao: SongDao,
-    private val setlistDao: SetlistDao
-) : DataTransferRepositoryBaseImpl() {
+    private val setlistDao: SetlistDao,
+    @param:Dispatcher(LyricCastDispatchers.IO) private val ioDispatcher: CoroutineDispatcher,
+    @Dispatcher(LyricCastDispatchers.Default) defaultDispatcher: CoroutineDispatcher
+) : DataTransferRepositoryBaseImpl(defaultDispatcher) {
 
     override suspend fun getAllCategories(): List<Category> {
-        return withContext(Dispatchers.IO) {
+        return withContext(ioDispatcher) {
             categoryDao.getAllCategories()
                 .first()
                 .map { it.toGenericModel() }
@@ -36,7 +41,7 @@ internal class DataTransferRepositoryRoomImpl(
     }
 
     override suspend fun getAllSongs(): List<Song> {
-        return withContext(Dispatchers.IO) {
+        return withContext(ioDispatcher) {
             songDao.getAllSongs()
                 .first()
                 .map { it.toGenericModel() }
@@ -44,7 +49,7 @@ internal class DataTransferRepositoryRoomImpl(
     }
 
     override suspend fun getAllSetlists(): List<Setlist> {
-        return withContext(Dispatchers.IO) {
+        return withContext(ioDispatcher) {
             val setlistEntities = setlistDao.getAllSetlists().first()
             setlistEntities.map { setlistEntity ->
                 val songs = setlistDao.getSongsForSetlist(setlistEntity.id)
@@ -59,7 +64,7 @@ internal class DataTransferRepositoryRoomImpl(
 
     @Transaction
     override suspend fun clearDatabase() {
-        withContext(Dispatchers.IO) {
+        withContext(ioDispatcher) {
             // Clear all data from all tables using bulk operations
             // Note: Due to foreign key constraints, we need to delete in the right order
             // 1. Delete setlist songs (cross-references)
@@ -80,14 +85,14 @@ internal class DataTransferRepositoryRoomImpl(
     }
 
     override suspend fun upsertCategories(categories: Iterable<Category>) {
-        withContext(Dispatchers.IO) {
+        withContext(ioDispatcher) {
             val categoryEntities = categories.map { CategoryEntity(it) }
             categoryDao.upsertCategories(categoryEntities)
         }
     }
 
     override suspend fun upsertSongs(songs: Iterable<Song>) {
-        withContext(Dispatchers.IO) {
+        withContext(ioDispatcher) {
             // Prepare all songs and their lyrics in a single map
             val songsWithLyrics = songs.associate { song ->
                 val songEntity = SongEntity(song)
@@ -108,7 +113,7 @@ internal class DataTransferRepositoryRoomImpl(
     }
 
     override suspend fun upsertSetlists(setlists: Iterable<Setlist>) {
-        withContext(Dispatchers.IO) {
+        withContext(ioDispatcher) {
             // Prepare all setlists and their songs in a single map
             val setlistsWithSongs = setlists.associate { setlist ->
                 val setlistEntity = SetlistEntity(setlist)

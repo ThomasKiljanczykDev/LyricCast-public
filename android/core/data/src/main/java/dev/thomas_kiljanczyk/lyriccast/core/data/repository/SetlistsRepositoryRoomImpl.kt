@@ -6,23 +6,27 @@
 
 package dev.thomas_kiljanczyk.lyriccast.core.data.repository
 
+import dev.thomas_kiljanczyk.lyriccast.common.di.Dispatcher
+import dev.thomas_kiljanczyk.lyriccast.common.di.LyricCastDispatchers
 import dev.thomas_kiljanczyk.lyriccast.core.database.dao.SetlistDao
 import dev.thomas_kiljanczyk.lyriccast.core.database.model.SetlistEntity
 import dev.thomas_kiljanczyk.lyriccast.core.model.Setlist
 import java.util.UUID
-import kotlinx.coroutines.Dispatchers
+import javax.inject.Inject
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.transform
 import kotlinx.coroutines.withContext
 
-internal class SetlistsRepositoryRoomImpl(
-    private val setlistDao: SetlistDao
+internal class SetlistsRepositoryRoomImpl @Inject constructor(
+    private val setlistDao: SetlistDao,
+    @param:Dispatcher(LyricCastDispatchers.IO) private val ioDispatcher: CoroutineDispatcher
 ) : SetlistsRepository {
 
     override fun getAllSetlists(): Flow<List<Setlist>> {
         return setlistDao.getAllSetlists()
             .transform { setlistEntities ->
-                val setlists = withContext(Dispatchers.IO) {
+                val setlists = withContext(ioDispatcher) {
                     setlistEntities.map { setlistEntity ->
                         val songs = setlistDao.getSongsForSetlist(setlistEntity.id)
                         Setlist(
@@ -38,7 +42,7 @@ internal class SetlistsRepositoryRoomImpl(
 
     override suspend fun getSetlist(id: UUID): Setlist? {
         return runCatching {
-            withContext(Dispatchers.IO) {
+            withContext(ioDispatcher) {
                 val setlistEntity = setlistDao.getSetlist(id) ?: return@withContext null
                 val songs = setlistDao.getSongsForSetlist(setlistEntity.id)
                 Setlist(
@@ -51,7 +55,7 @@ internal class SetlistsRepositoryRoomImpl(
     }
 
     override suspend fun upsertSetlist(setlist: Setlist) {
-        withContext(Dispatchers.IO) {
+        withContext(ioDispatcher) {
             val setlistEntity = SetlistEntity(setlist)
             val songIds = setlist.presentation.map { it.id }
             setlistDao.upsertSetlistWithSongs(setlistEntity, songIds)
@@ -59,7 +63,7 @@ internal class SetlistsRepositoryRoomImpl(
     }
 
     override suspend fun deleteSetlists(setlistIds: Collection<UUID>) {
-        withContext(Dispatchers.IO) {
+        withContext(ioDispatcher) {
             setlistDao.deleteSetlists(setlistIds)
         }
     }

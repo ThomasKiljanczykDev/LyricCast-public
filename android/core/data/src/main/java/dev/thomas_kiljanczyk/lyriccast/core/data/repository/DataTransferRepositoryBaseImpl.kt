@@ -17,15 +17,17 @@ import dev.thomas_kiljanczyk.lyriccast.core.model.Song
 import dev.thomas_kiljanczyk.lyriccast.datatransfer.models.CategoryDto
 import dev.thomas_kiljanczyk.lyriccast.datatransfer.models.SetlistDto
 import dev.thomas_kiljanczyk.lyriccast.datatransfer.models.SongDto
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Deferred
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 
-abstract class DataTransferRepositoryBaseImpl : DataTransferRepository {
+abstract class DataTransferRepositoryBaseImpl(
+    private val defaultDispatcher: CoroutineDispatcher
+) : DataTransferRepository {
 
     private companion object {
         const val TAG = "DataTransferRepository"
@@ -107,7 +109,7 @@ abstract class DataTransferRepositoryBaseImpl : DataTransferRepository {
 
         emit(R.string.data_transfer_processor_finishing_import)
         Log.d(TAG, "Finished import")
-    }.flowOn(Dispatchers.Default)
+    }.flowOn(defaultDispatcher)
 
     private suspend fun executeCategoryImport(
         categoryDtos: List<CategoryDto>,

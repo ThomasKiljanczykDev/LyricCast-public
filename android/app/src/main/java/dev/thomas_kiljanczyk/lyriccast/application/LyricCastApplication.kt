@@ -16,22 +16,52 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.datastore.core.DataStore
 import com.google.android.gms.cast.framework.CastContext
 import com.google.android.material.color.DynamicColors
+import dagger.hilt.EntryPoint
+import dagger.hilt.InstallIn
+import dagger.hilt.android.EntryPointAccessors
 import dagger.hilt.android.HiltAndroidApp
+import dagger.hilt.components.SingletonComponent
+import dev.thomas_kiljanczyk.lyriccast.common.di.ApplicationScope
+import dev.thomas_kiljanczyk.lyriccast.common.di.Dispatcher
+import dev.thomas_kiljanczyk.lyriccast.common.di.LyricCastDispatchers
 import dev.thomas_kiljanczyk.lyriccast.core.cast.CastSessionListener
 import dev.thomas_kiljanczyk.lyriccast.core.cast.MessageTransport
 import dev.thomas_kiljanczyk.lyriccast.core.model.settings.ControlButtonHeightOption
 import dev.thomas_kiljanczyk.lyriccast.data.LocaleManager
 import dev.thomas_kiljanczyk.lyriccast.datastore.proto.AppSettings
 import javax.inject.Inject
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+
+@EntryPoint
+@InstallIn(SingletonComponent::class)
+interface ApplicationScopeEntryPoint {
+    @ApplicationScope
+    fun applicationScope(): CoroutineScope
+
+    @Dispatcher(LyricCastDispatchers.IO)
+    fun ioDispatcher(): CoroutineDispatcher
+
+    @Dispatcher(LyricCastDispatchers.Main)
+    fun mainDispatcher(): CoroutineDispatcher
+}
 
 @HiltAndroidApp
 class LyricCastApplication : Application() {
+
+    private val coroutineEntryPoint: ApplicationScopeEntryPoint by lazy {
+        EntryPointAccessors.fromApplication(this, ApplicationScopeEntryPoint::class.java)
+    }
+
+    private val applicationScope: CoroutineScope by lazy { coroutineEntryPoint.applicationScope() }
+    private val ioDispatcher: CoroutineDispatcher by lazy { coroutineEntryPoint.ioDispatcher() }
+    private val mainDispatcher: CoroutineDispatcher by lazy { coroutineEntryPoint.mainDispatcher() }
 
     companion object {
         val PERMISSIONS = preparePermissionArray()
@@ -88,7 +118,7 @@ class LyricCastApplication : Application() {
 
         // Initializes CastContext
         castContext.sessionManager.addSessionManagerListener(CastSessionListener(onStarted = {
-            CoroutineScope(Dispatchers.Default).launch {
+            applicationScope.launch(ioDispatcher) {
                 val blankOnStart = dataStore.data.first().blankOnStart
                 messageTransport.sendBlank(blankOnStart)
             }
@@ -97,7 +127,7 @@ class LyricCastApplication : Application() {
         DynamicColors.applyToActivitiesIfAvailable(this)
 
         // Initialize default values in DataStore
-        CoroutineScope(Dispatchers.IO).launch {
+        applicationScope.launch(ioDispatcher) {
             dataStore.updateData { currentSettings ->
                 if (currentSettings == AppSettings.getDefaultInstance()) {
                     AppSettings.newBuilder()
@@ -118,9 +148,11 @@ class LyricCastApplication : Application() {
             var appTheme: Int? = it.appTheme
             appTheme = if (appTheme == 0) null else appTheme
             if (appTheme != null) {
-                AppCompatDelegate.setDefaultNightMode(appTheme)
+                withContext(mainDispatcher) {
+                    AppCompatDelegate.setDefaultNightMode(appTheme)
+                }
             }
-        }.launchIn(CoroutineScope(Dispatchers.Main))
+        }.flowOn(ioDispatcher).launchIn(applicationScope)
 
         val isDebuggable = applicationInfo.flags and ApplicationInfo.FLAG_DEBUGGABLE != 0
         if (isDebuggable) {

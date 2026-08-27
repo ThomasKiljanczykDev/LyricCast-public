@@ -6,23 +6,24 @@
 
 package dev.thomas_kiljanczyk.lyriccast.feature.main.impl.ui.main
 
+import android.net.Uri
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import dev.thomas_kiljanczyk.lyriccast.common.io.UriStreamDataSource
 import dev.thomas_kiljanczyk.lyriccast.core.model.ImportOptions
 import dev.thomas_kiljanczyk.lyriccast.core.model.UiText
 import dev.thomas_kiljanczyk.lyriccast.core.nearby.PayloadTransport
+import dev.thomas_kiljanczyk.lyriccast.core.sync.ImportInput
 import dev.thomas_kiljanczyk.lyriccast.core.sync.PendingImport
 import dev.thomas_kiljanczyk.lyriccast.core.sync.PendingImportHolder
 import dev.thomas_kiljanczyk.lyriccast.core.sync.use_case.ExportDataUseCase
 import dev.thomas_kiljanczyk.lyriccast.core.sync.use_case.ImportDataUseCase
 import dev.thomas_kiljanczyk.lyriccast.datatransfer.enums.ImportFormat
 import dev.thomas_kiljanczyk.lyriccast.feature.main.impl.R
-import java.io.InputStream
-import java.io.OutputStream
 import javax.inject.Inject
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.launchIn
@@ -57,6 +58,7 @@ class MainScreenViewModel @Inject constructor(
     private val importDataUseCase: ImportDataUseCase,
     private val exportDataUseCase: ExportDataUseCase,
     private val pendingImportHolder: PendingImportHolder,
+    private val uriStreams: UriStreamDataSource,
     payloadTransport: PayloadTransport
 ) : ViewModel() {
     val state: MainScreenState
@@ -101,11 +103,14 @@ class MainScreenViewModel @Inject constructor(
         state.progressCompleted = false
     }
 
-    suspend fun exportAll(cacheDir: String, outputStream: OutputStream) {
+    suspend fun exportAll(destination: Uri) {
         state.isExporting = true
         try {
-            exportDataUseCase(cacheDir, outputStream).collect { resId ->
-                updateProgressMessage(UiText.StringResource(resId))
+            val cacheDir = uriStreams.cacheDirPath()
+            uriStreams.withOutputStream(destination) { outputStream ->
+                exportDataUseCase(cacheDir, outputStream).collect { resId ->
+                    updateProgressMessage(UiText.StringResource(resId))
+                }
             }
             completeProgress()
         } finally {
@@ -113,15 +118,28 @@ class MainScreenViewModel @Inject constructor(
         }
     }
 
+    /**
+     * Reads [input] and imports it. The stream is opened here rather than by the screen: opening a
+     * content-provider URI is IO, and a composable cannot name a dispatcher.
+     */
     suspend fun handleImport(
-        cacheDir: String,
-        inputStream: InputStream,
+        input: ImportInput,
         format: ImportFormat,
         options: ImportOptions
     ): Boolean {
         showProgressDialog(UiText.StringResource(R.string.main_activity_loading_file))
 
-        val progressFlow = importDataUseCase(cacheDir, inputStream, format, options)
+        val cacheDir = uriStreams.cacheDirPath()
+        val uri = when (input) {
+            is ImportInput.FromUri -> input.uri
+
+            // Already a cached file, but routed through the same seam so the open and the close
+            // stay on the IO dispatcher.
+            is ImportInput.FromPendingImport -> Uri.fromFile(input.pendingImport.file)
+        }
+        val progressFlow = uriStreams.withInputStream(uri) { inputStream ->
+            importDataUseCase(cacheDir, inputStream, format, options)
+        }
 
         return if (progressFlow != null) {
             progressFlow.collect { uiText ->

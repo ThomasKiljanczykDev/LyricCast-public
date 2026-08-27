@@ -6,6 +6,8 @@
 
 package dev.thomas_kiljanczyk.lyriccast.core.data_test.repository
 
+import dev.thomas_kiljanczyk.lyriccast.common.di.Dispatcher
+import dev.thomas_kiljanczyk.lyriccast.common.di.LyricCastDispatchers
 import dev.thomas_kiljanczyk.lyriccast.core.data.repository.CategoriesRepository
 import dev.thomas_kiljanczyk.lyriccast.core.data.repository.DataTransferRepositoryBaseImpl
 import dev.thomas_kiljanczyk.lyriccast.core.data.repository.SetlistsRepository
@@ -14,13 +16,15 @@ import dev.thomas_kiljanczyk.lyriccast.core.model.Category
 import dev.thomas_kiljanczyk.lyriccast.core.model.Setlist
 import dev.thomas_kiljanczyk.lyriccast.core.model.Song
 import javax.inject.Inject
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.first
 
 class DataTransferRepositoryFakeImpl @Inject constructor(
     private val songsRepository: SongsRepository,
     private val setlistsRepository: SetlistsRepository,
-    private val categoriesRepository: CategoriesRepository
-) : DataTransferRepositoryBaseImpl() {
+    private val categoriesRepository: CategoriesRepository,
+    @Dispatcher(LyricCastDispatchers.Default) defaultDispatcher: CoroutineDispatcher
+) : DataTransferRepositoryBaseImpl(defaultDispatcher) {
     override suspend fun getAllSongs(): List<Song> {
         return songsRepository.getAllSongs().first()
     }

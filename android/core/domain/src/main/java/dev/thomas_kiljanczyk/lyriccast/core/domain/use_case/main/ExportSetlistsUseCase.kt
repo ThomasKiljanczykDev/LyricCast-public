@@ -6,6 +6,8 @@
 
 package dev.thomas_kiljanczyk.lyriccast.core.domain.use_case.main
 
+import dev.thomas_kiljanczyk.lyriccast.common.di.Dispatcher
+import dev.thomas_kiljanczyk.lyriccast.common.di.LyricCastDispatchers
 import dev.thomas_kiljanczyk.lyriccast.common.helpers.FileHelper
 import dev.thomas_kiljanczyk.lyriccast.core.data.repository.DatabaseTransferData
 import dev.thomas_kiljanczyk.lyriccast.core.domain.R
@@ -16,7 +18,7 @@ import dev.thomas_kiljanczyk.lyriccast.datatransfer.models.SongDto
 import java.io.File
 import java.io.OutputStream
 import javax.inject.Inject
-import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
@@ -25,7 +27,9 @@ import kotlinx.serialization.json.Json
 /**
  * Use case for exporting selected setlists to a ZIP file.
  */
-class ExportSetlistsUseCase @Inject constructor() {
+class ExportSetlistsUseCase @Inject constructor(
+    @param:Dispatcher(LyricCastDispatchers.IO) private val ioDispatcher: CoroutineDispatcher
+) {
     /**
      * Exports selected setlists to a ZIP file.
      *
@@ -92,5 +96,5 @@ class ExportSetlistsUseCase @Inject constructor() {
 
         emit(R.string.main_activity_export_deleting_temp)
         exportDir.deleteRecursively()
-    }.flowOn(Dispatchers.Default)
+    }.flowOn(ioDispatcher)
 }

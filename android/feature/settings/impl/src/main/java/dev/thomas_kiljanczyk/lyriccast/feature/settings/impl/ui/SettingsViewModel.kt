@@ -26,9 +26,7 @@ import dev.thomas_kiljanczyk.lyriccast.feature.settings.impl.domain.SettingsCons
 import javax.inject.Inject
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.persistentListOf
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 interface SettingsState {
     val language: LanguageOption
@@ -107,44 +105,32 @@ class SettingsViewModel @Inject constructor(
     }
 
     suspend fun updateTheme(theme: ThemeOption) {
-        withContext(Dispatchers.IO) {
-            settingsRepository.updateTheme(theme)
-        }
+        settingsRepository.updateTheme(theme)
     }
 
     suspend fun updateButtonHeight(height: ControlButtonHeightOption?) {
         height?.let {
-            withContext(Dispatchers.IO) {
-                settingsRepository.updateButtonHeight(it)
-            }
+            settingsRepository.updateButtonHeight(it)
         }
     }
 
     suspend fun updateBlankEnabled(enabled: Boolean) {
-        withContext(Dispatchers.IO) {
-            settingsRepository.updateBlankEnabled(enabled)
-        }
+        settingsRepository.updateBlankEnabled(enabled)
     }
 
     suspend fun updateBackgroundColor(color: ColorOption?) {
         color?.let {
-            withContext(Dispatchers.IO) {
-                settingsRepository.updateBackgroundColor(it)
-            }
+            settingsRepository.updateBackgroundColor(it)
         }
     }
 
     suspend fun updateFontColor(color: ColorOption?) {
         color?.let {
-            withContext(Dispatchers.IO) {
-                settingsRepository.updateFontColor(it)
-            }
+            settingsRepository.updateFontColor(it)
         }
     }
 
     suspend fun updateMaxFontSize(size: Int) {
-        withContext(Dispatchers.IO) {
-            settingsRepository.updateMaxFontSize(size)
-        }
+        settingsRepository.updateMaxFontSize(size)
     }
 }

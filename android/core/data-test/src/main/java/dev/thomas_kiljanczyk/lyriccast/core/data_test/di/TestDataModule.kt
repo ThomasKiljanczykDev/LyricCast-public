@@ -10,6 +10,8 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.components.SingletonComponent
 import dagger.hilt.testing.TestInstallIn
+import dev.thomas_kiljanczyk.lyriccast.common.di.Dispatcher
+import dev.thomas_kiljanczyk.lyriccast.common.di.LyricCastDispatchers
 import dev.thomas_kiljanczyk.lyriccast.core.data.di.DataModule
 import dev.thomas_kiljanczyk.lyriccast.core.data.repository.CategoriesRepository
 import dev.thomas_kiljanczyk.lyriccast.core.data.repository.DataTransferRepository
@@ -20,6 +22,7 @@ import dev.thomas_kiljanczyk.lyriccast.core.data_test.repository.DataTransferRep
 import dev.thomas_kiljanczyk.lyriccast.core.data_test.repository.SetlistsRepositoryFakeImpl
 import dev.thomas_kiljanczyk.lyriccast.core.data_test.repository.SongsRepositoryFakeImpl
 import javax.inject.Singleton
+import kotlinx.coroutines.CoroutineDispatcher
 
 @Module
 @TestInstallIn(
@@ -41,10 +44,13 @@ object TestDataModule {
 
     @Provides
     @Singleton
-    fun provideDataTransferRepository(): DataTransferRepository =
+    fun provideDataTransferRepository(
+        @Dispatcher(LyricCastDispatchers.Default) defaultDispatcher: CoroutineDispatcher
+    ): DataTransferRepository =
         DataTransferRepositoryFakeImpl(
             provideSongsRepository(),
             provideSetlistsRepository(),
-            provideCategoriesRepository()
+            provideCategoriesRepository(),
+            defaultDispatcher
         )
 }

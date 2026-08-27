@@ -77,9 +77,7 @@ import dev.thomas_kiljanczyk.lyriccast.feature.main.impl.ui.setlists.SetlistsScr
 import dev.thomas_kiljanczyk.lyriccast.feature.main.impl.ui.songs.SongsScreen
 import dev.thomas_kiljanczyk.lyriccast.feature.main.impl.ui.songs.SongsScreenState
 import dev.thomas_kiljanczyk.lyriccast.feature.main.impl.ui.songs.SongsScreenViewModel
-import java.io.OutputStream
 import java.util.UUID
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 enum class MainTab(val titleRes: Int, val icon: ImageVector) {
@@ -150,8 +148,8 @@ fun MainScreen(
     onTabSelected: (MainTab) -> Unit,
     onShowProgressDialog: (UiText) -> Unit,
     onHideProgressDialog: () -> Unit,
-    onExportAll: suspend (String, OutputStream) -> Unit,
-    onHandleImport: suspend (String, java.io.InputStream, ImportFormat, ImportOptions) -> Boolean,
+    onExportAll: suspend (Uri) -> Unit,
+    onHandleImport: suspend (ImportInput, ImportFormat, ImportOptions) -> Boolean,
     onNavigateToSettings: () -> Unit,
     pendingImport: PendingImport? = null,
     onClearPendingImport: () -> Unit = {},
@@ -167,11 +165,11 @@ fun MainScreen(
     // Songs actions
     onSongsExitSelectionMode: () -> Unit,
     onSongsDeleteSelected: suspend () -> Unit,
-    onSongsExportSelected: suspend (String, OutputStream) -> Unit,
+    onSongsExportSelected: suspend (Uri) -> Unit,
     // Setlists actions
     onSetlistsExitSelectionMode: () -> Unit,
     onSetlistsDeleteSelected: suspend () -> Unit,
-    onSetlistsExportSelected: suspend (String, OutputStream) -> Unit,
+    onSetlistsExportSelected: suspend (Uri) -> Unit,
     windowSizeClass: WindowSizeClass = currentWindowSizeClass()
 ) {
     val context = LocalContext.current
@@ -256,12 +254,10 @@ fun MainScreen(
         contract = ActivityResultContracts.CreateDocument("application/zip")
     ) { uri ->
         uri?.let { selectedUri ->
-            coroutineScope.launch(Dispatchers.IO) {
+            coroutineScope.launch {
                 onShowProgressDialog(UiText.StringResource(R.string.main_activity_export_preparing_data))
                 try {
-                    val outputStream = context.contentResolver.openOutputStream(selectedUri)!!
-                    onExportAll(context.cacheDir.canonicalPath, outputStream)
-                    outputStream.close()
+                    onExportAll(selectedUri)
                     onHideProgressDialog()
                 } catch (e: Exception) {
                     Log.e(TAG, "Error exporting", e)
@@ -275,12 +271,10 @@ fun MainScreen(
         contract = ActivityResultContracts.CreateDocument("application/zip")
     ) { uri ->
         uri?.let { selectedUri ->
-            coroutineScope.launch(Dispatchers.IO) {
+            coroutineScope.launch {
                 onShowProgressDialog(UiText.StringResource(R.string.main_activity_export_preparing_data))
                 try {
-                    val outputStream = context.contentResolver.openOutputStream(selectedUri)!!
-                    onSongsExportSelected(context.cacheDir.canonicalPath, outputStream)
-                    outputStream.close()
+                    onSongsExportSelected(selectedUri)
                     onHideProgressDialog()
                 } catch (e: Exception) {
                     Log.e(TAG, "Error exporting", e)
@@ -294,12 +288,10 @@ fun MainScreen(
         contract = ActivityResultContracts.CreateDocument("application/zip")
     ) { uri ->
         uri?.let { selectedUri ->
-            coroutineScope.launch(Dispatchers.IO) {
+            coroutineScope.launch {
                 onShowProgressDialog(UiText.StringResource(R.string.main_activity_export_preparing_data))
                 try {
-                    val outputStream = context.contentResolver.openOutputStream(selectedUri)!!
-                    onSetlistsExportSelected(context.cacheDir.canonicalPath, outputStream)
-                    outputStream.close()
+                    onSetlistsExportSelected(selectedUri)
                     onHideProgressDialog()
                 } catch (e: Exception) {
                     Log.e(TAG, "Error exporting", e)
@@ -316,29 +308,14 @@ fun MainScreen(
     // file that arrived from outside and was pre-attached to the dialog.
     suspend fun performImport(input: ImportInput, format: ImportFormat, options: ImportOptions) {
         try {
-            val inputStream = when (input) {
-                is ImportInput.FromUri -> context.contentResolver.openInputStream(input.uri)!!
-                is ImportInput.FromPendingImport -> input.pendingImport.file.inputStream()
-            }
-            val success = onHandleImport(
-                context.cacheDir.canonicalPath,
-                inputStream,
-                format,
-                options
+            val success = onHandleImport(input, format, options)
+            snackbarHostState.showSnackbar(
+                if (success) importSuccessfulString else importFailedString
             )
-            inputStream.close()
-
-            coroutineScope.launch(Dispatchers.Main) {
-                snackbarHostState.showSnackbar(
-                    if (success) importSuccessfulString else importFailedString
-                )
-            }
         } catch (e: Exception) {
             Log.e(TAG, "Error importing", e)
             onHideProgressDialog()
-            coroutineScope.launch(Dispatchers.Main) {
-                snackbarHostState.showSnackbar(importFailedString)
-            }
+            snackbarHostState.showSnackbar(importFailedString)
         }
     }
 
@@ -350,7 +327,7 @@ fun MainScreen(
             val options = pendingImportOptions
 
             if (format != null && options != null) {
-                coroutineScope.launch(Dispatchers.IO) {
+                coroutineScope.launch {
                     try {
                         performImport(ImportInput.FromUri(selectedUri), format, options)
                     } finally {
@@ -538,7 +515,7 @@ fun MainScreen(
                             val currentPendingImport = pendingImport
                             if (currentPendingImport != null) {
                                 // The file already sits in the cache: skip the file picker.
-                                coroutineScope.launch(Dispatchers.IO) {
+                                coroutineScope.launch {
                                     performImport(
                                         ImportInput.FromPendingImport(currentPendingImport),
                                         importDialogState.importFormat,
@@ -660,15 +637,15 @@ private fun MainScreenPreview() {
             onTabSelected = { },
             onShowProgressDialog = {},
             onHideProgressDialog = {},
-            onExportAll = { _, _ -> },
-            onHandleImport = { _, _, _, _ -> false },
+            onExportAll = { },
+            onHandleImport = { _, _, _ -> false },
             onNavigateToSettings = {},
             onSongsExitSelectionMode = {},
             onSongsDeleteSelected = {},
-            onSongsExportSelected = { _, _ -> },
+            onSongsExportSelected = { },
             onSetlistsExitSelectionMode = {},
             onSetlistsDeleteSelected = {},
-            onSetlistsExportSelected = { _, _ -> }
+            onSetlistsExportSelected = { }
         )
     }
 }
