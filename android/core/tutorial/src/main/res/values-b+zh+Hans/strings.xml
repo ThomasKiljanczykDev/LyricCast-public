@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Created by Tomasz Kiljanczyk on 8/6/26, 1:20 PM
+  ~ Copyright (c) 2026 . All rights reserved.
+  ~ Last modified 8/6/26, 1:20 PM
+  -->
+
+<resources>
+    <string name="tutorial_next">下一步</string>
+    <string name="tutorial_done">完成</string>
+    <string name="tutorial_skip">跳过</string>
+    <string name="tutorial_get_started">开始使用</string>
+    <string name="tutorial_step_counter">第 %1$d 步，共 %2$d 步</string>
+
+    <string name="onboarding_slide_welcome_title">欢迎使用 LyricCast</string>
+    <string name="onboarding_slide_welcome_body">LyricCast 把诗歌歌词投到大屏幕上。建立曲库，把诗歌编成歌单，再投放到电视或其他设备——无需专用硬件。</string>
+
+    <string name="onboarding_slide_library_title">建立你的诗歌曲库</string>
+    <string name="onboarding_slide_library_body">导入 OpenSong 归档或 LyricCast 备份，几秒即可上手，也可以自己录入。分类让庞大的曲库依然好管理。</string>
+
+    <string name="onboarding_slide_setlists_title">用歌单做计划</string>
+    <string name="onboarding_slide_setlists_body">歌单就是一次礼拜或活动中按顺序排好的诗歌。提前准备好，就能从头到尾顺畅进行，不必现找下一首。</string>
+
+    <string name="onboarding_slide_cast_title">投屏到电视</string>
+    <string name="onboarding_slide_cast_body">把歌词发送到同一 Wi-Fi 网络下的任意 Google Cast 设备。找到接收设备后，顶栏会出现投屏图标。</string>
+
+    <string name="onboarding_slide_sessions_title">多设备同步呈现</string>
+    <string name="onboarding_slide_sessions_body">没有投屏设备？开启一个会话，让附近的手机或平板同步跟随——一台设备主导，其余自动跟上。</string>
+
+    <string name="onboarding_slide_presenting_title">按你的方式呈现</string>
+    <string name="onboarding_slide_presenting_body">礼拜中可以逐段翻页、在两首诗歌之间黑屏，并逐页跟随。颜色、字号和启动时黑屏都在设置里。</string>
+
+    <string name="tour_main_tabs_title">诗歌与歌单</string>
+    <string name="tour_main_tabs_body">你的曲库就在这里。“诗歌”收录你添加的全部内容；“歌单”收录你用它们编排的演出顺序。</string>
+
+    <string name="tour_main_fab_title">新增内容</string>
+    <string name="tour_main_fab_body">从头写一首诗歌，或者从曲库中挑选诗歌并排好顺序来创建歌单。</string>
+
+    <string name="tour_main_overflow_title">主菜单</string>
+    <string name="tour_main_overflow_body">导入是最快的填充方式——它可读取 OpenSong 归档和 LyricCast 备份。导出可把成果保存为文件。已删除的项目也在这里，误删很容易撤销。</string>
+
+    <string name="tour_main_categories_title">用分类整理</string>
+    <string name="tour_main_categories_body">创建带颜色的分类并指派给诗歌，让庞大的曲库始终易于检索。</string>
+
+    <string name="tour_main_settings_title">设置</string>
+    <string name="tour_main_settings_body">投放颜色、字号、主题和会话默认值。</string>
+
+    <string name="tour_main_cast_title">投放到屏幕</string>
+    <string name="tour_main_cast_body">只要同一 Wi-Fi 网络下有 Google Cast 设备，顶栏就会出现投屏图标。点按即可把歌词投到电视上。</string>
+
+    <string name="tour_main_sessions_title">多设备同步呈现</string>
+    <string name="tour_main_sessions_body">在这里开启会话，让本设备成为主控——附近运行 LyricCast 的设备无需拥有你的诗歌副本，也能跟随你显示的内容。若要跟随他人，请改用“会话”标签页。</string>
+
+    <string name="tour_song_editor_title_title">为诗歌命名</string>
+    <string name="tour_song_editor_title_body">标题是你日后搜索的依据，所以要好辨认。歌词写在下面的输入框里——每个段落在呈现时对应一屏。</string>
+
+    <string name="tour_song_editor_structure_title">编排段落</string>
+    <string name="tour_song_editor_structure_body">设定主歌和副歌的显示顺序，包括重复段——无需复制歌词文本。</string>
+
+    <string name="tour_song_editor_save_title">保存</string>
+    <string name="tour_song_editor_save_body">保存会把诗歌加入曲库；未保存就离开则会丢弃。先指定分类，曲库变大后更容易找到这首诗歌。</string>
+
+    <string name="tour_setlist_editor_name_title">为歌单命名</string>
+    <string name="tour_setlist_editor_name_body">取个日后能认出的名字——日期或活动名称都很合适。</string>
+
+    <string name="tour_setlist_editor_picker_title">挑选并排序诗歌</string>
+    <string name="tour_setlist_editor_picker_body">从曲库中挑选诗歌，然后拖动排出你想要的顺序。在添加诗歌之前，这个列表是空的。</string>
+
+    <string name="tour_settings_appearance_title">歌词的显示效果</string>
+    <string name="tour_settings_appearance_body">背景色、字体颜色和最大字号决定电视或跟随设备上的呈现效果。</string>
+
+    <string name="tour_settings_blank_title">启动时黑屏</string>
+    <string name="tour_settings_blank_body">开启后，打开诗歌时屏幕保持空白，在你准备好之前不会显示任何内容。</string>
+
+    <string name="tour_settings_auto_session_title">会话默认值</string>
+    <string name="tour_settings_auto_session_body">应用打开时自动开启会话，并设定默认名称，方便加入的设备识别。</string>
+    <string name="tour_settings_donate_title">喜欢 LyricCast 吗？</string>
+    <string name="tour_settings_donate_body">如果它对你有用，欢迎请我喝杯咖啡，支持后续开发。</string>
+</resources>

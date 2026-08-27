@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="dialog_fragment_start_session_title">Simulan ang sesyon</string>
+    <string name="dialog_fragment_start_session_missing_permissions">Tinanggihan mo ang mga pahintulot na kailangan ng feature ng sesyon. I-enable ang mga ito sa mga setting.</string>
+    <string name="title_category_manager">Pamahalaan ang mga kategorya</string>
+    <string name="title_setlists">Mga setlist</string>
+    <string name="title_songs">Mga awit</string>
+    <string name="hint_setlist_name">Pangalan ng setlist</string>
+    <string name="hint_import_format">Format</string>
+    <string name="launch_activity_go_to_settings">Pumunta sa mga setting</string>
+    <string name="main_activity_import_delete_all_before_import">Burahin lahat bago mag-import</string>
+    <string name="main_activity_import_replace_on_conflict">Palitan kapag may salungatan</string>
+    <string name="main_activity_import_dialog_title">Mag-import</string>
+    <string name="main_activity_import_successful">Matagumpay na natapos ang pag-import</string>
+    <string name="main_activity_import_failed">Nabigo ang pag-import</string>
+    <string name="main_activity_import_pending_file">File: %1$s</string>
+    <string name="main_activity_export_preparing_data">Inihahanda ang data…</string>
+    <string name="main_activity_action_menu_export_selected">I-export ang mga napili</string>
+    <string name="main_activity_menu_export">I-export lahat</string>
+    <string name="main_activity_menu_import">Mag-import</string>
+    <string name="main_activity_button_add_song">Magdagdag ng awit</string>
+    <string name="main_activity_button_add_setlist">Magdagdag ng setlist</string>
+    <string name="main_activity_loading_file">Nilo-load ang file …</string>
+    <string name="main_activity_tab_join_session">Sesyon</string>
+    <string name="main_activity_cannot_join_session">Hindi ka puwedeng sumali sa ibang sesyon habang ikaw ang nangunguna sa sarili mo</string>
+    <string name="main_activity_setlist_is_empty">Walang laman ang setlist!</string>
+    <string name="edit">I-edit</string>
+    <string name="delete">Burahin</string>
+    <string name="more_options">Iba pang opsyon</string>
+    <string name="settings_title">Mga setting</string>
+    <string name="ignore">Huwag pansinin</string>
+    <string name="close">Isara</string>
+    <string name="progress_processing">Pinoproseso…</string>
+</resources>

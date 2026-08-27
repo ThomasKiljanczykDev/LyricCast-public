@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="title_session_client">세션 참여자</string>
+    <string name="session_client_connected">세션에 연결됨</string>
+    <string name="session_client_disconnected">세션 연결이 끊김</string>
+    <string name="session_client_failed_to_connect">세션에 연결하지 못했습니다</string>
+    <string name="session_client_connecting">연결 중</string>
+    <string name="session_client_connecting_please_wait">잠시 기다려 주세요…</string>
+    <string name="session_client_failed_to_start_lookup">세션 검색을 시작하지 못했습니다</string>
+    <string name="dialog_fragment_choose_session_title">세션 선택</string>
+    <string name="dialog_fragment_choose_session_looking_for_session">세션 찾는 중…</string>
+    <string name="ignore">무시</string>
+    <string name="launch_activity_go_to_settings">설정으로 이동</string>
+    <string name="close">닫기</string>
+    <string name="dialog_fragment_start_session_missing_permissions">세션 기능에 필요한 권한을 거부했습니다. 설정에서 사용 설정해 주세요.</string>
+</resources>

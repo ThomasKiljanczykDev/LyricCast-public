@@ -1,0 +1,22 @@
+<resources>
+    <string name="editor_button_save">Simpan</string>
+    <string name="editor_button_add">Tambah</string>
+    <string name="title_categories">Kategori</string>
+    <string name="category_manager_hint_category_name">Nama</string>
+    <string name="category_manager_hint_category_color">Warna</string>
+    <string name="category_manager_add_category">Tambah kategori</string>
+    <string name="category_manager_edit_category">Edit kategori</string>
+    <string name="category_color_maroon">Marun</string>
+    <string name="category_color_tomato">Tomat</string>
+    <string name="category_color_golden">Emas</string>
+    <string name="category_color_olive">Zaitun</string>
+    <string name="category_color_cyan">Sian</string>
+    <string name="category_color_turquoise">Toska</string>
+    <string name="category_color_royal_blue">Biru royal</string>
+    <string name="category_color_violet">Ungu</string>
+    <string name="category_color_pink">Merah muda</string>
+    <string name="category_color_navajo_white">Krem</string>
+    <string name="category_color_slate_gray">Abu batu tulis</string>
+    <string name="category_color_gray">Abu-abu</string>
+    <string name="category_color_steel_blue">Biru baja</string>
+</resources>

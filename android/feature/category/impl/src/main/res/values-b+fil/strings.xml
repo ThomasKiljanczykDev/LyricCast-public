@@ -1,0 +1,22 @@
+<resources>
+    <string name="editor_button_save">I-save</string>
+    <string name="editor_button_add">Idagdag</string>
+    <string name="title_categories">Mga kategorya</string>
+    <string name="category_manager_hint_category_name">Pangalan</string>
+    <string name="category_manager_hint_category_color">Kulay</string>
+    <string name="category_manager_add_category">Magdagdag ng kategorya</string>
+    <string name="category_manager_edit_category">I-edit ang kategorya</string>
+    <string name="category_color_maroon">Maroon</string>
+    <string name="category_color_tomato">Kamatis</string>
+    <string name="category_color_golden">Ginto</string>
+    <string name="category_color_olive">Oliba</string>
+    <string name="category_color_cyan">Cyan</string>
+    <string name="category_color_turquoise">Turkesa</string>
+    <string name="category_color_royal_blue">Royal blue</string>
+    <string name="category_color_violet">Lila</string>
+    <string name="category_color_pink">Rosas</string>
+    <string name="category_color_navajo_white">Beige</string>
+    <string name="category_color_slate_gray">Slate gray</string>
+    <string name="category_color_gray">Abo</string>
+    <string name="category_color_steel_blue">Steel blue</string>
+</resources>

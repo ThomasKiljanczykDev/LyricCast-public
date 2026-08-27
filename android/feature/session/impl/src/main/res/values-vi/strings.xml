@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="title_session_client">Máy tham gia phiên</string>
+    <string name="session_client_connected">Đã kết nối phiên</string>
+    <string name="session_client_disconnected">Đã ngắt kết nối phiên</string>
+    <string name="session_client_failed_to_connect">Không kết nối được phiên</string>
+    <string name="session_client_connecting">Đang kết nối</string>
+    <string name="session_client_connecting_please_wait">Vui lòng đợi…</string>
+    <string name="session_client_failed_to_start_lookup">Không bắt đầu tìm phiên được</string>
+    <string name="dialog_fragment_choose_session_title">Chọn một phiên</string>
+    <string name="dialog_fragment_choose_session_looking_for_session">Đang tìm phiên…</string>
+    <string name="ignore">Bỏ qua</string>
+    <string name="launch_activity_go_to_settings">Mở cài đặt</string>
+    <string name="close">Đóng</string>
+    <string name="dialog_fragment_start_session_missing_permissions">Bạn đã từ chối các quyền cần thiết cho tính năng phiên. Vui lòng bật chúng trong cài đặt.</string>
+</resources>

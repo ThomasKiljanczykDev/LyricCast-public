@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Setlist Controls -->
+    <string name="title_controls">Sterowanie</string>
+    <string name="settings_title">Ustawienia</string>
+
+    <!-- Setlist Editor -->
+    <string name="close">Zamknij</string>
+    <string name="delete">Usuń</string>
+    <string name="setlist_editor_title">Edytor list</string>
+    <string name="setlist_editor_button_pick_songs">Wybierz piosenki</string>
+    <string name="setlist_editor_load_failed">Nie udało się wczytać listy</string>
+    <string name="setlist_editor_setlist_not_found">Nie znaleziono listy</string>
+    <string name="setlist_editor_validation_failed">Nie można zapisać listy - walidacja nie powiodła się</string>
+    <string name="setlist_name">Nazwa listy</string>
+    <string name="add_song">Dodaj piosenkę</string>
+    <string name="navigate_back">Wstecz</string>
+    <string name="save">Zapisz</string>
+    <string name="confirm">Potwierdź</string>
+    <string name="duplicate">Duplikuj</string>
+    <string name="error_name_empty">Nazwa nie może być pusta</string>
+    <string name="error_name_already_in_use">Nazwa jest już używana</string>
+    <string name="no_songs_found">Nie znaleziono piosenek</string>
+</resources>

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Created by Tomasz Kiljanczyk on 8/6/26, 1:20 PM
+  ~ Copyright (c) 2026 . All rights reserved.
+  ~ Last modified 8/6/26, 1:20 PM
+  -->
+
+<resources>
+    <string name="tutorial_next">Tiếp</string>
+    <string name="tutorial_done">Xong</string>
+    <string name="tutorial_skip">Bỏ qua</string>
+    <string name="tutorial_get_started">Bắt đầu</string>
+    <string name="tutorial_step_counter">%1$d trên %2$d</string>
+
+    <string name="onboarding_slide_welcome_title">Chào mừng đến với LyricCast</string>
+    <string name="onboarding_slide_welcome_body">LyricCast đưa lời bài hát lên màn hình lớn. Hãy xây dựng thư viện, sắp xếp bài hát thành danh sách và trình chiếu lên TV hoặc các thiết bị khác — không cần thiết bị chuyên dụng.</string>
+
+    <string name="onboarding_slide_library_title">Xây dựng thư viện bài hát</string>
+    <string name="onboarding_slide_library_body">Nhập kho OpenSong hoặc bản sao lưu LyricCast để bắt đầu trong vài giây, hoặc tự soạn bài hát. Thể loại giúp thư viện lớn vẫn dễ quản lý.</string>
+
+    <string name="onboarding_slide_setlists_title">Lên kế hoạch bằng danh sách bài</string>
+    <string name="onboarding_slide_setlists_body">Danh sách bài là chuỗi bài hát theo thứ tự cho một buổi thờ phượng hay sự kiện. Hãy chuẩn bị trước rồi trình chiếu từ đầu đến cuối mà không phải tìm bài kế tiếp.</string>
+
+    <string name="onboarding_slide_cast_title">Truyền lên TV</string>
+    <string name="onboarding_slide_cast_body">Gửi lời bài hát tới mọi thiết bị Google Cast trong cùng mạng Wi-Fi. Biểu tượng Cast xuất hiện trên thanh trên cùng khi tìm thấy thiết bị nhận.</string>
+
+    <string name="onboarding_slide_sessions_title">Trình chiếu trên nhiều thiết bị</string>
+    <string name="onboarding_slide_sessions_body">Không có thiết bị Cast? Hãy bắt đầu một phiên để điện thoại hoặc máy tính bảng ở gần theo dõi đồng bộ — một thiết bị dẫn, các thiết bị còn lại tự bám theo.</string>
+
+    <string name="onboarding_slide_presenting_title">Trình chiếu theo cách của bạn</string>
+    <string name="onboarding_slide_presenting_body">Trong buổi thờ phượng, bạn có thể chuyển từng phiên khúc, làm trống màn hình giữa các bài và theo dõi nội dung. Màu sắc, cỡ chữ và tùy chọn màn hình trống khi mở đều nằm trong Cài đặt.</string>
+
+    <string name="tour_main_tabs_title">Bài hát và danh sách bài</string>
+    <string name="tour_main_tabs_body">Thư viện của bạn nằm ở đây. Bài hát chứa mọi thứ bạn đã thêm; Danh sách bài chứa các trình tự bạn tạo ra từ chúng.</string>
+
+    <string name="tour_main_fab_title">Thêm nội dung mới</string>
+    <string name="tour_main_fab_body">Soạn một bài hát từ đầu, hoặc tạo danh sách bài bằng cách chọn bài trong thư viện và sắp thứ tự.</string>
+
+    <string name="tour_main_overflow_title">Menu chính</string>
+    <string name="tour_main_overflow_body">Nhập là cách nhanh nhất để lấp đầy ứng dụng — nó đọc kho OpenSong và bản sao lưu LyricCast. Xuất lưu công việc của bạn ra tệp. Các mục đã xóa cũng nằm ở đây, nên xóa nhầm rất dễ hoàn tác.</string>
+
+    <string name="tour_main_categories_title">Sắp xếp bằng thể loại</string>
+    <string name="tour_main_categories_body">Tạo các thể loại có màu và gán cho bài hát để thư viện lớn vẫn dễ tìm kiếm.</string>
+
+    <string name="tour_main_settings_title">Cài đặt</string>
+    <string name="tour_main_settings_body">Màu trình chiếu, cỡ chữ, giao diện và mặc định cho phiên.</string>
+
+    <string name="tour_main_cast_title">Truyền lên màn hình</string>
+    <string name="tour_main_cast_body">Biểu tượng Cast xuất hiện trên thanh trên cùng bất cứ khi nào có thiết bị Google Cast trong cùng mạng Wi-Fi. Nhấn vào đó để đưa lời bài hát lên TV.</string>
+
+    <string name="tour_main_sessions_title">Trình chiếu trên nhiều thiết bị</string>
+    <string name="tour_main_sessions_body">Bắt đầu một phiên tại đây để thiết bị này làm người trình chiếu — các thiết bị lân cận đang chạy LyricCast có thể theo dõi nội dung bạn hiển thị mà không cần bản sao bài hát của bạn. Nếu muốn theo dõi người khác, hãy dùng thẻ Phiên.</string>
+
+    <string name="tour_song_editor_title_title">Đặt tên bài hát</string>
+    <string name="tour_song_editor_title_body">Tiêu đề là thứ bạn sẽ tìm về sau, nên hãy đặt sao cho dễ nhận ra. Lời bài hát nhập ở ô bên dưới — mỗi khối sẽ thành một màn hình khi trình chiếu.</string>
+
+    <string name="tour_song_editor_structure_title">Sắp xếp các phần</string>
+    <string name="tour_song_editor_structure_body">Đặt thứ tự hiển thị của phiên khúc và điệp khúc, kể cả phần lặp lại — không cần chép lại lời.</string>
+
+    <string name="tour_song_editor_save_title">Lưu</string>
+    <string name="tour_song_editor_save_body">Lưu sẽ thêm bài hát vào thư viện; thoát mà không lưu sẽ bỏ nó đi. Gán thể loại trước giúp tìm bài dễ hơn khi thư viện lớn dần.</string>
+
+    <string name="tour_setlist_editor_name_title">Đặt tên danh sách bài</string>
+    <string name="tour_setlist_editor_name_body">Một cái tên bạn sẽ nhận ra sau này — ngày tháng hoặc tên sự kiện rất hợp.</string>
+
+    <string name="tour_setlist_editor_picker_title">Chọn và sắp thứ tự bài hát</string>
+    <string name="tour_setlist_editor_picker_body">Chọn bài từ thư viện rồi kéo thả theo thứ tự bạn muốn. Danh sách này trống cho tới khi bạn thêm bài hát.</string>
+
+    <string name="tour_settings_appearance_title">Lời bài hát trông thế nào</string>
+    <string name="tour_settings_appearance_body">Màu nền, màu chữ và cỡ chữ tối đa quyết định nội dung hiển thị trên TV hoặc thiết bị đang theo dõi.</string>
+
+    <string name="tour_settings_blank_title">Mở đầu bằng màn hình trống</string>
+    <string name="tour_settings_blank_body">Khi bật, màn hình vẫn trống lúc bạn mở một bài hát, nên không có gì hiện ra trước khi bạn sẵn sàng.</string>
+
+    <string name="tour_settings_auto_session_title">Mặc định cho phiên</string>
+    <string name="tour_settings_auto_session_body">Tự động bắt đầu phiên khi mở ứng dụng và đặt tên mặc định để các thiết bị tham gia nhận ra.</string>
+    <string name="tour_settings_donate_title">Bạn thấy LyricCast hữu ích?</string>
+    <string name="tour_settings_donate_body">Nếu ứng dụng có ích cho bạn, hãy mời tôi một ly cà phê để hỗ trợ phát triển.</string>
+</resources>

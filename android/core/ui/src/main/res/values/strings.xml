@@ -6,9 +6,12 @@
     <string name="controls_off" translatable="false">OFF</string>
     <string name="controls_on" translatable="false">ON</string>
     <string name="controls_previous">Previous</string>
+    <string name="delete">Delete</string>
+    <string name="edit">Edit</string>
     <string name="field_error">Field error</string>
     <string name="main_activity_export_preparing_data">Preparing data …</string>
     <string name="main_activity_import_successful">Import completed successfully</string>
     <string name="hint_song_title">Song title</string>
+    <string name="navigate_up">Navigate up</string>
     <string name="setlist_editor_hint_selected">Selected</string>
 </resources>

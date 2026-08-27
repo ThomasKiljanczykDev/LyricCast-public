@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Created by Tomasz Kiljanczyk on 8/6/26, 1:20 PM
+  ~ Copyright (c) 2026 . All rights reserved.
+  ~ Last modified 8/6/26, 1:20 PM
+  -->
+
+<resources>
+    <string name="settings_title">设置</string>
+    <string name="navigate_up">向上导航</string>
+    
+    <string name="preference_language_title">语言</string>
+    <string name="preference_theme_title">主题</string>
+    <string name="preference_controls_button_height_title">控制按钮高度</string>
+    <string name="preference_cast_background_title">背景色</string>
+    <string name="preference_cast_font_color_title">字体颜色</string>
+    <string name="preference_cast_max_font_size_title">最大字号</string>
+    <string name="preference_blank_title">启动时黑屏</string>
+    <string name="preference_section_app">应用</string>
+    <string name="preference_language_system">系统默认</string>
+    <string name="preference_theme_light">浅色</string>
+    <string name="preference_theme_dark">深色</string>
+    <string name="preference_theme_system">系统默认</string>
+    <string name="preference_controls_buttons_height_small">小</string>
+    <string name="preference_controls_buttons_height_medium">中</string>
+    <string name="preference_controls_buttons_height_large">大</string>
+    <string name="preference_color_black">黑色</string>
+    <string name="preference_color_white">白色</string>
+    <string name="preference_color_blue">蓝色</string>
+    <string name="preference_color_red">红色</string>
+    <string name="preference_color_pink">粉色</string>
+</resources>

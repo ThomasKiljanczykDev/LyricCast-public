@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Titles -->
+    <string name="title_song_editor">Edytor piosenek</string>
+    <string name="title_controls">Sterowanie</string>
+
+    <!-- Hints -->
+    <string name="hint_song_title">Tytuł piosenki</string>
+
+    <!-- Song Editor -->
+    <string name="song_editor_hint_enter_lyrics">Wprowadź słowa</string>
+    <string name="song_editor_input_section_name">Nazwa sekcji</string>
+    <string name="song_editor_input_new_section">NOWA SEKCJA</string>
+    <string name="song_editor_input_new_section_template">NOWA SEKCJA</string>
+    <string name="song_editor_button_move_left">Przesuń w lewo</string>
+    <string name="song_editor_button_move_right">Przesuń w prawo</string>
+    <string name="song_editor_button_delete_section">Usuń sekcję</string>
+    <string name="song_editor_title_already_used">Tytuł piosenki już zajęty</string>
+    <string name="song_editor_enter_title">Proszę podać tytuł piosenki</string>
+    <string name="song_editor_enter_section_name">Proszę podać nazwę sekcji</string>
+    <string name="song_editor_sections_must_have_names">Wszystkie sekcje muszą mieć nazwę</string>
+    <string name="song_editor_save_failed">Zapisywanie piosenki nie powiodło się</string>
+    <string name="song_editor_song_not_found">Nie znaleziono piosenki</string>
+    <string name="song_editor_load_failed">Wczytywanie piosenki nie powiodło się</string>
+
+    <!-- Category -->
+    <string name="category_none">BRAK</string>
+
+    <!-- Generic -->
+    <string name="action_save">Zapisz</string>
+    <string name="settings_title">Ustawienia</string>
+    <string name="navigate_up">Wróć</string>
+</resources>

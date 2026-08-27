@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="dialog_fragment_start_session_title">Rozpoczynanie sesji</string>
+    <string name="dialog_fragment_start_session_missing_permissions">" Odrzuciłeś uprawnienia wymagane dla funkcji sesji. Proszę włączyć je w ustawieniach."</string>
+
+    <!-- Titles -->
+    <string name="title_category_manager">Zarządzaj kategoriami</string>
+    <string name="title_setlists">Listy</string>
+    <string name="title_songs">Piosenki</string>
+
+    <!-- Hints -->
+    <string name="hint_setlist_name">Nazwa listy</string>
+    <string name="hint_import_format">Format</string>
+
+    <!-- Launch Activity -->
+    <string name="launch_activity_go_to_settings">Przejdź do ustawień</string>
+
+    <!-- Main Screen -->
+    <string name="main_activity_loading_file">Wczytywanie pliku …</string>
+    <string name="main_activity_import_delete_all_before_import">Usuń wszystko przed importem</string>
+    <string name="main_activity_import_replace_on_conflict">Podmień w przypadku konfliktu</string>
+    <string name="main_activity_import_dialog_title">Import</string>
+    <string name="main_activity_import_successful">Import zakończony pomyślnie</string>
+    <string name="main_activity_import_failed">Import nie powiódł się</string>
+    <string name="main_activity_import_pending_file">Plik: %1$s</string>
+    <string name="main_activity_export_preparing_data">Przygotowywanie danych …</string>
+    <string name="main_activity_action_menu_export_selected">Eksportuj zaznaczone</string>
+    <string name="main_activity_menu_export">Eksportuj wszystko</string>
+    <string name="main_activity_menu_import">Importuj</string>
+    <string name="main_activity_button_add_song">Dodaj piosenkę</string>
+    <string name="main_activity_button_add_setlist">Dodaj listę</string>
+    <string name="main_activity_setlist_is_empty">List jest pusta!</string>
+    <string name="main_activity_tab_join_session">Dołącz do sesji</string>
+    <string name="main_activity_cannot_join_session">Nie można dołączyć do innej sesji podczas hostowania własnej</string>
+
+    <!-- Generic -->
+    <string name="edit">Edytuj</string>
+    <string name="delete">Usuń</string>
+    <string name="more_options">Więcej opcji</string>
+    <string name="settings_title">Ustawienia</string>
+    <string name="ignore">Ignoruj</string>
+    <string name="close">Zamknij</string>
+
+    <!-- Progress Dialog -->
+    <string name="progress_processing">Przetwarzanie…</string>
+</resources>

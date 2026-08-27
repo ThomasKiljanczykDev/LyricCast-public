@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="title_session_client">Client della sessione</string>
+    <string name="session_client_connected">Connesso alla sessione</string>
+    <string name="session_client_disconnected">Disconnesso dalla sessione</string>
+    <string name="session_client_failed_to_connect">Impossibile connettersi alla sessione</string>
+    <string name="session_client_connecting">Connessione in corso</string>
+    <string name="session_client_connecting_please_wait">Attendi…</string>
+    <string name="session_client_failed_to_start_lookup">Impossibile avviare la ricerca delle sessioni</string>
+    <string name="dialog_fragment_choose_session_title">Scegli una sessione</string>
+    <string name="dialog_fragment_choose_session_looking_for_session">Ricerca di sessioni…</string>
+    <string name="ignore">Ignora</string>
+    <string name="launch_activity_go_to_settings">Vai alle impostazioni</string>
+    <string name="close">Chiudi</string>
+    <string name="dialog_fragment_start_session_missing_permissions">Hai rifiutato le autorizzazioni necessarie per la funzione sessione. Attivale nelle impostazioni.</string>
+</resources>

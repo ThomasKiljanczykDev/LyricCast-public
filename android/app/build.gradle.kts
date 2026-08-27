@@ -40,7 +40,12 @@ android {
 
         testInstrumentationRunner = "dev.thomas_kiljanczyk.lyriccast.core.testing.LyricCastTestRunner"
         androidResources {
-            localeFilters.addAll(listOf("en", "pl"))
+            localeFilters.addAll(
+                listOf(
+                    "en", "pl", "am", "de", "es", "fil", "fr", "in", "it", "ko", "pt", "sw", "vi",
+                    "b+zh+Hans"
+                )
+            )
         }
     }
 
@@ -98,8 +103,17 @@ dependencies {
     implementation(projects.core.cast)
     implementation(projects.core.playback)
     implementation(projects.core.sync)
+    implementation(projects.core.tutorial)
+
+    implementation(projects.feature.category.impl)
+    implementation(projects.feature.main.impl)
+    implementation(projects.feature.session.impl)
+    implementation(projects.feature.setlist.impl)
+    implementation(projects.feature.settings.impl)
+    implementation(projects.feature.song.impl)
 
     // App dependencies
+    implementation(libs.androidx.appcompat)
     implementation(libs.kotlinx.coroutines)
     implementation(libs.kotlinx.serialization.json)
     implementation(libs.play.services.nearby)

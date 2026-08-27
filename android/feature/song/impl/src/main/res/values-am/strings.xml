@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="title_song_editor">የመዝሙር አርታዒ</string>
+    <string name="song_editor_hint_enter_lyrics">ግጥሙን ያስገቡ</string>
+    <string name="song_editor_input_section_name">የክፍል ስም</string>
+    <string name="song_editor_input_new_section">አዲስ ክፍል</string>
+    <string name="song_editor_input_new_section_template">አዲስ ክፍል</string>
+    <string name="song_editor_button_move_left">ወደ ግራ አንቀሳቅስ</string>
+    <string name="song_editor_button_move_right">ወደ ቀኝ አንቀሳቅስ</string>
+    <string name="song_editor_button_delete_section">ክፍሉን ሰርዝ</string>
+    <string name="song_editor_enter_title">እባክዎ የመዝሙሩን ርዕስ ያስገቡ</string>
+    <string name="song_editor_title_already_used">የመዝሙሩ ርዕስ አስቀድሞ ጥቅም ላይ ውሏል</string>
+    <string name="song_editor_enter_section_name">እባክዎ የክፍሉን ስም ያስገቡ</string>
+    <string name="song_editor_sections_must_have_names">ሁሉም ክፍሎች ስም ሊኖራቸው ይገባል</string>
+    <string name="song_editor_save_failed">መዝሙሩን ማስቀመጥ አልተቻለም</string>
+    <string name="song_editor_song_not_found">መዝሙሩ አልተገኘም</string>
+    <string name="song_editor_load_failed">መዝሙሩን መጫን አልተቻለም</string>
+    <string name="category_none">የለም</string>
+    <string name="title_controls">መቆጣጠሪያዎች</string>
+    <string name="navigate_up">ወደ ላይ ሂድ</string>
+    <string name="settings_title">ቅንብሮች</string>
+    <string name="hint_song_title">የመዝሙር ርዕስ</string>
+    <string name="action_save">አስቀምጥ</string>
+</resources>

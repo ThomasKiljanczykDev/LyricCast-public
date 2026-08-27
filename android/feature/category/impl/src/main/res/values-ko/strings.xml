@@ -1,0 +1,22 @@
+<resources>
+    <string name="editor_button_save">저장</string>
+    <string name="editor_button_add">추가</string>
+    <string name="title_categories">분류</string>
+    <string name="category_manager_hint_category_name">이름</string>
+    <string name="category_manager_hint_category_color">색상</string>
+    <string name="category_manager_add_category">분류 추가</string>
+    <string name="category_manager_edit_category">분류 편집</string>
+    <string name="category_color_maroon">밤색</string>
+    <string name="category_color_tomato">토마토색</string>
+    <string name="category_color_golden">금색</string>
+    <string name="category_color_olive">올리브색</string>
+    <string name="category_color_cyan">청록색</string>
+    <string name="category_color_turquoise">터콰이즈</string>
+    <string name="category_color_royal_blue">로열 블루</string>
+    <string name="category_color_violet">보라색</string>
+    <string name="category_color_pink">분홍색</string>
+    <string name="category_color_navajo_white">나바호 화이트</string>
+    <string name="category_color_slate_gray">슬레이트 그레이</string>
+    <string name="category_color_gray">회색</string>
+    <string name="category_color_steel_blue">스틸 블루</string>
+</resources>

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Created by Tomasz Kiljanczyk on 7/30/26, 12:10 AM
+  ~ Copyright (c) 2026 . All rights reserved.
+  ~ Last modified 7/30/26, 12:06 AM
+  -->
+
+<resources>
+    <!-- Shared tour chrome -->
+    <string name="tutorial_next">Next</string>
+    <string name="tutorial_done">Done</string>
+    <string name="tutorial_skip">Skip</string>
+    <string name="tutorial_get_started">Get started</string>
+    <string name="tutorial_step_counter">%1$d of %2$d</string>
+
+    <!-- Intro slides -->
+    <string name="onboarding_slide_welcome_title">Welcome to LyricCast</string>
+    <string name="onboarding_slide_welcome_body">LyricCast puts song lyrics on a big screen. Build a library, arrange songs into setlists, and present them to a TV or to other devices — no dedicated hardware needed.</string>
+
+    <string name="onboarding_slide_library_title">Build your song library</string>
+    <string name="onboarding_slide_library_body">Import an OpenSong archive or a LyricCast backup to get started in seconds, or write songs yourself. Categories keep a large library manageable.</string>
+
+    <string name="onboarding_slide_setlists_title">Plan with setlists</string>
+    <string name="onboarding_slide_setlists_body">A setlist is an ordered run of songs for one service or event. Prepare it ahead of time, then present it start to finish without hunting for the next song.</string>
+
+    <string name="onboarding_slide_cast_title">Cast to a TV</string>
+    <string name="onboarding_slide_cast_body">Send lyrics to any Google Cast device on the same Wi-Fi network. The Cast icon appears in the top bar once a receiver is found.</string>
+
+    <string name="onboarding_slide_sessions_title">Present across devices</string>
+    <string name="onboarding_slide_sessions_body">No Cast device? Start a session and let other phones or tablets nearby follow along in sync — one device leads, the rest keep up automatically.</string>
+
+    <string name="onboarding_slide_presenting_title">Present your way</string>
+    <string name="onboarding_slide_presenting_body">During a service, step through verses, blank the screen between songs, and follow along. Colours, font size and blank-on-start all live in Settings.</string>
+
+    <!-- Guided tour steps -->
+    <string name="tour_main_tabs_title">Songs and setlists</string>
+    <string name="tour_main_tabs_body">Your library lives here. Songs holds everything you have added; Setlists holds the running orders you build from them.</string>
+
+    <string name="tour_main_fab_title">Add something new</string>
+    <string name="tour_main_fab_body">Write a song from scratch, or build a setlist by picking songs from your library and putting them in order.</string>
+
+    <string name="tour_main_overflow_title">The main menu</string>
+    <string name="tour_main_overflow_body">Import is the fastest way to fill the app — it reads OpenSong archives and LyricCast backups. Export saves your work to a file. Deleted items also live here, so an accidental delete is easy to undo.</string>
+
+    <string name="tour_main_categories_title">Organise with categories</string>
+    <string name="tour_main_categories_body">Create colour-coded categories and assign them to songs so a large library stays searchable.</string>
+
+    <string name="tour_main_settings_title">Settings</string>
+    <string name="tour_main_settings_body">Presentation colours, font size, theme and session defaults.</string>
+
+    <string name="tour_main_cast_title">Cast to a screen</string>
+    <string name="tour_main_cast_body">The Cast icon appears in the top bar whenever a Google Cast device is on the same Wi-Fi network. Tap it to put lyrics on the TV.</string>
+
+    <string name="tour_main_sessions_title">Present across devices</string>
+    <string name="tour_main_sessions_body">Start a session here to make this device the presenter — other nearby devices running LyricCast can follow whatever you show, without needing their own copy of your songs. To follow someone else instead, use the Join session tab.</string>
+
+    <string name="tour_song_editor_title_title">Name the song</string>
+    <string name="tour_song_editor_title_body">The title is what you will search for later, so make it recognisable. The lyrics go in the field below — each block becomes one screen when you present.</string>
+
+    <string name="tour_song_editor_structure_title">Arrange the sections</string>
+    <string name="tour_song_editor_structure_body">Set the order in which verses and choruses are shown, including repeats — no need to duplicate the text.</string>
+
+    <string name="tour_song_editor_save_title">Save</string>
+    <string name="tour_song_editor_save_body">Saving adds the song to your library; leaving without saving discards it. Assigning a category first makes the song easier to find once the library grows.</string>
+
+    <string name="tour_setlist_editor_name_title">Name the setlist</string>
+    <string name="tour_setlist_editor_name_body">Something you will recognise later — a date or an event name works well.</string>
+
+    <string name="tour_setlist_editor_picker_title">Choose and order songs</string>
+    <string name="tour_setlist_editor_picker_body">Pick songs from your library, then drag them into the order you want. This list is empty until you have added some songs.</string>
+
+    <string name="tour_settings_appearance_title">How lyrics look</string>
+    <string name="tour_settings_appearance_body">Background colour, font colour and maximum font size control what appears on the TV or the following device.</string>
+
+    <string name="tour_settings_blank_title">Start blank</string>
+    <string name="tour_settings_blank_body">With this on, the screen stays empty when you open a song, so nothing appears before you are ready.</string>
+
+    <string name="tour_settings_auto_session_title">Session defaults</string>
+    <string name="tour_settings_auto_session_body">Start a session automatically when the app opens, and give it a default name so joining devices recognise it.</string>
+    <string name="tour_settings_donate_title">Enjoying LyricCast?</string>
+    <string name="tour_settings_donate_body">If it\'s useful to you, consider buying me a coffee to support development.</string>
+</resources>

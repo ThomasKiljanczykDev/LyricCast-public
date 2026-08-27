@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright (c) 2026 . All rights reserved.
+  -->
+
+<resources>
+    <string name="tutorial_next">Siguiente</string>
+    <string name="tutorial_done">Listo</string>
+    <string name="tutorial_skip">Omitir</string>
+    <string name="tutorial_get_started">Empezar</string>
+    <string name="tutorial_step_counter">%1$d de %2$d</string>
+    <string name="onboarding_slide_welcome_title">Te damos la bienvenida a LyricCast</string>
+    <string name="onboarding_slide_welcome_body">LyricCast muestra la letra de las canciones en una pantalla grande. Crea una biblioteca, organiza las canciones en repertorios y preséntalas en la tele o en otros dispositivos, sin equipos dedicados.</string>
+    <string name="onboarding_slide_library_title">Crea tu biblioteca de canciones</string>
+    <string name="onboarding_slide_library_body">Importa un archivo de OpenSong o una copia de seguridad de LyricCast para empezar en segundos, o escribe las canciones tú mismo. Las categorías mantienen manejable una biblioteca grande.</string>
+    <string name="onboarding_slide_setlists_title">Planifica con repertorios</string>
+    <string name="onboarding_slide_setlists_body">Un repertorio es una secuencia ordenada de canciones para un culto o un evento. Prepáralo con antelación y preséntalo de principio a fin sin buscar la siguiente canción.</string>
+    <string name="onboarding_slide_cast_title">Transmite a la tele</string>
+    <string name="onboarding_slide_cast_body">Envía la letra a cualquier dispositivo Google Cast de la misma red Wi-Fi. El icono de transmisión aparece en la barra superior en cuanto se encuentra un receptor.</string>
+    <string name="onboarding_slide_sessions_title">Presenta en varios dispositivos</string>
+    <string name="onboarding_slide_sessions_body">¿No tienes un dispositivo Cast? Inicia una sesión y deja que otros móviles o tablets cercanos sigan la presentación sincronizados: un dispositivo dirige y el resto va al mismo ritmo.</string>
+    <string name="onboarding_slide_presenting_title">Presenta a tu manera</string>
+    <string name="onboarding_slide_presenting_body">Durante el culto, avanza por los versos, deja la pantalla en negro entre canciones y sigue el texto. Los colores, el tamaño de letra y la pantalla en negro al empezar están en los ajustes.</string>
+    <string name="tour_main_tabs_title">Canciones y repertorios</string>
+    <string name="tour_main_tabs_body">Aquí está tu biblioteca. Canciones contiene todo lo que has añadido; Repertorios contiene las secuencias que creas con ellas.</string>
+    <string name="tour_main_fab_title">Añade algo nuevo</string>
+    <string name="tour_main_fab_body">Escribe una canción desde cero o crea un repertorio eligiendo canciones de tu biblioteca y ordenándolas.</string>
+    <string name="tour_main_overflow_title">El menú principal</string>
+    <string name="tour_main_overflow_body">Importar es la forma más rápida de llenar la app: lee archivos de OpenSong y copias de seguridad de LyricCast. Exportar guarda tu trabajo en un archivo. Los elementos eliminados también están aquí, así que deshacer un borrado accidental es fácil.</string>
+    <string name="tour_main_categories_title">Organiza con categorías</string>
+    <string name="tour_main_categories_body">Crea categorías con colores y asígnalas a las canciones para que una biblioteca grande siga siendo fácil de buscar.</string>
+    <string name="tour_main_settings_title">Ajustes</string>
+    <string name="tour_main_settings_body">Colores de la presentación, tamaño de letra, tema y valores por defecto de la sesión.</string>
+    <string name="tour_main_cast_title">Transmite a una pantalla</string>
+    <string name="tour_main_cast_body">El icono de transmisión aparece en la barra superior siempre que hay un dispositivo Google Cast en la misma red Wi-Fi. Tócalo para llevar la letra a la tele.</string>
+    <string name="tour_main_sessions_title">Presenta en varios dispositivos</string>
+    <string name="tour_main_sessions_body">Inicia una sesión aquí para que este dispositivo dirija: otros dispositivos cercanos con LyricCast pueden seguir lo que muestras, sin necesitar su propia copia de tus canciones. Para seguir a otra persona, usa la pestaña Sesión.</string>
+    <string name="tour_song_editor_title_title">Ponle nombre a la canción</string>
+    <string name="tour_song_editor_title_body">El título es lo que buscarás más adelante, así que hazlo reconocible. La letra va en el campo de abajo: cada bloque se convierte en una pantalla al presentar.</string>
+    <string name="tour_song_editor_structure_title">Ordena las secciones</string>
+    <string name="tour_song_editor_structure_body">Define el orden en que se muestran los versos y los estribillos, incluidas las repeticiones, sin duplicar el texto.</string>
+    <string name="tour_song_editor_save_title">Guardar</string>
+    <string name="tour_song_editor_save_body">Guardar añade la canción a tu biblioteca; salir sin guardar la descarta. Asignarle una categoría antes facilita encontrarla cuando la biblioteca crezca.</string>
+    <string name="tour_setlist_editor_name_title">Ponle nombre al repertorio</string>
+    <string name="tour_setlist_editor_name_body">Algo que reconozcas después: una fecha o el nombre del evento funcionan bien.</string>
+    <string name="tour_setlist_editor_picker_title">Elige y ordena las canciones</string>
+    <string name="tour_setlist_editor_picker_body">Elige canciones de tu biblioteca y arrástralas al orden que quieras. Esta lista está vacía hasta que añadas alguna canción.</string>
+    <string name="tour_settings_appearance_title">Cómo se ve la letra</string>
+    <string name="tour_settings_appearance_body">El color de fondo, el color de la letra y el tamaño máximo de fuente definen lo que aparece en la tele o en el dispositivo que sigue la sesión.</string>
+    <string name="tour_settings_blank_title">Empezar en negro</string>
+    <string name="tour_settings_blank_body">Con esta opción activada, la pantalla sigue vacía al abrir una canción, así que no aparece nada antes de que estés listo.</string>
+    <string name="tour_settings_auto_session_title">Valores por defecto de la sesión</string>
+    <string name="tour_settings_auto_session_body">Inicia una sesión automáticamente al abrir la app y dale un nombre por defecto para que los dispositivos que se unan la reconozcan.</string>
+    <string name="tour_settings_donate_title">¿Te gusta LyricCast?</string>
+    <string name="tour_settings_donate_body">Si te resulta útil, puedes invitarme a un café para apoyar el desarrollo.</string>
+</resources>

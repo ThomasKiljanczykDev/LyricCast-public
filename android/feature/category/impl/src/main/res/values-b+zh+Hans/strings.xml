@@ -1,0 +1,22 @@
+<resources>
+    <string name="editor_button_save">保存</string>
+    <string name="editor_button_add">添加</string>
+    <string name="title_categories">分类</string>
+    <string name="category_manager_hint_category_name">名称</string>
+    <string name="category_manager_hint_category_color">颜色</string>
+    <string name="category_manager_add_category">添加分类</string>
+    <string name="category_manager_edit_category">编辑分类</string>
+    <string name="category_color_maroon">栗色</string>
+    <string name="category_color_tomato">番茄红</string>
+    <string name="category_color_golden">金色</string>
+    <string name="category_color_olive">橄榄绿</string>
+    <string name="category_color_cyan">青色</string>
+    <string name="category_color_turquoise">绿松石色</string>
+    <string name="category_color_royal_blue">宝蓝色</string>
+    <string name="category_color_violet">紫罗兰色</string>
+    <string name="category_color_pink">粉色</string>
+    <string name="category_color_navajo_white">纳瓦白</string>
+    <string name="category_color_slate_gray">石板灰</string>
+    <string name="category_color_gray">灰色</string>
+    <string name="category_color_steel_blue">钢蓝色</string>
+</resources>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--
+      Self-contained theme for the Cast MediaRouteButton, applied via a ContextThemeWrapper.
+      Deliberately does not inherit the app's own theme hierarchy: a library module cannot resolve
+      resources owned by the application that depends on it.
+    -->
+    <style name="Theme.LyricCast.CastButton" parent="ThemeOverlay.MaterialComponents.Dark" />
+
+</resources>

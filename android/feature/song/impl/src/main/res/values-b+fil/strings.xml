@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="title_song_editor">Editor ng awit</string>
+    <string name="song_editor_hint_enter_lyrics">Ilagay ang liriko</string>
+    <string name="song_editor_input_section_name">Pangalan ng bahagi</string>
+    <string name="song_editor_input_new_section">BAGONG BAHAGI</string>
+    <string name="song_editor_input_new_section_template">BAGONG BAHAGI</string>
+    <string name="song_editor_button_move_left">Ilipat pakaliwa</string>
+    <string name="song_editor_button_move_right">Ilipat pakanan</string>
+    <string name="song_editor_button_delete_section">Burahin ang bahagi</string>
+    <string name="song_editor_enter_title">Maglagay ng pamagat ng awit</string>
+    <string name="song_editor_title_already_used">Ginagamit na ang pamagat ng awit</string>
+    <string name="song_editor_enter_section_name">Maglagay ng pangalan ng bahagi</string>
+    <string name="song_editor_sections_must_have_names">Kailangang may pangalan ang lahat ng bahagi</string>
+    <string name="song_editor_save_failed">Nabigong i-save ang awit</string>
+    <string name="song_editor_song_not_found">Hindi nakita ang awit</string>
+    <string name="song_editor_load_failed">Nabigong i-load ang awit</string>
+    <string name="category_none">WALA</string>
+    <string name="title_controls">Mga kontrol</string>
+    <string name="navigate_up">Bumalik</string>
+    <string name="settings_title">Mga setting</string>
+    <string name="hint_song_title">Pamagat ng awit</string>
+    <string name="action_save">I-save</string>
+</resources>

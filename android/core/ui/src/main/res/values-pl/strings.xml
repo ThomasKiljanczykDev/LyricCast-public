@@ -4,9 +4,12 @@
     <string name="category_label">Kategoria</string>
     <string name="controls_next">Następny</string>
     <string name="controls_previous">Poprzedni</string>
+    <string name="delete">Usuń</string>
+    <string name="edit">Edytuj</string>
     <string name="field_error">Błąd pola</string>
     <string name="main_activity_export_preparing_data">Przygotowywanie danych …</string>
     <string name="main_activity_import_successful">Import zakończony pomyślnie</string>
     <string name="hint_song_title">Tytuł piosenki</string>
+    <string name="navigate_up">Wróć</string>
     <string name="setlist_editor_hint_selected">Zaznaczone</string>
 </resources>

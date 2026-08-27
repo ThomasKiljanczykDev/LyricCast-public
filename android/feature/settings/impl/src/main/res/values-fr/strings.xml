@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright (c) 2026 . All rights reserved.
+  -->
+
+<resources>
+    <string name="settings_title">Paramètres</string>
+    <string name="navigate_up">Revenir en arrière</string>
+    
+    <string name="preference_language_title">Langue</string>
+    <string name="preference_theme_title">Thème</string>
+    <string name="preference_controls_button_height_title">Hauteur des boutons de contrôle</string>
+    <string name="preference_cast_background_title">Couleur de fond</string>
+    <string name="preference_cast_font_color_title">Couleur du texte</string>
+    <string name="preference_cast_max_font_size_title">Taille de police maximale</string>
+    <string name="preference_blank_title">Écran vide au démarrage</string>
+    <string name="preference_section_app">Application</string>
+    <string name="preference_language_system">Par défaut du système</string>
+    <string name="preference_theme_light">Clair</string>
+    <string name="preference_theme_dark">Sombre</string>
+    <string name="preference_theme_system">Par défaut du système</string>
+    <string name="preference_controls_buttons_height_small">Petite</string>
+    <string name="preference_controls_buttons_height_medium">Moyenne</string>
+    <string name="preference_controls_buttons_height_large">Grande</string>
+    <string name="preference_color_black">Noir</string>
+    <string name="preference_color_white">Blanc</string>
+    <string name="preference_color_blue">Bleu</string>
+    <string name="preference_color_red">Rouge</string>
+    <string name="preference_color_pink">Rose</string>
+</resources>

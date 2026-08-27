@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="dialog_fragment_start_session_title">Bắt đầu phiên</string>
+    <string name="dialog_fragment_start_session_missing_permissions">Bạn đã từ chối các quyền cần thiết cho tính năng phiên. Vui lòng bật chúng trong cài đặt.</string>
+    <string name="title_category_manager">Quản lý thể loại</string>
+    <string name="title_setlists">Danh sách bài</string>
+    <string name="title_songs">Bài hát</string>
+    <string name="hint_setlist_name">Tên danh sách bài</string>
+    <string name="hint_import_format">Định dạng</string>
+    <string name="launch_activity_go_to_settings">Mở cài đặt</string>
+    <string name="main_activity_import_delete_all_before_import">Xóa tất cả trước khi nhập</string>
+    <string name="main_activity_import_replace_on_conflict">Thay thế khi trùng</string>
+    <string name="main_activity_import_dialog_title">Nhập</string>
+    <string name="main_activity_import_successful">Đã nhập thành công</string>
+    <string name="main_activity_import_failed">Nhập không thành công</string>
+    <string name="main_activity_import_pending_file">Tệp: %1$s</string>
+    <string name="main_activity_export_preparing_data">Đang chuẩn bị dữ liệu…</string>
+    <string name="main_activity_action_menu_export_selected">Xuất mục đã chọn</string>
+    <string name="main_activity_menu_export">Xuất tất cả</string>
+    <string name="main_activity_menu_import">Nhập</string>
+    <string name="main_activity_button_add_song">Thêm bài hát</string>
+    <string name="main_activity_button_add_setlist">Thêm danh sách bài</string>
+    <string name="main_activity_loading_file">Đang tải tệp …</string>
+    <string name="main_activity_tab_join_session">Phiên</string>
+    <string name="main_activity_cannot_join_session">Bạn không thể tham gia phiên khác khi đang tự chủ trì một phiên</string>
+    <string name="main_activity_setlist_is_empty">Danh sách bài hát trống!</string>
+    <string name="edit">Sửa</string>
+    <string name="delete">Xóa</string>
+    <string name="more_options">Tùy chọn khác</string>
+    <string name="settings_title">Cài đặt</string>
+    <string name="ignore">Bỏ qua</string>
+    <string name="close">Đóng</string>
+    <string name="progress_processing">Đang xử lý…</string>
+</resources>

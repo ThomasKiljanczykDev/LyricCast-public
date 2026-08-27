@@ -23,9 +23,11 @@ dependencies {
     api(projects.core.model)
     implementation(projects.core.database)
     implementation(projects.core.dataTransfer)
+    api(projects.core.datastoreProto)
 
     // Library dependencies
     implementation(libs.kotlinx.coroutines)
+    implementation(libs.androidx.datastore)
 
     // Dependencies for local unit tests
     testImplementation(libs.junit)

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="title_controls">제어</string>
+    <string name="settings_title">설정</string>
+    <string name="close">닫기</string>
+    <string name="delete">삭제</string>
+    <string name="setlist_editor_title">찬양 목록 편집기</string>
+    <string name="setlist_editor_button_pick_songs">찬양 고르기</string>
+    <string name="setlist_editor_load_failed">찬양 목록을 불러오지 못했습니다</string>
+    <string name="setlist_editor_setlist_not_found">찬양 목록을 찾을 수 없습니다</string>
+    <string name="setlist_editor_validation_failed">찬양 목록을 저장할 수 없습니다 - 검증에 실패했습니다</string>
+    <string name="setlist_name">찬양 목록 이름</string>
+    <string name="add_song">찬양 추가</string>
+    <string name="duplicate">복제</string>
+    <string name="no_songs_found">찬양을 찾을 수 없습니다</string>
+    <string name="navigate_back">뒤로</string>
+    <string name="save">저장</string>
+    <string name="confirm">확인</string>
+    <string name="error_name_empty">이름은 비워둘 수 없습니다</string>
+    <string name="error_name_already_in_use">이미 사용 중인 이름입니다</string>
+</resources>

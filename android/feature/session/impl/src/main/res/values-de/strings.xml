@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="title_session_client">Sitzung</string>
+    <string name="session_client_connected">Mit der Sitzung verbunden</string>
+    <string name="session_client_disconnected">Von der Sitzung getrennt</string>
+    <string name="session_client_failed_to_connect">Verbindung zur Sitzung fehlgeschlagen</string>
+    <string name="session_client_connecting">Verbindung wird hergestellt</string>
+    <string name="session_client_connecting_please_wait">Bitte warten…</string>
+    <string name="session_client_failed_to_start_lookup">Suche nach Sitzungen konnte nicht gestartet werden</string>
+    <string name="dialog_fragment_choose_session_title">Sitzung auswählen</string>
+    <string name="dialog_fragment_choose_session_looking_for_session">Sitzungen werden gesucht…</string>
+    <string name="ignore">Ignorieren</string>
+    <string name="launch_activity_go_to_settings">Zu den Einstellungen</string>
+    <string name="close">Schließen</string>
+    <string name="dialog_fragment_start_session_missing_permissions">Du hast die für Sitzungen nötigen Berechtigungen abgelehnt. Aktiviere sie in den Einstellungen.</string>
+</resources>

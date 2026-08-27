@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright (c) 2026 . All rights reserved.
+  -->
+
+<resources>
+    <string name="settings_title">Pengaturan</string>
+    <string name="navigate_up">Navigasi ke atas</string>
+    
+    <string name="preference_language_title">Bahasa</string>
+    <string name="preference_theme_title">Tema</string>
+    <string name="preference_controls_button_height_title">Tinggi tombol kontrol</string>
+    <string name="preference_cast_background_title">Warna latar</string>
+    <string name="preference_cast_font_color_title">Warna huruf</string>
+    <string name="preference_cast_max_font_size_title">Ukuran huruf maksimum</string>
+    <string name="preference_blank_title">Layar kosong saat mulai</string>
+    <string name="preference_section_app">Aplikasi</string>
+    <string name="preference_language_system">Bawaan sistem</string>
+    <string name="preference_theme_light">Terang</string>
+    <string name="preference_theme_dark">Gelap</string>
+    <string name="preference_theme_system">Bawaan sistem</string>
+    <string name="preference_controls_buttons_height_small">Kecil</string>
+    <string name="preference_controls_buttons_height_medium">Sedang</string>
+    <string name="preference_controls_buttons_height_large">Besar</string>
+    <string name="preference_color_black">Hitam</string>
+    <string name="preference_color_white">Putih</string>
+    <string name="preference_color_blue">Biru</string>
+    <string name="preference_color_red">Merah</string>
+    <string name="preference_color_pink">Merah muda</string>
+</resources>

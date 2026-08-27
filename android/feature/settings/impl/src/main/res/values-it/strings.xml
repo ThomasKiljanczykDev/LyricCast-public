@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Created by Tomasz Kiljanczyk on 8/6/26, 1:20 PM
+  ~ Copyright (c) 2026 . All rights reserved.
+  ~ Last modified 8/6/26, 1:20 PM
+  -->
+
+<resources>
+    <string name="settings_title">Impostazioni</string>
+    <string name="navigate_up">Torna su</string>
+    
+    <string name="preference_language_title">Lingua</string>
+    <string name="preference_theme_title">Tema</string>
+    <string name="preference_controls_button_height_title">Altezza dei pulsanti dei comandi</string>
+    <string name="preference_cast_background_title">Colore di sfondo</string>
+    <string name="preference_cast_font_color_title">Colore del carattere</string>
+    <string name="preference_cast_max_font_size_title">Dimensione massima del carattere</string>
+    <string name="preference_blank_title">Schermo vuoto all\'avvio</string>
+    <string name="preference_section_app">Applicazione</string>
+    <string name="preference_language_system">Predefinita di sistema</string>
+    <string name="preference_theme_light">Chiaro</string>
+    <string name="preference_theme_dark">Scuro</string>
+    <string name="preference_theme_system">Predefinito di sistema</string>
+    <string name="preference_controls_buttons_height_small">Piccola</string>
+    <string name="preference_controls_buttons_height_medium">Media</string>
+    <string name="preference_controls_buttons_height_large">Grande</string>
+    <string name="preference_color_black">Nero</string>
+    <string name="preference_color_white">Bianco</string>
+    <string name="preference_color_blue">Blu</string>
+    <string name="preference_color_red">Rosso</string>
+    <string name="preference_color_pink">Rosa</string>
+</resources>

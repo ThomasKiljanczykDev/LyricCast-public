@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="title_song_editor">Editor del canto</string>
+    <string name="song_editor_hint_enter_lyrics">Inserisci il testo</string>
+    <string name="song_editor_input_section_name">Nome della sezione</string>
+    <string name="song_editor_input_new_section">NUOVA SEZIONE</string>
+    <string name="song_editor_input_new_section_template">NUOVA SEZIONE</string>
+    <string name="song_editor_button_move_left">Sposta a sinistra</string>
+    <string name="song_editor_button_move_right">Sposta a destra</string>
+    <string name="song_editor_button_delete_section">Elimina sezione</string>
+    <string name="song_editor_enter_title">Inserisci il titolo del canto</string>
+    <string name="song_editor_title_already_used">Titolo del canto già in uso</string>
+    <string name="song_editor_enter_section_name">Inserisci il nome della sezione</string>
+    <string name="song_editor_sections_must_have_names">Tutte le sezioni devono avere un nome</string>
+    <string name="song_editor_save_failed">Impossibile salvare il canto</string>
+    <string name="song_editor_song_not_found">Canto non trovato</string>
+    <string name="song_editor_load_failed">Impossibile caricare il canto</string>
+    <string name="category_none">NESSUNA</string>
+    <string name="title_controls">Comandi</string>
+    <string name="navigate_up">Torna su</string>
+    <string name="settings_title">Impostazioni</string>
+    <string name="hint_song_title">Titolo del canto</string>
+    <string name="action_save">Salva</string>
+</resources>

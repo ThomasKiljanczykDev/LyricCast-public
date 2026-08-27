@@ -60,9 +60,4 @@
     <style name="ThemeOverlay.LyricCast.MaterialAlertDialog.NoTitle" parent="@style/ThemeOverlay.LyricCast.MaterialAlertDialog">
         <item name="android:windowNoTitle">true</item>
     </style>
-
-    <!-- Custom theme for Cast Button with custom icon color -->
-    <style name="Theme.LyricCast.CastButton" parent="Theme.LyricCast.DarkActionBar">
-        <!-- MediaRouteButton specific tint attribute -->
-    </style>
 </resources>

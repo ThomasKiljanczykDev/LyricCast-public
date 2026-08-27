@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="title_controls">控制</string>
+    <string name="settings_title">设置</string>
+    <string name="close">关闭</string>
+    <string name="delete">删除</string>
+    <string name="setlist_editor_title">歌单编辑器</string>
+    <string name="setlist_editor_button_pick_songs">挑选诗歌</string>
+    <string name="setlist_editor_load_failed">加载歌单失败</string>
+    <string name="setlist_editor_setlist_not_found">未找到歌单</string>
+    <string name="setlist_editor_validation_failed">无法保存歌单 - 校验未通过</string>
+    <string name="setlist_name">歌单名称</string>
+    <string name="add_song">添加诗歌</string>
+    <string name="duplicate">复制</string>
+    <string name="no_songs_found">未找到诗歌</string>
+    <string name="navigate_back">返回</string>
+    <string name="save">保存</string>
+    <string name="confirm">确认</string>
+    <string name="error_name_empty">名称不能为空</string>
+    <string name="error_name_already_in_use">名称已被使用</string>
+</resources>

@@ -20,6 +20,7 @@ import dagger.hilt.android.HiltAndroidApp
 import dev.thomas_kiljanczyk.lyriccast.core.cast.CastSessionListener
 import dev.thomas_kiljanczyk.lyriccast.core.cast.MessageTransport
 import dev.thomas_kiljanczyk.lyriccast.core.model.settings.ControlButtonHeightOption
+import dev.thomas_kiljanczyk.lyriccast.data.LocaleManager
 import dev.thomas_kiljanczyk.lyriccast.datastore.proto.AppSettings
 import javax.inject.Inject
 import kotlinx.coroutines.CoroutineScope
@@ -73,9 +74,17 @@ class LyricCastApplication : Application() {
     @Inject
     lateinit var castContext: CastContext
 
+    @Inject
+    lateinit var localeManager: LocaleManager
+
     @SuppressLint("WrongConstant")
     override fun onCreate() {
         super.onCreate()
+
+        // Applied before StrictMode is armed below: on API < 33 this is a real disk read that
+        // can't move off the main thread, since the result has to land before the first Activity
+        // resolves its resources.
+        localeManager.applyLocaleOnStartup()
 
         // Initializes CastContext
         castContext.sessionManager.addSessionManagerListener(CastSessionListener(onStarted = {

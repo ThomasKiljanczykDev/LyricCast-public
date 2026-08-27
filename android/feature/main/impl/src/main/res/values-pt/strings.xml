@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="dialog_fragment_start_session_title">Iniciar sessão</string>
+    <string name="dialog_fragment_start_session_missing_permissions">Você recusou as permissões necessárias para o recurso de sessão. Ative-as nas configurações.</string>
+    <string name="title_category_manager">Gerenciar categorias</string>
+    <string name="title_setlists">Repertórios</string>
+    <string name="title_songs">Músicas</string>
+    <string name="hint_setlist_name">Nome do repertório</string>
+    <string name="hint_import_format">Formato</string>
+    <string name="launch_activity_go_to_settings">Abrir configurações</string>
+    <string name="main_activity_import_delete_all_before_import">Excluir tudo antes de importar</string>
+    <string name="main_activity_import_replace_on_conflict">Substituir em caso de conflito</string>
+    <string name="main_activity_import_dialog_title">Importar</string>
+    <string name="main_activity_import_successful">Importação concluída com sucesso</string>
+    <string name="main_activity_import_failed">Falha na importação</string>
+    <string name="main_activity_import_pending_file">Arquivo: %1$s</string>
+    <string name="main_activity_export_preparing_data">Preparando dados…</string>
+    <string name="main_activity_action_menu_export_selected">Exportar selecionados</string>
+    <string name="main_activity_menu_export">Exportar tudo</string>
+    <string name="main_activity_menu_import">Importar</string>
+    <string name="main_activity_button_add_song">Adicionar música</string>
+    <string name="main_activity_button_add_setlist">Adicionar repertório</string>
+    <string name="main_activity_loading_file">Carregando arquivo …</string>
+    <string name="main_activity_tab_join_session">Sessão</string>
+    <string name="main_activity_cannot_join_session">Você não pode entrar em outra sessão enquanto conduz a sua</string>
+    <string name="main_activity_setlist_is_empty">A lista está vazia!</string>
+    <string name="edit">Editar</string>
+    <string name="delete">Excluir</string>
+    <string name="more_options">Mais opções</string>
+    <string name="settings_title">Configurações</string>
+    <string name="ignore">Ignorar</string>
+    <string name="close">Fechar</string>
+    <string name="progress_processing">Processando…</string>
+</resources>

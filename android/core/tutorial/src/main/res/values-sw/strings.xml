@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Created by Tomasz Kiljanczyk on 8/6/26, 1:20 PM
+  ~ Copyright (c) 2026 . All rights reserved.
+  ~ Last modified 8/6/26, 1:20 PM
+  -->
+
+<resources>
+    <string name="tutorial_next">Endelea</string>
+    <string name="tutorial_done">Imekamilika</string>
+    <string name="tutorial_skip">Ruka</string>
+    <string name="tutorial_get_started">Anza</string>
+    <string name="tutorial_step_counter">%1$d kati ya %2$d</string>
+
+    <string name="onboarding_slide_welcome_title">Karibu kwenye LyricCast</string>
+    <string name="onboarding_slide_welcome_body">LyricCast huweka maneno ya nyimbo kwenye skrini kubwa. Jenga maktaba, panga nyimbo katika orodha, na uzionyeshe kwenye TV au vifaa vingine — bila kuhitaji vifaa maalum.</string>
+
+    <string name="onboarding_slide_library_title">Jenga maktaba yako ya nyimbo</string>
+    <string name="onboarding_slide_library_body">Ingiza kumbukumbu ya OpenSong au nakala rudufu ya LyricCast ili kuanza kwa sekunde chache, au andika nyimbo mwenyewe. Kategoria husaidia maktaba kubwa kubaki rahisi kudhibiti.</string>
+
+    <string name="onboarding_slide_setlists_title">Panga kwa orodha za nyimbo</string>
+    <string name="onboarding_slide_setlists_body">Orodha ya nyimbo ni mfuatano uliopangwa wa nyimbo za ibada au tukio moja. Iandae mapema, kisha uiendeshe mwanzo hadi mwisho bila kutafuta wimbo unaofuata.</string>
+
+    <string name="onboarding_slide_cast_title">Tuma kwenye TV</string>
+    <string name="onboarding_slide_cast_body">Tuma maneno kwa kifaa chochote cha Google Cast kilicho kwenye mtandao ule ule wa Wi-Fi. Aikoni ya Cast huonekana kwenye upau wa juu kifaa cha kupokea kinapopatikana.</string>
+
+    <string name="onboarding_slide_sessions_title">Onyesha kwenye vifaa vingi</string>
+    <string name="onboarding_slide_sessions_body">Huna kifaa cha Cast? Anzisha kipindi na uache simu au tableti zilizo karibu zifuatilie kwa wakati mmoja — kifaa kimoja huongoza, vingine hufuata vyenyewe.</string>
+
+    <string name="onboarding_slide_presenting_title">Onyesha kwa njia yako</string>
+    <string name="onboarding_slide_presenting_body">Wakati wa ibada, pitia beti, acha skrini tupu kati ya nyimbo, na fuata maandishi. Rangi, ukubwa wa maandishi na skrini tupu wakati wa kuanza vyote vipo kwenye Mipangilio.</string>
+
+    <string name="tour_main_tabs_title">Nyimbo na orodha za nyimbo</string>
+    <string name="tour_main_tabs_body">Maktaba yako iko hapa. Nyimbo huhifadhi kila kitu ulichoongeza; Orodha za nyimbo huhifadhi mfuatano unaojenga kutoka kwazo.</string>
+
+    <string name="tour_main_fab_title">Ongeza kitu kipya</string>
+    <string name="tour_main_fab_body">Andika wimbo kutoka mwanzo, au jenga orodha ya nyimbo kwa kuchagua nyimbo kutoka maktaba yako na kuzipanga.</string>
+
+    <string name="tour_main_overflow_title">Menyu kuu</string>
+    <string name="tour_main_overflow_body">Kuingiza ndiyo njia ya haraka zaidi ya kujaza programu — husoma kumbukumbu za OpenSong na nakala rudufu za LyricCast. Kuhamisha huhifadhi kazi yako kwenye faili. Vipengee vilivyofutwa pia vipo hapa, hivyo kufuta kwa bahati mbaya ni rahisi kutengua.</string>
+
+    <string name="tour_main_categories_title">Panga kwa kategoria</string>
+    <string name="tour_main_categories_body">Tengeneza kategoria zenye rangi na uzikabidhi kwa nyimbo ili maktaba kubwa ibaki rahisi kutafutwa.</string>
+
+    <string name="tour_main_settings_title">Mipangilio</string>
+    <string name="tour_main_settings_body">Rangi za uwasilishaji, ukubwa wa maandishi, mandhari na chaguo-msingi za kipindi.</string>
+
+    <string name="tour_main_cast_title">Tuma kwenye skrini</string>
+    <string name="tour_main_cast_body">Aikoni ya Cast huonekana kwenye upau wa juu wakati wowote kifaa cha Google Cast kipo kwenye mtandao ule ule wa Wi-Fi. Igonge ili kuweka maneno kwenye TV.</string>
+
+    <string name="tour_main_sessions_title">Onyesha kwenye vifaa vingi</string>
+    <string name="tour_main_sessions_body">Anzisha kipindi hapa ili kifaa hiki kiwe kinachoongoza — vifaa vingine vilivyo karibu vinavyotumia LyricCast vinaweza kufuata unachoonyesha, bila kuhitaji nakala yao ya nyimbo zako. Ili kufuata mtu mwingine badala yake, tumia kichupo cha Kipindi.</string>
+
+    <string name="tour_song_editor_title_title">Ipe wimbo jina</string>
+    <string name="tour_song_editor_title_body">Kichwa ndicho utakachotafuta baadaye, hivyo kifanye kitambulike. Maneno huwekwa kwenye sehemu iliyo chini — kila kizuizi huwa skrini moja unapoonyesha.</string>
+
+    <string name="tour_song_editor_structure_title">Panga sehemu</string>
+    <string name="tour_song_editor_structure_body">Weka mpangilio wa jinsi beti na viitikio vinavyoonyeshwa, pamoja na marudio — hakuna haja ya kurudia maandishi.</string>
+
+    <string name="tour_song_editor_save_title">Hifadhi</string>
+    <string name="tour_song_editor_save_body">Kuhifadhi huongeza wimbo kwenye maktaba yako; kuondoka bila kuhifadhi huutupa. Kukabidhi kategoria kwanza hurahisisha kupata wimbo maktaba inapokua.</string>
+
+    <string name="tour_setlist_editor_name_title">Ipe orodha jina</string>
+    <string name="tour_setlist_editor_name_body">Kitu utakachotambua baadaye — tarehe au jina la tukio hufaa vizuri.</string>
+
+    <string name="tour_setlist_editor_picker_title">Chagua na upange nyimbo</string>
+    <string name="tour_setlist_editor_picker_body">Chagua nyimbo kutoka maktaba yako, kisha uziburute katika mpangilio unaotaka. Orodha hii huwa tupu hadi uwe umeongeza nyimbo.</string>
+
+    <string name="tour_settings_appearance_title">Jinsi maneno yanavyoonekana</string>
+    <string name="tour_settings_appearance_body">Rangi ya mandharinyuma, rangi ya maandishi na ukubwa wa juu wa maandishi hudhibiti kinachoonekana kwenye TV au kifaa kinachofuata.</string>
+
+    <string name="tour_settings_blank_title">Anza na skrini tupu</string>
+    <string name="tour_settings_blank_body">Ukiwasha hii, skrini hubaki tupu unapofungua wimbo, hivyo hakuna kinachoonekana kabla hujawa tayari.</string>
+
+    <string name="tour_settings_auto_session_title">Chaguo-msingi za kipindi</string>
+    <string name="tour_settings_auto_session_body">Anzisha kipindi kiotomatiki programu inapofunguka, na uipe jina la chaguo-msingi ili vifaa vinavyojiunga vikitambue.</string>
+    <string name="tour_settings_donate_title">Unafurahia LyricCast?</string>
+    <string name="tour_settings_donate_body">Ikiwa inakusaidia, fikiria kuninunulia kahawa ili kuunga mkono maendeleo yake.</string>
+</resources>

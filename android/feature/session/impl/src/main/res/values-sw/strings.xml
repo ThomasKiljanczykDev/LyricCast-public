@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="title_session_client">Mshiriki wa kipindi</string>
+    <string name="session_client_connected">Umeunganishwa na kipindi</string>
+    <string name="session_client_disconnected">Umetenganishwa na kipindi</string>
+    <string name="session_client_failed_to_connect">Imeshindwa kuunganisha na kipindi</string>
+    <string name="session_client_connecting">Inaunganisha</string>
+    <string name="session_client_connecting_please_wait">Tafadhali subiri…</string>
+    <string name="session_client_failed_to_start_lookup">Imeshindwa kuanza kutafuta vipindi</string>
+    <string name="dialog_fragment_choose_session_title">Chagua kipindi</string>
+    <string name="dialog_fragment_choose_session_looking_for_session">Inatafuta vipindi…</string>
+    <string name="ignore">Puuza</string>
+    <string name="launch_activity_go_to_settings">Nenda kwenye mipangilio</string>
+    <string name="close">Funga</string>
+    <string name="dialog_fragment_start_session_missing_permissions">Umekataa ruhusa zinazohitajika kwa kipengele cha kipindi. Tafadhali ziwashe kwenye mipangilio.</string>
+</resources>

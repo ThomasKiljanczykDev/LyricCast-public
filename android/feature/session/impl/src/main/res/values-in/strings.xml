@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="title_session_client">Sesi</string>
+    <string name="session_client_connected">Terhubung ke sesi</string>
+    <string name="session_client_disconnected">Terputus dari sesi</string>
+    <string name="session_client_failed_to_connect">Gagal terhubung ke sesi</string>
+    <string name="session_client_connecting">Menghubungkan</string>
+    <string name="session_client_connecting_please_wait">Mohon tunggu…</string>
+    <string name="session_client_failed_to_start_lookup">Gagal mulai mencari sesi</string>
+    <string name="dialog_fragment_choose_session_title">Pilih sesi</string>
+    <string name="dialog_fragment_choose_session_looking_for_session">Mencari sesi…</string>
+    <string name="ignore">Abaikan</string>
+    <string name="launch_activity_go_to_settings">Buka pengaturan</string>
+    <string name="close">Tutup</string>
+    <string name="dialog_fragment_start_session_missing_permissions">Anda menolak izin yang diperlukan fitur sesi. Aktifkan izin tersebut di pengaturan.</string>
+</resources>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="dialog_fragment_start_session_title">ክፍለ ጊዜ ጀምር</string>
+    <string name="dialog_fragment_start_session_missing_permissions">ለክፍለ ጊዜ ባህሪው የሚያስፈልጉትን ፈቃዶች ውድቅ አድርገዋል። እባክዎ በቅንብሮች ውስጥ ያንቁዋቸው።</string>
+    <string name="title_category_manager">ምድቦችን አስተዳድር</string>
+    <string name="title_setlists">የመዝሙር ዝርዝሮች</string>
+    <string name="title_songs">መዝሙሮች</string>
+    <string name="hint_setlist_name">የመዝሙር ዝርዝር ስም</string>
+    <string name="hint_import_format">ቅርጸት</string>
+    <string name="launch_activity_go_to_settings">ወደ ቅንብሮች ሂድ</string>
+    <string name="main_activity_import_delete_all_before_import">ከማስገባት በፊት ሁሉንም ሰርዝ</string>
+    <string name="main_activity_import_replace_on_conflict">ሲጋጭ ተካ</string>
+    <string name="main_activity_import_dialog_title">አስገባ</string>
+    <string name="main_activity_import_successful">ማስገባቱ በተሳካ ሁኔታ ተጠናቀቀ</string>
+    <string name="main_activity_import_failed">ማስገባቱ አልተሳካም</string>
+    <string name="main_activity_import_pending_file">ፋይል: %1$s</string>
+    <string name="main_activity_export_preparing_data">መረጃ በማዘጋጀት ላይ…</string>
+    <string name="main_activity_action_menu_export_selected">የተመረጡትን ወደ ውጭ ላክ</string>
+    <string name="main_activity_menu_export">ሁሉንም ወደ ውጭ ላክ</string>
+    <string name="main_activity_menu_import">አስገባ</string>
+    <string name="main_activity_button_add_song">መዝሙር ጨምር</string>
+    <string name="main_activity_button_add_setlist">የመዝሙር ዝርዝር ጨምር</string>
+    <string name="main_activity_loading_file">ፋይል በመጫን ላይ …</string>
+    <string name="main_activity_tab_join_session">ክፍለ ጊዜ</string>
+    <string name="main_activity_cannot_join_session">የራስዎን ክፍለ ጊዜ እያስተናገዱ ሌላ ክፍለ ጊዜ መቀላቀል አይችሉም</string>
+    <string name="main_activity_setlist_is_empty">የዘፈን ዝርዝሩ ባዶ ነው!</string>
+    <string name="edit">አርትዕ</string>
+    <string name="delete">ሰርዝ</string>
+    <string name="more_options">ተጨማሪ አማራጮች</string>
+    <string name="settings_title">ቅንብሮች</string>
+    <string name="ignore">ተወው</string>
+    <string name="close">ዝጋ</string>
+    <string name="progress_processing">በማስኬድ ላይ…</string>
+</resources>

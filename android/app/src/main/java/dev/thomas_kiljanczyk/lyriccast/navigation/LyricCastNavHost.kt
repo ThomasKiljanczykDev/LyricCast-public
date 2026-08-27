@@ -1,60 +1,37 @@
 /*
- * Created by Tomasz Kiljanczyk on 9/7/25, 2:49 PM
+ * Created by Tomasz Kiljanczyk on 9/7/25, 2:49 PM
  * Copyright (c) 2025 . All rights reserved.
- * Last modified 9/7/25, 2:44 PM
+ * Last modified 9/7/25, 2:44 PM
  */
 
 package dev.thomas_kiljanczyk.lyriccast.navigation
 
 import androidx.activity.ComponentActivity
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
-import dev.thomas_kiljanczyk.lyriccast.feature.category.navigation.categoryManagerScreen
-import dev.thomas_kiljanczyk.lyriccast.feature.category.navigation.navigateToCategoryManager
-import dev.thomas_kiljanczyk.lyriccast.feature.main.navigation.mainSection
-import dev.thomas_kiljanczyk.lyriccast.feature.session.navigation.navigateToSessionClient
-import dev.thomas_kiljanczyk.lyriccast.feature.session.navigation.sessionClientScreen
-import dev.thomas_kiljanczyk.lyriccast.feature.setlist.navigation.navigateToSetlistControls
-import dev.thomas_kiljanczyk.lyriccast.feature.setlist.navigation.navigateToSetlistEditor
-import dev.thomas_kiljanczyk.lyriccast.feature.setlist.navigation.setlistControlsScreen
-import dev.thomas_kiljanczyk.lyriccast.feature.setlist.navigation.setlistEditorScreen
-import dev.thomas_kiljanczyk.lyriccast.feature.settings.navigation.navigateToSettings
-import dev.thomas_kiljanczyk.lyriccast.feature.settings.navigation.settingsScreen
-import dev.thomas_kiljanczyk.lyriccast.feature.song.navigation.navigateToSongControls
-import dev.thomas_kiljanczyk.lyriccast.feature.song.navigation.navigateToSongEditor
-import dev.thomas_kiljanczyk.lyriccast.feature.song.navigation.songControlsScreen
-import dev.thomas_kiljanczyk.lyriccast.feature.song.navigation.songEditorScreen
-import kotlinx.serialization.Serializable
-
-@Serializable
-data object MainRoute
-
-@Serializable
-data object SettingsRoute
-
-@Serializable
-data class SongEditorRoute(
-    val songId: String? = null
-)
-
-@Serializable
-data class SetlistEditorRoute(
-    val setlistId: String? = null,
-    val presentation: List<String>? = null
-)
-
-@Serializable
-data object CategoryManagerRoute
-
-@Serializable
-data object SessionClientRoute
-
-@Serializable
-data class SongControlsRoute(val songId: String)
-
-@Serializable
-data class SetlistControlsRoute(val setlistId: String)
+import dev.thomas_kiljanczyk.lyriccast.feature.category.impl.navigation.categoryManagerScreen
+import dev.thomas_kiljanczyk.lyriccast.feature.category.impl.navigation.navigateToCategoryManager
+import dev.thomas_kiljanczyk.lyriccast.feature.main.impl.navigation.MainRoute
+import dev.thomas_kiljanczyk.lyriccast.feature.main.impl.navigation.mainSection
+import dev.thomas_kiljanczyk.lyriccast.feature.session.impl.navigation.navigateToSessionClient
+import dev.thomas_kiljanczyk.lyriccast.feature.session.impl.navigation.sessionClientScreen
+import dev.thomas_kiljanczyk.lyriccast.feature.setlist.impl.navigation.navigateToSetlistControls
+import dev.thomas_kiljanczyk.lyriccast.feature.setlist.impl.navigation.navigateToSetlistEditor
+import dev.thomas_kiljanczyk.lyriccast.feature.setlist.impl.navigation.setlistControlsScreen
+import dev.thomas_kiljanczyk.lyriccast.feature.setlist.impl.navigation.setlistEditorScreen
+import dev.thomas_kiljanczyk.lyriccast.feature.settings.impl.navigation.navigateToSettings
+import dev.thomas_kiljanczyk.lyriccast.feature.settings.impl.navigation.settingsScreen
+import dev.thomas_kiljanczyk.lyriccast.feature.song.impl.navigation.navigateToSongControls
+import dev.thomas_kiljanczyk.lyriccast.feature.song.impl.navigation.navigateToSongEditor
+import dev.thomas_kiljanczyk.lyriccast.feature.song.impl.navigation.songControlsScreen
+import dev.thomas_kiljanczyk.lyriccast.feature.song.impl.navigation.songEditorScreen
+import dev.thomas_kiljanczyk.lyriccast.tutorial.onboardingScreen
+import dev.thomas_kiljanczyk.lyriccast.ui.shared.menu.gms_nearby_session.dialog.StartSessionServerDialog
 
 /**
  * Top-level navigation graph. Navigation is organized using feature-based modules
@@ -64,6 +41,8 @@ data class SetlistControlsRoute(val setlistId: String)
  * @param activity Component activity reference for screens that require it
  * @param modifier Modifier for the NavHost
  * @param startDestination Starting destination for the navigation graph
+ * @param onOnboardingComplete called once the first-run onboarding carousel finishes
+ * @param onOnboardingSkip called if the user skips the first-run onboarding carousel
  */
 @Composable
 fun LyricCastNavHost(
@@ -71,14 +50,34 @@ fun LyricCastNavHost(
     activity: ComponentActivity,
     modifier: Modifier = Modifier,
     startDestination: Any = MainRoute,
+    onOnboardingComplete: () -> Unit = {},
+    onOnboardingSkip: () -> Unit = {},
 ) {
     val navController = appState.navController
+
+    // The nearby "start session" dialog is triggered from the main screen's overflow menu, but
+    // it's hosted here rather than as its own destination: it's a transient dialog, not a place
+    // to navigate back to.
+    var showStartSessionDialog by remember { mutableStateOf(false) }
+
+    if (showStartSessionDialog) {
+        StartSessionServerDialog(
+            onDismiss = { showStartSessionDialog = false },
+            onSessionStarted = { showStartSessionDialog = false },
+            onShowPermissionDialog = { showStartSessionDialog = false }
+        )
+    }
 
     NavHost(
         navController = navController,
         startDestination = startDestination,
         modifier = modifier
     ) {
+        onboardingScreen(
+            onComplete = onOnboardingComplete,
+            onSkip = onOnboardingSkip
+        )
+
         // Main screen with nested destinations
         mainSection(
             activity = activity,
@@ -89,6 +88,7 @@ fun LyricCastNavHost(
             onNavigateToSessionClient = navController::navigateToSessionClient,
             onNavigateToSongControls = navController::navigateToSongControls,
             onNavigateToSetlistControls = navController::navigateToSetlistControls,
+            onStartSessionServer = { showStartSessionDialog = true },
         )
 
         // Settings screen

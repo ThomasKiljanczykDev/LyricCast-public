@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="title_song_editor">Editor de música</string>
+    <string name="song_editor_hint_enter_lyrics">Digite a letra</string>
+    <string name="song_editor_input_section_name">Nome da seção</string>
+    <string name="song_editor_input_new_section">NOVA SEÇÃO</string>
+    <string name="song_editor_input_new_section_template">NOVA SEÇÃO</string>
+    <string name="song_editor_button_move_left">Mover para a esquerda</string>
+    <string name="song_editor_button_move_right">Mover para a direita</string>
+    <string name="song_editor_button_delete_section">Excluir seção</string>
+    <string name="song_editor_enter_title">Informe o título da música</string>
+    <string name="song_editor_title_already_used">O título da música já está em uso</string>
+    <string name="song_editor_enter_section_name">Informe o nome da seção</string>
+    <string name="song_editor_sections_must_have_names">Todas as seções precisam ter nome</string>
+    <string name="song_editor_save_failed">Falha ao salvar a música</string>
+    <string name="song_editor_song_not_found">Música não encontrada</string>
+    <string name="song_editor_load_failed">Falha ao carregar a música</string>
+    <string name="category_none">NENHUMA</string>
+    <string name="title_controls">Controles</string>
+    <string name="navigate_up">Voltar</string>
+    <string name="settings_title">Configurações</string>
+    <string name="hint_song_title">Título da música</string>
+    <string name="action_save">Salvar</string>
+</resources>

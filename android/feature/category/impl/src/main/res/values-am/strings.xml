@@ -1,0 +1,22 @@
+<resources>
+    <string name="editor_button_save">አስቀምጥ</string>
+    <string name="editor_button_add">ጨምር</string>
+    <string name="title_categories">ምድቦች</string>
+    <string name="category_manager_hint_category_name">ስም</string>
+    <string name="category_manager_hint_category_color">ቀለም</string>
+    <string name="category_manager_add_category">ምድብ ጨምር</string>
+    <string name="category_manager_edit_category">ምድብ አርትዕ</string>
+    <string name="category_color_maroon">ቡናማ ቀይ</string>
+    <string name="category_color_tomato">የቲማቲም ቀይ</string>
+    <string name="category_color_golden">ወርቃማ</string>
+    <string name="category_color_olive">የወይራ አረንጓዴ</string>
+    <string name="category_color_cyan">ሰማያዊ አረንጓዴ</string>
+    <string name="category_color_turquoise">ቱርኳዝ</string>
+    <string name="category_color_royal_blue">ንጉሣዊ ሰማያዊ</string>
+    <string name="category_color_violet">ወይን ጠጅ</string>
+    <string name="category_color_pink">ሮዝ</string>
+    <string name="category_color_navajo_white">ናቫሆ ነጭ</string>
+    <string name="category_color_slate_gray">የድንጋይ ግራጫ</string>
+    <string name="category_color_gray">ግራጫ</string>
+    <string name="category_color_steel_blue">የብረት ሰማያዊ</string>
+</resources>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright (c) 2026 . All rights reserved.
+  -->
+
+<resources>
+    <string name="tutorial_next">Lanjut</string>
+    <string name="tutorial_done">Selesai</string>
+    <string name="tutorial_skip">Lewati</string>
+    <string name="tutorial_get_started">Mulai</string>
+    <string name="tutorial_step_counter">%1$d dari %2$d</string>
+    <string name="onboarding_slide_welcome_title">Selamat datang di LyricCast</string>
+    <string name="onboarding_slide_welcome_body">LyricCast menampilkan lirik lagu di layar besar. Bangun perpustakaan, susun lagu ke dalam daftar lagu, lalu tampilkan ke TV atau ke perangkat lain — tanpa perangkat keras khusus.</string>
+    <string name="onboarding_slide_library_title">Bangun perpustakaan lagu Anda</string>
+    <string name="onboarding_slide_library_body">Impor arsip OpenSong atau cadangan LyricCast untuk mulai dalam hitungan detik, atau tulis lagu sendiri. Kategori membuat perpustakaan besar tetap mudah dikelola.</string>
+    <string name="onboarding_slide_setlists_title">Rencanakan dengan daftar lagu</string>
+    <string name="onboarding_slide_setlists_body">Daftar lagu adalah rangkaian lagu yang terurut untuk satu ibadah atau acara. Siapkan lebih dulu, lalu tampilkan dari awal sampai akhir tanpa mencari lagu berikutnya.</string>
+    <string name="onboarding_slide_cast_title">Transmisikan ke TV</string>
+    <string name="onboarding_slide_cast_body">Kirim lirik ke perangkat Google Cast mana pun di jaringan Wi-Fi yang sama. Ikon Cast muncul di bilah atas begitu penerima ditemukan.</string>
+    <string name="onboarding_slide_sessions_title">Tampilkan di beberapa perangkat</string>
+    <string name="onboarding_slide_sessions_body">Tidak punya perangkat Cast? Mulai sesi dan biarkan ponsel atau tablet lain di sekitar mengikuti secara serempak — satu perangkat memimpin, sisanya menyesuaikan otomatis.</string>
+    <string name="onboarding_slide_presenting_title">Tampilkan sesuai gaya Anda</string>
+    <string name="onboarding_slide_presenting_body">Saat ibadah, telusuri bait demi bait, kosongkan layar di antara lagu, dan ikuti teksnya. Warna, ukuran huruf, dan layar kosong saat mulai ada di Pengaturan.</string>
+    <string name="tour_main_tabs_title">Lagu dan daftar lagu</string>
+    <string name="tour_main_tabs_body">Perpustakaan Anda ada di sini. Lagu memuat semua yang Anda tambahkan; Daftar lagu memuat urutan yang Anda susun dari lagu-lagu itu.</string>
+    <string name="tour_main_fab_title">Tambahkan sesuatu yang baru</string>
+    <string name="tour_main_fab_body">Tulis lagu dari awal, atau susun daftar lagu dengan memilih lagu dari perpustakaan dan mengurutkannya.</string>
+    <string name="tour_main_overflow_title">Menu utama</string>
+    <string name="tour_main_overflow_body">Impor adalah cara tercepat mengisi aplikasi — ia membaca arsip OpenSong dan cadangan LyricCast. Ekspor menyimpan pekerjaan Anda ke berkas. Item yang terhapus juga ada di sini, jadi penghapusan tidak sengaja mudah dibatalkan.</string>
+    <string name="tour_main_categories_title">Atur dengan kategori</string>
+    <string name="tour_main_categories_body">Buat kategori berwarna dan tetapkan ke lagu agar perpustakaan besar tetap mudah dicari.</string>
+    <string name="tour_main_settings_title">Pengaturan</string>
+    <string name="tour_main_settings_body">Warna presentasi, ukuran huruf, tema, dan setelan bawaan sesi.</string>
+    <string name="tour_main_cast_title">Transmisikan ke layar</string>
+    <string name="tour_main_cast_body">Ikon Cast muncul di bilah atas setiap kali ada perangkat Google Cast di jaringan Wi-Fi yang sama. Ketuk untuk menampilkan lirik di TV.</string>
+    <string name="tour_main_sessions_title">Tampilkan di beberapa perangkat</string>
+    <string name="tour_main_sessions_body">Mulai sesi di sini agar perangkat ini yang memimpin — perangkat lain di sekitar yang menjalankan LyricCast dapat mengikuti apa yang Anda tampilkan, tanpa perlu salinan lagu Anda. Untuk mengikuti orang lain, gunakan tab Sesi.</string>
+    <string name="tour_song_editor_title_title">Beri nama lagu</string>
+    <string name="tour_song_editor_title_body">Judul inilah yang nanti Anda cari, jadi buatlah mudah dikenali. Lirik masuk di kolom bawah — setiap blok menjadi satu layar saat ditampilkan.</string>
+    <string name="tour_song_editor_structure_title">Susun bagian-bagiannya</string>
+    <string name="tour_song_editor_structure_body">Tentukan urutan tampil bait dan refrein, termasuk pengulangan — tanpa perlu menggandakan teks.</string>
+    <string name="tour_song_editor_save_title">Simpan</string>
+    <string name="tour_song_editor_save_body">Menyimpan akan menambahkan lagu ke perpustakaan; keluar tanpa menyimpan akan membuangnya. Menetapkan kategori lebih dulu membuatnya lebih mudah ditemukan saat perpustakaan bertambah besar.</string>
+    <string name="tour_setlist_editor_name_title">Beri nama daftar lagu</string>
+    <string name="tour_setlist_editor_name_body">Sesuatu yang nanti Anda kenali — tanggal atau nama acara biasanya cocok.</string>
+    <string name="tour_setlist_editor_picker_title">Pilih dan urutkan lagu</string>
+    <string name="tour_setlist_editor_picker_body">Pilih lagu dari perpustakaan Anda, lalu seret ke urutan yang diinginkan. Daftar ini kosong sampai Anda menambahkan lagu.</string>
+    <string name="tour_settings_appearance_title">Tampilan lirik</string>
+    <string name="tour_settings_appearance_body">Warna latar, warna huruf, dan ukuran huruf maksimum menentukan apa yang tampil di TV atau di perangkat yang mengikuti.</string>
+    <string name="tour_settings_blank_title">Mulai dengan layar kosong</string>
+    <string name="tour_settings_blank_body">Jika dinyalakan, layar tetap kosong saat Anda membuka lagu, sehingga tidak ada yang tampil sebelum Anda siap.</string>
+    <string name="tour_settings_auto_session_title">Setelan bawaan sesi</string>
+    <string name="tour_settings_auto_session_body">Mulai sesi otomatis saat aplikasi dibuka, dan beri nama bawaan agar perangkat yang bergabung mengenalinya.</string>
+    <string name="tour_settings_donate_title">Suka dengan LyricCast?</string>
+    <string name="tour_settings_donate_body">Kalau bermanfaat bagi Anda, pertimbangkan untuk mentraktir saya kopi guna mendukung pengembangannya.</string>
+</resources>

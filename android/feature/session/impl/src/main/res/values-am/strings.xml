@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="title_session_client">የክፍለ ጊዜ ተሳታፊ</string>
+    <string name="session_client_connected">ከክፍለ ጊዜው ጋር ተገናኝቷል</string>
+    <string name="session_client_disconnected">ከክፍለ ጊዜው ተለያይቷል</string>
+    <string name="session_client_failed_to_connect">ከክፍለ ጊዜው ጋር መገናኘት አልተቻለም</string>
+    <string name="session_client_connecting">በመገናኘት ላይ</string>
+    <string name="session_client_connecting_please_wait">እባክዎ ይጠብቁ…</string>
+    <string name="session_client_failed_to_start_lookup">ክፍለ ጊዜዎችን መፈለግ መጀመር አልተቻለም</string>
+    <string name="dialog_fragment_choose_session_title">ክፍለ ጊዜ ይምረጡ</string>
+    <string name="dialog_fragment_choose_session_looking_for_session">ክፍለ ጊዜዎችን በመፈለግ ላይ…</string>
+    <string name="ignore">ተወው</string>
+    <string name="launch_activity_go_to_settings">ወደ ቅንብሮች ሂድ</string>
+    <string name="close">ዝጋ</string>
+    <string name="dialog_fragment_start_session_missing_permissions">ለክፍለ ጊዜ ባህሪው የሚያስፈልጉትን ፈቃዶች ውድቅ አድርገዋል። እባክዎ በቅንብሮች ውስጥ ያንቁዋቸው።</string>
+</resources>
