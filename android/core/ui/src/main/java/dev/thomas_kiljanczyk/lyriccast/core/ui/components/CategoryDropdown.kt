@@ -20,12 +20,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
 import dev.thomas_kiljanczyk.lyriccast.core.designsystem.theme.LyricCastTheme
 import dev.thomas_kiljanczyk.lyriccast.core.model.CategoryItem
 import dev.thomas_kiljanczyk.lyriccast.core.ui.R
+import dev.thomas_kiljanczyk.lyriccast.core.ui.testing.TestTags
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.persistentListOf
 
@@ -43,7 +45,7 @@ fun CategoryDropdown(
         value = selectedCategory?.name ?: nullCategoryText,
         label = stringResource(R.string.category_label),
         onOptionSelected = onCategorySelected,
-        modifier = modifier
+        modifier = modifier.testTag(TestTags.CATEGORY_DROPDOWN)
     ) {
         if (it == null) {
             Text(text = nullCategoryText)

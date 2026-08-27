@@ -26,11 +26,9 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
 import dev.thomas_kiljanczyk.lyriccast.core.designsystem.theme.LyricCastTheme
-import dev.thomas_kiljanczyk.lyriccast.core.ui.testing.TestTags
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.toImmutableList
 
@@ -47,9 +45,7 @@ fun <T> LyricCastSpinner(
     var expanded by remember { mutableStateOf(false) }
 
     ExposedDropdownMenuBox(
-        expanded = expanded, onExpandedChange = { expanded = it }, modifier = modifier.testTag(
-            TestTags.categoryDropdown
-        )
+        expanded = expanded, onExpandedChange = { expanded = it }, modifier = modifier
     ) {
         TextField(
             modifier = Modifier

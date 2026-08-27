@@ -36,9 +36,12 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import dev.thomas_kiljanczyk.lyriccast.core.cast.ui.CastButton
+import dev.thomas_kiljanczyk.lyriccast.core.ui.testing.TestTags
 import dev.thomas_kiljanczyk.lyriccast.feature.main.impl.R
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -68,7 +71,10 @@ fun MainScreenTopBar(
 
             // Three-dots menu
             Box {
-                IconButton(onClick = { showMenu = true }) {
+                IconButton(
+                    onClick = { showMenu = true },
+                    modifier = Modifier.testTag(TestTags.MAIN_MENU_BUTTON)
+                ) {
                     Icon(
                         Icons.Rounded.MoreVert,
                         contentDescription = stringResource(R.string.more_options)
@@ -99,6 +105,7 @@ fun MainScreenTopBar(
                             showMenu = false
                             onNavigateToCategoryManager()
                         },
+                        modifier = Modifier.testTag(TestTags.MAIN_MENU_MANAGE_CATEGORIES),
                         leadingIcon = {
                             Icon(
                                 Icons.Rounded.Category,

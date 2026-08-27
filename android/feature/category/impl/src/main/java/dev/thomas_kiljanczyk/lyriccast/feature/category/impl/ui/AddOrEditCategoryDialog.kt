@@ -31,6 +31,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
@@ -42,6 +43,7 @@ import dev.thomas_kiljanczyk.lyriccast.core.model.ColorItem
 import dev.thomas_kiljanczyk.lyriccast.core.model.UiText
 import dev.thomas_kiljanczyk.lyriccast.core.ui.components.LyricCastSpinner
 import dev.thomas_kiljanczyk.lyriccast.core.ui.components.LyricCastTextField
+import dev.thomas_kiljanczyk.lyriccast.core.ui.testing.TestTags
 import dev.thomas_kiljanczyk.lyriccast.feature.category.impl.R
 import kotlin.uuid.ExperimentalUuidApi
 import kotlin.uuid.Uuid
@@ -63,7 +65,8 @@ fun AddOrEditCategoryForm(
             onValueChange = { onNameChange(it) },
             maxLength = ValidateCategoryNameUseCase.MAX_LENGTH,
             errorText = state.nameError?.asString(),
-            singleLine = true
+            singleLine = true,
+            modifier = Modifier.testTag(TestTags.CATEGORY_NAME_FIELD)
         )
         Row(
             horizontalArrangement = Arrangement.spacedBy(8.dp),
@@ -85,7 +88,9 @@ fun AddOrEditCategoryForm(
                 options = colorItems,
                 value = state.color.name.asString(),
                 label = stringResource(R.string.category_manager_hint_category_color),
-                modifier = Modifier.fillMaxWidth(),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .testTag(TestTags.CATEGORY_COLOR_DROPDOWN),
                 onOptionSelected = {
                     onColorChange(it)
                 }) {
@@ -171,33 +176,39 @@ fun AddOrEditCategoryDialog(
     onSubmit: () -> Unit = {},
     onDismiss: () -> Unit = {},
 ) {
-    AlertDialog(onDismissRequest = { onDismiss() }, title = {
-        Text(
-            text = if (state.id != null) {
-                stringResource(R.string.category_manager_edit_category)
-            } else {
-                stringResource(R.string.category_manager_add_category)
+    AlertDialog(
+        onDismissRequest = { onDismiss() },
+        modifier = Modifier.testTag(TestTags.ADD_EDIT_CATEGORY_DIALOG),
+        title = {
+            Text(
+                text = if (state.id != null) {
+                    stringResource(R.string.category_manager_edit_category)
+                } else {
+                    stringResource(R.string.category_manager_add_category)
+                }
+            )
+        }, confirmButton = {
+            TextButton(
+                enabled = state.isValid,
+                modifier = Modifier.testTag(TestTags.CATEGORY_SAVE_BUTTON),
+                onClick = {
+                    onSubmit()
+                }) {
+                Text(
+                    text = stringResource(R.string.editor_button_save)
+                )
             }
-        )
-    }, confirmButton = {
-        TextButton(enabled = state.isValid, onClick = {
-            onSubmit()
-        }) {
-            Text(
-                text = stringResource(R.string.editor_button_save)
+        }, dismissButton = {
+            TextButton(onClick = { onDismiss() }) {
+                Text(
+                    text = stringResource(android.R.string.cancel)
+                )
+            }
+        }, text = {
+            AddOrEditCategoryForm(
+                state = state, onColorChange = onColorChange, onNameChange = onNameChange
             )
-        }
-    }, dismissButton = {
-        TextButton(onClick = { onDismiss() }) {
-            Text(
-                text = stringResource(android.R.string.cancel)
-            )
-        }
-    }, text = {
-        AddOrEditCategoryForm(
-            state = state, onColorChange = onColorChange, onNameChange = onNameChange
-        )
-    })
+        })
 }
 
 @PreviewLightDark

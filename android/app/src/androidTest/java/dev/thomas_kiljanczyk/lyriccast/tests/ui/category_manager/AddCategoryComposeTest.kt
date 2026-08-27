@@ -1,14 +1,17 @@
 /*
- * Created by Tomasz Kiljanczyk on 9/8/25, 12:15 AM
+ * Created by Tomasz Kiljanczyk on 9/8/25, 12:15 AM
  * Copyright (c) 2025 . All rights reserved.
- * Last modified 9/8/25, 12:15 AM
+ * Last modified 9/8/25, 12:15 AM
  */
 
 package dev.thomas_kiljanczyk.lyriccast.tests.ui.category_manager
 
 import androidx.compose.ui.test.assertIsDisplayed
-import androidx.compose.ui.test.junit4.v2.createComposeRule
-import androidx.compose.ui.test.onNodeWithContentDescription
+import androidx.compose.ui.test.hasAnyAncestor
+import androidx.compose.ui.test.hasText
+import androidx.compose.ui.test.isPopup
+import androidx.compose.ui.test.junit4.v2.createAndroidComposeRule
+import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.performTextInput
@@ -18,16 +21,15 @@ import androidx.test.platform.app.InstrumentationRegistry
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
 import dev.thomas_kiljanczyk.lyriccast.core.data.repository.CategoriesRepository
-import dev.thomas_kiljanczyk.lyriccast.ui.category_manager.CategoryManagerScreen
-import dev.thomas_kiljanczyk.lyriccast.ui.shared.misc.colorItems
-import dev.thomas_kiljanczyk.lyriccast.core.designsystem.theme.LyricCastTheme
+import dev.thomas_kiljanczyk.lyriccast.core.ui.testing.TestTags
+import dev.thomas_kiljanczyk.lyriccast.feature.category.impl.ui.colorItems
+import dev.thomas_kiljanczyk.lyriccast.ui.main.MainActivity
+import javax.inject.Inject
 import kotlinx.coroutines.test.runTest
 import org.junit.Before
-import org.junit.Ignore
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-import javax.inject.Inject
 
 @HiltAndroidTest
 @RunWith(AndroidJUnit4::class)
@@ -42,7 +44,7 @@ class AddCategoryComposeTest {
     val hiltRule = HiltAndroidRule(this)
 
     @get:Rule(order = 1)
-    val composeTestRule = createComposeRule()
+    val composeTestRule = createAndroidComposeRule<MainActivity>()
 
     @Inject
     lateinit var categoriesRepository: CategoriesRepository
@@ -50,56 +52,39 @@ class AddCategoryComposeTest {
     @Before
     fun setup() {
         hiltRule.inject()
+
+        composeTestRule.onNodeWithTag(TestTags.MAIN_MENU_BUTTON).performClick()
+        composeTestRule.onNodeWithTag(TestTags.MAIN_MENU_MANAGE_CATEGORIES).performClick()
     }
 
     @Test
-    @Ignore("TODO: test configuration requires tweaks to allow injection of hilt view models in custom test rule content")
     fun categoryIsAdded() = runTest {
-        // Get the color name from resources
         val colorName = colorItems[0].name.toString(
             InstrumentationRegistry.getInstrumentation().targetContext
         )
 
-        // Setup the screen
-        composeTestRule.setContent {
-            LyricCastTheme {
-                CategoryManagerScreen(
-                    onNavigateUp = { }
-                )
-            }
-        }
-
-        // Click on Add Category button (FAB or menu item)
         composeTestRule
-            .onNodeWithContentDescription("Add category")
+            .onNodeWithTag(TestTags.ADD_CATEGORY_BUTTON)
             .performClick()
 
-        // Verify dialog is shown
         composeTestRule
-            .onNodeWithText("Add category")
+            .onNodeWithTag(TestTags.ADD_EDIT_CATEGORY_DIALOG)
             .assertIsDisplayed()
 
-        // Enter category name
         composeTestRule
-            .onNodeWithText("Name")
+            .onNodeWithTag(TestTags.CATEGORY_NAME_FIELD)
             .performTextInput(NEW_CATEGORY_NAME)
 
-        // Click on color dropdown
         composeTestRule
-            .onNodeWithText("Color")
+            .onNodeWithTag(TestTags.CATEGORY_COLOR_DROPDOWN)
             .performClick()
 
-        // Select a color from dropdown
+        composeTestRule.onNode(hasText(colorName) and hasAnyAncestor(isPopup())).performClick()
+
         composeTestRule
-            .onNodeWithText(colorName)
+            .onNodeWithTag(TestTags.CATEGORY_SAVE_BUTTON)
             .performClick()
 
-        // Click Save/Add button
-        composeTestRule
-            .onNodeWithText("Add")
-            .performClick()
-
-        // Verify the category appears in the list
         composeTestRule
             .onNodeWithText(NEW_CATEGORY_NAME.uppercase())
             .assertIsDisplayed()

@@ -17,12 +17,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import dev.thomas_kiljanczyk.lyriccast.core.model.CategoryItem
 import dev.thomas_kiljanczyk.lyriccast.core.ui.R
 import dev.thomas_kiljanczyk.lyriccast.core.ui.state.SongFilterState
+import dev.thomas_kiljanczyk.lyriccast.core.ui.testing.TestTags
 import dev.thomas_kiljanczyk.lyriccast.core.ui.util.flowItemMinWidth
 import kotlinx.collections.immutable.ImmutableList
 
@@ -69,6 +71,7 @@ fun SongFilters(
             onValueChange = onSearchTextChanged,
             label = stringResource(R.string.hint_song_title),
             singleLine = true,
+            modifier = Modifier.testTag(TestTags.SONG_TITLE_FILTER),
             containerModifier = Modifier
                 .weight(1f)
                 .flowItemMinWidth(FILTER_FIELD_MIN_WIDTH)

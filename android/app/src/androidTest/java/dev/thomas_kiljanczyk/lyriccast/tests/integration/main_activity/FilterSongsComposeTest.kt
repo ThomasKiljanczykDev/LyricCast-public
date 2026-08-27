@@ -8,10 +8,10 @@ package dev.thomas_kiljanczyk.lyriccast.tests.integration.main_activity
 
 import android.graphics.Color
 import androidx.compose.ui.test.assertIsDisplayed
-import androidx.compose.ui.test.filterToOne
+import androidx.compose.ui.test.hasAnyAncestor
 import androidx.compose.ui.test.hasText
+import androidx.compose.ui.test.isPopup
 import androidx.compose.ui.test.junit4.v2.createAndroidComposeRule
-import androidx.compose.ui.test.onChildren
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
@@ -20,15 +20,15 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.SmallTest
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
-import dev.thomas_kiljanczyk.lyriccast.core.model.Category
-import dev.thomas_kiljanczyk.lyriccast.core.model.Song
 import dev.thomas_kiljanczyk.lyriccast.core.data.repository.CategoriesRepository
 import dev.thomas_kiljanczyk.lyriccast.core.data.repository.SongsRepository
+import dev.thomas_kiljanczyk.lyriccast.core.model.Category
+import dev.thomas_kiljanczyk.lyriccast.core.model.Song
+import dev.thomas_kiljanczyk.lyriccast.core.testing.util.ComposeTestUtils.waitUntilAsserted
 import dev.thomas_kiljanczyk.lyriccast.core.ui.testing.TestTags
 import dev.thomas_kiljanczyk.lyriccast.ui.main.MainActivity
 import kotlinx.coroutines.test.runTest
 import org.junit.Before
-import org.junit.Ignore
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -78,9 +78,8 @@ class FilterSongsComposeTest {
 
     @Test
     fun songsAreFilteredByTitle() {
-        // Wait for all songs to appear
-        composeTestRule.waitUntil(5000) {
-            composeTestRule.onAllNodes(hasText(song1.title)).fetchSemanticsNodes().isNotEmpty()
+        composeTestRule.waitUntilAsserted(5000) {
+            onNodeWithText(song1.title).assertExists()
         }
 
         // Verify all songs are displayed initially
@@ -89,16 +88,11 @@ class FilterSongsComposeTest {
         composeTestRule.onNodeWithText(song3.title).assertIsDisplayed()
 
         // Filter by title
-        composeTestRule.onNodeWithText("Song title").performTextInput(SONG_TITLE)
+        composeTestRule.onNodeWithTag(TestTags.SONG_TITLE_FILTER).performTextInput(SONG_TITLE)
 
         // Wait for filter to apply
-        composeTestRule.waitUntil(3000) {
-            try {
-                composeTestRule.onNodeWithText(song3.title).assertDoesNotExist()
-                true
-            } catch (_: AssertionError) {
-                false
-            }
+        composeTestRule.waitUntilAsserted(3000) {
+            onNodeWithText(song3.title).assertDoesNotExist()
         }
 
         // Verify filtered results
@@ -108,11 +102,9 @@ class FilterSongsComposeTest {
     }
 
     @Test
-    @Ignore("TODO: the test has problems with matching items within a dropdown")
     fun songsAreFilteredByCategory() {
-        // Wait for all songs to appear
-        composeTestRule.waitUntil(5000) {
-            composeTestRule.onAllNodes(hasText(song1.title)).fetchSemanticsNodes().isNotEmpty()
+        composeTestRule.waitUntilAsserted(5000) {
+            onNodeWithText(song1.title).assertExists()
         }
 
         // Verify all songs are displayed initially
@@ -121,30 +113,14 @@ class FilterSongsComposeTest {
         composeTestRule.onNodeWithText(song3.title).assertIsDisplayed()
 
         // Click on category dropdown
-        composeTestRule.onNodeWithTag(TestTags.categoryDropdown).performClick()
+        composeTestRule.onNodeWithTag(TestTags.CATEGORY_DROPDOWN).performClick()
 
-        // Select the test category
-        composeTestRule.waitUntil(3000) {
-            try {
-                composeTestRule.onNodeWithTag(TestTags.categoryDropdown)
-                    .onChildren()
-                    .filterToOne(hasText(category.name))
-                    .performClick()
-                true
-            } catch (_: AssertionError) {
-                false
-            }
-        }
+        composeTestRule.onNode(hasText(category.name) and hasAnyAncestor(isPopup())).performClick()
 
         // Wait for filter to apply
-        composeTestRule.waitUntil(3000) {
-            try {
-                composeTestRule.onNodeWithText(song2.title).assertDoesNotExist()
-                composeTestRule.onNodeWithText(song3.title).assertDoesNotExist()
-                true
-            } catch (_: AssertionError) {
-                false
-            }
+        composeTestRule.waitUntilAsserted(3000) {
+            onNodeWithText(song2.title).assertDoesNotExist()
+            onNodeWithText(song3.title).assertDoesNotExist()
         }
 
         // Verify only song with category is shown

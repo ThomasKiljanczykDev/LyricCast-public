@@ -27,11 +27,13 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
 import dev.thomas_kiljanczyk.lyriccast.core.designsystem.theme.LyricCastTheme
 import dev.thomas_kiljanczyk.lyriccast.core.ui.R as CoreUiR
+import dev.thomas_kiljanczyk.lyriccast.core.ui.testing.TestTags
 import dev.thomas_kiljanczyk.lyriccast.feature.category.impl.R
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -101,7 +103,9 @@ fun CategoryManagerTopBar(
                 actions = {
                     FilledTonalButton(
                         onClick = onAdd,
-                        modifier = Modifier.padding(end = 8.dp)
+                        modifier = Modifier
+                            .padding(end = 8.dp)
+                            .testTag(TestTags.ADD_CATEGORY_BUTTON)
                     ) {
                         Text(stringResource(R.string.editor_button_add))
                     }
