@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="title_song_editor">诗歌编辑器</string>
+    <string name="song_editor_hint_enter_lyrics">输入歌词</string>
+    <string name="song_editor_input_section_name">段落名称</string>
+    <string name="song_editor_input_new_section">新段落</string>
+    <string name="song_editor_input_new_section_template">新段落</string>
+    <string name="song_editor_button_move_left">左移</string>
+    <string name="song_editor_button_move_right">右移</string>
+    <string name="song_editor_button_delete_section">删除段落</string>
+    <string name="song_editor_enter_title">请输入诗歌标题</string>
+    <string name="song_editor_title_already_used">该诗歌标题已被使用</string>
+    <string name="song_editor_enter_section_name">请输入段落名称</string>
+    <string name="song_editor_sections_must_have_names">所有段落都必须有名称</string>
+    <string name="song_editor_save_failed">保存诗歌失败</string>
+    <string name="song_editor_song_not_found">未找到诗歌</string>
+    <string name="song_editor_load_failed">加载诗歌失败</string>
+    <string name="category_none">无</string>
+    <string name="title_controls">控制</string>
+    <string name="navigate_up">向上导航</string>
+    <string name="settings_title">设置</string>
+    <string name="hint_song_title">诗歌标题</string>
+    <string name="action_save">保存</string>
+</resources>

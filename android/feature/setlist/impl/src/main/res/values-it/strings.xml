@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="title_controls">Comandi</string>
+    <string name="settings_title">Impostazioni</string>
+    <string name="close">Chiudi</string>
+    <string name="delete">Elimina</string>
+    <string name="setlist_editor_title">Editor della scaletta</string>
+    <string name="setlist_editor_button_pick_songs">Scegli i canti</string>
+    <string name="setlist_editor_load_failed">Impossibile caricare la scaletta</string>
+    <string name="setlist_editor_setlist_not_found">Scaletta non trovata</string>
+    <string name="setlist_editor_validation_failed">Impossibile salvare la scaletta - convalida non riuscita</string>
+    <string name="setlist_name">Nome della scaletta</string>
+    <string name="add_song">Aggiungi canto</string>
+    <string name="duplicate">Duplica</string>
+    <string name="no_songs_found">Nessun canto trovato</string>
+    <string name="navigate_back">Indietro</string>
+    <string name="save">Salva</string>
+    <string name="confirm">Conferma</string>
+    <string name="error_name_empty">Il nome non può essere vuoto</string>
+    <string name="error_name_already_in_use">Il nome è già in uso</string>
+</resources>

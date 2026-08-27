@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="title_song_editor">Lied-Editor</string>
+    <string name="song_editor_hint_enter_lyrics">Liedtext eingeben</string>
+    <string name="song_editor_input_section_name">Abschnittsname</string>
+    <string name="song_editor_input_new_section">NEUER ABSCHNITT</string>
+    <string name="song_editor_input_new_section_template">NEUER ABSCHNITT</string>
+    <string name="song_editor_button_move_left">Nach links verschieben</string>
+    <string name="song_editor_button_move_right">Nach rechts verschieben</string>
+    <string name="song_editor_button_delete_section">Abschnitt löschen</string>
+    <string name="song_editor_enter_title">Bitte gib einen Liedtitel ein</string>
+    <string name="song_editor_title_already_used">Der Liedtitel wird bereits verwendet</string>
+    <string name="song_editor_enter_section_name">Bitte gib einen Abschnittsnamen ein</string>
+    <string name="song_editor_sections_must_have_names">Alle Abschnitte brauchen einen Namen</string>
+    <string name="song_editor_save_failed">Lied konnte nicht gespeichert werden</string>
+    <string name="song_editor_song_not_found">Lied nicht gefunden</string>
+    <string name="song_editor_load_failed">Lied konnte nicht geladen werden</string>
+    <string name="category_none">KEINE</string>
+    <string name="title_controls">Steuerung</string>
+    <string name="navigate_up">Nach oben navigieren</string>
+    <string name="settings_title">Einstellungen</string>
+    <string name="hint_song_title">Liedtitel</string>
+    <string name="action_save">Speichern</string>
+</resources>

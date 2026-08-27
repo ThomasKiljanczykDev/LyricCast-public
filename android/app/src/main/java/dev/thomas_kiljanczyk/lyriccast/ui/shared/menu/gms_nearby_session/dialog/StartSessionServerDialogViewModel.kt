@@ -1,7 +1,7 @@
 /*
- * Created by Tomasz Kiljanczyk on 9/7/25, 3:52 PM
+ * Created by Tomasz Kiljanczyk on 9/7/25, 3:52 PM
  * Copyright (c) 2025 . All rights reserved.
- * Last modified 9/7/25, 3:50 PM
+ * Last modified 9/7/25, 3:50 PM
  */
 
 package dev.thomas_kiljanczyk.lyriccast.ui.shared.menu.gms_nearby_session.dialog
@@ -15,13 +15,14 @@ import androidx.lifecycle.viewModelScope
 import com.google.android.gms.common.api.ApiException
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dev.thomas_kiljanczyk.lyriccast.R
-import dev.thomas_kiljanczyk.lyriccast.domain.models.UiText
-import dev.thomas_kiljanczyk.lyriccast.shared.gms_nearby.GmsNearbySessionServerContext
-import dev.thomas_kiljanczyk.lyriccast.shared.gms_nearby.GmsNearbySessionServerContext.AdvertisingState
+import dev.thomas_kiljanczyk.lyriccast.core.model.UiText
+import dev.thomas_kiljanczyk.lyriccast.core.nearby.AdvertisingState
+import dev.thomas_kiljanczyk.lyriccast.core.nearby.PayloadTransport
+import dev.thomas_kiljanczyk.lyriccast.core.nearby.TransportConfig
+import javax.inject.Inject
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onEach
-import javax.inject.Inject
 
 interface StartSessionServerDialogState {
     val sessionName: String
@@ -53,20 +54,19 @@ class MutableStartSessionServerDialogState : StartSessionServerDialogState {
 
 @HiltViewModel
 class StartSessionServerDialogViewModel @Inject constructor(
-    private val gmsNearbySessionServerContext: GmsNearbySessionServerContext
+    private val payloadTransport: PayloadTransport
 ) : ViewModel() {
 
-    private val _state = MutableStartSessionServerDialogState()
-    val state: StartSessionServerDialogState get() = _state
+    val state: StartSessionServerDialogState
+        field = MutableStartSessionServerDialogState()
 
     init {
         // Monitor advertising state changes
-        gmsNearbySessionServerContext.advertisingState
+        payloadTransport.advertisingState
             .map { advertisingStateInfo ->
                 // Handle error messages
-                val errorRes = if (advertisingStateInfo.exception is ApiException &&
-                    advertisingStateInfo.exception.status.statusCode == 8038
-                ) {
+                val exception = advertisingStateInfo.exception
+                val errorRes = if (exception is ApiException && exception.status.statusCode == 8038) {
                     R.string.dialog_fragment_start_session_session_start_missing_permissions
                 } else if (advertisingStateInfo.state == AdvertisingState.FAILED) {
                     R.string.dialog_fragment_start_session_session_start_failed
@@ -74,9 +74,9 @@ class StartSessionServerDialogViewModel @Inject constructor(
                     null
                 }
 
-                _state.advertisingState = advertisingStateInfo.state
-                _state.errorMessageRes = errorRes
-                _state.isStartingSession =
+                state.advertisingState = advertisingStateInfo.state
+                state.errorMessageRes = errorRes
+                state.isStartingSession =
                     advertisingStateInfo.state == AdvertisingState.NOT_ADVERTISING
 
                 advertisingStateInfo
@@ -86,7 +86,7 @@ class StartSessionServerDialogViewModel @Inject constructor(
     }
 
     fun updateSessionName(name: String) {
-        _state.sessionName = name
+        state.sessionName = name
     }
 
     fun startSessionServer(): Boolean {
@@ -94,14 +94,14 @@ class StartSessionServerDialogViewModel @Inject constructor(
             return false
         }
 
-        _state.isStartingSession = true
-        _state.errorMessageRes = null
+        state.isStartingSession = true
+        state.errorMessageRes = null
 
-        gmsNearbySessionServerContext.startServer(state.sessionName.trim())
+        payloadTransport.startServer(state.sessionName.trim(), TransportConfig.Session)
         return true
     }
 
     fun clearError() {
-        _state.errorMessageRes = null
+        state.errorMessageRes = null
     }
 }

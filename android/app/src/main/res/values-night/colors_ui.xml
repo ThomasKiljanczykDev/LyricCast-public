@@ -1,13 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?><!--
-  ~ Created by Tomasz Kiljanczyk on 25/01/2025, 18:55
-  ~ Copyright (c) 2025 . All rights reserved.
-  ~ Last modified 07/05/2024, 23:59
+  ~ Created by Tomasz Kiljanczyk on 2/8/26, 1:18 AM
+  ~ Copyright (c) 2026 . All rights reserved.
+  ~ Last modified 2/8/26, 12:55 AM
   -->
 
 <resources>
-    <color name="text">@color/bright_text</color>
+    <color name="primary">#76D1FF</color>
+    <color name="secondary">#B5CAD7</color>
+    <color name="accent">#B5CAD7</color>
 
-    <color name="button_text_1">@color/dark_text</color>
+    <color name="dark_text">#191C1E</color>
+    <color name="bright_text">#E1E3E5</color>
+
+    <color name="background_1">#191C1E</color>
+    <color name="background_2">#454749</color>
+    <color name="background_3">#2E3133</color>
+    <color name="background_4">#40484D</color>
+
+    <color name="icon_primary">#F0F0F3</color>
+
     <color name="button_text_2">@color/bright_text</color>
-    <color name="button_background">@color/background_4</color>
 </resources>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="title_controls">Kontrol</string>
+    <string name="settings_title">Pengaturan</string>
+    <string name="close">Tutup</string>
+    <string name="delete">Hapus</string>
+    <string name="setlist_editor_title">Editor daftar lagu</string>
+    <string name="setlist_editor_button_pick_songs">Pilih lagu</string>
+    <string name="setlist_editor_load_failed">Gagal memuat daftar lagu</string>
+    <string name="setlist_editor_setlist_not_found">Daftar lagu tidak ditemukan</string>
+    <string name="setlist_editor_validation_failed">Tidak dapat menyimpan daftar lagu - validasi gagal</string>
+    <string name="setlist_name">Nama daftar lagu</string>
+    <string name="add_song">Tambah lagu</string>
+    <string name="duplicate">Duplikat</string>
+    <string name="no_songs_found">Tidak ada lagu ditemukan</string>
+    <string name="navigate_back">Kembali</string>
+    <string name="save">Simpan</string>
+    <string name="confirm">Konfirmasi</string>
+    <string name="error_name_empty">Nama tidak boleh kosong</string>
+    <string name="error_name_already_in_use">Nama sudah digunakan</string>
+</resources>

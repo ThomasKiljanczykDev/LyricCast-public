@@ -1,0 +1,22 @@
+<resources>
+    <string name="editor_button_save">Hifadhi</string>
+    <string name="editor_button_add">Ongeza</string>
+    <string name="title_categories">Kategoria</string>
+    <string name="category_manager_hint_category_name">Jina</string>
+    <string name="category_manager_hint_category_color">Rangi</string>
+    <string name="category_manager_add_category">Ongeza kategoria</string>
+    <string name="category_manager_edit_category">Hariri kategoria</string>
+    <string name="category_color_maroon">Kahawia iliyokolea</string>
+    <string name="category_color_tomato">Nyekundu ya nyanya</string>
+    <string name="category_color_golden">Dhahabu</string>
+    <string name="category_color_olive">Kijani zeituni</string>
+    <string name="category_color_cyan">Samawati angavu</string>
+    <string name="category_color_turquoise">Turukwazi</string>
+    <string name="category_color_royal_blue">Buluu ya kifalme</string>
+    <string name="category_color_violet">Urujuani</string>
+    <string name="category_color_pink">Waridi</string>
+    <string name="category_color_navajo_white">Nyeupe ya navajo</string>
+    <string name="category_color_slate_gray">Kijivu cha jiwe</string>
+    <string name="category_color_gray">Kijivu</string>
+    <string name="category_color_steel_blue">Buluu ya chuma</string>
+</resources>

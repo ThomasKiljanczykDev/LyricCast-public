@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="title_controls">Điều khiển</string>
+    <string name="settings_title">Cài đặt</string>
+    <string name="close">Đóng</string>
+    <string name="delete">Xóa</string>
+    <string name="setlist_editor_title">Trình sửa danh sách bài</string>
+    <string name="setlist_editor_button_pick_songs">Chọn bài hát</string>
+    <string name="setlist_editor_load_failed">Không tải được danh sách bài</string>
+    <string name="setlist_editor_setlist_not_found">Không tìm thấy danh sách bài</string>
+    <string name="setlist_editor_validation_failed">Không thể lưu danh sách bài - kiểm tra không hợp lệ</string>
+    <string name="setlist_name">Tên danh sách bài</string>
+    <string name="add_song">Thêm bài hát</string>
+    <string name="duplicate">Nhân bản</string>
+    <string name="no_songs_found">Không tìm thấy bài hát nào</string>
+    <string name="navigate_back">Quay lại</string>
+    <string name="save">Lưu</string>
+    <string name="confirm">Xác nhận</string>
+    <string name="error_name_empty">Tên không được để trống</string>
+    <string name="error_name_already_in_use">Tên đã được sử dụng</string>
+</resources>

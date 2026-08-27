@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="title_session_client">Sesyon</string>
+    <string name="session_client_connected">Nakakonekta sa sesyon</string>
+    <string name="session_client_disconnected">Nadiskonekta sa sesyon</string>
+    <string name="session_client_failed_to_connect">Nabigong kumonekta sa sesyon</string>
+    <string name="session_client_connecting">Kumokonekta</string>
+    <string name="session_client_connecting_please_wait">Maghintay lang…</string>
+    <string name="session_client_failed_to_start_lookup">Nabigong simulan ang paghahanap ng sesyon</string>
+    <string name="dialog_fragment_choose_session_title">Pumili ng sesyon</string>
+    <string name="dialog_fragment_choose_session_looking_for_session">Naghahanap ng mga sesyon…</string>
+    <string name="ignore">Huwag pansinin</string>
+    <string name="launch_activity_go_to_settings">Pumunta sa mga setting</string>
+    <string name="close">Isara</string>
+    <string name="dialog_fragment_start_session_missing_permissions">Tinanggihan mo ang mga pahintulot na kailangan ng feature ng sesyon. I-enable ang mga ito sa mga setting.</string>
+</resources>

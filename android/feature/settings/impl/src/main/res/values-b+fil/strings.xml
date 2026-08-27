@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright (c) 2026 . All rights reserved.
+  -->
+
+<resources>
+    <string name="settings_title">Mga setting</string>
+    <string name="navigate_up">Bumalik</string>
+    
+    <string name="preference_language_title">Wika</string>
+    <string name="preference_theme_title">Tema</string>
+    <string name="preference_controls_button_height_title">Taas ng mga control button</string>
+    <string name="preference_cast_background_title">Kulay ng background</string>
+    <string name="preference_cast_font_color_title">Kulay ng font</string>
+    <string name="preference_cast_max_font_size_title">Pinakamalaking laki ng font</string>
+    <string name="preference_blank_title">Blangko sa simula</string>
+    <string name="preference_section_app">Aplikasyon</string>
+    <string name="preference_language_system">Default ng sistema</string>
+    <string name="preference_theme_light">Maliwanag</string>
+    <string name="preference_theme_dark">Madilim</string>
+    <string name="preference_theme_system">Default ng sistema</string>
+    <string name="preference_controls_buttons_height_small">Maliit</string>
+    <string name="preference_controls_buttons_height_medium">Katamtaman</string>
+    <string name="preference_controls_buttons_height_large">Malaki</string>
+    <string name="preference_color_black">Itim</string>
+    <string name="preference_color_white">Puti</string>
+    <string name="preference_color_blue">Asul</string>
+    <string name="preference_color_red">Pula</string>
+    <string name="preference_color_pink">Rosas</string>
+    <string name="preference_donate_title">Ipagbili mo ako ng kape</string>
+    <string name="preference_donate_summary">Suportahan ang pagpapaunlad ng app na ito</string>
+</resources>

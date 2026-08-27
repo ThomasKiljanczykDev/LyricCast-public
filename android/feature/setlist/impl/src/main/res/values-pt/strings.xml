@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="title_controls">Controles</string>
+    <string name="settings_title">Configurações</string>
+    <string name="close">Fechar</string>
+    <string name="delete">Excluir</string>
+    <string name="setlist_editor_title">Editor de repertório</string>
+    <string name="setlist_editor_button_pick_songs">Escolher músicas</string>
+    <string name="setlist_editor_load_failed">Falha ao carregar o repertório</string>
+    <string name="setlist_editor_setlist_not_found">Repertório não encontrado</string>
+    <string name="setlist_editor_validation_failed">Não é possível salvar o repertório - a validação falhou</string>
+    <string name="setlist_name">Nome do repertório</string>
+    <string name="add_song">Adicionar música</string>
+    <string name="duplicate">Duplicar</string>
+    <string name="no_songs_found">Nenhuma música encontrada</string>
+    <string name="navigate_back">Voltar</string>
+    <string name="save">Salvar</string>
+    <string name="confirm">Confirmar</string>
+    <string name="error_name_empty">O nome não pode estar vazio</string>
+    <string name="error_name_already_in_use">O nome já está em uso</string>
+</resources>

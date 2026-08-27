@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="dialog_fragment_start_session_title">Avvia sessione</string>
+    <string name="dialog_fragment_start_session_missing_permissions">Hai rifiutato le autorizzazioni necessarie per la funzione sessione. Attivale nelle impostazioni.</string>
+    <string name="title_category_manager">Gestisci categorie</string>
+    <string name="title_setlists">Scalette</string>
+    <string name="title_songs">Canti</string>
+    <string name="hint_setlist_name">Nome della scaletta</string>
+    <string name="hint_import_format">Formato</string>
+    <string name="launch_activity_go_to_settings">Vai alle impostazioni</string>
+    <string name="main_activity_import_delete_all_before_import">Elimina tutto prima di importare</string>
+    <string name="main_activity_import_replace_on_conflict">Sostituisci in caso di conflitto</string>
+    <string name="main_activity_import_dialog_title">Importa</string>
+    <string name="main_activity_import_successful">Importazione completata correttamente</string>
+    <string name="main_activity_import_failed">Importazione non riuscita</string>
+    <string name="main_activity_import_pending_file">File: %1$s</string>
+    <string name="main_activity_export_preparing_data">Preparazione dei dati…</string>
+    <string name="main_activity_action_menu_export_selected">Esporta selezionati</string>
+    <string name="main_activity_menu_export">Esporta tutto</string>
+    <string name="main_activity_menu_import">Importa</string>
+    <string name="main_activity_button_add_song">Aggiungi canto</string>
+    <string name="main_activity_button_add_setlist">Aggiungi scaletta</string>
+    <string name="main_activity_loading_file">Caricamento del file …</string>
+    <string name="main_activity_tab_join_session">Sessione</string>
+    <string name="main_activity_cannot_join_session">Non puoi unirti a un\'altra sessione mentre ospiti la tua</string>
+    <string name="main_activity_setlist_is_empty">La scaletta è vuota!</string>
+    <string name="edit">Modifica</string>
+    <string name="delete">Elimina</string>
+    <string name="more_options">Altre opzioni</string>
+    <string name="settings_title">Impostazioni</string>
+    <string name="ignore">Ignora</string>
+    <string name="close">Chiudi</string>
+    <string name="progress_processing">Elaborazione…</string>
+</resources>

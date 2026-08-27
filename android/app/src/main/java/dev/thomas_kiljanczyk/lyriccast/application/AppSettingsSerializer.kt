@@ -13,13 +13,18 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.core.Serializer
 import androidx.datastore.dataStore
 import com.google.protobuf.InvalidProtocolBufferException
-import dev.thomas_kiljanczyk.lyriccast.ui.shared.misc.settings.ColorOption
-import dev.thomas_kiljanczyk.lyriccast.ui.shared.misc.settings.ControlButtonHeightOption
+import dev.thomas_kiljanczyk.lyriccast.core.model.settings.ColorOption
+import dev.thomas_kiljanczyk.lyriccast.core.model.settings.ControlButtonHeightOption
+import dev.thomas_kiljanczyk.lyriccast.datastore.proto.AppSettings
 import java.io.InputStream
 import java.io.OutputStream
 
+internal const val DEFAULT_MAX_FONT_SIZE = 90
+
 object AppSettingsSerializer : Serializer<AppSettings> {
-    override val defaultValue: AppSettings = AppSettings.getDefaultInstance()
+    override val defaultValue: AppSettings = AppSettings.newBuilder()
+        .setOnboardingCompletedVersion(DEFAULT_ONBOARDING_COMPLETED_VERSION)
+        .build()
 
     override suspend fun readFrom(input: InputStream): AppSettings {
         try {
@@ -53,7 +58,12 @@ object AppSettingsSerializer : Serializer<AppSettings> {
             settingsBuilder.fontColor = ColorOption.WHITE.value
         }
         if (settingsBuilder.maxFontSize == 0) {
-            settingsBuilder.maxFontSize = 90
+            settingsBuilder.maxFontSize = DEFAULT_MAX_FONT_SIZE
+        }
+        // Covers a store written before the field existed.
+        // The replay sentinel is negative, so it survives.
+        if (settingsBuilder.onboardingCompletedVersion == 0) {
+            settingsBuilder.onboardingCompletedVersion = DEFAULT_ONBOARDING_COMPLETED_VERSION
         }
     }
 }

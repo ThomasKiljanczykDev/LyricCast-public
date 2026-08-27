@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="title_session_client">Sesja</string>
+    <string name="session_client_connected">Połączono się z sesją</string>
+    <string name="session_client_disconnected">Sesja rozłączona</string>
+    <string name="session_client_failed_to_connect">Połączenie z sesją nie powiodło się</string>
+    <string name="session_client_connecting">Łączenie</string>
+    <string name="session_client_connecting_please_wait">Proszę czekać…</string>
+    <string name="session_client_failed_to_start_lookup">Szukanie sesji nie powiodło się</string>
+    <string name="dialog_fragment_choose_session_title">Wybierz sesję</string>
+    <string name="dialog_fragment_choose_session_looking_for_session">Szukam sesji…</string>
+    <string name="main_activity_missing_permissions">Odrzuciłeś niektóre uprawnienia. Wybrane funkcje, takie jak sesje, nie będą działać.</string>
+    <string name="ignore">Ignoruj</string>
+    <string name="launch_activity_go_to_settings">Przejdź do ustawień</string>
+    <string name="close">Zamknij</string>
+    <string name="dialog_fragment_start_session_missing_permissions">" Odrzuciłeś uprawnienia wymagane dla funkcji sesji. Proszę włączyć je w ustawieniach."</string>
+</resources>

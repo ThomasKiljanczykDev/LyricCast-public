@@ -1,0 +1,22 @@
+<resources>
+    <string name="editor_button_save">Lưu</string>
+    <string name="editor_button_add">Thêm</string>
+    <string name="title_categories">Thể loại</string>
+    <string name="category_manager_hint_category_name">Tên</string>
+    <string name="category_manager_hint_category_color">Màu</string>
+    <string name="category_manager_add_category">Thêm thể loại</string>
+    <string name="category_manager_edit_category">Sửa thể loại</string>
+    <string name="category_color_maroon">Nâu đỏ</string>
+    <string name="category_color_tomato">Đỏ cà chua</string>
+    <string name="category_color_golden">Vàng kim</string>
+    <string name="category_color_olive">Xanh ô liu</string>
+    <string name="category_color_cyan">Lục lam</string>
+    <string name="category_color_turquoise">Ngọc lam</string>
+    <string name="category_color_royal_blue">Xanh hoàng gia</string>
+    <string name="category_color_violet">Tím</string>
+    <string name="category_color_pink">Hồng</string>
+    <string name="category_color_navajo_white">Trắng navajo</string>
+    <string name="category_color_slate_gray">Xám đá phiến</string>
+    <string name="category_color_gray">Xám</string>
+    <string name="category_color_steel_blue">Xanh thép</string>
+</resources>

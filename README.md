@@ -2,6 +2,8 @@
 
 [<img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" height="70" title="Coming soon!" alt="Get it on Google Play. Coming soon!">](https://play.google.com/store/apps/details?id=dev.thomas_kiljanczyk.lyriccast)
 
+[![CI android](https://github.com/ThomasKiljanczykDev/LyricCast-public/actions/workflows/ci-android.yml/badge.svg)](https://github.com/ThomasKiljanczykDev/LyricCast-public/actions/workflows/ci-android.yml)
+
 # LyricCast
 
 *LyricCast* is an Android application that allows you to cast lyrics to your TV screen using Google
@@ -14,7 +16,8 @@ responding.
 that need to cast
 lyrics
 to a TV screen using off the shelf devices.
-*LyricCast* is localized in English and Polish.
+*LyricCast* is localized in 14 languages, including English and Polish, with in-app language
+switching independent of the system locale.
 
 # Overview
 

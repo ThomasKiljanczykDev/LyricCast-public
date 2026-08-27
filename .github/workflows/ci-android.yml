@@ -1,0 +1,165 @@
+name: CI android
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'android/**'
+      - '.github/workflows/ci-android.yml'
+      - '.github/actions/android-setup/**'
+      - '.github/actions/free-disk-space/**'
+      - '.editorconfig'
+  # Run on pushes to main so the Gradle build/lint cache is populated on the default branch.
+  # gradle/actions/setup-gradle only WRITES the cache on the default branch, so without this PRs
+  # always start cold. The expensive emulator matrix is skipped on push (see instrumented-tests).
+  push:
+    branches:
+      - main
+    paths:
+      - 'android/**'
+      - '.github/workflows/ci-android.yml'
+      - '.github/actions/android-setup/**'
+      - '.github/actions/free-disk-space/**'
+      - '.editorconfig'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-android-${{ github.ref }}
+  cancel-in-progress: true
+
+defaults:
+  run:
+    working-directory: android
+
+jobs:
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: ./.github/actions/android-setup
+      - name: Lint
+        run: ./gradlew lint --stacktrace
+
+  # Sibling of `lint`, not chained to it: detekt is a separate gate and the two are independent.
+  detekt:
+    name: Detekt
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: ./.github/actions/android-setup
+      - name: Detekt
+        run: ./gradlew detekt --stacktrace
+      - name: Upload detekt reports
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v7
+        with:
+          name: detekt-reports
+          path: 'android/**/build/reports/detekt/'
+          if-no-files-found: ignore
+
+  assemble:
+    name: Assemble debug
+    needs: [lint, detekt]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: ./.github/actions/android-setup
+      - name: Assemble debug APK
+        run: ./gradlew :app:assembleDebug --stacktrace
+
+      # Not part of `build`, and its reference PNGs are gitignored, so nothing else notices when
+      # the screenshot tool drifts behind the composables it renders.
+      - name: Compile README screenshot tests
+        run: ./gradlew :tools:readme-screenshots:compileDebugScreenshotTestKotlin --stacktrace
+
+  unit-tests:
+    name: Unit tests
+    needs: assemble
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: ./.github/actions/android-setup
+      - name: Run JVM unit tests
+        run: ./gradlew testDebugUnitTest --stacktrace
+      - name: Upload unit test reports
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v7
+        with:
+          name: unit-test-reports
+          path: 'android/**/build/reports/tests/'
+          if-no-files-found: ignore
+
+  instrumented-tests:
+    name: Instrumented (${{ matrix.label }})
+    needs: unit-tests
+    # Skip the emulator matrix on main pushes: those runs exist only to warm the build cache,
+    # and the instrumented suite already ran on the PR before it merged.
+    if: ${{ github.event_name != 'push' }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          # Gradle Managed Devices. Orientation follows each device's natural orientation:
+          # Pixel 2 = portrait, Pixel Tablet = landscape. minSdk is 29 but ATD images start at
+          # API 30, so the low end is API 30.
+          - device: pixel2Api30
+            label: phone-portrait-api30
+            image: 'system-images;android-30;aosp_atd;x86_64'
+          - device: pixel2Api36
+            label: phone-portrait-api36
+            image: 'system-images;android-36;aosp_atd;x86_64'
+          - device: pixelTabletApi30
+            label: tablet-landscape-api30
+            image: 'system-images;android-30;aosp_atd;x86_64'
+          - device: pixelTabletApi36
+            label: tablet-landscape-api36
+            image: 'system-images;android-36;aosp_atd;x86_64'
+    steps:
+      - uses: actions/checkout@v7
+
+      # Hardware acceleration for the emulator. GitHub-hosted ubuntu runners expose /dev/kvm but
+      # the kvm group is not writable by the runner user by default.
+      - name: Enable KVM
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' \
+            | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+
+      # GMD needs ~7.4 GB free for the emulator userdata partition but the runner has ~6.9 GB, so
+      # API 30 setup fails with a (silent) FATAL "Not enough space". Keep the Android SDK the
+      # emulator needs; android-setup re-provisions the JDK it removes.
+      - name: Free up disk space for the emulator
+        uses: ./.github/actions/free-disk-space
+        with:
+          remove-android-sdk: 'false'
+
+      - uses: ./.github/actions/android-setup
+
+      # API 36 ATD images are dev-channel only (channel 2); channel 2 is cumulative so it also
+      # covers API 30. Pre-install so GMD finds the image instead of failing a stable-only download.
+      - name: Install GMD system image (dev channel)
+        run: |
+          SDKMANAGER="$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager"
+          yes | "$SDKMANAGER" --channel=2 --install "${{ matrix.image }}" > /dev/null
+          yes | "$SDKMANAGER" --licenses > /dev/null || true
+
+      # Unqualified so every project declaring this device runs. Only :app declares the matrix
+      # here -- unlike the private client, this repo's :core:database has no instrumented
+      # migration/DAO tests (Room persistence is ported architecture-only, without the private
+      # client's fuzzy-search/relevance layer that motivated those tests), so all four cells
+      # just run :app's instrumented suite.
+      - name: Run instrumented tests on ${{ matrix.device }}
+        run: ./gradlew ${{ matrix.device }}DebugAndroidTest --stacktrace
+
+      - name: Upload instrumented test reports
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v7
+        with:
+          name: instrumented-test-reports-${{ matrix.label }}
+          path: 'android/**/build/reports/androidTests/'
+          if-no-files-found: ignore

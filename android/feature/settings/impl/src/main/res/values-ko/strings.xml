@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Created by Tomasz Kiljanczyk on 8/6/26, 1:20 PM
+  ~ Copyright (c) 2026 . All rights reserved.
+  ~ Last modified 8/6/26, 1:20 PM
+  -->
+
+<resources>
+    <string name="settings_title">설정</string>
+    <string name="navigate_up">위로 이동</string>
+    
+    <string name="preference_language_title">언어</string>
+    <string name="preference_theme_title">테마</string>
+    <string name="preference_controls_button_height_title">제어 버튼 높이</string>
+    <string name="preference_cast_background_title">배경색</string>
+    <string name="preference_cast_font_color_title">글자색</string>
+    <string name="preference_cast_max_font_size_title">최대 글자 크기</string>
+    <string name="preference_blank_title">시작 시 빈 화면</string>
+    <string name="preference_section_app">애플리케이션</string>
+    <string name="preference_language_system">시스템 기본값</string>
+    <string name="preference_theme_light">밝게</string>
+    <string name="preference_theme_dark">어둡게</string>
+    <string name="preference_theme_system">시스템 기본값</string>
+    <string name="preference_controls_buttons_height_small">작게</string>
+    <string name="preference_controls_buttons_height_medium">보통</string>
+    <string name="preference_controls_buttons_height_large">크게</string>
+    <string name="preference_color_black">검정</string>
+    <string name="preference_color_white">흰색</string>
+    <string name="preference_color_blue">파랑</string>
+    <string name="preference_color_red">빨강</string>
+    <string name="preference_color_pink">분홍</string>
+    <string name="preference_donate_title">커피 한 잔 사주기</string>
+    <string name="preference_donate_summary">이 앱의 개발을 후원합니다</string>
+</resources>

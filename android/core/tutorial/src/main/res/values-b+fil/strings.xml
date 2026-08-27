@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright (c) 2026 . All rights reserved.
+  -->
+
+<resources>
+    <string name="tutorial_next">Susunod</string>
+    <string name="tutorial_done">Tapos na</string>
+    <string name="tutorial_skip">Laktawan</string>
+    <string name="tutorial_get_started">Magsimula</string>
+    <string name="tutorial_step_counter">%1$d ng %2$d</string>
+    <string name="onboarding_slide_welcome_title">Maligayang pagdating sa LyricCast</string>
+    <string name="onboarding_slide_welcome_body">Inilalagay ng LyricCast ang liriko ng awit sa malaking screen. Gumawa ng library, isaayos ang mga awit sa mga setlist, at ipakita ang mga ito sa TV o sa ibang device — walang kailangang espesyal na kagamitan.</string>
+    <string name="onboarding_slide_library_title">Buuin ang iyong library ng awit</string>
+    <string name="onboarding_slide_library_body">Mag-import ng OpenSong archive o LyricCast backup para makapagsimula agad, o isulat mismo ang mga awit. Nananatiling madaling hanapin ang malaking library dahil sa mga kategorya.</string>
+    <string name="onboarding_slide_setlists_title">Magplano gamit ang mga setlist</string>
+    <string name="onboarding_slide_setlists_body">Ang setlist ay isang nakaayos na serye ng mga awit para sa isang serbisyo o okasyon. Ihanda ito nang maaga, tapos ipakita mula simula hanggang huli nang hindi na naghahanap ng susunod na awit.</string>
+    <string name="onboarding_slide_cast_title">I-cast sa TV</string>
+    <string name="onboarding_slide_cast_body">Ipadala ang liriko sa kahit anong Google Cast device sa parehong Wi-Fi. Lalabas ang Cast icon sa itaas kapag may nakitang receiver.</string>
+    <string name="onboarding_slide_sessions_title">Magpakita sa maraming device</string>
+    <string name="onboarding_slide_sessions_body">Walang Cast device? Magsimula ng sesyon at hayaang sumabay ang ibang phone o tablet sa paligid — isang device ang nangunguna, awtomatikong sumusunod ang iba.</string>
+    <string name="onboarding_slide_presenting_title">Magpakita sa paraang gusto mo</string>
+    <string name="onboarding_slide_presenting_body">Sa serbisyo, sundan ang mga talata, gawing blangko ang screen sa pagitan ng mga awit, at sumunod. Ang kulay, laki ng font, at blangkong simula ay nasa Mga setting.</string>
+    <string name="tour_main_tabs_title">Mga awit at setlist</string>
+    <string name="tour_main_tabs_body">Nandito ang iyong library. Nasa Mga awit ang lahat ng idinagdag mo; nasa Mga setlist ang mga pagkakasunod-sunod na binuo mo mula rito.</string>
+    <string name="tour_main_fab_title">Magdagdag ng bago</string>
+    <string name="tour_main_fab_body">Sumulat ng bagong awit, o bumuo ng setlist sa pamamagitan ng pagpili ng mga awit mula sa library at pag-aayos ng pagkakasunod nila.</string>
+    <string name="tour_main_overflow_title">Ang pangunahing menu</string>
+    <string name="tour_main_overflow_body">Ang Import ang pinakamabilis na paraan para punan ang app — nababasa nito ang OpenSong archive at LyricCast backup. Sini-save ng Export ang trabaho mo sa isang file. Nandito rin ang mga binurang item, kaya madaling ibalik ang aksidenteng nabura.</string>
+    <string name="tour_main_categories_title">Ayusin gamit ang mga kategorya</string>
+    <string name="tour_main_categories_body">Gumawa ng mga kategoryang may kulay at itakda ang mga ito sa mga awit para manatiling madaling hanapin ang malaking library.</string>
+    <string name="tour_main_settings_title">Mga setting</string>
+    <string name="tour_main_settings_body">Kulay ng presentasyon, laki ng font, tema, at mga default ng sesyon.</string>
+    <string name="tour_main_cast_title">I-cast sa isang screen</string>
+    <string name="tour_main_cast_body">Lumalabas ang Cast icon sa itaas kapag may Google Cast device sa parehong Wi-Fi. I-tap ito para ilagay ang liriko sa TV.</string>
+    <string name="tour_main_sessions_title">Magpakita sa maraming device</string>
+    <string name="tour_main_sessions_body">Magsimula ng sesyon dito para ang device na ito ang mangunguna — puwedeng sumunod ang ibang kalapit na device na may LyricCast sa ipinapakita mo, kahit wala silang kopya ng mga awit mo. Para sumunod sa iba, gamitin ang tab na Sesyon.</string>
+    <string name="tour_song_editor_title_title">Pangalanan ang awit</string>
+    <string name="tour_song_editor_title_body">Ang pamagat ang hahanapin mo mamaya, kaya gawin itong madaling makilala. Ang liriko ay nasa field sa ibaba — bawat bloke ay nagiging isang screen kapag nagpapakita.</string>
+    <string name="tour_song_editor_structure_title">Ayusin ang mga bahagi</string>
+    <string name="tour_song_editor_structure_body">Itakda ang pagkakasunod ng mga talata at koro, kasama ang mga pag-uulit — hindi na kailangang doblehin ang teksto.</string>
+    <string name="tour_song_editor_save_title">I-save</string>
+    <string name="tour_song_editor_save_body">Idinaragdag ng pag-save ang awit sa library mo; kapag umalis ka nang hindi nagse-save, mawawala ito. Kapag naglagay ka muna ng kategorya, mas madali itong hanapin kapag lumaki na ang library.</string>
+    <string name="tour_setlist_editor_name_title">Pangalanan ang setlist</string>
+    <string name="tour_setlist_editor_name_body">Isang bagay na makikilala mo mamaya — maganda ang petsa o pangalan ng okasyon.</string>
+    <string name="tour_setlist_editor_picker_title">Pumili at ayusin ang mga awit</string>
+    <string name="tour_setlist_editor_picker_body">Pumili ng mga awit mula sa library mo, tapos i-drag ang mga ito sa gustong pagkakasunod. Walang laman ang listahang ito hangga\'t wala kang naidadagdag na awit.</string>
+    <string name="tour_settings_appearance_title">Ang itsura ng liriko</string>
+    <string name="tour_settings_appearance_body">Ang kulay ng background, kulay ng font, at pinakamalaking laki ng font ang nagtatakda ng lalabas sa TV o sa sumusunod na device.</string>
+    <string name="tour_settings_blank_title">Magsimulang blangko</string>
+    <string name="tour_settings_blank_body">Kapag naka-on ito, mananatiling walang laman ang screen kapag binuksan mo ang isang awit, kaya walang lalabas hangga\'t hindi ka pa handa.</string>
+    <string name="tour_settings_auto_session_title">Mga default ng sesyon</string>
+    <string name="tour_settings_auto_session_body">Awtomatikong magsimula ng sesyon kapag binuksan ang app, at bigyan ito ng default na pangalan para makilala ito ng mga sumasaling device.</string>
+    <string name="tour_settings_donate_title">Nagugustuhan mo ba ang LyricCast?</string>
+    <string name="tour_settings_donate_body">Kung nakakatulong ito sa iyo, puwede mo akong ipagbili ng kape para suportahan ang pagpapaunlad nito.</string>
+</resources>

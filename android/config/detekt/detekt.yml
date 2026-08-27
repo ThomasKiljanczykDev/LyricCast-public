@@ -1,0 +1,195 @@
+# LyricCast detekt configuration.
+#
+# Layered on detekt's defaults (`buildUponDefaultConfig = true`): only deviations appear here, never
+# a value that already matches the default. Every relaxed or disabled rule carries a one-line reason
+# (AGENTS.md). No baseline file - findings are tuned away here, fixed, or locally suppressed.
+#
+# Type resolution is off (build-logic .../buildlogic/Detekt.kt), so rules requiring it never fire;
+# they stay active to start working if TR is ever enabled.
+
+complexity:
+  CyclomaticComplexMethod:
+    allowedComplexity: 15
+    # A flat `when` dispatch is not complexity worth splitting.
+    ignoreSingleWhenExpression: true
+    # Composable branching is layout, measured by nesting not logic.
+    ignoreAnnotated: [ 'Composable' ]
+  # Character classification in the chord/lyrics parsers.
+  ComplexCondition:
+    allowedConditions: 4
+  # Combinatorial sweeps in tests nest by design.
+  NestedBlockDepth:
+    excludes: [ '**/test/**', '**/androidTest/**', '**/screenshotTest/**' ]
+  # Screen-level Compose files run long.
+  LargeClass:
+    allowedLines: 800
+  LongMethod:
+    allowedLines: 80
+    # Composables are long by construction, not complex.
+    ignoreAnnotated: [ 'Composable' ]
+  LongParameterList:
+    allowedFunctionParameters: 7
+    allowedConstructorParameters: 8
+    ignoreDefaultParameters: true
+    # State/callback parameter lists are the Compose idiom.
+    ignoreAnnotated: [ 'Composable' ]
+  TooManyFunctions:
+    # Many small composables per file is intended.
+    ignoreAnnotatedFunctions: [ 'Composable', 'Preview' ]
+    ignorePrivate: true
+    allowedFunctionsPerFile: 20
+    allowedFunctionsPerClass: 20
+    # Room DAOs and their repository facades: one function per query.
+    allowedFunctionsPerInterface: 35
+    # @Preview no-op action objects mirror a whole interface.
+    allowedFunctionsPerObject: 25
+
+exceptions:
+  # A stack trace in a failing test is diagnostics.
+  PrintStackTrace:
+    excludes: [ '**/test/**', '**/androidTest/**' ]
+  # Tests catch-and-assert without rethrowing.
+  SwallowedException:
+    excludes: [ '**/test/**', '**/androidTest/**' ]
+  # Import/export, Cast and Nearby boundaries catch-all into a user-facing error.
+  TooGenericExceptionCaught:
+    active: false
+  # Setup failures throw bare Exception.
+  TooGenericExceptionThrown:
+    excludes: [ '**/test/**', '**/androidTest/**', '**/baselineprofile/**' ]
+
+naming:
+  # Composables are PascalCase.
+  FunctionNaming:
+    ignoreAnnotated: [ 'Composable' ]
+  # Navigation files pair a route type with its navigate/section helpers.
+  MatchingDeclarationName:
+    active: false
+  # `dev.thomas_kiljanczyk` - the underscore is in the published id.
+  PackageNaming:
+    packagePattern: '[a-z]+(\.[a-z_][A-Za-z0-9_]*)*'
+  # Private top-level Compose constants are camelCase.
+  TopLevelPropertyNaming:
+    constantPattern: '[A-Z][_A-Z0-9]*|[a-z][A-Za-z0-9]*'
+
+style:
+  MagicNumber:
+    # Benchmark iteration/timeout counts are the parameter being tuned, not hidden constants. The
+    # default's KMP-only test globs are dropped; this build is Android-only.
+    excludes: [ '**/test/**', '**/androidTest/**', '**/screenshotTest/**', '**/baselineprofile/**', '**/*.kts' ]
+    ignoreNumbers: [ '-1', '0', '1', '2', '100' ]
+    ignoreEnums: true
+    ignoreRanges: true
+    ignoreAnnotation: true
+    # Compose states layout as literals (rotations, weights, alphas).
+    ignoreAnnotated: [ 'Composable', 'Preview' ]
+  # Redundant with ktlint>FinalNewline.
+  NewLineAtEndOfFile:
+    active: false
+  # Hand-written tokenizers skip and terminate with continue/break.
+  LoopWithTooManyJumpStatements:
+    maxJumpCount: 3
+  # Guard-clause-heavy parsers.
+  ReturnCount:
+    max: 4
+    excludeGuardClauses: true
+  # @Preview composables are tooling entry points, never called.
+  UnusedPrivateFunction:
+    ignoreAnnotated: [ 'Preview' ]
+
+empty-blocks:
+  # Empty overrides narrow the Cast/Nearby listener interfaces.
+  EmptyFunctionBlock:
+    ignoreOverridden: true
+
+# Compose rule set (io.nlopez.compose.rules). Correctness/API rules stay on; the stylistic ones that
+# disagree with this codebase's conventions are off.
+Compose:
+  CompositionLocalAllowlist:
+    # The tour overlay, the preview harness and the analytics helper are the implicit-context cases a
+    # CompositionLocal is for; everything else is passed explicitly.
+    allowedCompositionLocals:
+      - 'LocalTourAnchorRegistry'
+      - 'LocalTourExpansion'
+      - 'LocalTourSpotlight'
+      - 'LocalPreviewSpinnerExpanded'
+      - 'LocalAnalyticsHelper'
+  # Components take a `content` slot plus further optional slots; one cannot be trailing.
+  ContentTrailingLambda:
+    active: false
+  # Nested local composables use `fieldModifier`/`chipModifier` to avoid shadowing.
+  ModifierNaming:
+    active: false
+  # Same nested-local case: the caller always supplies the modifier.
+  ModifierWithoutDefault:
+    active: false
+  # LyricCastTextField's modifier sizes the field, not the column holding its error row.
+  ModifierNotUsedAtRoot:
+    active: false
+  # Event lambdas are past tense (`onSongClicked`).
+  ParameterNaming:
+    active: false
+  # Parameters follow the state/actions split used across all screens.
+  ComposableParamOrder:
+    active: false
+  # Private/internal leaf composables are never re-styled.
+  ModifierMissing:
+    active: false
+  # hiltViewModel() placement is being reworked separately.
+  ViewModelInjection:
+    active: false
+
+# ktlint rule set, via detekt's bundled wrapper. Formatting settings live in the root .editorconfig;
+# only rule activation is decided here.
+ktlint:
+  code_style: 'android_studio'
+  # --- Wrapping / signature layout ---------------------------------------------------------------
+  # These encode the `ktlint_official` layout, which disagrees with the Android Studio formatter this
+  # codebase is written with. Line length is still enforced by style>MaxLineLength.
+  ArgumentListWrapping:
+    active: false
+  ParameterListWrapping:
+    active: false
+  ParameterWrapping:
+    active: false
+  PropertyWrapping:
+    active: false
+  Wrapping:
+    active: false
+  BinaryExpressionWrapping:
+    active: false
+  StatementWrapping:
+    active: false
+  EnumWrapping:
+    active: false
+  ChainWrapping:
+    active: false
+  MultiLineIfElse:
+    active: false
+  FunctionSignature:
+    active: false
+  ClassSignature:
+    active: false
+  FunctionExpressionBody:
+    active: false
+  FunctionLiteral:
+    active: false
+  # --- Rules covered elsewhere / conflicting with project identifiers ----------------------------
+  # Also disabled in .editorconfig.
+  TrailingCommaOnCallSite:
+    active: false
+  # Same as above.
+  TrailingCommaOnDeclarationSite:
+    active: false
+  # `dev.thomas_kiljanczyk` contains an underscore by design.
+  PackageName:
+    active: false
+  # Redundant with style>MaxLineLength.
+  MaximumLineLength:
+    active: false
+  # naming>ObjectPropertyNaming/TopLevelPropertyNaming allow the camelCase preview constants.
+  PropertyName:
+    active: false
+  # Same as naming>MatchingDeclarationName above.
+  Filename:
+    active: false

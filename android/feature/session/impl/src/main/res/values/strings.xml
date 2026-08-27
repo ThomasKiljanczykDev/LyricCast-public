@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="title_session_client">Session</string>
+    <string name="session_client_song_item_title_template" translatable="false">%d. %s</string>
+    <string name="session_client_connected">Session connected</string>
+    <string name="session_client_disconnected">Session disconnected</string>
+    <string name="session_client_failed_to_connect">Failed to connect to the session</string>
+    <string name="session_client_connecting">Connecting</string>
+    <string name="session_client_connecting_please_wait">Please wait…</string>
+    <string name="session_client_failed_to_start_lookup">Failed to start session lookup</string>
+    <string name="dialog_fragment_choose_session_title">Choose session</string>
+    <string name="dialog_fragment_choose_session_looking_for_session">Looking for session…</string>
+    <!-- No translation available beyond en/pl for this legacy fragment message. -->
+    <string name="main_activity_missing_permissions" tools:ignore="MissingTranslation">You have rejected some permissions. Selected features like sessions will not work.</string>
+    <string name="ignore">Ignore</string>
+    <string name="launch_activity_go_to_settings">Go to settings</string>
+    <string name="close">Close</string>
+    <string name="dialog_fragment_start_session_missing_permissions">You have rejected permissions required for the session feature. Please enable them in the settings.</string>
+</resources>

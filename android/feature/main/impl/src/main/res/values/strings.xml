@@ -1,0 +1,49 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Duplicated from the app module: still referenced there by code that has not moved yet. -->
+    <string name="app_name" translatable="false">LyricCast</string>
+    <string name="dialog_fragment_start_session_title">Start session</string>
+    <string name="dialog_fragment_start_session_missing_permissions">You have rejected permissions required for the session feature. Please enable them in the settings.</string>
+
+    <!-- Titles -->
+    <string name="title_category_manager">Manage categories</string>
+    <string name="title_setlists">Setlists</string>
+    <string name="title_songs">Songs</string>
+
+    <!-- Hints -->
+    <string name="hint_setlist_name">Setlist name</string>
+    <string name="hint_import_format">Format</string>
+
+    <!-- Launch Activity -->
+    <string name="launch_activity_go_to_settings">Go to settings</string>
+
+    <!-- Main Screen -->
+    <string name="main_activity_import_delete_all_before_import">Delete all before import</string>
+    <string name="main_activity_import_replace_on_conflict">Replace on conflict</string>
+    <string name="main_activity_import_dialog_title">Import</string>
+    <string name="main_activity_import_successful">Import completed successfully</string>
+    <string name="main_activity_import_failed">Import failed</string>
+    <string name="main_activity_import_pending_file">File: %1$s</string>
+    <string name="main_activity_export_preparing_data">Preparing data …</string>
+    <string name="main_activity_action_menu_export_selected">Export selected</string>
+    <string name="main_activity_menu_export">Export all</string>
+    <string name="main_activity_menu_import">Import</string>
+    <string name="main_activity_button_add_song">Add song</string>
+    <string name="main_activity_button_add_setlist">Add setlist</string>
+    <!-- TODO: needs translating into the other shipped locales. -->
+    <string name="main_activity_button_add" tools:ignore="MissingTranslation">Add</string>
+    <string name="main_activity_loading_file">Loading file …</string>
+    <string name="main_activity_setlist_is_empty">Setlist is empty!</string>
+    <string name="main_activity_tab_join_session">Join Session</string>
+    <string name="main_activity_cannot_join_session">You cannot join another session while hosting your own</string>
+
+    <!-- Generic -->
+    <string name="edit">Edit</string>
+    <string name="delete">Delete</string>
+    <string name="more_options">More options</string>
+    <string name="settings_title">Settings</string>
+    <string name="ignore">Ignore</string>
+    <string name="close">Close</string>
+
+    <!-- Progress Dialog -->
+    <string name="progress_processing">Processing…</string>
+</resources>

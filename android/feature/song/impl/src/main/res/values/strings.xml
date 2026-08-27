@@ -1,0 +1,32 @@
+<resources>
+    <!-- Titles -->
+    <string name="title_song_editor">Song editor</string>
+    <string name="title_controls">Controls</string>
+
+    <!-- Hints -->
+    <string name="hint_song_title">Song title</string>
+
+    <!-- Song Editor -->
+    <string name="song_editor_hint_enter_lyrics">Enter lyrics</string>
+    <string name="song_editor_input_section_name">Section name</string>
+    <string name="song_editor_input_new_section">NEW SECTION</string>
+    <string name="song_editor_input_new_section_template">NEW SECTION</string>
+    <string name="song_editor_button_move_left">Move left</string>
+    <string name="song_editor_button_move_right">Move right</string>
+    <string name="song_editor_button_delete_section">Delete section</string>
+    <string name="song_editor_enter_title">Please enter song title</string>
+    <string name="song_editor_title_already_used">Song title already in use</string>
+    <string name="song_editor_enter_section_name">Please enter section name</string>
+    <string name="song_editor_sections_must_have_names">All sections must have names</string>
+    <string name="song_editor_save_failed">Failed to save song</string>
+    <string name="song_editor_song_not_found">Song not found</string>
+    <string name="song_editor_load_failed">Failed to load song</string>
+
+    <!-- Category -->
+    <string name="category_none">NONE</string>
+
+    <!-- Generic -->
+    <string name="action_save">Save</string>
+    <string name="settings_title">Settings</string>
+    <string name="navigate_up">Navigate up</string>
+</resources>

@@ -9,7 +9,7 @@ package dev.thomas_kiljanczyk.lyriccast.tests.ui.main_activity
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.assertIsNotDisplayed
 import androidx.compose.ui.test.hasText
-import androidx.compose.ui.test.junit4.createAndroidComposeRule
+import androidx.compose.ui.test.junit4.v2.createAndroidComposeRule
 import androidx.compose.ui.test.longClick
 import androidx.compose.ui.test.onNodeWithContentDescription
 import androidx.compose.ui.test.onNodeWithText
@@ -20,8 +20,8 @@ import androidx.test.filters.LargeTest
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
 import dev.thomas_kiljanczyk.lyriccast.common.helpers.UUIDv7
-import dev.thomas_kiljanczyk.lyriccast.datamodel.models.Setlist
-import dev.thomas_kiljanczyk.lyriccast.datamodel.repositiories.SetlistsRepository
+import dev.thomas_kiljanczyk.lyriccast.core.model.Setlist
+import dev.thomas_kiljanczyk.lyriccast.core.data.repository.SetlistsRepository
 import dev.thomas_kiljanczyk.lyriccast.ui.main.MainActivity
 import kotlinx.coroutines.test.runTest
 import org.junit.Before

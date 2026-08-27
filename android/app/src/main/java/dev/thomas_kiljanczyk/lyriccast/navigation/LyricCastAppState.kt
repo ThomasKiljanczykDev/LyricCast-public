@@ -1,7 +1,7 @@
 /*
- * Created by Tomasz Kiljanczyk on 9/7/25, 2:43 PM
+ * Created by Tomasz Kiljanczyk on 9/7/25, 2:43 PM
  * Copyright (c) 2025 . All rights reserved.
- * Last modified 9/7/25, 2:14 PM
+ * Last modified 9/7/25, 2:14 PM
  */
 
 package dev.thomas_kiljanczyk.lyriccast.navigation
@@ -12,8 +12,15 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
-import kotlinx.coroutines.CoroutineScope
+import dev.thomas_kiljanczyk.lyriccast.feature.category.impl.navigation.CategoryManagerRoute
+import dev.thomas_kiljanczyk.lyriccast.feature.session.impl.navigation.SessionClientRoute
+import dev.thomas_kiljanczyk.lyriccast.feature.setlist.impl.navigation.SetlistControlsRoute
+import dev.thomas_kiljanczyk.lyriccast.feature.setlist.impl.navigation.SetlistEditorRoute
+import dev.thomas_kiljanczyk.lyriccast.feature.settings.impl.navigation.SettingsRoute
+import dev.thomas_kiljanczyk.lyriccast.feature.song.impl.navigation.SongControlsRoute
+import dev.thomas_kiljanczyk.lyriccast.feature.song.impl.navigation.SongEditorRoute
 import java.util.UUID
+import kotlinx.coroutines.CoroutineScope
 
 @Composable
 fun rememberLyricCastAppState(

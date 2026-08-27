@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Created by Tomasz Kiljanczyk on 8/6/26, 1:20 PM
+  ~ Copyright (c) 2026 . All rights reserved.
+  ~ Last modified 8/6/26, 1:20 PM
+  -->
+
+<resources>
+    <string name="tutorial_next">Avanti</string>
+    <string name="tutorial_done">Fine</string>
+    <string name="tutorial_skip">Salta</string>
+    <string name="tutorial_get_started">Inizia</string>
+    <string name="tutorial_step_counter">%1$d di %2$d</string>
+
+    <string name="onboarding_slide_welcome_title">Benvenuto in LyricCast</string>
+    <string name="onboarding_slide_welcome_body">LyricCast porta i testi dei canti su un grande schermo. Crea una raccolta, organizza i canti in scalette e proiettali su un TV o su altri dispositivi — senza hardware dedicato.</string>
+
+    <string name="onboarding_slide_library_title">Crea la tua raccolta di canti</string>
+    <string name="onboarding_slide_library_body">Importa un archivio OpenSong o un backup LyricCast per iniziare in pochi secondi, oppure scrivi i canti da te. Le categorie tengono ordinata una raccolta ampia.</string>
+
+    <string name="onboarding_slide_setlists_title">Pianifica con le scalette</string>
+    <string name="onboarding_slide_setlists_body">Una scaletta è la sequenza ordinata dei canti per un culto o un evento. Preparala in anticipo e presentala dall\'inizio alla fine senza cercare il canto successivo.</string>
+
+    <string name="onboarding_slide_cast_title">Trasmetti su un TV</string>
+    <string name="onboarding_slide_cast_body">Invia i testi a qualsiasi dispositivo Google Cast sulla stessa rete Wi-Fi. L\'icona Cast compare nella barra superiore appena viene trovato un ricevitore.</string>
+
+    <string name="onboarding_slide_sessions_title">Presenta su più dispositivi</string>
+    <string name="onboarding_slide_sessions_body">Nessun dispositivo Cast? Avvia una sessione e lascia che altri telefoni o tablet vicini seguano in sincronia — un dispositivo guida, gli altri si allineano da soli.</string>
+
+    <string name="onboarding_slide_presenting_title">Presenta a modo tuo</string>
+    <string name="onboarding_slide_presenting_body">Durante il culto scorri le strofe, svuota lo schermo tra un canto e l\'altro e segui il testo. Colori, dimensione del carattere e schermo vuoto all\'avvio si trovano nelle Impostazioni.</string>
+
+    <string name="tour_main_tabs_title">Canti e scalette</string>
+    <string name="tour_main_tabs_body">Qui vive la tua raccolta. Canti contiene tutto ciò che hai aggiunto; Scalette contiene le sequenze che costruisci a partire da essi.</string>
+
+    <string name="tour_main_fab_title">Aggiungi qualcosa di nuovo</string>
+    <string name="tour_main_fab_body">Scrivi un canto da zero, oppure crea una scaletta scegliendo i canti dalla raccolta e mettendoli in ordine.</string>
+
+    <string name="tour_main_overflow_title">Il menu principale</string>
+    <string name="tour_main_overflow_body">L\'importazione è il modo più rapido per riempire l\'app: legge archivi OpenSong e backup LyricCast. L\'esportazione salva il tuo lavoro su file. Anche gli elementi eliminati stanno qui, così una cancellazione accidentale è facile da annullare.</string>
+
+    <string name="tour_main_categories_title">Organizza con le categorie</string>
+    <string name="tour_main_categories_body">Crea categorie con un colore e assegnale ai canti, così una raccolta ampia resta facile da cercare.</string>
+
+    <string name="tour_main_settings_title">Impostazioni</string>
+    <string name="tour_main_settings_body">Colori della proiezione, dimensione del carattere, tema e valori predefiniti della sessione.</string>
+
+    <string name="tour_main_cast_title">Trasmetti su uno schermo</string>
+    <string name="tour_main_cast_body">L\'icona Cast compare nella barra superiore ogni volta che un dispositivo Google Cast è sulla stessa rete Wi-Fi. Toccala per portare i testi sul TV.</string>
+
+    <string name="tour_main_sessions_title">Presenta su più dispositivi</string>
+    <string name="tour_main_sessions_body">Avvia qui una sessione per rendere questo dispositivo il presentatore: gli altri dispositivi vicini che usano LyricCast possono seguire ciò che mostri, senza avere una copia dei tuoi canti. Per seguire qualcun altro, usa invece la scheda Sessione.</string>
+
+    <string name="tour_song_editor_title_title">Dai un nome al canto</string>
+    <string name="tour_song_editor_title_body">Il titolo è ciò che cercherai in seguito, quindi rendilo riconoscibile. Il testo va nel campo qui sotto — ogni blocco diventa una schermata durante la proiezione.</string>
+
+    <string name="tour_song_editor_structure_title">Disponi le sezioni</string>
+    <string name="tour_song_editor_structure_body">Imposta l\'ordine in cui strofe e ritornelli vengono mostrati, ripetizioni comprese — non serve duplicare il testo.</string>
+
+    <string name="tour_song_editor_save_title">Salva</string>
+    <string name="tour_song_editor_save_body">Salvando aggiungi il canto alla raccolta; uscendo senza salvare lo perdi. Assegnare prima una categoria rende il canto più facile da trovare quando la raccolta cresce.</string>
+
+    <string name="tour_setlist_editor_name_title">Dai un nome alla scaletta</string>
+    <string name="tour_setlist_editor_name_body">Qualcosa che riconoscerai in seguito — una data o il nome di un evento funzionano bene.</string>
+
+    <string name="tour_setlist_editor_picker_title">Scegli e ordina i canti</string>
+    <string name="tour_setlist_editor_picker_body">Scegli i canti dalla raccolta, poi trascinali nell\'ordine che preferisci. Questo elenco resta vuoto finché non hai aggiunto qualche canto.</string>
+
+    <string name="tour_settings_appearance_title">Aspetto dei testi</string>
+    <string name="tour_settings_appearance_body">Colore di sfondo, colore del carattere e dimensione massima del carattere determinano ciò che appare sul TV o sul dispositivo che segue.</string>
+
+    <string name="tour_settings_blank_title">Parti a schermo vuoto</string>
+    <string name="tour_settings_blank_body">Con questa opzione attiva lo schermo resta vuoto quando apri un canto, così non appare nulla prima che tu sia pronto.</string>
+
+    <string name="tour_settings_auto_session_title">Valori predefiniti della sessione</string>
+    <string name="tour_settings_auto_session_body">Avvia una sessione automaticamente all\'apertura dell\'app e dalle un nome predefinito, così i dispositivi che si collegano la riconoscono.</string>
+    <string name="tour_settings_donate_title">Ti piace LyricCast?</string>
+    <string name="tour_settings_donate_body">Se ti è utile, valuta di offrirmi un caffè per sostenere lo sviluppo.</string>
+</resources>

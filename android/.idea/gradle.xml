@@ -4,16 +4,62 @@
   <component name="GradleSettings">
     <option name="linkedExternalProjectsSettings">
       <GradleProjectSettings>
+        <compositeConfiguration>
+          <compositeBuild compositeDefinitionSource="SCRIPT">
+            <builds>
+              <build path="$PROJECT_DIR$/build-logic" name="build-logic">
+                <projects>
+                  <project path="$PROJECT_DIR$/build-logic" />
+                  <project path="$PROJECT_DIR$/build-logic/convention" />
+                </projects>
+              </build>
+            </builds>
+          </compositeBuild>
+        </compositeConfiguration>
         <option name="testRunner" value="CHOOSE_PER_TEST" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="gradleJvm" value="#GRADLE_LOCAL_JAVA_HOME" />
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
-            <option value="$PROJECT_DIR$/common" />
-            <option value="$PROJECT_DIR$/data-model" />
-            <option value="$PROJECT_DIR$/data-transfer" />
+            <option value="$PROJECT_DIR$/baselineprofile" />
+            <option value="$PROJECT_DIR$/build-logic" />
+            <option value="$PROJECT_DIR$/build-logic/convention" />
+            <option value="$PROJECT_DIR$/core" />
+            <option value="$PROJECT_DIR$/core/cast" />
+            <option value="$PROJECT_DIR$/core/cast-test" />
+            <option value="$PROJECT_DIR$/core/common" />
+            <option value="$PROJECT_DIR$/core/data" />
+            <option value="$PROJECT_DIR$/core/data-test" />
+            <option value="$PROJECT_DIR$/core/data-transfer" />
+            <option value="$PROJECT_DIR$/core/database" />
+            <option value="$PROJECT_DIR$/core/datastore-proto" />
+            <option value="$PROJECT_DIR$/core/designsystem" />
+            <option value="$PROJECT_DIR$/core/domain" />
+            <option value="$PROJECT_DIR$/core/model" />
+            <option value="$PROJECT_DIR$/core/nearby" />
+            <option value="$PROJECT_DIR$/core/nearby-test" />
+            <option value="$PROJECT_DIR$/core/playback" />
+            <option value="$PROJECT_DIR$/core/session" />
+            <option value="$PROJECT_DIR$/core/sync" />
+            <option value="$PROJECT_DIR$/core/testing" />
+            <option value="$PROJECT_DIR$/core/tutorial" />
+            <option value="$PROJECT_DIR$/core/ui" />
+            <option value="$PROJECT_DIR$/feature" />
+            <option value="$PROJECT_DIR$/feature/category" />
+            <option value="$PROJECT_DIR$/feature/category/impl" />
+            <option value="$PROJECT_DIR$/feature/main" />
+            <option value="$PROJECT_DIR$/feature/main/impl" />
+            <option value="$PROJECT_DIR$/feature/session" />
+            <option value="$PROJECT_DIR$/feature/session/impl" />
+            <option value="$PROJECT_DIR$/feature/setlist" />
+            <option value="$PROJECT_DIR$/feature/setlist/impl" />
+            <option value="$PROJECT_DIR$/feature/settings" />
+            <option value="$PROJECT_DIR$/feature/settings/impl" />
+            <option value="$PROJECT_DIR$/feature/song" />
+            <option value="$PROJECT_DIR$/feature/song/impl" />
+            <option value="$PROJECT_DIR$/tools" />
+            <option value="$PROJECT_DIR$/tools/readme-screenshots" />
           </set>
         </option>
       </GradleProjectSettings>

@@ -4,19 +4,17 @@
  * Last modified 03/01/2022, 23:13
  */
 
-import com.google.protobuf.gradle.id
-
 plugins {
     alias(libs.plugins.android.application)
-    alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.serialization)
     alias(libs.plugins.ksp)
     alias(libs.plugins.androidx.navigationSafeArgs)
     alias(libs.plugins.hilt)
-    alias(libs.plugins.protobuf)
     alias(libs.plugins.google.googleServices)
     alias(libs.plugins.firebase.crashlytics)
     alias(libs.plugins.compose.compiler)
+    alias(libs.plugins.lyriccast.kotlin.quality)
+    alias(libs.plugins.baselineprofile)
 }
 
 android {
@@ -41,9 +39,14 @@ android {
         versionCode = major * 100_000_000 + minor * 100_000 + patch * 100 + revision
         versionName = "$major.$minor.$patch${if (revision > 0) ".$revision" else ""}"
 
-        testInstrumentationRunner = "dev.thomas_kiljanczyk.lyriccast.HiltTestRunner"
+        testInstrumentationRunner = "dev.thomas_kiljanczyk.lyriccast.core.testing.LyricCastTestRunner"
         androidResources {
-            localeFilters.addAll(listOf("en", "pl"))
+            localeFilters.addAll(
+                listOf(
+                    "en", "pl", "am", "de", "es", "fil", "fr", "in", "it", "ko", "pt", "sw", "vi",
+                    "b+zh+Hans"
+                )
+            )
         }
     }
 
@@ -60,6 +63,25 @@ android {
                 debugSymbolLevel = "FULL"
             }
         }
+
+        // Used only to generate/benchmark the baseline profile (see :baselineprofile). Signed
+        // with the debug key so CI and local runs don't need a release signing config.
+        create("seededRelease") {
+            initWith(getByName("release"))
+            matchingFallbacks.add("release")
+            signingConfig = signingConfigs.getByName("debug")
+        }
+    }
+
+    // Wired by name, because the baseline-profile plugin derives benchmark* and nonMinified*
+    // build types from both release and seededRelease: four per-build-type source sets to keep
+    // in step otherwise. It cannot live in main, which every variant compiles.
+    sourceSets.configureEach {
+        if (name == "main" || name.startsWith("test") || name.startsWith("androidTest")) {
+            return@configureEach
+        }
+        val defaults = if (name.contains("seeded", ignoreCase = true)) "seeded" else "notSeeded"
+        kotlin.directories.add("src/$defaults/java")
     }
 
     buildFeatures {
@@ -70,6 +92,7 @@ android {
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_21
         targetCompatibility = JavaVersion.VERSION_21
+        isCoreLibraryDesugaringEnabled = true
     }
 
     testOptions {
@@ -79,25 +102,120 @@ android {
             isReturnDefaultValues = true
             isIncludeAndroidResources = true
         }
+
+        // Gradle Managed Devices for the instrumented-test matrix.
+        // Each device launches in its natural orientation, so device choice encodes
+        // orientation: phones (Pixel 2) are portrait, large tablets (Pixel Tablet) are
+        // landscape.
+        //
+        // ATD ("aosp-atd") images are headless and only published for API 30+, so the matrix
+        // spans API 30 (lowest ATD) and 36 (latest).
+        @Suppress("UnstableApiUsage")
+        managedDevices {
+            localDevices {
+                create("pixel2Api30") {
+                    device = "Pixel 2"
+                    apiLevel = 30
+                    systemImageSource = "aosp-atd"
+                    // API 30 ATD still ships a 32-bit x86 image, which GMD selects by default
+                    // (require64Bit defaults to false). That image can't boot headless on the
+                    // CI runner ("Unable to find device serial"), so force the x86_64 image.
+                    // testedAbi only pins the tested APK's ABI (no native code here, so it's a
+                    // no-op for image selection) and pre-answers AGP 10.0's default flip to
+                    // arm64-v8a.
+                    require64Bit = true
+                    testedAbi = "x86_64"
+                }
+                create("pixel2Api36") {
+                    device = "Pixel 2"
+                    apiLevel = 36
+                    systemImageSource = "aosp-atd"
+                    require64Bit = true
+                    testedAbi = "x86_64"
+                }
+                create("pixelTabletApi30") {
+                    device = "Pixel Tablet"
+                    apiLevel = 30
+                    systemImageSource = "aosp-atd"
+                    require64Bit = true
+                    testedAbi = "x86_64"
+                }
+                create("pixelTabletApi36") {
+                    device = "Pixel Tablet"
+                    apiLevel = 36
+                    systemImageSource = "aosp-atd"
+                    require64Bit = true
+                    testedAbi = "x86_64"
+                }
+            }
+
+            // Convenience group to run the whole matrix locally with
+            // `./gradlew ciMatrixGroupDebugAndroidTest`. CI runs the per-device tasks instead
+            // so each cell is an isolated, parallel matrix job.
+            val matrixDevices = localDevices
+            groups.create("ciMatrix") {
+                targetDevices.addAll(
+                    listOf(
+                        "pixel2Api30",
+                        "pixel2Api36",
+                        "pixelTabletApi30",
+                        "pixelTabletApi36"
+                        //noinspection WrongGradleMethod
+                    ).map { matrixDevices.getByName(it) }
+                )
+            }
+        }
     }
     namespace = "dev.thomas_kiljanczyk.lyriccast"
-    compileSdk = 36
+    compileSdk = 37
+}
+
+baselineProfile {
+    variants {
+        create("seededRelease") {
+            mergeIntoMain = true
+        }
+    }
 }
 
 dependencies {
+    baselineProfile(projects.baselineprofile)
+
     // Submodules
-    implementation(project(":common"))
-    implementation(project(":data-transfer"))
-    implementation(project(":data-model"))
+    implementation(projects.core.common)
+    implementation(projects.core.model)
+    implementation(projects.core.designsystem)
+    implementation(projects.core.ui)
+    implementation(projects.core.dataTransfer)
+    implementation(projects.core.datastoreProto)
+    implementation(projects.core.database)
+    implementation(projects.core.data)
+    implementation(projects.core.domain)
+    implementation(projects.core.session)
+    implementation(projects.core.nearby)
+    implementation(projects.core.cast)
+    implementation(projects.core.playback)
+    implementation(projects.core.sync)
+    implementation(projects.core.tutorial)
+
+    implementation(projects.feature.category.impl)
+    implementation(projects.feature.main.impl)
+    implementation(projects.feature.session.impl)
+    implementation(projects.feature.setlist.impl)
+    implementation(projects.feature.settings.impl)
+    implementation(projects.feature.song.impl)
 
     // App dependencies
+    implementation(libs.androidx.appcompat)
     implementation(libs.kotlinx.coroutines)
     implementation(libs.kotlinx.serialization.json)
     implementation(libs.play.services.nearby)
 
     // Architecture Components
     implementation(libs.androidx.datastore)
-    implementation(libs.protobuf.kotlinLite)
+
+    // Baseline profile
+    implementation(libs.androidx.profileinstaller)
 
     // AndroidX
     implementation(libs.android.material)
@@ -132,6 +250,12 @@ dependencies {
     androidTestImplementation(libs.hiltTesting)
     kspAndroidTest(libs.hiltCompiler)
 
+    // Test infrastructure submodules
+    androidTestImplementation(projects.core.testing)
+    androidTestImplementation(projects.core.dataTest)
+    androidTestImplementation(projects.core.nearbyTest)
+    androidTestImplementation(projects.core.castTest)
+
     // LeakCanary
 //    debugImplementation(libs.squareup.leakCanary)
 
@@ -144,6 +268,7 @@ dependencies {
     implementation(libs.androidx.compose.activity)
     implementation(libs.androidx.compose.viewmodel)
     implementation(libs.androidx.compose.hilt)
+    implementation(libs.androidx.compose.hilt.lifecycle)
     implementation(libs.androidx.compose.navigation)
     debugImplementation(libs.androidx.compose.ui.tooling)
     debugImplementation(libs.androidx.compose.ui.test.manifest)
@@ -158,26 +283,6 @@ dependencies {
     // Other dependencies
     implementation(libs.apache.commonsLang)
     implementation(libs.zip4j)
-}
 
-protobuf {
-    protoc {
-        artifact = libs.protobuf.protoc.get().toString()
-    }
-
-    // Generates the java Protobuf-lite code for the Protobufs in this project. See
-    // https://github.com/google/protobuf-gradle-plugin#customizing-protobuf-compilation
-    // for more information.
-    generateProtoTasks {
-        all().forEach { task ->
-            task.builtins {
-                id("java") {
-                    option("lite")
-                }
-                id("kotlin") {
-                    option("lite")
-                }
-            }
-        }
-    }
+    coreLibraryDesugaring(libs.android.desugarJdkLibs)
 }

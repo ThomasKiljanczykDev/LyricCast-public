@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright (c) 2026 . All rights reserved.
+  -->
+
+<resources>
+    <string name="settings_title">Einstellungen</string>
+    <string name="navigate_up">Nach oben navigieren</string>
+    
+    <string name="preference_language_title">Sprache</string>
+    <string name="preference_theme_title">Design</string>
+    <string name="preference_controls_button_height_title">Höhe der Steuerungsschaltflächen</string>
+    <string name="preference_cast_background_title">Hintergrundfarbe</string>
+    <string name="preference_cast_font_color_title">Schriftfarbe</string>
+    <string name="preference_cast_max_font_size_title">Maximale Schriftgröße</string>
+    <string name="preference_blank_title">Beim Start leer</string>
+    <string name="preference_section_app">Anwendung</string>
+    <string name="preference_language_system">Systemstandard</string>
+    <string name="preference_theme_light">Hell</string>
+    <string name="preference_theme_dark">Dunkel</string>
+    <string name="preference_theme_system">Systemstandard</string>
+    <string name="preference_controls_buttons_height_small">Klein</string>
+    <string name="preference_controls_buttons_height_medium">Mittel</string>
+    <string name="preference_controls_buttons_height_large">Groß</string>
+    <string name="preference_color_black">Schwarz</string>
+    <string name="preference_color_white">Weiß</string>
+    <string name="preference_color_blue">Blau</string>
+    <string name="preference_color_red">Rot</string>
+    <string name="preference_color_pink">Rosa</string>
+    <string name="preference_donate_title">Spendier mir einen Kaffee</string>
+    <string name="preference_donate_summary">Unterstütze die Entwicklung dieser App</string>
+</resources>

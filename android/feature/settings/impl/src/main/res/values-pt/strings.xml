@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright (c) 2026 . All rights reserved.
+  -->
+
+<resources>
+    <string name="settings_title">Configurações</string>
+    <string name="navigate_up">Voltar</string>
+    
+    <string name="preference_language_title">Idioma</string>
+    <string name="preference_theme_title">Tema</string>
+    <string name="preference_controls_button_height_title">Altura dos botões de controle</string>
+    <string name="preference_cast_background_title">Cor de fundo</string>
+    <string name="preference_cast_font_color_title">Cor da fonte</string>
+    <string name="preference_cast_max_font_size_title">Tamanho máximo da fonte</string>
+    <string name="preference_blank_title">Tela escura ao iniciar</string>
+    <string name="preference_section_app">Aplicativo</string>
+    <string name="preference_language_system">Padrão do sistema</string>
+    <string name="preference_theme_light">Claro</string>
+    <string name="preference_theme_dark">Escuro</string>
+    <string name="preference_theme_system">Padrão do sistema</string>
+    <string name="preference_controls_buttons_height_small">Pequena</string>
+    <string name="preference_controls_buttons_height_medium">Média</string>
+    <string name="preference_controls_buttons_height_large">Grande</string>
+    <string name="preference_color_black">Preto</string>
+    <string name="preference_color_white">Branco</string>
+    <string name="preference_color_blue">Azul</string>
+    <string name="preference_color_red">Vermelho</string>
+    <string name="preference_color_pink">Rosa</string>
+    <string name="preference_donate_title">Me pague um café</string>
+    <string name="preference_donate_summary">Apoie o desenvolvimento deste app</string>
+</resources>

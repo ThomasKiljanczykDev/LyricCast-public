@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="category_manager_delete_failed">Failed to delete categories</string>
+    <string name="category_manager_enter_name">Please enter category name</string>
+    <string name="category_manager_name_already_used">Category name already in use</string>
+    <string name="category_manager_name_too_long">Category name exceeds the maximum length of %d characters</string>
+    <string name="category_manager_save_failed">Failed to save category</string>
+    <string name="delete_setlists_failed">Failed to delete setlists</string>
+    <string name="delete_songs_failed">Failed to delete songs</string>
+    <string name="main_activity_export_deleting_temp">Deleting temporary directory …</string>
+    <string name="main_activity_export_preparing_data">Preparing data …</string>
+    <string name="main_activity_export_saving_json">Saving to temporary directory …</string>
+    <string name="main_activity_export_saving_zip">Saving zip package …</string>
+    <string name="setlist_editor_enter_name">Please enter setlist name</string>
+    <string name="setlist_editor_must_have_songs">Setlist must contain at least one song</string>
+    <string name="setlist_editor_name_already_used">Setlist name already in use</string>
+    <string name="setlist_editor_save_failed">Failed to save setlist</string>
+</resources>

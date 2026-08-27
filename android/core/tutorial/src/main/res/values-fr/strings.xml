@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright (c) 2026 . All rights reserved.
+  -->
+
+<resources>
+    <string name="tutorial_next">Suivant</string>
+    <string name="tutorial_done">Terminé</string>
+    <string name="tutorial_skip">Passer</string>
+    <string name="tutorial_get_started">Commencer</string>
+    <string name="tutorial_step_counter">%1$d sur %2$d</string>
+    <string name="onboarding_slide_welcome_title">Bienvenue dans LyricCast</string>
+    <string name="onboarding_slide_welcome_body">LyricCast affiche les paroles de vos chants sur grand écran. Constituez une bibliothèque, organisez les chants en listes et projetez-les sur un téléviseur ou sur d\'autres appareils, sans matériel dédié.</string>
+    <string name="onboarding_slide_library_title">Constituez votre bibliothèque</string>
+    <string name="onboarding_slide_library_body">Importez une archive OpenSong ou une sauvegarde LyricCast pour démarrer en quelques secondes, ou saisissez vos chants vous-même. Les catégories gardent une grande bibliothèque maniable.</string>
+    <string name="onboarding_slide_setlists_title">Préparez vos listes</string>
+    <string name="onboarding_slide_setlists_body">Une liste est une suite ordonnée de chants pour un culte ou un événement. Préparez-la à l\'avance, puis déroulez-la du début à la fin sans chercher le chant suivant.</string>
+    <string name="onboarding_slide_cast_title">Diffusez sur un téléviseur</string>
+    <string name="onboarding_slide_cast_body">Envoyez les paroles vers n\'importe quel appareil Google Cast du même réseau Wi-Fi. L\'icône Cast apparaît dans la barre du haut dès qu\'un récepteur est détecté.</string>
+    <string name="onboarding_slide_sessions_title">Présentez sur plusieurs appareils</string>
+    <string name="onboarding_slide_sessions_body">Pas d\'appareil Cast ? Démarrez une session et laissez les autres téléphones ou tablettes à proximité suivre en synchronisation : un appareil mène, les autres suivent automatiquement.</string>
+    <string name="onboarding_slide_presenting_title">Présentez à votre façon</string>
+    <string name="onboarding_slide_presenting_body">Pendant le culte, faites défiler les couplets, videz l\'écran entre les chants et suivez le texte. Couleurs, taille de police et écran vide au démarrage se règlent dans les paramètres.</string>
+    <string name="tour_main_tabs_title">Chants et listes</string>
+    <string name="tour_main_tabs_body">Votre bibliothèque se trouve ici. Chants contient tout ce que vous avez ajouté ; Listes contient les déroulés que vous en tirez.</string>
+    <string name="tour_main_fab_title">Ajoutez du nouveau</string>
+    <string name="tour_main_fab_body">Rédigez un chant de zéro, ou constituez une liste en choisissant des chants de votre bibliothèque et en les ordonnant.</string>
+    <string name="tour_main_overflow_title">Le menu principal</string>
+    <string name="tour_main_overflow_body">L\'import est le moyen le plus rapide de remplir l\'application : il lit les archives OpenSong et les sauvegardes LyricCast. L\'export enregistre votre travail dans un fichier. Les éléments supprimés sont également ici, une suppression accidentelle se répare donc facilement.</string>
+    <string name="tour_main_categories_title">Organisez par catégories</string>
+    <string name="tour_main_categories_body">Créez des catégories colorées et attribuez-les aux chants pour qu\'une grande bibliothèque reste facile à parcourir.</string>
+    <string name="tour_main_settings_title">Paramètres</string>
+    <string name="tour_main_settings_body">Couleurs de la présentation, taille de police, thème et valeurs par défaut des sessions.</string>
+    <string name="tour_main_cast_title">Diffusez sur un écran</string>
+    <string name="tour_main_cast_body">L\'icône Cast apparaît dans la barre du haut dès qu\'un appareil Google Cast est présent sur le même réseau Wi-Fi. Appuyez dessus pour afficher les paroles sur le téléviseur.</string>
+    <string name="tour_main_sessions_title">Présentez sur plusieurs appareils</string>
+    <string name="tour_main_sessions_body">Démarrez une session ici pour que cet appareil mène : les autres appareils LyricCast à proximité peuvent suivre ce que vous affichez, sans posséder leur propre copie de vos chants. Pour suivre quelqu\'un d\'autre, utilisez l\'onglet Session.</string>
+    <string name="tour_song_editor_title_title">Nommez le chant</string>
+    <string name="tour_song_editor_title_body">C\'est le titre que vous chercherez plus tard : rendez-le reconnaissable. Les paroles vont dans le champ ci-dessous — chaque bloc devient un écran lors de la présentation.</string>
+    <string name="tour_song_editor_structure_title">Agencez les sections</string>
+    <string name="tour_song_editor_structure_body">Définissez l\'ordre d\'affichage des couplets et des refrains, répétitions comprises, sans dupliquer le texte.</string>
+    <string name="tour_song_editor_save_title">Enregistrer</string>
+    <string name="tour_song_editor_save_body">Enregistrer ajoute le chant à votre bibliothèque ; quitter sans enregistrer l\'abandonne. Lui attribuer une catégorie dès maintenant le rendra plus facile à retrouver quand la bibliothèque grandira.</string>
+    <string name="tour_setlist_editor_name_title">Nommez la liste</string>
+    <string name="tour_setlist_editor_name_body">Quelque chose que vous reconnaîtrez plus tard : une date ou un nom d\'événement fonctionne bien.</string>
+    <string name="tour_setlist_editor_picker_title">Choisissez et ordonnez les chants</string>
+    <string name="tour_setlist_editor_picker_body">Choisissez des chants dans votre bibliothèque, puis faites-les glisser dans l\'ordre voulu. Cette liste reste vide tant que vous n\'avez pas ajouté de chants.</string>
+    <string name="tour_settings_appearance_title">L\'apparence des paroles</string>
+    <string name="tour_settings_appearance_body">La couleur de fond, la couleur du texte et la taille de police maximale déterminent ce qui s\'affiche sur le téléviseur ou sur l\'appareil qui suit.</string>
+    <string name="tour_settings_blank_title">Démarrer sur un écran vide</string>
+    <string name="tour_settings_blank_body">Avec cette option, l\'écran reste vide à l\'ouverture d\'un chant : rien ne s\'affiche avant que vous soyez prêt.</string>
+    <string name="tour_settings_auto_session_title">Valeurs par défaut des sessions</string>
+    <string name="tour_settings_auto_session_body">Démarrez une session automatiquement à l\'ouverture de l\'application et donnez-lui un nom par défaut pour que les appareils qui la rejoignent la reconnaissent.</string>
+    <string name="tour_settings_donate_title">LyricCast vous plaît ?</string>
+    <string name="tour_settings_donate_body">Si elle vous est utile, offrez-moi un café pour soutenir son développement.</string>
+</resources>

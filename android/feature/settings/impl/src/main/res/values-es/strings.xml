@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright (c) 2026 . All rights reserved.
+  -->
+
+<resources>
+    <string name="settings_title">Ajustes</string>
+    <string name="navigate_up">Volver</string>
+    
+    <string name="preference_language_title">Idioma</string>
+    <string name="preference_theme_title">Tema</string>
+    <string name="preference_controls_button_height_title">Altura de los botones de control</string>
+    <string name="preference_cast_background_title">Color de fondo</string>
+    <string name="preference_cast_font_color_title">Color de la letra</string>
+    <string name="preference_cast_max_font_size_title">Tamaño máximo de letra</string>
+    <string name="preference_blank_title">Pantalla en negro al empezar</string>
+    <string name="preference_section_app">Aplicación</string>
+    <string name="preference_language_system">Predeterminado del sistema</string>
+    <string name="preference_theme_light">Claro</string>
+    <string name="preference_theme_dark">Oscuro</string>
+    <string name="preference_theme_system">Predeterminado del sistema</string>
+    <string name="preference_controls_buttons_height_small">Pequeña</string>
+    <string name="preference_controls_buttons_height_medium">Mediana</string>
+    <string name="preference_controls_buttons_height_large">Grande</string>
+    <string name="preference_color_black">Negro</string>
+    <string name="preference_color_white">Blanco</string>
+    <string name="preference_color_blue">Azul</string>
+    <string name="preference_color_red">Rojo</string>
+    <string name="preference_color_pink">Rosa</string>
+    <string name="preference_donate_title">Invítame a un café</string>
+    <string name="preference_donate_summary">Apoya el desarrollo de esta app</string>
+</resources>

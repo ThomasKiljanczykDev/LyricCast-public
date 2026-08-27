@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="all_categories">All categories</string>
+    <string name="category_label">Category</string>
+    <string name="controls_next">Next</string>
+    <string name="controls_off" translatable="false">OFF</string>
+    <string name="controls_on" translatable="false">ON</string>
+    <string name="controls_previous">Previous</string>
+    <string name="delete">Delete</string>
+    <string name="edit">Edit</string>
+    <string name="field_error">Field error</string>
+    <string name="main_activity_export_preparing_data">Preparing data …</string>
+    <string name="main_activity_import_successful">Import completed successfully</string>
+    <string name="hint_song_title">Song title</string>
+    <string name="navigate_up">Navigate up</string>
+    <string name="setlist_editor_hint_selected">Selected</string>
+
+    <!-- Demo data for the rendered README screenshots (tools:readme-screenshots) -->
+    <string name="demo_category_good_stuff">GOOD STUFF</string>
+    <string name="demo_category_favorites">FAVORITES</string>
+    <string name="demo_category_meh">MEH</string>
+    <string name="demo_song_a">A Song</string>
+    <string name="demo_song_awesome">Awesome Song</string>
+    <string name="demo_song_great">Great Song</string>
+    <string name="demo_song_magnificent">Magnificent Song</string>
+    <string name="demo_song_the">THE Song</string>
+    <string name="demo_setlist_name">A Setlist</string>
+</resources>

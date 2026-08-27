@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Setlist Controls -->
+    <string name="setlist_controls_song_item_title_template" translatable="false">%d. %s</string>
+    <string name="title_controls">Controls</string>
+    <string name="settings_title">Settings</string>
+
+    <!-- Setlist Editor -->
+    <string name="close">Close</string>
+    <string name="delete">Delete</string>
+    <string name="setlist_editor_title">Setlist Editor</string>
+    <string name="setlist_editor_button_pick_songs">Pick songs</string>
+    <string name="setlist_editor_load_failed">Failed to load setlist</string>
+    <string name="setlist_editor_setlist_not_found">Setlist not found</string>
+    <string name="setlist_editor_validation_failed">Cannot save setlist - validation failed</string>
+    <string name="setlist_name">Setlist name</string>
+    <string name="add_song">Add song</string>
+    <string name="navigate_back">Back</string>
+    <string name="save">Save</string>
+    <string name="confirm">Confirm</string>
+    <string name="duplicate">Duplicate</string>
+    <string name="error_name_empty">Name cannot be empty</string>
+    <string name="error_name_already_in_use">Name is already in use</string>
+    <string name="no_songs_found">No songs found</string>
+</resources>

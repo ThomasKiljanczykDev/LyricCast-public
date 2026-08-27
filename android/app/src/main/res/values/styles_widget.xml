@@ -1,7 +1,7 @@
 <!--
-  ~ Created by Tomasz Kiljanczyk on 25/01/2025, 18:55
-  ~ Copyright (c) 2025 . All rights reserved.
-  ~ Last modified 10/01/2025, 01:46
+  ~ Created by Tomasz Kiljanczyk on 2/8/26, 1:18 AM
+  ~ Copyright (c) 2026 . All rights reserved.
+  ~ Last modified 2/8/26, 12:48 AM
   -->
 
 <resources>
@@ -19,25 +19,6 @@
         <item name="android:paddingBottom">8dp</item>
 
         <item name="materialThemeOverlay">@style/ThemeOverlay.LyricCast.EditText</item>
-    </style>
-
-    <style name="Widget.LyricCast.AutoCompleteTextView.FilledBox" parent="Widget.Material3.AutoCompleteTextView.FilledBox">
-        <item name="dropDownBackgroundTint">@color/background_4</item>
-    </style>
-
-    <style name="ThemeOverlay.LyricCast.AutoCompleteTextView.FilledBox" parent="@style/ThemeOverlay.Material3.AutoCompleteTextView.FilledBox">
-        <item name="autoCompleteTextViewStyle">
-            @style/Widget.LyricCast.AutoCompleteTextView.FilledBox
-        </item>
-    </style>
-
-    <style name="Widget.LyricCast.TextInputLayout.FilledBox.ExposedDropdownMenu" parent="@style/Widget.Material3.TextInputLayout.FilledBox.ExposedDropdownMenu">
-        <item name="boxBackgroundColor">@color/background_4</item>
-
-        <item name="hintTextColor">@color/accent</item>
-        <item name="materialThemeOverlay">
-            @style/ThemeOverlay.LyricCast.AutoCompleteTextView.FilledBox
-        </item>
     </style>
 
     <style name="ThemeOverlay.LyricCast.EditText" parent="ThemeOverlay.Material3.TextInputEditText.FilledBox">
@@ -68,14 +49,6 @@
         <item name="android:textColor">@color/button_text_2</item>
     </style>
 
-    <style name="Widget.LyricCast.Button.Light" parent="Widget.LyricCast.Button">
-        <item name="android:textColor">@color/button_text_2</item>
-    </style>
-
-    <style name="Widget.LyricCast.Button.Icon.Light" parent="@style/Widget.Material3.Button.TextButton.Icon">
-        <item name="iconTint">@color/button_text_2</item>
-    </style>
-
     <style name="Widget.LyricCast.ActionMode" parent="@style/Widget.Material3.ActionMode">
         <item name="background">@color/background_1</item>
     </style>
@@ -83,8 +56,6 @@
     <style name="Widget.LyricCast.ActionButton.Overflow" parent="Widget.AppCompat.ActionButton.Overflow">
         <item name="tint">@color/icon_primary</item>
     </style>
-
-    <style name="Widget.LyricCast.Toolbar.Button.Navigation" parent="Widget.AppCompat.Toolbar.Button.Navigation"></style>
 
     <style name="Widget.LyricCast.ActionButton" parent="Widget.AppCompat.ActionButton">
         <item name="tint">@color/icon_primary</item>

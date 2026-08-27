@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Created by Tomasz Kiljanczyk on 8/6/26, 1:20 PM
+  ~ Copyright (c) 2026 . All rights reserved.
+  ~ Last modified 8/6/26, 1:20 PM
+  -->
+
+<resources>
+    <string name="settings_title">Mipangilio</string>
+    <string name="navigate_up">Nenda juu</string>
+    
+    <string name="preference_language_title">Lugha</string>
+    <string name="preference_theme_title">Mandhari</string>
+    <string name="preference_controls_button_height_title">Urefu wa vitufe vya vidhibiti</string>
+    <string name="preference_cast_background_title">Rangi ya mandharinyuma</string>
+    <string name="preference_cast_font_color_title">Rangi ya maandishi</string>
+    <string name="preference_cast_max_font_size_title">Ukubwa wa juu wa maandishi</string>
+    <string name="preference_blank_title">Skrini tupu wakati wa kuanza</string>
+    <string name="preference_section_app">Programu</string>
+    <string name="preference_language_system">Chaguo-msingi la mfumo</string>
+    <string name="preference_theme_light">Nyepesi</string>
+    <string name="preference_theme_dark">Nyeusi</string>
+    <string name="preference_theme_system">Chaguo-msingi la mfumo</string>
+    <string name="preference_controls_buttons_height_small">Ndogo</string>
+    <string name="preference_controls_buttons_height_medium">Wastani</string>
+    <string name="preference_controls_buttons_height_large">Kubwa</string>
+    <string name="preference_color_black">Nyeusi</string>
+    <string name="preference_color_white">Nyeupe</string>
+    <string name="preference_color_blue">Buluu</string>
+    <string name="preference_color_red">Nyekundu</string>
+    <string name="preference_color_pink">Waridi</string>
+    <string name="preference_donate_title">Ninunulie kahawa</string>
+    <string name="preference_donate_summary">Unga mkono maendeleo ya programu hii</string>
+</resources>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Created by Tomasz Kiljanczyk on 8/6/26, 1:20 PM
+  ~ Copyright (c) 2026 . All rights reserved.
+  ~ Last modified 8/6/26, 1:20 PM
+  -->
+
+<resources>
+    <string name="settings_title">Cài đặt</string>
+    <string name="navigate_up">Lên trên</string>
+    
+    <string name="preference_language_title">Ngôn ngữ</string>
+    <string name="preference_theme_title">Giao diện</string>
+    <string name="preference_controls_button_height_title">Chiều cao nút điều khiển</string>
+    <string name="preference_cast_background_title">Màu nền</string>
+    <string name="preference_cast_font_color_title">Màu chữ</string>
+    <string name="preference_cast_max_font_size_title">Cỡ chữ tối đa</string>
+    <string name="preference_blank_title">Màn hình trống khi mở</string>
+    <string name="preference_section_app">Ứng dụng</string>
+    <string name="preference_language_system">Mặc định hệ thống</string>
+    <string name="preference_theme_light">Sáng</string>
+    <string name="preference_theme_dark">Tối</string>
+    <string name="preference_theme_system">Mặc định hệ thống</string>
+    <string name="preference_controls_buttons_height_small">Nhỏ</string>
+    <string name="preference_controls_buttons_height_medium">Vừa</string>
+    <string name="preference_controls_buttons_height_large">Lớn</string>
+    <string name="preference_color_black">Đen</string>
+    <string name="preference_color_white">Trắng</string>
+    <string name="preference_color_blue">Xanh dương</string>
+    <string name="preference_color_red">Đỏ</string>
+    <string name="preference_color_pink">Hồng</string>
+    <string name="preference_donate_title">Mời tôi một ly cà phê</string>
+    <string name="preference_donate_summary">Hỗ trợ việc phát triển ứng dụng này</string>
+</resources>

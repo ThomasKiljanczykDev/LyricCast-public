@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="dialog_fragment_start_session_title">Démarrer une session</string>
+    <string name="dialog_fragment_start_session_missing_permissions">Vous avez refusé les autorisations nécessaires à la fonction de session. Activez-les dans les paramètres.</string>
+    <string name="title_category_manager">Gérer les catégories</string>
+    <string name="title_setlists">Listes</string>
+    <string name="title_songs">Chants</string>
+    <string name="hint_setlist_name">Nom de la liste</string>
+    <string name="hint_import_format">Format</string>
+    <string name="launch_activity_go_to_settings">Ouvrir les paramètres</string>
+    <string name="main_activity_import_delete_all_before_import">Tout supprimer avant l\'import</string>
+    <string name="main_activity_import_replace_on_conflict">Remplacer en cas de conflit</string>
+    <string name="main_activity_import_dialog_title">Importer</string>
+    <string name="main_activity_import_successful">Importation terminée</string>
+    <string name="main_activity_import_failed">Échec de l\'importation</string>
+    <string name="main_activity_import_pending_file">Fichier : %1$s</string>
+    <string name="main_activity_export_preparing_data">Préparation des données…</string>
+    <string name="main_activity_action_menu_export_selected">Exporter la sélection</string>
+    <string name="main_activity_menu_export">Tout exporter</string>
+    <string name="main_activity_menu_import">Importer</string>
+    <string name="main_activity_button_add_song">Ajouter un chant</string>
+    <string name="main_activity_button_add_setlist">Ajouter une liste</string>
+    <string name="main_activity_loading_file">Chargement du fichier …</string>
+    <string name="main_activity_tab_join_session">Session</string>
+    <string name="main_activity_cannot_join_session">Vous ne pouvez pas rejoindre une autre session pendant que vous menez la vôtre</string>
+    <string name="main_activity_setlist_is_empty">La liste est vide !</string>
+    <string name="edit">Modifier</string>
+    <string name="delete">Supprimer</string>
+    <string name="more_options">Plus d\'options</string>
+    <string name="settings_title">Paramètres</string>
+    <string name="ignore">Ignorer</string>
+    <string name="close">Fermer</string>
+    <string name="progress_processing">Traitement…</string>
+</resources>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="title_song_editor">찬양 편집기</string>
+    <string name="song_editor_hint_enter_lyrics">가사를 입력하세요</string>
+    <string name="song_editor_input_section_name">구성 이름</string>
+    <string name="song_editor_input_new_section">새 구성</string>
+    <string name="song_editor_input_new_section_template">새 구성</string>
+    <string name="song_editor_button_move_left">왼쪽으로 이동</string>
+    <string name="song_editor_button_move_right">오른쪽으로 이동</string>
+    <string name="song_editor_button_delete_section">구성 삭제</string>
+    <string name="song_editor_enter_title">찬양 제목을 입력하세요</string>
+    <string name="song_editor_title_already_used">이미 사용 중인 찬양 제목입니다</string>
+    <string name="song_editor_enter_section_name">구성 이름을 입력하세요</string>
+    <string name="song_editor_sections_must_have_names">모든 구성에 이름이 있어야 합니다</string>
+    <string name="song_editor_save_failed">찬양을 저장하지 못했습니다</string>
+    <string name="song_editor_song_not_found">찬양을 찾을 수 없습니다</string>
+    <string name="song_editor_load_failed">찬양을 불러오지 못했습니다</string>
+    <string name="category_none">없음</string>
+    <string name="title_controls">제어</string>
+    <string name="navigate_up">위로 이동</string>
+    <string name="settings_title">설정</string>
+    <string name="hint_song_title">찬양 제목</string>
+    <string name="action_save">저장</string>
+</resources>

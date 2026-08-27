@@ -1,0 +1,22 @@
+<resources>
+    <string name="editor_button_save">Salvar</string>
+    <string name="editor_button_add">Adicionar</string>
+    <string name="title_categories">Categorias</string>
+    <string name="category_manager_hint_category_name">Nome</string>
+    <string name="category_manager_hint_category_color">Cor</string>
+    <string name="category_manager_add_category">Adicionar categoria</string>
+    <string name="category_manager_edit_category">Editar categoria</string>
+    <string name="category_color_maroon">Bordô</string>
+    <string name="category_color_tomato">Tomate</string>
+    <string name="category_color_golden">Dourado</string>
+    <string name="category_color_olive">Oliva</string>
+    <string name="category_color_cyan">Ciano</string>
+    <string name="category_color_turquoise">Turquesa</string>
+    <string name="category_color_royal_blue">Azul-real</string>
+    <string name="category_color_violet">Violeta</string>
+    <string name="category_color_pink">Rosa</string>
+    <string name="category_color_navajo_white">Bege</string>
+    <string name="category_color_slate_gray">Cinza-ardósia</string>
+    <string name="category_color_gray">Cinza</string>
+    <string name="category_color_steel_blue">Azul-aço</string>
+</resources>

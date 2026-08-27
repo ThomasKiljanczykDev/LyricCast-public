@@ -32,12 +32,12 @@
         android:name="android.permission.BLUETOOTH_SCAN"
         android:minSdkVersion="31"
         android:usesPermissionFlags="neverForLocation"
-        tools:targetApi="s" />
+        tools:targetApi="35" />
     <uses-permission
         android:name="android.permission.NEARBY_WIFI_DEVICES"
         android:minSdkVersion="33"
         android:usesPermissionFlags="neverForLocation"
-        tools:targetApi="tiramisu" />
+        tools:targetApi="35" />
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -48,22 +48,103 @@
         android:hardwareAccelerated="true"
         android:icon="@mipmap/ic_lyriccast"
         android:label="@string/app_name"
+        android:localeConfig="@xml/locale_config"
         android:theme="@style/Theme.LyricCast.DarkActionBar">
 
         <meta-data
             android:name="com.google.android.gms.cast.framework.OPTIONS_PROVIDER_CLASS_NAME"
-            android:value="dev.thomas_kiljanczyk.lyriccast.shared.cast.CastOptionsProvider" />
+            android:value="dev.thomas_kiljanczyk.lyriccast.application.CastOptionsProvider" />
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths" />
+        </provider>
 
         <activity
             android:name=".ui.main.MainActivity"
             android:exported="true"
-            android:screenOrientation="sensorPortrait"
+            android:launchMode="singleTop"
             android:theme="@style/Theme.LyricCast.NoActionBar"
-            android:windowSoftInputMode="adjustPan|adjustResize">
+            android:windowSoftInputMode="adjustPan|adjustResize"
+            android:configChanges="orientation|screenSize|keyboardHidden|uiMode">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+            <!--
+              ~ lyriccast:// deep links. The route patterns themselves live in each feature's own
+              ~ *DeepLinks object; this filter only makes the scheme reachable from outside.
+              -->
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="lyriccast" />
+                <data android:host="app" />
+            </intent-filter>
+
+            <!--
+              ~ LyricCast's own export archives, by MIME type, with no path restriction. This is
+              ~ the filter that catches SAF content:// URIs, whose path carries no file name.
+              -->
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="content" />
+                <data android:scheme="file" />
+                <data android:mimeType="application/zip" />
+                <data android:mimeType="application/x-zip-compressed" />
+            </intent-filter>
+
+            <!--
+              ~ LyricCast .zip exports and OpenSong .xml songs, matched on extension. The wildcard
+              ~ MIME type is mandatory, not sloppiness: a filter that declares no mimeType fails to
+              ~ match any intent that has one, and file managers always set one. The path rules
+              ~ keep the wildcard honest. pathSuffix is API 31+, so pathPattern covers earlier
+              ~ versions; the two are OR-ed at match time.
+              -->
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="content" />
+                <data android:scheme="file" />
+                <data android:host="*" />
+                <data android:mimeType="*/*" />
+                <data android:pathPattern=".*\\.zip" />
+                <data android:pathPattern=".*\\.xml" />
+                <data
+                    android:pathSuffix=".zip"
+                    tools:targetApi="31" />
+                <data
+                    android:pathSuffix=".xml"
+                    tools:targetApi="31" />
+            </intent-filter>
+
+            <!-- Share sheet. A send intent has no data URI, so this matches on type alone. -->
+            <intent-filter>
+                <action android:name="android.intent.action.SEND" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data android:mimeType="application/zip" />
+                <data android:mimeType="application/x-zip-compressed" />
+                <data android:mimeType="text/xml" />
+                <data android:mimeType="application/xml" />
             </intent-filter>
         </activity>
 

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="title_song_editor">Kihariri cha wimbo</string>
+    <string name="song_editor_hint_enter_lyrics">Andika maneno</string>
+    <string name="song_editor_input_section_name">Jina la sehemu</string>
+    <string name="song_editor_input_new_section">SEHEMU MPYA</string>
+    <string name="song_editor_input_new_section_template">SEHEMU MPYA</string>
+    <string name="song_editor_button_move_left">Sogeza kushoto</string>
+    <string name="song_editor_button_move_right">Sogeza kulia</string>
+    <string name="song_editor_button_delete_section">Futa sehemu</string>
+    <string name="song_editor_enter_title">Tafadhali andika kichwa cha wimbo</string>
+    <string name="song_editor_title_already_used">Kichwa cha wimbo tayari kinatumika</string>
+    <string name="song_editor_enter_section_name">Tafadhali andika jina la sehemu</string>
+    <string name="song_editor_sections_must_have_names">Sehemu zote lazima ziwe na majina</string>
+    <string name="song_editor_save_failed">Imeshindwa kuhifadhi wimbo</string>
+    <string name="song_editor_song_not_found">Wimbo haukupatikana</string>
+    <string name="song_editor_load_failed">Imeshindwa kupakia wimbo</string>
+    <string name="category_none">HAKUNA</string>
+    <string name="title_controls">Vidhibiti</string>
+    <string name="navigate_up">Nenda juu</string>
+    <string name="settings_title">Mipangilio</string>
+    <string name="hint_song_title">Jina la wimbo</string>
+    <string name="action_save">Hifadhi</string>
+</resources>

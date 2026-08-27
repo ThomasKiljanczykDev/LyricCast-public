@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="title_song_editor">Trình sửa bài hát</string>
+    <string name="song_editor_hint_enter_lyrics">Nhập lời bài hát</string>
+    <string name="song_editor_input_section_name">Tên phần</string>
+    <string name="song_editor_input_new_section">PHẦN MỚI</string>
+    <string name="song_editor_input_new_section_template">PHẦN MỚI</string>
+    <string name="song_editor_button_move_left">Chuyển sang trái</string>
+    <string name="song_editor_button_move_right">Chuyển sang phải</string>
+    <string name="song_editor_button_delete_section">Xóa phần</string>
+    <string name="song_editor_enter_title">Vui lòng nhập tên bài hát</string>
+    <string name="song_editor_title_already_used">Tên bài hát đã được sử dụng</string>
+    <string name="song_editor_enter_section_name">Vui lòng nhập tên phần</string>
+    <string name="song_editor_sections_must_have_names">Mọi phần đều phải có tên</string>
+    <string name="song_editor_save_failed">Không lưu được bài hát</string>
+    <string name="song_editor_song_not_found">Không tìm thấy bài hát</string>
+    <string name="song_editor_load_failed">Không tải được bài hát</string>
+    <string name="category_none">KHÔNG CÓ</string>
+    <string name="title_controls">Điều khiển</string>
+    <string name="navigate_up">Lên trên</string>
+    <string name="settings_title">Cài đặt</string>
+    <string name="hint_song_title">Tên bài hát</string>
+    <string name="action_save">Lưu</string>
+</resources>

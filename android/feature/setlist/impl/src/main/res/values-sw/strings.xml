@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="title_controls">Vidhibiti</string>
+    <string name="settings_title">Mipangilio</string>
+    <string name="close">Funga</string>
+    <string name="delete">Futa</string>
+    <string name="setlist_editor_title">Kihariri cha orodha ya nyimbo</string>
+    <string name="setlist_editor_button_pick_songs">Chagua nyimbo</string>
+    <string name="setlist_editor_load_failed">Imeshindwa kupakia orodha ya nyimbo</string>
+    <string name="setlist_editor_setlist_not_found">Orodha ya nyimbo haikupatikana</string>
+    <string name="setlist_editor_validation_failed">Haiwezekani kuhifadhi orodha ya nyimbo - uthibitishaji umeshindwa</string>
+    <string name="setlist_name">Jina la orodha ya nyimbo</string>
+    <string name="add_song">Ongeza wimbo</string>
+    <string name="duplicate">Nakili</string>
+    <string name="no_songs_found">Hakuna nyimbo zilizopatikana</string>
+    <string name="navigate_back">Rudi</string>
+    <string name="save">Hifadhi</string>
+    <string name="confirm">Thibitisha</string>
+    <string name="error_name_empty">Jina haliwezi kuwa tupu</string>
+    <string name="error_name_already_in_use">Jina tayari linatumika</string>
+</resources>

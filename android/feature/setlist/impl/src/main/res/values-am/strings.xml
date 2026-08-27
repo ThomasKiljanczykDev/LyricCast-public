@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="title_controls">መቆጣጠሪያዎች</string>
+    <string name="settings_title">ቅንብሮች</string>
+    <string name="close">ዝጋ</string>
+    <string name="delete">ሰርዝ</string>
+    <string name="setlist_editor_title">የመዝሙር ዝርዝር አርታዒ</string>
+    <string name="setlist_editor_button_pick_songs">መዝሙሮችን ይምረጡ</string>
+    <string name="setlist_editor_load_failed">የመዝሙር ዝርዝሩን መጫን አልተቻለም</string>
+    <string name="setlist_editor_setlist_not_found">የመዝሙር ዝርዝሩ አልተገኘም</string>
+    <string name="setlist_editor_validation_failed">የመዝሙር ዝርዝሩን ማስቀመጥ አይቻልም - ማረጋገጫው አልተሳካም</string>
+    <string name="setlist_name">የመዝሙር ዝርዝር ስም</string>
+    <string name="add_song">መዝሙር ጨምር</string>
+    <string name="duplicate">አባዛ</string>
+    <string name="no_songs_found">ምንም መዝሙሮች አልተገኙም</string>
+    <string name="navigate_back">ተመለስ</string>
+    <string name="save">አስቀምጥ</string>
+    <string name="confirm">አረጋግጥ</string>
+    <string name="error_name_empty">ስም ባዶ መሆን አይችልም</string>
+    <string name="error_name_already_in_use">ስሙ አስቀድሞ ጥቅም ላይ ውሏል</string>
+</resources>

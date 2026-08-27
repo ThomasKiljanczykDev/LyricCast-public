@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="title_song_editor">Éditeur de chant</string>
+    <string name="song_editor_hint_enter_lyrics">Saisissez les paroles</string>
+    <string name="song_editor_input_section_name">Nom de la section</string>
+    <string name="song_editor_input_new_section">NOUVELLE SECTION</string>
+    <string name="song_editor_input_new_section_template">NOUVELLE SECTION</string>
+    <string name="song_editor_button_move_left">Déplacer vers la gauche</string>
+    <string name="song_editor_button_move_right">Déplacer vers la droite</string>
+    <string name="song_editor_button_delete_section">Supprimer la section</string>
+    <string name="song_editor_enter_title">Saisissez un titre de chant</string>
+    <string name="song_editor_title_already_used">Ce titre de chant est déjà utilisé</string>
+    <string name="song_editor_enter_section_name">Saisissez un nom de section</string>
+    <string name="song_editor_sections_must_have_names">Toutes les sections doivent avoir un nom</string>
+    <string name="song_editor_save_failed">Échec de l\'enregistrement du chant</string>
+    <string name="song_editor_song_not_found">Chant introuvable</string>
+    <string name="song_editor_load_failed">Échec du chargement du chant</string>
+    <string name="category_none">AUCUNE</string>
+    <string name="title_controls">Contrôles</string>
+    <string name="navigate_up">Revenir en arrière</string>
+    <string name="settings_title">Paramètres</string>
+    <string name="hint_song_title">Titre du chant</string>
+    <string name="action_save">Enregistrer</string>
+</resources>

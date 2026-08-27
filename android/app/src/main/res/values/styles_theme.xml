@@ -27,7 +27,7 @@
         <item name="appBarLayoutStyle">@style/Widget.LyricCast.AppBarLayout.Static</item>
 
         <item name="toolbarNavigationButtonStyle">
-            @style/Widget.LyricCast.Toolbar.Button.Navigation
+            @style/Widget.AppCompat.Toolbar.Button.Navigation
         </item>
         <item name="actionModeStyle">@style/Widget.LyricCast.ActionMode</item>
         <item name="android:actionOverflowButtonStyle">
@@ -59,10 +59,5 @@
 
     <style name="ThemeOverlay.LyricCast.MaterialAlertDialog.NoTitle" parent="@style/ThemeOverlay.LyricCast.MaterialAlertDialog">
         <item name="android:windowNoTitle">true</item>
-    </style>
-
-    <!-- Custom theme for Cast Button with custom icon color -->
-    <style name="Theme.LyricCast.CastButton" parent="Theme.LyricCast.DarkActionBar">
-        <!-- MediaRouteButton specific tint attribute -->
     </style>
 </resources>

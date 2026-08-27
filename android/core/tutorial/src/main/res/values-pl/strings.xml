@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Created by Tomasz Kiljanczyk on 7/30/26, 12:10 AM
+  ~ Copyright (c) 2026 . All rights reserved.
+  ~ Last modified 7/30/26, 12:06 AM
+  -->
+
+<resources>
+    <!-- Shared tour chrome -->
+    <string name="tutorial_next">Dalej</string>
+    <string name="tutorial_done">Gotowe</string>
+    <string name="tutorial_skip">Pomiń</string>
+    <string name="tutorial_get_started">Zaczynajmy</string>
+    <string name="tutorial_step_counter">%1$d z %2$d</string>
+
+    <!-- Intro slides -->
+    <string name="onboarding_slide_welcome_title">Witaj w LyricCast</string>
+    <string name="onboarding_slide_welcome_body">LyricCast wyświetla teksty pieśni na dużym ekranie. Zbuduj bibliotekę, ułóż pieśni w zestawy i prezentuj je na telewizorze lub na innych urządzeniach — bez specjalnego sprzętu.</string>
+
+    <string name="onboarding_slide_library_title">Zbuduj bibliotekę pieśni</string>
+    <string name="onboarding_slide_library_body">Zaimportuj archiwum OpenSong albo kopię zapasową LyricCast, aby zacząć w kilka sekund, lub napisz pieśni samodzielnie. Kategorie pomagają zapanować nad dużą biblioteką.</string>
+
+    <string name="onboarding_slide_setlists_title">Planuj z zestawami</string>
+    <string name="onboarding_slide_setlists_body">Zestaw to uporządkowana lista pieśni na jedno nabożeństwo lub wydarzenie. Przygotuj go wcześniej, a potem prezentuj od początku do końca bez szukania kolejnej pieśni.</string>
+
+    <string name="onboarding_slide_cast_title">Przesyłaj na telewizor</string>
+    <string name="onboarding_slide_cast_body">Wysyłaj teksty na dowolne urządzenie Google Cast w tej samej sieci Wi-Fi. Ikona przesyłania pojawia się na górnym pasku, gdy odbiornik zostanie znaleziony.</string>
+
+    <string name="onboarding_slide_sessions_title">Prezentuj na wielu urządzeniach</string>
+    <string name="onboarding_slide_sessions_body">Nie masz urządzenia Cast? Rozpocznij sesję, a inne telefony lub tablety w pobliżu będą śledzić ją synchronicznie — jedno urządzenie prowadzi, reszta nadąża automatycznie.</string>
+
+    <string name="onboarding_slide_presenting_title">Prezentuj po swojemu</string>
+    <string name="onboarding_slide_presenting_body">Podczas nabożeństwa przechodź między zwrotkami, wygaszaj ekran między pieśniami i podążaj za tekstem. Kolory, rozmiar czcionki i wygaszanie na starcie znajdziesz w ustawieniach.</string>
+
+    <!-- Guided tour steps -->
+    <string name="tour_main_tabs_title">Pieśni i zestawy</string>
+    <string name="tour_main_tabs_body">Tutaj jest Twoja biblioteka. Pieśni zawierają wszystko, co dodasz; Zestawy zawierają układy przygotowane z tych pieśni.</string>
+
+    <string name="tour_main_fab_title">Dodaj coś nowego</string>
+    <string name="tour_main_fab_body">Napisz pieśń od podstaw albo zbuduj zestaw, wybierając pieśni z biblioteki i ustawiając je w kolejności.</string>
+
+    <string name="tour_main_overflow_title">Menu główne</string>
+    <string name="tour_main_overflow_body">Import to najszybszy sposób na wypełnienie aplikacji — odczytuje archiwa OpenSong i kopie zapasowe LyricCast. Eksport zapisuje Twoją pracę do pliku. Są tu też usunięte elementy, więc przypadkowe usunięcie łatwo cofnąć.</string>
+
+    <string name="tour_main_categories_title">Porządkuj kategoriami</string>
+    <string name="tour_main_categories_body">Twórz kategorie oznaczone kolorami i przypisuj je do pieśni, aby duża biblioteka pozostała przejrzysta.</string>
+
+    <string name="tour_main_settings_title">Ustawienia</string>
+    <string name="tour_main_settings_body">Kolory prezentacji, rozmiar czcionki, motyw i domyślne ustawienia sesji.</string>
+
+    <string name="tour_main_cast_title">Przesyłaj na ekran</string>
+    <string name="tour_main_cast_body">Ikona przesyłania pojawia się na górnym pasku, gdy urządzenie Google Cast jest w tej samej sieci Wi-Fi. Dotknij jej, aby wyświetlić teksty na telewizorze.</string>
+
+    <string name="tour_main_sessions_title">Prezentuj na wielu urządzeniach</string>
+    <string name="tour_main_sessions_body">Rozpocznij tutaj sesję, aby to urządzenie prowadziło prezentację — inne pobliskie urządzenia z LyricCast mogą śledzić to, co wyświetlasz, bez własnej kopii Twoich pieśni. Aby zamiast tego śledzić kogoś innego, użyj zakładki Dołącz do sesji.</string>
+
+    <string name="tour_song_editor_title_title">Nazwij pieśń</string>
+    <string name="tour_song_editor_title_body">Według tytułu będziesz później wyszukiwać pieśń, więc niech będzie rozpoznawalny. Tekst wpisujesz w polu poniżej — każdy blok stanie się jednym ekranem podczas prezentacji.</string>
+
+    <string name="tour_song_editor_structure_title">Ułóż sekcje</string>
+    <string name="tour_song_editor_structure_body">Ustaw kolejność wyświetlania zwrotek i refrenów, łącznie z powtórzeniami — bez powielania tekstu.</string>
+
+    <string name="tour_song_editor_save_title">Zapisz</string>
+    <string name="tour_song_editor_save_body">Zapisanie dodaje pieśń do biblioteki; wyjście bez zapisania ją odrzuca. Przypisanie kategorii ułatwi znalezienie pieśni, gdy biblioteka się rozrośnie.</string>
+
+    <string name="tour_setlist_editor_name_title">Nazwij zestaw</string>
+    <string name="tour_setlist_editor_name_body">Coś, co później rozpoznasz — data lub nazwa wydarzenia sprawdzają się dobrze.</string>
+
+    <string name="tour_setlist_editor_picker_title">Wybierz i uporządkuj pieśni</string>
+    <string name="tour_setlist_editor_picker_body">Wybierz pieśni z biblioteki, a następnie przeciągnij je w wybraną kolejność. Ta lista jest pusta, dopóki nie dodasz pieśni.</string>
+
+    <string name="tour_settings_appearance_title">Jak wyglądają teksty</string>
+    <string name="tour_settings_appearance_body">Kolor tła, kolor czcionki i maksymalny rozmiar czcionki decydują o tym, co pojawia się na telewizorze lub urządzeniu śledzącym.</string>
+
+    <string name="tour_settings_blank_title">Zacznij od pustego ekranu</string>
+    <string name="tour_settings_blank_body">Gdy ta opcja jest włączona, ekran pozostaje pusty po otwarciu pieśni, więc nic nie pojawia się, zanim będziesz gotowy.</string>
+
+    <string name="tour_settings_auto_session_title">Domyślne ustawienia sesji</string>
+    <string name="tour_settings_auto_session_body">Rozpoczynaj sesję automatycznie po uruchomieniu aplikacji i nadaj jej domyślną nazwę, aby dołączające urządzenia ją rozpoznały.</string>
+    <string name="tour_settings_donate_title">Podoba Ci się LyricCast?</string>
+    <string name="tour_settings_donate_body">Jeśli aplikacja jest dla Ciebie przydatna, możesz postawić mi kawę, aby wesprzeć jej rozwój.</string>
+</resources>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="title_song_editor">Editor lagu</string>
+    <string name="song_editor_hint_enter_lyrics">Masukkan lirik</string>
+    <string name="song_editor_input_section_name">Nama bagian</string>
+    <string name="song_editor_input_new_section">BAGIAN BARU</string>
+    <string name="song_editor_input_new_section_template">BAGIAN BARU</string>
+    <string name="song_editor_button_move_left">Pindah ke kiri</string>
+    <string name="song_editor_button_move_right">Pindah ke kanan</string>
+    <string name="song_editor_button_delete_section">Hapus bagian</string>
+    <string name="song_editor_enter_title">Masukkan judul lagu</string>
+    <string name="song_editor_title_already_used">Judul lagu sudah digunakan</string>
+    <string name="song_editor_enter_section_name">Masukkan nama bagian</string>
+    <string name="song_editor_sections_must_have_names">Semua bagian harus memiliki nama</string>
+    <string name="song_editor_save_failed">Gagal menyimpan lagu</string>
+    <string name="song_editor_song_not_found">Lagu tidak ditemukan</string>
+    <string name="song_editor_load_failed">Gagal memuat lagu</string>
+    <string name="category_none">TIDAK ADA</string>
+    <string name="title_controls">Kontrol</string>
+    <string name="navigate_up">Navigasi ke atas</string>
+    <string name="settings_title">Pengaturan</string>
+    <string name="hint_song_title">Judul lagu</string>
+    <string name="action_save">Simpan</string>
+</resources>

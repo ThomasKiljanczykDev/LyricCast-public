@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="title_controls">Mga kontrol</string>
+    <string name="settings_title">Mga setting</string>
+    <string name="close">Isara</string>
+    <string name="delete">Burahin</string>
+    <string name="setlist_editor_title">Editor ng setlist</string>
+    <string name="setlist_editor_button_pick_songs">Pumili ng mga awit</string>
+    <string name="setlist_editor_load_failed">Nabigong i-load ang setlist</string>
+    <string name="setlist_editor_setlist_not_found">Hindi nakita ang setlist</string>
+    <string name="setlist_editor_validation_failed">Hindi ma-save ang setlist - nabigo ang pagsusuri</string>
+    <string name="setlist_name">Pangalan ng setlist</string>
+    <string name="add_song">Magdagdag ng awit</string>
+    <string name="duplicate">I-duplicate</string>
+    <string name="no_songs_found">Walang nahanap na awit</string>
+    <string name="navigate_back">Bumalik</string>
+    <string name="save">I-save</string>
+    <string name="confirm">Kumpirmahin</string>
+    <string name="error_name_empty">Hindi maaaring blangko ang pangalan</string>
+    <string name="error_name_already_in_use">Ginagamit na ang pangalan</string>
+</resources>

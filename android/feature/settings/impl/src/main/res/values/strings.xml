@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Created by Tomasz Kiljanczyk on 6/3/25, 10:51 PM
+  ~ Copyright (c) 2025 . All rights reserved.
+  ~ Last modified 5/31/25, 3:41 PM
+  -->
+
+<resources>
+    <string name="settings_title">Settings</string>
+    <string name="navigate_up">Navigate up</string>
+
+    <!-- Titles -->
+    <string name="preference_language_title">Language</string>
+    <string name="preference_theme_title">Theme</string>
+    <string name="preference_controls_button_height_title">Controls button height</string>
+    <string name="preference_cast_background_title">Background color</string>
+    <string name="preference_cast_font_color_title">Font color</string>
+    <string name="preference_cast_max_font_size_title">Maximum font size</string>
+    <string name="preference_blank_title">Blanked on start</string>
+
+    <!-- Section titles -->
+    <string name="preference_section_app">Application</string>
+    <string name="preference_section_chromecast" translatable="false">Chromecast</string>
+
+    <!-- Language entries -->
+    <string name="preference_language_system">System default</string>
+
+    <!-- Theme entries -->
+    <string name="preference_theme_light">Light</string>
+    <string name="preference_theme_dark">Dark</string>
+    <string name="preference_theme_system">System default</string>
+
+    <!-- Button height entries -->
+    <string name="preference_controls_buttons_height_small">Small</string>
+    <string name="preference_controls_buttons_height_medium">Medium</string>
+    <string name="preference_controls_buttons_height_large">Large</string>
+
+    <!-- Color entries -->
+    <string name="preference_color_black">Black</string>
+    <string name="preference_color_white">White</string>
+    <string name="preference_color_blue">Blue</string>
+    <string name="preference_color_red">Red</string>
+    <string name="preference_color_pink">Pink</string>
+    <string name="preference_donate_title">Buy me a coffee</string>
+    <string name="preference_donate_summary">Support development of this app</string>
+</resources>

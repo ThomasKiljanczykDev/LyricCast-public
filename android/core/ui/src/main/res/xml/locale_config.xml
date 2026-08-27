@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Created by Tomasz Kiljanczyk on 10/8/25, 12:20 AM
+  ~ Copyright (c) 2025 . All rights reserved.
+  ~ Last modified 8/6/26, 12:00 PM
+  -->
+
+<!--
+  ~ The languages LyricCast ships, in the order the in-app picker lists them (by autonym).
+  ~ This file is the single source of truth: the platform reads it for the system per-app language
+  ~ screen, and SupportedLanguages reads it for the in-app picker.
+  ~
+  ~ Adding a language means one <locale> line here, a values-<qualifier>/strings.xml in every
+  ~ module that owns strings, an entry in app/build.gradle.kts localeFilters, and a Play listing.
+  ~ The qualifier is not always the tag: `id` maps to values-in (Android rewrites the legacy
+  ~ Indonesian code), `fil` to values-b+fil and `zh-Hans` to values-b+zh+Hans (3-letter codes and
+  ~ script subtags need the BCP-47 `b+` prefix).
+  -->
+<locale-config xmlns:android="http://schemas.android.com/apk/res/android">
+    <locale android:name="am" />
+    <locale android:name="de" />
+    <locale android:name="en" />
+    <locale android:name="es" />
+    <locale android:name="fil" />
+    <locale android:name="fr" />
+    <locale android:name="id" />
+    <locale android:name="it" />
+    <locale android:name="ko" />
+    <locale android:name="pl" />
+    <locale android:name="pt" />
+    <locale android:name="sw" />
+    <locale android:name="vi" />
+    <locale android:name="zh-Hans" />
+</locale-config>

@@ -6,13 +6,7 @@
 
 package dev.thomas_kiljanczyk.lyriccast.application
 
-fun AppSettings.getCastConfiguration(): CastConfiguration {
-    return CastConfiguration(
-        this.backgroundColor,
-        this.fontColor,
-        this.maxFontSize
-    )
-}
+import dev.thomas_kiljanczyk.lyriccast.datastore.proto.AppSettings
 
 fun AppSettings.Builder.setValue(key: String, value: Any?): AppSettings.Builder {
     val preferenceValue: String = value?.toString() ?: ""

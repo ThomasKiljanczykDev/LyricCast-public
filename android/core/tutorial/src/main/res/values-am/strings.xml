@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Created by Tomasz Kiljanczyk on 8/6/26, 1:20 PM
+  ~ Copyright (c) 2026 . All rights reserved.
+  ~ Last modified 8/6/26, 1:20 PM
+  -->
+
+<resources>
+    <string name="tutorial_next">ቀጣይ</string>
+    <string name="tutorial_done">ተጠናቀቀ</string>
+    <string name="tutorial_skip">ዝለል</string>
+    <string name="tutorial_get_started">ጀምር</string>
+    <string name="tutorial_step_counter">%1$d ከ%2$d</string>
+
+    <string name="onboarding_slide_welcome_title">ወደ LyricCast እንኳን በደህና መጡ</string>
+    <string name="onboarding_slide_welcome_body">LyricCast የመዝሙር ግጥሞችን ወደ ትልቅ ስክሪን ያወጣል። ቤተ መጻሕፍት ይገንቡ፣ መዝሙሮችን በዝርዝሮች ያደራጁ፣ ወደ ቴሌቪዥን ወይም ወደ ሌሎች መሣሪያዎች ያቅርቡ — ልዩ መሣሪያ አያስፈልግም።</string>
+
+    <string name="onboarding_slide_library_title">የመዝሙር ቤተ መጻሕፍትዎን ይገንቡ</string>
+    <string name="onboarding_slide_library_body">በሰከንዶች ውስጥ ለመጀመር የOpenSong መዝገብ ወይም የLyricCast ምትኬ ያስገቡ፣ ወይም መዝሙሮችን ራስዎ ይጻፉ። ምድቦች ትልቅ ቤተ መጻሕፍትን ለማስተዳደር ይረዳሉ።</string>
+
+    <string name="onboarding_slide_setlists_title">በመዝሙር ዝርዝሮች ያቅዱ</string>
+    <string name="onboarding_slide_setlists_body">የመዝሙር ዝርዝር ለአንድ አምልኮ ወይም ዝግጅት በቅደም ተከተል የተደረደሩ መዝሙሮች ናቸው። አስቀድመው ያዘጋጁት፣ ከዚያም ቀጣዩን መዝሙር ሳይፈልጉ ከመጀመሪያ እስከ መጨረሻ ያቅርቡ።</string>
+
+    <string name="onboarding_slide_cast_title">ወደ ቴሌቪዥን አሰራጭ</string>
+    <string name="onboarding_slide_cast_body">ግጥሞችን በተመሳሳይ የWi-Fi አውታረ መረብ ላይ ወዳለ ማንኛውም የGoogle Cast መሣሪያ ይላኩ። ተቀባይ ሲገኝ የCast አዶ በላይኛው መደርደሪያ ላይ ይታያል።</string>
+
+    <string name="onboarding_slide_sessions_title">በበርካታ መሣሪያዎች ላይ ያቅርቡ</string>
+    <string name="onboarding_slide_sessions_body">የCast መሣሪያ የለም? ክፍለ ጊዜ ይጀምሩ እና በአቅራቢያ ያሉ ሌሎች ስልኮች ወይም ታብሌቶች በተመሳሳይ ጊዜ እንዲከተሉ ያድርጉ — አንድ መሣሪያ ይመራል፣ የቀሩት በራሳቸው ይከተላሉ።</string>
+
+    <string name="onboarding_slide_presenting_title">በእርስዎ መንገድ ያቅርቡ</string>
+    <string name="onboarding_slide_presenting_body">በአምልኮ ወቅት ስንኞችን ያሳልፉ፣ በመዝሙሮች መካከል ስክሪኑን ባዶ ያድርጉ፣ ይከተሉ። ቀለሞች፣ የፊደል መጠን እና በመነሻ ላይ ባዶ ስክሪን ሁሉም በቅንብሮች ውስጥ ናቸው።</string>
+
+    <string name="tour_main_tabs_title">መዝሙሮች እና የመዝሙር ዝርዝሮች</string>
+    <string name="tour_main_tabs_body">ቤተ መጻሕፍትዎ እዚህ ነው። መዝሙሮች ያከሉትን ሁሉ ይይዛል፤ የመዝሙር ዝርዝሮች ከእነሱ የገነቡትን ቅደም ተከተል ይይዛል።</string>
+
+    <string name="tour_main_fab_title">አዲስ ነገር ይጨምሩ</string>
+    <string name="tour_main_fab_body">መዝሙር ከባዶ ይጻፉ፣ ወይም ከቤተ መጻሕፍትዎ መዝሙሮችን በመምረጥ እና በቅደም ተከተል በማስቀመጥ የመዝሙር ዝርዝር ይገንቡ።</string>
+
+    <string name="tour_main_overflow_title">ዋናው ምናሌ</string>
+    <string name="tour_main_overflow_body">ማስገባት መተግበሪያውን ለመሙላት ፈጣኑ መንገድ ነው — የOpenSong መዝገቦችን እና የLyricCast ምትኬዎችን ያነባል። ወደ ውጭ መላክ ስራዎን ወደ ፋይል ያስቀምጣል። የተሰረዙ ንጥሎችም እዚህ ስለሚገኙ በስህተት የተሰረዘን ነገር መመለስ ቀላል ነው።</string>
+
+    <string name="tour_main_categories_title">በምድቦች ያደራጁ</string>
+    <string name="tour_main_categories_body">በቀለም የተለዩ ምድቦችን ይፍጠሩ እና ለመዝሙሮች ይመድቡ፤ ትልቅ ቤተ መጻሕፍት ለፍለጋ ቀላል ሆኖ ይቆያል።</string>
+
+    <string name="tour_main_settings_title">ቅንብሮች</string>
+    <string name="tour_main_settings_body">የአቀራረብ ቀለሞች፣ የፊደል መጠን፣ ገጽታ እና የክፍለ ጊዜ ነባሪዎች።</string>
+
+    <string name="tour_main_cast_title">ወደ ስክሪን አሰራጭ</string>
+    <string name="tour_main_cast_body">የGoogle Cast መሣሪያ በተመሳሳይ የWi-Fi አውታረ መረብ ላይ ባለ ጊዜ ሁሉ የCast አዶ በላይኛው መደርደሪያ ላይ ይታያል። ግጥሞቹን ወደ ቴሌቪዥኑ ለማውጣት ይንኩት።</string>
+
+    <string name="tour_main_sessions_title">በበርካታ መሣሪያዎች ላይ ያቅርቡ</string>
+    <string name="tour_main_sessions_body">ይህን መሣሪያ አቅራቢ ለማድረግ እዚህ ክፍለ ጊዜ ይጀምሩ — LyricCast የሚያሄዱ በአቅራቢያ ያሉ ሌሎች መሣሪያዎች የመዝሙሮችዎ ቅጂ ሳያስፈልጋቸው የሚያሳዩትን መከተል ይችላሉ። በምትኩ ሌላ ሰውን ለመከተል የክፍለ ጊዜ ትርን ይጠቀሙ።</string>
+
+    <string name="tour_song_editor_title_title">ለመዝሙሩ ስም ይስጡ</string>
+    <string name="tour_song_editor_title_body">ርዕሱ በኋላ የሚፈልጉት ነው፣ ስለዚህ ሊታወቅ የሚችል ያድርጉት። ግጥሙ ከታች ባለው መስክ ውስጥ ይገባል — በሚያቀርቡበት ጊዜ እያንዳንዱ ክፍል አንድ ስክሪን ይሆናል።</string>
+
+    <string name="tour_song_editor_structure_title">ክፍሎቹን ያደራጁ</string>
+    <string name="tour_song_editor_structure_body">ስንኞችና ተደጋጋሚዎች የሚታዩበትን ቅደም ተከተል፣ ድግግሞሾችን ጨምሮ ያዘጋጁ — ጽሑፉን መድገም አያስፈልግም።</string>
+
+    <string name="tour_song_editor_save_title">አስቀምጥ</string>
+    <string name="tour_song_editor_save_body">ማስቀመጥ መዝሙሩን ወደ ቤተ መጻሕፍትዎ ይጨምረዋል፤ ሳያስቀምጡ መውጣት ያስወግደዋል። አስቀድሞ ምድብ መመደብ ቤተ መጻሕፍቱ ሲያድግ መዝሙሩን ለማግኘት ይረዳል።</string>
+
+    <string name="tour_setlist_editor_name_title">ለዝርዝሩ ስም ይስጡ</string>
+    <string name="tour_setlist_editor_name_body">በኋላ የሚያውቁት ነገር — ቀን ወይም የዝግጅት ስም በደንብ ይሠራል።</string>
+
+    <string name="tour_setlist_editor_picker_title">መዝሙሮችን ይምረጡና ያደራጁ</string>
+    <string name="tour_setlist_editor_picker_body">ከቤተ መጻሕፍትዎ መዝሙሮችን ይምረጡ፣ ከዚያም በሚፈልጉት ቅደም ተከተል ይጎትቷቸው። መዝሙሮች እስኪያክሉ ድረስ ይህ ዝርዝር ባዶ ነው።</string>
+
+    <string name="tour_settings_appearance_title">ግጥሙ እንዴት እንደሚታይ</string>
+    <string name="tour_settings_appearance_body">የጀርባ ቀለም፣ የፊደል ቀለም እና ከፍተኛው የፊደል መጠን በቴሌቪዥኑ ወይም በሚከተለው መሣሪያ ላይ የሚታየውን ይወስናሉ።</string>
+
+    <string name="tour_settings_blank_title">በባዶ ስክሪን ጀምር</string>
+    <string name="tour_settings_blank_body">ይህ ሲበራ መዝሙር ሲከፍቱ ስክሪኑ ባዶ ሆኖ ይቆያል፣ ስለዚህ ዝግጁ ከመሆንዎ በፊት ምንም አይታይም።</string>
+
+    <string name="tour_settings_auto_session_title">የክፍለ ጊዜ ነባሪዎች</string>
+    <string name="tour_settings_auto_session_body">መተግበሪያው ሲከፈት ክፍለ ጊዜውን በራስ-ሰር ይጀምሩ፣ እና የሚቀላቀሉ መሣሪያዎች እንዲያውቁት ነባሪ ስም ይስጡት።</string>
+    <string name="tour_settings_donate_title">LyricCast ወደዱት?</string>
+    <string name="tour_settings_donate_body">ጠቃሚ ሆኖ ካገኙት፣ ልማቱን ለመደገፍ ቡና ቢገዙልኝ ደስ ይለኛል።</string>
+</resources>

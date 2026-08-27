@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="title_session_client">会话参与端</string>
+    <string name="session_client_connected">已连接到会话</string>
+    <string name="session_client_disconnected">已断开会话连接</string>
+    <string name="session_client_failed_to_connect">无法连接到会话</string>
+    <string name="session_client_connecting">正在连接</string>
+    <string name="session_client_connecting_please_wait">请稍候…</string>
+    <string name="session_client_failed_to_start_lookup">无法开始查找会话</string>
+    <string name="dialog_fragment_choose_session_title">选择一个会话</string>
+    <string name="dialog_fragment_choose_session_looking_for_session">正在查找会话…</string>
+    <string name="ignore">忽略</string>
+    <string name="launch_activity_go_to_settings">前往设置</string>
+    <string name="close">关闭</string>
+    <string name="dialog_fragment_start_session_missing_permissions">你拒绝了会话功能所需的权限。请在设置中开启。</string>
+</resources>
