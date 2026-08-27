@@ -36,7 +36,7 @@ import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
-import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import dev.thomas_kiljanczyk.lyriccast.core.designsystem.color.BaseColors
 import dev.thomas_kiljanczyk.lyriccast.core.designsystem.theme.LyricCastTheme
 import dev.thomas_kiljanczyk.lyriccast.core.model.Category

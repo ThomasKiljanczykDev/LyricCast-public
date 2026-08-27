@@ -18,7 +18,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
-import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import dev.thomas_kiljanczyk.lyriccast.core.designsystem.theme.LyricCastTheme
 import dev.thomas_kiljanczyk.lyriccast.core.model.Category
 import dev.thomas_kiljanczyk.lyriccast.core.model.CategoryItem

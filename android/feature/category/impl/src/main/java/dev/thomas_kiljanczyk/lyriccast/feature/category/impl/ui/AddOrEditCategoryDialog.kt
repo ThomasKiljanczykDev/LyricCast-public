@@ -34,7 +34,7 @@ import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
-import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import dev.thomas_kiljanczyk.lyriccast.core.designsystem.theme.LyricCastTheme
 import dev.thomas_kiljanczyk.lyriccast.core.domain.use_case.category_manager.ValidateCategoryNameUseCase
 import dev.thomas_kiljanczyk.lyriccast.core.model.Category
