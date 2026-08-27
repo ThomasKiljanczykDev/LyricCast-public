@@ -99,10 +99,12 @@ class LyricCastApplication : Application() {
     lateinit var dataStore: DataStore<AppSettings>
 
     @Inject
-    lateinit var messageTransport: MessageTransport
+    @JvmField
+    var messageTransport: MessageTransport? = null
 
     @Inject
-    lateinit var castContext: CastContext
+    @JvmField
+    var castContext: CastContext? = null
 
     @Inject
     lateinit var localeManager: LocaleManager
@@ -116,13 +118,16 @@ class LyricCastApplication : Application() {
         // resolves its resources.
         localeManager.applyLocaleOnStartup()
 
-        // Initializes CastContext
-        castContext.sessionManager.addSessionManagerListener(CastSessionListener(onStarted = {
-            applicationScope.launch(ioDispatcher) {
-                val blankOnStart = dataStore.data.first().blankOnStart
-                messageTransport.sendBlank(blankOnStart)
+        castContext?.let { context ->
+            messageTransport?.let { messaging ->
+                context.sessionManager.addSessionManagerListener(CastSessionListener(onStarted = {
+                    applicationScope.launch(ioDispatcher) {
+                        val blankOnStart = dataStore.data.first().blankOnStart
+                        messaging.sendBlank(blankOnStart)
+                    }
+                }, onEnded = { messaging.onSessionEnded() }))
             }
-        }, onEnded = { messageTransport.onSessionEnded() }))
+        }
 
         DynamicColors.applyToActivitiesIfAvailable(this)
 

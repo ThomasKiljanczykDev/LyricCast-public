@@ -19,7 +19,7 @@ import kotlinx.coroutines.flow.StateFlow
 
 @HiltViewModel
 class SetlistControlsViewModel @Inject constructor(
-    private val castContext: CastContext,
+    private val castContext: CastContext?,
     private val setlistsRepository: SetlistsRepository,
     private val playbackController: PlaybackController
 ) : ViewModel() {

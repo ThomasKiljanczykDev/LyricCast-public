@@ -112,9 +112,9 @@ class PlaybackControllerImpl(
             _state.update { it.copy(buttonHeight = height) }
         }.launchIn(scope)
 
-        bus.isBlanked.onEach { blanked ->
+        bus.isBlanked?.onEach { blanked ->
             _state.update { it.copy(isBlanked = blanked) }
-        }.launchIn(scope)
+        }?.launchIn(scope)
 
         bus.receivedPayload.onEach(::handlePayload).launchIn(scope)
 
@@ -233,7 +233,7 @@ class PlaybackControllerImpl(
     }
 
     override suspend fun setBlank() {
-        bus.setBlank(!bus.isBlanked.value)
+        bus.setBlank(!(bus.isBlanked?.value ?: false))
     }
 
     private suspend fun presentCurrent() {

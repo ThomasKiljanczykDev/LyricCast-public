@@ -7,7 +7,10 @@
 package dev.thomas_kiljanczyk.lyriccast.core.cast.di
 
 import android.content.Context
+import android.util.Log
 import com.google.android.gms.cast.framework.CastContext
+import com.google.android.gms.common.ConnectionResult
+import com.google.android.gms.common.GoogleApiAvailability
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -23,18 +26,29 @@ import kotlinx.coroutines.CoroutineDispatcher
 @Module
 @InstallIn(SingletonComponent::class)
 object CastModule {
+    private const val TAG = "CastModule"
 
     @Provides
-    fun provideCastContext(@ApplicationContext context: Context): CastContext {
-        return CastContext.getSharedInstance(context)
+    fun provideCastContext(@ApplicationContext context: Context): CastContext? {
+        val castApi = GoogleApiAvailability.getInstance()
+        if (castApi.isGooglePlayServicesAvailable(context) != ConnectionResult.SUCCESS) {
+            return null
+        }
+
+        return try {
+            CastContext.getSharedInstance(context)
+        } catch (e: Exception) {
+            Log.e(TAG, "Cast framework not available", e)
+            null
+        }
     }
 
     @Provides
     @Singleton
     fun provideMessageTransport(
-        castContext: CastContext,
+        castContext: CastContext?,
         @Dispatcher(LyricCastDispatchers.Main) mainDispatcher: CoroutineDispatcher
-    ): MessageTransport {
-        return CastMessagingContext(castContext, mainDispatcher)
+    ): MessageTransport? {
+        return castContext?.let { CastMessagingContext(it, mainDispatcher) }
     }
 }

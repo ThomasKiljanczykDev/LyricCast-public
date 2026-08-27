@@ -21,7 +21,7 @@ import kotlinx.coroutines.flow.StateFlow
 class SongControlsViewModel @Inject constructor(
     private val songsRepository: SongsRepository,
     private val playbackController: PlaybackController,
-    private val castContext: CastContext
+    private val castContext: CastContext?
 ) : ViewModel() {
 
     val state: StateFlow<PlaybackState> get() = playbackController.state

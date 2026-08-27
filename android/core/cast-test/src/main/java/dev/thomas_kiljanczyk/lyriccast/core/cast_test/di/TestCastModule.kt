@@ -8,6 +8,8 @@ package dev.thomas_kiljanczyk.lyriccast.core.cast_test.di
 
 import android.content.Context
 import com.google.android.gms.cast.framework.CastContext
+import com.google.android.gms.common.ConnectionResult
+import com.google.android.gms.common.GoogleApiAvailability
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.android.qualifiers.ApplicationContext
@@ -29,16 +31,26 @@ import kotlinx.coroutines.CoroutineDispatcher
 object TestCastModule {
 
     @Provides
-    fun provideCastContext(@ApplicationContext context: Context): CastContext {
-        return CastContext.getSharedInstance(context)
+    fun provideCastContext(@ApplicationContext context: Context): CastContext? {
+        val castApi = GoogleApiAvailability.getInstance()
+        if (castApi.isGooglePlayServicesAvailable(context) != ConnectionResult.SUCCESS) {
+            return null
+        }
+
+        return try {
+            CastContext.getSharedInstance(context)
+        } catch (_: Exception) {
+            // Cast framework not available in tests
+            null
+        }
     }
 
     @Provides
     @Singleton
     fun provideMessageTransport(
-        castContext: CastContext,
+        castContext: CastContext?,
         @Dispatcher(LyricCastDispatchers.Main) mainDispatcher: CoroutineDispatcher
-    ): MessageTransport {
-        return CastMessagingContext(castContext, mainDispatcher)
+    ): MessageTransport? {
+        return castContext?.let { CastMessagingContext(it, mainDispatcher) }
     }
 }

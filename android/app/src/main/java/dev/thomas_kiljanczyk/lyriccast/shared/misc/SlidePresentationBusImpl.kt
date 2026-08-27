@@ -35,7 +35,7 @@ import kotlinx.coroutines.flow.onEach
  */
 @OptIn(FlowPreview::class)
 class SlidePresentationBusImpl(
-    private val castMessageTransport: MessageTransport,
+    private val castMessageTransport: MessageTransport?,
     private val payloadTransport: PayloadTransport,
     private val codec: SessionMessageCodec,
     scope: CoroutineScope,
@@ -48,7 +48,7 @@ class SlidePresentationBusImpl(
 
     override val receivedPayload: Flow<ReceivedPayload> = payloadTransport.receivedPayload
 
-    override val isBlanked: StateFlow<Boolean> = castMessageTransport.isBlanked
+    override val isBlanked: StateFlow<Boolean>? = castMessageTransport?.isBlanked
 
     private val nearbyBroadcastFlow = MutableSharedFlow<ByteArray>()
 
@@ -59,7 +59,7 @@ class SlidePresentationBusImpl(
     }
 
     override suspend fun presentSlide(content: ShowLyricsContent) {
-        castMessageTransport.sendContentMessage(content.slideText)
+        castMessageTransport?.sendContentMessage(content.slideText)
 
         if (payloadTransport.serverIsRunning.value) {
             val payload = codec.encode(
@@ -79,10 +79,10 @@ class SlidePresentationBusImpl(
     }
 
     override suspend fun setBlank(blanked: Boolean) {
-        castMessageTransport.sendBlank(blanked)
+        castMessageTransport?.sendBlank(blanked)
     }
 
     override suspend fun sendConfiguration(config: CastConfiguration) {
-        castMessageTransport.sendConfiguration(config)
+        castMessageTransport?.sendConfiguration(config)
     }
 }

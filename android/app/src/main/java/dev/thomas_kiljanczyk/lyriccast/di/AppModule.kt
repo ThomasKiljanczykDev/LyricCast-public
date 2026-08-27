@@ -42,7 +42,7 @@ object AppModule {
     @Provides
     @Singleton
     fun provideSlidePresentationBus(
-        castMessageTransport: MessageTransport,
+        castMessageTransport: MessageTransport?,
         payloadTransport: PayloadTransport,
         codec: SessionMessageCodec,
         @ApplicationScope scope: CoroutineScope,
