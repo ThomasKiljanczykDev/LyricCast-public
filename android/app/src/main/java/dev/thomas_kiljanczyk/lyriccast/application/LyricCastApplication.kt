@@ -17,10 +17,10 @@ import androidx.datastore.core.DataStore
 import com.google.android.gms.cast.framework.CastContext
 import com.google.android.material.color.DynamicColors
 import dagger.hilt.android.HiltAndroidApp
+import dev.thomas_kiljanczyk.lyriccast.core.cast.CastSessionListener
+import dev.thomas_kiljanczyk.lyriccast.core.cast.MessageTransport
 import dev.thomas_kiljanczyk.lyriccast.core.model.settings.ControlButtonHeightOption
 import dev.thomas_kiljanczyk.lyriccast.datastore.proto.AppSettings
-import dev.thomas_kiljanczyk.lyriccast.shared.cast.CastMessagingContext
-import dev.thomas_kiljanczyk.lyriccast.shared.cast.CastSessionListener
 import javax.inject.Inject
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -68,7 +68,7 @@ class LyricCastApplication : Application() {
     lateinit var dataStore: DataStore<AppSettings>
 
     @Inject
-    lateinit var castMessagingContext: CastMessagingContext
+    lateinit var messageTransport: MessageTransport
 
     @Inject
     lateinit var castContext: CastContext
@@ -81,9 +81,9 @@ class LyricCastApplication : Application() {
         castContext.sessionManager.addSessionManagerListener(CastSessionListener(onStarted = {
             CoroutineScope(Dispatchers.Default).launch {
                 val blankOnStart = dataStore.data.first().blankOnStart
-                castMessagingContext.sendBlank(blankOnStart)
+                messageTransport.sendBlank(blankOnStart)
             }
-        }, onEnded = { castMessagingContext.onSessionEnded() }))
+        }, onEnded = { messageTransport.onSessionEnded() }))
 
         DynamicColors.applyToActivitiesIfAvailable(this)
 

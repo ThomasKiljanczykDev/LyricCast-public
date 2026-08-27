@@ -21,6 +21,8 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalView
@@ -30,7 +32,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import dev.thomas_kiljanczyk.lyriccast.R
 import dev.thomas_kiljanczyk.lyriccast.core.designsystem.theme.LyricCastTheme
-import dev.thomas_kiljanczyk.lyriccast.core.model.settings.ControlButtonHeightOption
+import dev.thomas_kiljanczyk.lyriccast.core.playback.PlaybackState
 import dev.thomas_kiljanczyk.lyriccast.core.ui.components.ControlButtons
 import dev.thomas_kiljanczyk.lyriccast.core.ui.components.SlidePreview
 import dev.thomas_kiljanczyk.lyriccast.core.ui.components.SongInfo
@@ -48,6 +50,7 @@ fun SetlistControlsScreen(
 ) {
     val coroutineScope = rememberCoroutineScope()
     val view = LocalView.current
+    val state by viewModel.state.collectAsState()
 
     LaunchedEffect(setlistId) {
         viewModel.loadSetlist(setlistId)
@@ -55,14 +58,18 @@ fun SetlistControlsScreen(
     }
 
     SetlistControlsScreen(
-        state = viewModel.state,
+        state = state,
         onNavigateUp = onNavigateUp,
         onNavigateToSettings = onNavigateToSettings,
         onPreviousClick = {
-            viewModel.goToPreviousSlide()
+            coroutineScope.launch {
+                viewModel.goToPreviousSlide()
+            }
         },
         onNextClick = {
-            viewModel.goToNextSlide()
+            coroutineScope.launch {
+                viewModel.goToNextSlide()
+            }
         },
         onBlankClick = {
             coroutineScope.launch {
@@ -71,14 +78,16 @@ fun SetlistControlsScreen(
         },
         onSongClick = { position ->
             view.performHapticFeedback(android.view.HapticFeedbackConstants.LONG_PRESS)
-            viewModel.selectSong(position, true)
+            coroutineScope.launch {
+                viewModel.selectSong(position, true)
+            }
         })
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SetlistControlsScreen(
-    state: SetlistControlsState,
+    state: PlaybackState,
     onNavigateUp: () -> Unit,
     onNavigateToSettings: () -> Unit,
     onPreviousClick: () -> Unit,
@@ -117,7 +126,7 @@ fun SetlistControlsScreen(
                 .padding(paddingValues)
         ) {
             SongInfo(
-                songTitle = state.currentSongTitle,
+                songTitle = state.songTitle,
                 currentSlide = state.currentSlide,
                 totalSlideCount = state.totalSlideCount,
                 modifier = Modifier.padding(horizontal = 4.dp)
@@ -156,16 +165,15 @@ fun SetlistControlsScreen(
 private fun PreviewSetlistControlsScreen() {
     LyricCastTheme {
         SetlistControlsScreen(
-            state = MutableSetlistControlsState().apply {
-                songs = PreviewData.sampleSongsWithLyrics
-                currentSlideText = "Sample lyrics text\nWith multiple lines\nFor preview purposes"
-                currentSongTitle = "Sample Song 2"
-                currentSlide = 1
-                totalSlideCount = 4
-                currentSongPosition = 1
+            state = PlaybackState(
+                songs = PreviewData.sampleSongsWithLyrics,
+                currentSlideText = "Sample lyrics text\nWith multiple lines\nFor preview purposes",
+                songTitle = "Sample Song 2",
+                currentSlide = 1,
+                totalSlideCount = 4,
+                currentSongPosition = 1,
                 isBlanked = false
-                buttonHeight = ControlButtonHeightOption.DEFAULT.value
-            },
+            ),
             onNavigateUp = {},
             onNavigateToSettings = {},
             onPreviousClick = {},

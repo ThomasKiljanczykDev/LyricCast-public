@@ -1,7 +1,7 @@
 /*
- * Created by Tomasz Kiljanczyk on 9/7/25, 2:55 PM
+ * Created by Tomasz Kiljanczyk on 9/7/25, 2:55 PM
  * Copyright (c) 2025 . All rights reserved.
- * Last modified 9/7/25, 2:54 PM
+ * Last modified 9/7/25, 2:54 PM
  */
 
 package dev.thomas_kiljanczyk.lyriccast.ui.session_client
@@ -15,20 +15,25 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
-import com.google.android.gms.nearby.connection.ConnectionInfo
-import com.google.android.gms.nearby.connection.ConnectionResolution
-import com.google.android.gms.nearby.connection.ConnectionsClient
-import com.google.android.gms.nearby.connection.Payload
+import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
-import dev.thomas_kiljanczyk.lyriccast.shared.gms_nearby.NearbyConnectionLifecycleCallback
-import dev.thomas_kiljanczyk.lyriccast.shared.gms_nearby.ShowLyricsContent
-import dev.thomas_kiljanczyk.lyriccast.shared.gms_nearby.SimpleNearbyPayloadCallback
-import dev.thomas_kiljanczyk.lyriccast.shared.misc.SessionClientCommand
-import dev.thomas_kiljanczyk.lyriccast.shared.misc.SessionClientMessage
-import dev.thomas_kiljanczyk.lyriccast.shared.misc.SessionServerCommand
-import dev.thomas_kiljanczyk.lyriccast.shared.misc.SessionServerMessage
+import dev.thomas_kiljanczyk.lyriccast.core.nearby.ClientConnectionEvent
+import dev.thomas_kiljanczyk.lyriccast.core.nearby.PayloadTransport
+import dev.thomas_kiljanczyk.lyriccast.core.nearby.TransportConfig
+import dev.thomas_kiljanczyk.lyriccast.core.session.ReceivedPayload
+import dev.thomas_kiljanczyk.lyriccast.core.session.SessionClientCommand
+import dev.thomas_kiljanczyk.lyriccast.core.session.SessionClientMessage
+import dev.thomas_kiljanczyk.lyriccast.core.session.SessionMessageCodec
+import dev.thomas_kiljanczyk.lyriccast.core.session.SessionServerCommand
+import dev.thomas_kiljanczyk.lyriccast.core.session.SessionServerMessage
+import dev.thomas_kiljanczyk.lyriccast.core.session.ShowLyricsContent
+import dev.thomas_kiljanczyk.lyriccast.core.session.decodeOrNull
+import dev.thomas_kiljanczyk.lyriccast.core.session.encode
 import javax.inject.Inject
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.launch
 
 enum class ConnectionState {
     UNKNOWN, DISCONNECTED, CONNECTED, FAILED
@@ -50,8 +55,9 @@ class MutableSessionClientState : SessionClientState {
 
 @HiltViewModel
 class SessionClientViewModel @Inject constructor(
-    private val connectionsClient: ConnectionsClient,
-    @param:ApplicationContext @field:ApplicationContext private val context: Context
+    private val payloadTransport: PayloadTransport,
+    private val codec: SessionMessageCodec,
+    @param:ApplicationContext private val context: Context
 ) : ViewModel() {
     companion object {
         private const val TAG = "SessionClientModel"
@@ -62,68 +68,63 @@ class SessionClientViewModel @Inject constructor(
 
     private var currentEndpointId: String? = null
 
-    private fun handlePayload(payload: ByteArray?) {
-        val payloadString = payload?.decodeToString() ?: return
+    init {
+        payloadTransport.clientConnectionEvents
+            .onEach(::handleConnectionEvent)
+            .launchIn(viewModelScope)
 
-        val message = SessionClientMessage.fromJson<ShowLyricsContent>(payloadString) ?: return
+        payloadTransport.receivedPayload
+            .onEach { handlePayload(it) }
+            .launchIn(viewModelScope)
+    }
+
+    private fun handleConnectionEvent(event: ClientConnectionEvent) {
+        when (event) {
+            is ClientConnectionEvent.Result -> {
+                if (event.success) {
+                    currentEndpointId = event.endpointId
+                    requestLatestSlide()
+                    _state.connectionState = ConnectionState.CONNECTED
+                } else {
+                    currentEndpointId = null
+                    _state.connectionState = ConnectionState.FAILED
+                }
+            }
+
+            is ClientConnectionEvent.Disconnected -> {
+                currentEndpointId = null
+                _state.apply {
+                    connectionState = ConnectionState.DISCONNECTED
+                    currentSlide = SlideContent("", "", 0, 0)
+                }
+            }
+
+            is ClientConnectionEvent.Initiated -> Unit
+        }
+    }
+
+    private suspend fun handlePayload(receivedPayload: ReceivedPayload) {
+        Log.d(TAG, "Received payload from ${receivedPayload.endpointId}")
+
+        val message =
+            codec.decodeOrNull<SessionClientMessage<ShowLyricsContent>>(receivedPayload.payload)
+                ?: return
 
         when (message.command) {
             SessionClientCommand.SHOW_SLIDE -> {
                 val content = message.content
-                val newSlideContent = SlideContent(
+                _state.currentSlide = SlideContent(
                     content.songTitle, content.slideText, content.slideNumber, content.totalSlides
                 )
-
-                _state.currentSlide = newSlideContent
-            }
-        }
-    }
-
-    private inner class ClientConnectionLifecycleCallback : NearbyConnectionLifecycleCallback() {
-        override fun onConnectionInitiated(
-            endpointId: String, connectionInfo: ConnectionInfo
-        ) {
-            super.onConnectionInitiated(endpointId, connectionInfo)
-            connectionsClient.acceptConnection(endpointId, SimpleNearbyPayloadCallback {
-                handlePayload(it)
-            })
-        }
-
-        override fun onConnectionResult(
-            endpointId: String, connectionInfo: ConnectionInfo?, result: ConnectionResolution
-        ) {
-            if (result.status.isSuccess) {
-                currentEndpointId = endpointId
-                requestLatestSlide()
-
-                _state.connectionState = ConnectionState.CONNECTED
-            } else {
-                currentEndpointId = null
-
-                _state.connectionState = ConnectionState.FAILED
-            }
-        }
-
-        override fun onDisconnected(endpointId: String, connectionInfo: ConnectionInfo?) {
-            currentEndpointId = null
-            connectionsClient.disconnectFromEndpoint(endpointId)
-
-            _state.apply {
-                connectionState = ConnectionState.DISCONNECTED
-                currentSlide = SlideContent("", "", 0, 0)
             }
         }
     }
 
     fun requestLatestSlide() {
-        currentEndpointId?.let { endpointId ->
-            connectionsClient.sendPayload(
-                endpointId, Payload.fromBytes(
-                    SessionServerMessage(
-                        SessionServerCommand.SEND_LATEST_SLIDE
-                    ).toJson().toByteArray()
-                )
-            )
+        val endpointId = currentEndpointId ?: return
+        viewModelScope.launch {
+            val payload = codec.encode(SessionServerMessage(SessionServerCommand.SEND_LATEST_SLIDE))
+            payloadTransport.send(endpointId, payload)
         }
     }
 
@@ -135,9 +136,7 @@ class SessionClientViewModel @Inject constructor(
                 Settings.Global.DEVICE_NAME
             ) ?: "Unknown Device"
 
-            connectionsClient.requestConnection(
-                deviceName, endpointId, ClientConnectionLifecycleCallback()
-            )
+            payloadTransport.startClient(endpointId, deviceName, TransportConfig.Session)
         } catch (ex: SecurityException) {
             Log.e(TAG, "Failed to get device name", ex)
             _state.connectionState = ConnectionState.FAILED
@@ -145,7 +144,7 @@ class SessionClientViewModel @Inject constructor(
     }
 
     fun stopClient() {
-        connectionsClient.stopAllEndpoints()
+        payloadTransport.stopAllEndpoints()
         Log.d(TAG, "Client disconnected")
     }
 }

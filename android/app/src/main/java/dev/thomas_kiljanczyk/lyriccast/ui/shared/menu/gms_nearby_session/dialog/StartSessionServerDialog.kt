@@ -36,8 +36,8 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import dev.thomas_kiljanczyk.lyriccast.R
 import dev.thomas_kiljanczyk.lyriccast.application.LyricCastApplication
 import dev.thomas_kiljanczyk.lyriccast.core.designsystem.theme.LyricCastTheme
+import dev.thomas_kiljanczyk.lyriccast.core.nearby.AdvertisingState
 import dev.thomas_kiljanczyk.lyriccast.core.ui.components.LyricCastTextField
-import dev.thomas_kiljanczyk.lyriccast.shared.gms_nearby.GmsNearbySessionServerContext
 
 @Composable
 fun StartSessionServerDialog(
@@ -78,7 +78,7 @@ fun StartSessionServerDialog(
     val currentOnSessionStarted by rememberUpdatedState(onSessionStarted)
     LaunchedEffect(state.advertisingState) {
         when (state.advertisingState) {
-            GmsNearbySessionServerContext.AdvertisingState.ADVERTISING -> {
+            AdvertisingState.ADVERTISING -> {
                 currentOnSessionStarted()
             }
 
@@ -158,7 +158,7 @@ fun StartSessionServerDialogStateless(
     isSessionNameValid: Boolean,
     sessionNameError: String?,
     isStartingSession: Boolean,
-    advertisingState: GmsNearbySessionServerContext.AdvertisingState,
+    advertisingState: AdvertisingState,
     errorMessageRes: Int?,
     onSessionNameChange: (String) -> Unit,
     onStartSession: () -> Unit,
@@ -238,7 +238,7 @@ private fun StartSessionServerDialogPreview() {
                         .isBlank()
                 ) "Session name cannot be empty" else null,
                 isStartingSession = isStartingSession,
-                advertisingState = GmsNearbySessionServerContext.AdvertisingState.NOT_ADVERTISING,
+                advertisingState = AdvertisingState.NOT_ADVERTISING,
                 errorMessageRes = null,
                 onSessionNameChange = { sessionName = it },
                 onStartSession = { isStartingSession = true },
@@ -258,7 +258,7 @@ private fun StartSessionServerDialogLoadingPreview() {
                 isSessionNameValid = true,
                 sessionNameError = null,
                 isStartingSession = true,
-                advertisingState = GmsNearbySessionServerContext.AdvertisingState.NOT_ADVERTISING,
+                advertisingState = AdvertisingState.NOT_ADVERTISING,
                 errorMessageRes = null,
                 onSessionNameChange = {},
                 onStartSession = {},
@@ -278,7 +278,7 @@ private fun StartSessionServerDialogErrorPreview() {
                 isSessionNameValid = false,
                 sessionNameError = "Session name cannot be empty",
                 isStartingSession = false,
-                advertisingState = GmsNearbySessionServerContext.AdvertisingState.FAILED,
+                advertisingState = AdvertisingState.FAILED,
                 errorMessageRes = R.string.dialog_fragment_start_session_session_start_failed,
                 onSessionNameChange = {},
                 onStartSession = {},

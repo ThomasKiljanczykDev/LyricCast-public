@@ -13,12 +13,12 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dev.thomas_kiljanczyk.lyriccast.R
-import dev.thomas_kiljanczyk.lyriccast.core.domain.use_case.main.ExportDataUseCase
-import dev.thomas_kiljanczyk.lyriccast.core.domain.use_case.main.ImportDataUseCase
 import dev.thomas_kiljanczyk.lyriccast.core.model.ImportOptions
 import dev.thomas_kiljanczyk.lyriccast.core.model.UiText
+import dev.thomas_kiljanczyk.lyriccast.core.nearby.PayloadTransport
+import dev.thomas_kiljanczyk.lyriccast.core.sync.use_case.ExportDataUseCase
+import dev.thomas_kiljanczyk.lyriccast.core.sync.use_case.ImportDataUseCase
 import dev.thomas_kiljanczyk.lyriccast.datatransfer.enums.ImportFormat
-import dev.thomas_kiljanczyk.lyriccast.shared.gms_nearby.GmsNearbySessionServerContext
 import java.io.InputStream
 import java.io.OutputStream
 import javax.inject.Inject
@@ -53,14 +53,14 @@ class MutableMainScreenState : MainScreenState {
 class MainScreenViewModel @Inject constructor(
     private val importDataUseCase: ImportDataUseCase,
     private val exportDataUseCase: ExportDataUseCase,
-    gmsNearbySessionServerContext: GmsNearbySessionServerContext
+    payloadTransport: PayloadTransport
 ) : ViewModel() {
     private val _state = MutableMainScreenState()
     val state: MainScreenState get() = _state
 
     init {
         // Monitor session server status
-        gmsNearbySessionServerContext.serverIsRunning
+        payloadTransport.serverIsRunning
             .onEach { _state.isSessionServerRunning = it }
             .launchIn(viewModelScope)
     }

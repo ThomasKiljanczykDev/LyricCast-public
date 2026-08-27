@@ -22,6 +22,8 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -30,7 +32,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import dev.thomas_kiljanczyk.lyriccast.R
 import dev.thomas_kiljanczyk.lyriccast.core.designsystem.theme.LyricCastTheme
-import dev.thomas_kiljanczyk.lyriccast.core.model.settings.ControlButtonHeightOption
+import dev.thomas_kiljanczyk.lyriccast.core.playback.PlaybackState
 import dev.thomas_kiljanczyk.lyriccast.core.ui.components.ControlButtons
 import dev.thomas_kiljanczyk.lyriccast.core.ui.components.SlidePreview
 import dev.thomas_kiljanczyk.lyriccast.core.ui.components.SongInfo
@@ -46,13 +48,15 @@ fun SongControlsScreen(
     viewModel: SongControlsViewModel = hiltViewModel()
 ) {
     val coroutineScope = rememberCoroutineScope()
+    val state by viewModel.state.collectAsState()
+
     LaunchedEffect(songId) {
         viewModel.loadSong(songId)
         viewModel.sendSlide()
     }
 
     SongControlsScreen(
-        state = viewModel.state,
+        state = state,
         onNavigateUp = onNavigateUp,
         onNavigateToSettings = onNavigateToSettings,
         onPreviousClick = {
@@ -76,7 +80,7 @@ fun SongControlsScreen(
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SongControlsScreen(
-    state: SongControlsState,
+    state: PlaybackState,
     onNavigateUp: () -> Unit,
     onNavigateToSettings: () -> Unit,
     onPreviousClick: () -> Unit,
@@ -151,15 +155,16 @@ fun SongControlsScreen(
 private fun PreviewSongControlsScreen() {
     LyricCastTheme {
         SongControlsScreen(
-            state = MutableSongControlsState().apply {
-                songTitle = "Amazing Grace"
-                currentSlideText =
-                    "Amazing grace, how sweet the sound\nThat saved a wretch like me\nI once was lost, but now am found\nWas blind, but now I see"
-                currentSlide = 0
-                totalSlideCount = 5
+            state = PlaybackState(
+                songTitle = "Amazing Grace",
+                currentSlideText = "Amazing grace, how sweet the sound\n" +
+                    "That saved a wretch like me\n" +
+                    "I once was lost, but now am found\n" +
+                    "Was blind, but now I see",
+                currentSlide = 0,
+                totalSlideCount = 5,
                 isBlanked = false
-                buttonHeight = ControlButtonHeightOption.DEFAULT.value
-            },
+            ),
             onNavigateUp = {},
             onNavigateToSettings = {},
             onPreviousClick = {},

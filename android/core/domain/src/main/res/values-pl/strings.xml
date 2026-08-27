@@ -7,9 +7,6 @@
     <string name="category_manager_save_failed">Nie udało się zapisać kategorii</string>
     <string name="delete_setlists_failed">Usuwanie listy nie powiodło się</string>
     <string name="delete_songs_failed">Usuwanie piosenki nie powiodło się</string>
-    <string name="export_cleaning_temp">Usuwanie plików tymczasowych…</string>
-    <string name="export_creating_zip">Tworzenie pliku ZIP…</string>
-    <string name="export_saving_json">Zapisywanie danych JSON…</string>
     <string name="main_activity_export_deleting_temp">Usuwanie tymczasowego katalogu …</string>
     <string name="main_activity_export_preparing_data">Przygotowywanie danych …</string>
     <string name="main_activity_export_saving_json">Zapisywanie do tymczasowego katalogu …</string>

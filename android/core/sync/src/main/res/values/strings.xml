@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Export -->
+    <string name="export_saving_json">Saving JSON data…</string>
+    <string name="export_creating_zip">Creating ZIP file…</string>
+    <string name="export_cleaning_temp">Cleaning up temporary files…</string>
+
+    <!-- Nearby sync -->
+    <string name="sync_preparing_data">Preparing data for sync…</string>
+    <string name="sync_starting_broadcast">Starting broadcast…</string>
+    <string name="sync_connecting">Waiting for device…</string>
+    <string name="sync_connected_waiting_data">Connected, waiting for data…</string>
+    <string name="sync_data_sent">Data sent successfully</string>
+    <string name="sync_validating_data">Validating received data…</string>
+    <string name="sync_importing_data">Importing data…</string>
+    <string name="sync_import_successful">Import finished</string>
+    <string name="sync_error_send_failed">Failed to send data</string>
+    <string name="sync_error_expired">Export expired - no device connected</string>
+    <string name="sync_error_import_failed">Failed to import data</string>
+    <string name="sync_error_version_mismatch">Sync data version not supported</string>
+    <string name="sync_error_no_data">No data received</string>
+</resources>

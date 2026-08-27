@@ -93,6 +93,11 @@ dependencies {
     implementation(projects.core.database)
     implementation(projects.core.data)
     implementation(projects.core.domain)
+    implementation(projects.core.session)
+    implementation(projects.core.nearby)
+    implementation(projects.core.cast)
+    implementation(projects.core.playback)
+    implementation(projects.core.sync)
 
     // App dependencies
     implementation(libs.kotlinx.coroutines)
@@ -138,6 +143,8 @@ dependencies {
     // Test infrastructure submodules
     androidTestImplementation(projects.core.testing)
     androidTestImplementation(projects.core.dataTest)
+    androidTestImplementation(projects.core.nearbyTest)
+    androidTestImplementation(projects.core.castTest)
 
     // LeakCanary
 //    debugImplementation(libs.squareup.leakCanary)

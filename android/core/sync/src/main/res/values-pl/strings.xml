@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Export -->
+    <string name="export_saving_json">Zapisywanie danych JSON…</string>
+    <string name="export_creating_zip">Tworzenie pliku ZIP…</string>
+    <string name="export_cleaning_temp">Usuwanie plików tymczasowych…</string>
+
+    <!-- Nearby sync -->
+    <string name="sync_preparing_data">Przygotowywanie danych do synchronizacji…</string>
+    <string name="sync_starting_broadcast">Rozpoczynanie rozgłaszania…</string>
+    <string name="sync_connecting">Oczekiwanie na urządzenie…</string>
+    <string name="sync_connected_waiting_data">Połączono, oczekiwanie na dane…</string>
+    <string name="sync_data_sent">Dane wysłane pomyślnie</string>
+    <string name="sync_validating_data">Sprawdzanie poprawności otrzymanych danych…</string>
+    <string name="sync_importing_data">Importowanie danych…</string>
+    <string name="sync_import_successful">Import zakończony</string>
+    <string name="sync_error_send_failed">Nie udało się wysłać danych</string>
+    <string name="sync_error_expired">Eksport wygasł – brak połączonego urządzenia</string>
+    <string name="sync_error_import_failed">Nie udało się zaimportować danych</string>
+    <string name="sync_error_version_mismatch">Wersja danych synchronizacji nie jest obsługiwana</string>
+    <string name="sync_error_no_data">Nie otrzymano danych</string>
+</resources>

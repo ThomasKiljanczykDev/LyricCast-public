@@ -1,7 +1,7 @@
 /*
- * Created by Tomasz Kiljanczyk on 9/12/25, 7:11 PM
+ * Created by Tomasz Kiljanczyk on 9/12/25, 7:11 PM
  * Copyright (c) 2025 . All rights reserved.
- * Last modified 9/12/25, 6:41 PM
+ * Last modified 9/12/25, 6:41 PM
  */
 
 package dev.thomas_kiljanczyk.lyriccast.ui.session_client.choose_session
@@ -11,17 +11,18 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
-import com.google.android.gms.nearby.connection.ConnectionsClient
-import com.google.android.gms.nearby.connection.DiscoveredEndpointInfo
-import com.google.android.gms.nearby.connection.DiscoveryOptions
-import com.google.android.gms.nearby.connection.EndpointDiscoveryCallback
-import com.google.android.gms.nearby.connection.Strategy
+import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import dev.thomas_kiljanczyk.lyriccast.shared.gms_nearby.GmsNearbyConstants
+import dev.thomas_kiljanczyk.lyriccast.core.nearby.DiscoveryState
+import dev.thomas_kiljanczyk.lyriccast.core.nearby.PayloadTransport
+import dev.thomas_kiljanczyk.lyriccast.core.nearby.TransportConfig
 import javax.inject.Inject
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.persistentListOf
 import kotlinx.collections.immutable.toImmutableList
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 
 interface ChooseSessionDialogState {
     val devices: ImmutableList<GmsNearbySessionItem>
@@ -41,17 +42,16 @@ sealed interface ChooseSessionDialogEvent {
     data object Reset : ChooseSessionDialogEvent
     data object StartDiscovery : ChooseSessionDialogEvent
     data object StopDiscovery : ChooseSessionDialogEvent
-    data class DeviceFound(val endpointId: String, val info: DiscoveredEndpointInfo) :
+    data class DeviceFound(val endpointId: String, val deviceName: String) :
         ChooseSessionDialogEvent
 
-    data class DeviceLost(val endpointId: String) : ChooseSessionDialogEvent
     data class DevicePicked(val device: GmsNearbySessionItem) : ChooseSessionDialogEvent
-    data class DiscoveryError(val error: Exception) : ChooseSessionDialogEvent
+    data object DiscoveryError : ChooseSessionDialogEvent
 }
 
 @HiltViewModel
 class ChooseSessionDialogViewModel @Inject constructor(
-    private val connectionsClient: ConnectionsClient
+    private val payloadTransport: PayloadTransport
 ) : ViewModel() {
     companion object {
         const val TAG: String = "ChooseSessionDialogModel"
@@ -61,7 +61,7 @@ class ChooseSessionDialogViewModel @Inject constructor(
     val state: ChooseSessionDialogState get() = _state
 
     private val deviceMap = mutableMapOf<String, GmsNearbySessionItem>()
-    private var endpointDiscoveryCallback: EndpointDiscoveryCallback? = null
+    private var discoveryJob: Job? = null
 
     fun onEvent(event: ChooseSessionDialogEvent) {
         when (event) {
@@ -80,18 +80,14 @@ class ChooseSessionDialogViewModel @Inject constructor(
             }
 
             is ChooseSessionDialogEvent.StopDiscovery -> {
-                connectionsClient.stopDiscovery()
-                endpointDiscoveryCallback = null
+                payloadTransport.stopDiscovery()
+                discoveryJob?.cancel()
+                discoveryJob = null
             }
 
             is ChooseSessionDialogEvent.DeviceFound -> {
-                val deviceItem = GmsNearbySessionItem(event.info.endpointName, event.endpointId)
+                val deviceItem = GmsNearbySessionItem(event.deviceName, event.endpointId)
                 deviceMap[event.endpointId] = deviceItem
-                _state.devices = deviceMap.values.toImmutableList()
-            }
-
-            is ChooseSessionDialogEvent.DeviceLost -> {
-                deviceMap.remove(event.endpointId)
                 _state.devices = deviceMap.values.toImmutableList()
             }
 
@@ -104,32 +100,28 @@ class ChooseSessionDialogViewModel @Inject constructor(
             }
 
             is ChooseSessionDialogEvent.DiscoveryError -> {
-                Log.e(TAG, "Failed to start discovering", event.error)
+                Log.e(TAG, "Failed to start discovering")
                 _state.hasError = true
             }
         }
     }
 
     private fun startDiscoveryInternal() {
-        val discoveryOptions = DiscoveryOptions.Builder().setStrategy(Strategy.P2P_STAR).build()
-
-        endpointDiscoveryCallback = object : EndpointDiscoveryCallback() {
-            override fun onEndpointFound(endpointId: String, info: DiscoveredEndpointInfo) {
-                onEvent(ChooseSessionDialogEvent.DeviceFound(endpointId, info))
+        discoveryJob = payloadTransport.discoveryState
+            .onEach { info ->
+                if (info.state == DiscoveryState.FAILED) {
+                    onEvent(ChooseSessionDialogEvent.DiscoveryError)
+                }
             }
+            .launchIn(viewModelScope)
 
-            override fun onEndpointLost(endpointId: String) {
-                onEvent(ChooseSessionDialogEvent.DeviceLost(endpointId))
+        payloadTransport.discoveredDevices
+            .onEach { device ->
+                onEvent(ChooseSessionDialogEvent.DeviceFound(device.endpointId, device.endpointName))
             }
-        }
+            .launchIn(viewModelScope)
 
-        connectionsClient.startDiscovery(
-            GmsNearbyConstants.SERVICE_UUID.toString(),
-            endpointDiscoveryCallback!!,
-            discoveryOptions
-        ).addOnFailureListener { e ->
-            onEvent(ChooseSessionDialogEvent.DiscoveryError(e))
-        }
+        payloadTransport.startDiscovery(TransportConfig.Session)
     }
 
     // Backward compatibility functions
