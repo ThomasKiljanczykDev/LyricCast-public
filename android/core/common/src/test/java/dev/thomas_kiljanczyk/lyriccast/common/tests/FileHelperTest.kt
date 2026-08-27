@@ -1,7 +1,7 @@
 /*
- * Created by Tomasz Kiljanczyk on 25/01/2025, 18:55
- * Copyright (c) 2025 . All rights reserved.
- * Last modified 10/01/2025, 01:46
+ * Created by Tomasz Kiljanczyk on 8/27/26, 1:03 PM
+ * Copyright (c) 2026 . All rights reserved.
+ * Last modified 8/27/26, 1:02 PM
  */
 
 package dev.thomas_kiljanczyk.lyriccast.common.tests
@@ -21,6 +21,7 @@ class FileHelperTest {
     }
 
     private lateinit var testDir: File
+    private lateinit var testContentDir: File
     private lateinit var testFile: File
     private lateinit var testZipFile: File
 
@@ -30,7 +31,12 @@ class FileHelperTest {
         testDir.deleteRecursively()
         testDir.mkdirs()
 
-        testFile = File("${testDir.path}/FileHelperTest.txt")
+        // The zip file is kept outside of the zipped directory so that it is not archived into
+        // itself.
+        testContentDir = File("${testDir.path}/content")
+        testContentDir.mkdirs()
+
+        testFile = File("${testContentDir.path}/FileHelperTest.txt")
         testZipFile = File("${testDir.path}/FileHelperTest.zip")
 
         testFile.createNewFile()
