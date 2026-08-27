@@ -1,7 +1,8 @@
 ![LyricCast](docs/images/LyricCast-splash.png "LyricCast")
 
-[![CI android](https://github.com/ThomasKiljanczykDev/LyricCast-public/actions/workflows/ci-android.yml/badge.svg)](https://github.com/ThomasKiljanczykDev/LyricCast-public/actions/workflows/ci-android.yml)
 [<img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" height="70" title="Coming soon!" alt="Get it on Google Play. Coming soon!">](https://play.google.com/store/apps/details?id=dev.thomas_kiljanczyk.lyriccast)
+
+[![CI android](https://github.com/ThomasKiljanczykDev/LyricCast-public/actions/workflows/ci-android.yml/badge.svg)](https://github.com/ThomasKiljanczykDev/LyricCast-public/actions/workflows/ci-android.yml)
 
 # LyricCast Android Client
 
