@@ -8,9 +8,13 @@ package dev.thomas_kiljanczyk.lyriccast.feature.song.impl.ui.song_controls
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.rounded.ArrowBack
 import androidx.compose.material.icons.rounded.Settings
@@ -30,15 +34,21 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.window.core.layout.WindowSizeClass
 import dev.thomas_kiljanczyk.lyriccast.core.cast.ui.CastButton
 import dev.thomas_kiljanczyk.lyriccast.core.designsystem.theme.LyricCastTheme
 import dev.thomas_kiljanczyk.lyriccast.core.playback.PlaybackState
 import dev.thomas_kiljanczyk.lyriccast.core.ui.components.ControlButtons
 import dev.thomas_kiljanczyk.lyriccast.core.ui.components.SlidePreview
 import dev.thomas_kiljanczyk.lyriccast.core.ui.components.SongInfo
+import dev.thomas_kiljanczyk.lyriccast.core.ui.util.currentWindowSizeClass
+import dev.thomas_kiljanczyk.lyriccast.core.ui.util.isWidthExpanded
 import dev.thomas_kiljanczyk.lyriccast.feature.song.impl.R
 import java.util.UUID
 import kotlinx.coroutines.launch
+
+/** Side-pane width for title and controls on expanded-width windows. */
+private val CONTROLS_COLUMN_WIDTH = 400.dp
 
 @Composable
 fun SongControlsScreen(
@@ -85,8 +95,33 @@ fun SongControlsScreen(
     onNavigateToSettings: () -> Unit,
     onPreviousClick: () -> Unit,
     onNextClick: () -> Unit,
-    onBlankClick: () -> Unit
+    onBlankClick: () -> Unit,
+    windowSizeClass: WindowSizeClass = currentWindowSizeClass()
 ) {
+    @Composable
+    fun SongInfoSection(infoModifier: Modifier = Modifier) {
+        SongInfo(
+            songTitle = state.songTitle,
+            currentSlide = state.currentSlide,
+            totalSlideCount = state.totalSlideCount,
+            modifier = infoModifier.padding(horizontal = 4.dp)
+        )
+    }
+
+    @Composable
+    fun Controls(controlsModifier: Modifier = Modifier) {
+        ControlButtons(
+            buttonHeight = state.buttonHeight,
+            isBlanked = state.isBlanked,
+            onPreviousClick = onPreviousClick,
+            onNextClick = onNextClick,
+            onBlankClick = onBlankClick,
+            isPreviousEnabled = state.currentSlide > 0,
+            isNextEnabled = state.currentSlide < state.totalSlideCount - 1,
+            modifier = controlsModifier.padding(horizontal = 16.dp, vertical = 8.dp)
+        )
+    }
+
     Scaffold(
         topBar = {
             TopAppBar(
@@ -111,41 +146,55 @@ fun SongControlsScreen(
             )
         }
     ) { paddingValues ->
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(paddingValues),
-            verticalArrangement = Arrangement.SpaceBetween
-        ) {
-            Column(
+        if (windowSizeClass.isWidthExpanded()) {
+            Row(
                 modifier = Modifier
-                    .fillMaxWidth()
-                    .weight(1f)
+                    .fillMaxSize()
+                    .padding(paddingValues)
             ) {
-                SongInfo(
-                    songTitle = state.songTitle,
-                    currentSlide = state.currentSlide,
-                    totalSlideCount = state.totalSlideCount,
-                    modifier = Modifier.padding(horizontal = 4.dp)
-                )
-
                 SlidePreview(
                     slideText = state.currentSlideText,
-                    modifier = Modifier.weight(1f),
+                    modifier = Modifier
+                        .weight(1f)
+                        .fillMaxHeight(),
                     fontSize = 18
                 )
-            }
 
-            ControlButtons(
-                buttonHeight = state.buttonHeight,
-                isBlanked = state.isBlanked,
-                onPreviousClick = onPreviousClick,
-                onNextClick = onNextClick,
-                onBlankClick = onBlankClick,
-                isPreviousEnabled = state.currentSlide > 0,
-                isNextEnabled = state.currentSlide < state.totalSlideCount - 1,
-                modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)
-            )
+                Column(
+                    modifier = Modifier
+                        .width(CONTROLS_COLUMN_WIDTH)
+                        .fillMaxHeight()
+                ) {
+                    SongInfoSection()
+
+                    Spacer(modifier = Modifier.weight(1f))
+
+                    Controls()
+                }
+            }
+        } else {
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(paddingValues),
+                verticalArrangement = Arrangement.SpaceBetween
+            ) {
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .weight(1f)
+                ) {
+                    SongInfoSection()
+
+                    SlidePreview(
+                        slideText = state.currentSlideText,
+                        modifier = Modifier.weight(1f),
+                        fontSize = 18
+                    )
+                }
+
+                Controls()
+            }
         }
     }
 }

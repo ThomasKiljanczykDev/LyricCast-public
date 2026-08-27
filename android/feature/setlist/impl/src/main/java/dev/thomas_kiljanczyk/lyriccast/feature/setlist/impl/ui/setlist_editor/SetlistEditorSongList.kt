@@ -63,7 +63,8 @@ fun SetlistEditorSongList(
     onSelectSong: (UUID, Boolean) -> Unit,
     onRemoveSong: (Int) -> Unit,
     onDuplicateSong: (Int) -> Unit,
-    onToggleSelectionMode: () -> Unit
+    onToggleSelectionMode: () -> Unit,
+    modifier: Modifier = Modifier
 ) {
     val lazyListState = rememberLazyListState()
     val reorderableLazyListState = rememberReorderableLazyListState(lazyListState) { from, to ->
@@ -73,7 +74,7 @@ fun SetlistEditorSongList(
 
     LazyColumn(
         state = lazyListState,
-        modifier = Modifier
+        modifier = modifier
             .fillMaxSize()
             .padding(horizontal = 16.dp),
         verticalArrangement = Arrangement.spacedBy(8.dp)

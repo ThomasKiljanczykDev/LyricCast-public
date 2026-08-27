@@ -7,8 +7,11 @@
 package dev.thomas_kiljanczyk.lyriccast.feature.setlist.impl.ui.setlist_controls
 
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.rounded.ArrowBack
@@ -30,6 +33,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.window.core.layout.WindowSizeClass
 import dev.thomas_kiljanczyk.lyriccast.core.cast.ui.CastButton
 import dev.thomas_kiljanczyk.lyriccast.core.designsystem.theme.LyricCastTheme
 import dev.thomas_kiljanczyk.lyriccast.core.playback.PlaybackState
@@ -37,9 +41,14 @@ import dev.thomas_kiljanczyk.lyriccast.core.ui.components.ControlButtons
 import dev.thomas_kiljanczyk.lyriccast.core.ui.components.SlidePreview
 import dev.thomas_kiljanczyk.lyriccast.core.ui.components.SongInfo
 import dev.thomas_kiljanczyk.lyriccast.core.ui.preview.PreviewData
+import dev.thomas_kiljanczyk.lyriccast.core.ui.util.currentWindowSizeClass
+import dev.thomas_kiljanczyk.lyriccast.core.ui.util.isWidthExpanded
 import dev.thomas_kiljanczyk.lyriccast.feature.setlist.impl.R
 import java.util.UUID
 import kotlinx.coroutines.launch
+
+/** Side-pane width for song info, running order and controls on expanded-width windows. */
+private val CONTROLS_COLUMN_WIDTH = 400.dp
 
 @Composable
 fun SetlistControlsScreen(
@@ -93,13 +102,50 @@ fun SetlistControlsScreen(
     onPreviousClick: () -> Unit,
     onNextClick: () -> Unit,
     onBlankClick: () -> Unit,
-    onSongClick: (Int) -> Unit
+    onSongClick: (Int) -> Unit,
+    windowSizeClass: WindowSizeClass = currentWindowSizeClass()
 ) {
     val listState = rememberLazyListState()
 
     // Auto-scroll to current song when position changes
     LaunchedEffect(state.currentSongPosition) {
         listState.animateScrollToItem(state.currentSongPosition)
+    }
+
+    @Composable
+    fun SongInfoSection() {
+        SongInfo(
+            songTitle = state.songTitle,
+            currentSlide = state.currentSlide,
+            totalSlideCount = state.totalSlideCount,
+            modifier = Modifier.padding(horizontal = 4.dp)
+        )
+    }
+
+    @Composable
+    fun SongList(listModifier: Modifier = Modifier) {
+        SetlistSongList(
+            songs = state.songs,
+            listState = listState,
+            currentSongIndex = state.currentSongPosition,
+            onSongClick = onSongClick,
+            modifier = listModifier
+        )
+    }
+
+    @Composable
+    fun Controls() {
+        ControlButtons(
+            buttonHeight = state.buttonHeight,
+            isBlanked = state.isBlanked,
+            onPreviousClick = onPreviousClick,
+            onNextClick = onNextClick,
+            onBlankClick = onBlankClick,
+            isPreviousEnabled = state.currentSlide > 0 || state.currentSongPosition > 0,
+            isNextEnabled = state.currentSlide < state.totalSlideCount - 1 ||
+                state.currentSongPosition < state.songs.size - 1,
+            modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)
+        )
     }
 
     Scaffold(topBar = {
@@ -120,42 +166,48 @@ fun SetlistControlsScreen(
             }
         })
     }) { paddingValues ->
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(paddingValues)
-        ) {
-            SongInfo(
-                songTitle = state.songTitle,
-                currentSlide = state.currentSlide,
-                totalSlideCount = state.totalSlideCount,
-                modifier = Modifier.padding(horizontal = 4.dp)
-            )
+        if (windowSizeClass.isWidthExpanded()) {
+            Row(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(paddingValues)
+            ) {
+                SlidePreview(
+                    slideText = state.currentSlideText,
+                    modifier = Modifier
+                        .weight(1f)
+                        .fillMaxHeight()
+                )
 
-            SlidePreview(
-                slideText = state.currentSlideText,
-                modifier = Modifier.weight(1f)
-            )
+                Column(
+                    modifier = Modifier
+                        .width(CONTROLS_COLUMN_WIDTH)
+                        .fillMaxHeight()
+                ) {
+                    SongInfoSection()
 
-            SetlistSongList(
-                songs = state.songs,
-                listState = listState,
-                currentSongIndex = state.currentSongPosition,
-                onSongClick = onSongClick,
-                modifier = Modifier.weight(1f)
-            )
+                    SongList(Modifier.weight(1f))
 
-            ControlButtons(
-                buttonHeight = state.buttonHeight,
-                isBlanked = state.isBlanked,
-                onPreviousClick = onPreviousClick,
-                onNextClick = onNextClick,
-                onBlankClick = onBlankClick,
-                isPreviousEnabled = state.currentSlide > 0 || state.currentSongPosition > 0,
-                isNextEnabled = state.currentSlide < state.totalSlideCount - 1 ||
-                    state.currentSongPosition < state.songs.size - 1,
-                modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)
-            )
+                    Controls()
+                }
+            }
+        } else {
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(paddingValues)
+            ) {
+                SongInfoSection()
+
+                SlidePreview(
+                    slideText = state.currentSlideText,
+                    modifier = Modifier.weight(1f)
+                )
+
+                SongList(Modifier.weight(1f))
+
+                Controls()
+            }
         }
     }
 }

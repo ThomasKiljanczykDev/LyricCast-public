@@ -23,6 +23,8 @@ import dev.thomas_kiljanczyk.lyriccast.core.session.ReceivedPayload
 import dev.thomas_kiljanczyk.lyriccast.core.session.SessionMessageCodec
 import dev.thomas_kiljanczyk.lyriccast.core.session.SessionServerCommand
 import dev.thomas_kiljanczyk.lyriccast.core.session.SessionServerMessage
+import dev.thomas_kiljanczyk.lyriccast.core.session.SetlistContent
+import dev.thomas_kiljanczyk.lyriccast.core.session.SetlistSongContent
 import dev.thomas_kiljanczyk.lyriccast.core.session.ShowLyricsContent
 import dev.thomas_kiljanczyk.lyriccast.core.session.decodeOrNull
 import dev.thomas_kiljanczyk.lyriccast.datastore.proto.AppSettings
@@ -76,6 +78,25 @@ class PlaybackControllerImpl(
 
     private val currentLyrics: List<String>
         get() = currentSong?.lyricsList ?: emptyList()
+
+    /** Null in single-song mode. */
+    private val currentSetlistContent: SetlistContent?
+        get() = when (val m = mode) {
+            is Mode.SetlistMode -> SetlistContent(
+                songs = m.songs.map { SetlistSongContent(it.id.toString(), it.title) },
+                currentSongIndex = songIndex
+            )
+
+            is Mode.SingleSong, null -> null
+        }
+
+    private fun currentSlideContent(song: Song, lyrics: List<String>) = ShowLyricsContent(
+        songTitle = song.title,
+        slideText = lyrics.getOrNull(slideIndex) ?: "",
+        slideNumber = slideIndex,
+        totalSlides = lyrics.size,
+        setlist = currentSetlistContent
+    )
 
     override fun bind(scope: CoroutineScope, castContext: CastContext?) {
         dataStore.data.onEach { settings ->
@@ -230,7 +251,7 @@ class PlaybackControllerImpl(
             )
         }
 
-        bus.presentSlide(ShowLyricsContent(song.title, slideText, slideIndex, lyrics.size))
+        bus.presentSlide(currentSlideContent(song, lyrics))
     }
 
     private suspend fun handlePayload(receivedPayload: ReceivedPayload) {
@@ -238,11 +259,9 @@ class PlaybackControllerImpl(
         when (content.command) {
             SessionServerCommand.SEND_LATEST_SLIDE -> {
                 val song = currentSong ?: return
-                val lyrics = currentLyrics
-                val slideText = lyrics.getOrNull(slideIndex) ?: ""
                 bus.presentSlideTo(
                     receivedPayload.endpointId,
-                    ShowLyricsContent(song.title, slideText, slideIndex, lyrics.size)
+                    currentSlideContent(song, currentLyrics)
                 )
             }
         }

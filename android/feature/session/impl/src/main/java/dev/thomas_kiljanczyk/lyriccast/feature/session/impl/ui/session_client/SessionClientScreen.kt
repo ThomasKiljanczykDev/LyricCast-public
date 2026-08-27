@@ -14,13 +14,20 @@ import androidx.activity.compose.LocalActivity
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.expandHorizontally
 import androidx.compose.animation.expandVertically
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
+import androidx.compose.animation.shrinkHorizontally
 import androidx.compose.animation.shrinkVertically
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.rounded.ArrowBack
 import androidx.compose.material3.AlertDialog
@@ -47,13 +54,23 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
+import androidx.window.core.layout.WindowSizeClass
 import dev.thomas_kiljanczyk.lyriccast.core.designsystem.theme.LyricCastTheme
 import dev.thomas_kiljanczyk.lyriccast.core.nearby.NearbyPermissions
 import dev.thomas_kiljanczyk.lyriccast.core.ui.components.SlidePreview
 import dev.thomas_kiljanczyk.lyriccast.core.ui.components.SongInfo
+import dev.thomas_kiljanczyk.lyriccast.core.ui.util.currentWindowSizeClass
+import dev.thomas_kiljanczyk.lyriccast.core.ui.util.isWidthExpanded
 import dev.thomas_kiljanczyk.lyriccast.feature.session.impl.R
 import dev.thomas_kiljanczyk.lyriccast.feature.session.impl.ui.choose_session.ChooseSessionDialog
+import dev.thomas_kiljanczyk.lyriccast.feature.session.impl.ui.shared.preview.SessionPreviewData
 import kotlinx.coroutines.launch
+
+/** Caps the read-only running order so it never crowds out the slide itself. */
+private val SETLIST_LIST_HEIGHT = 200.dp
+
+/** Side-pane width for the running order on expanded-width windows. */
+private val SETLIST_COLUMN_WIDTH = 400.dp
 
 @Composable
 fun SessionClientScreen(
@@ -145,6 +162,7 @@ fun SessionClientScreen(
         slideText = viewModel.state.currentSlide.slideText,
         currentSlide = viewModel.state.currentSlide.slideNumber,
         totalSlideCount = viewModel.state.currentSlide.totalSlides,
+        setlist = viewModel.state.setlist,
         snackbarHostState = snackbarHostState,
         onNavigateUp = onNavigateUp
     )
@@ -214,10 +232,39 @@ fun SessionClientScreen(
     slideText: String,
     currentSlide: Int,
     totalSlideCount: Int,
+    setlist: SetlistInfo?,
     snackbarHostState: SnackbarHostState,
-    onNavigateUp: () -> Unit
+    onNavigateUp: () -> Unit,
+    windowSizeClass: WindowSizeClass = currentWindowSizeClass()
 ) {
     val showSlideInformation = songTitle.isNotBlank() || totalSlideCount > 0
+    val showSetlist = setlist != null && setlist.songs.isNotEmpty()
+
+    @Composable
+    fun SongInfoSection() {
+        AnimatedVisibility(
+            visible = showSlideInformation,
+            enter = fadeIn() + expandVertically(),
+            exit = fadeOut() + shrinkVertically()
+        ) {
+            SongInfo(
+                songTitle = songTitle,
+                currentSlide = currentSlide,
+                totalSlideCount = totalSlideCount,
+                modifier = Modifier.padding(horizontal = 4.dp)
+            )
+        }
+    }
+
+    @Composable
+    fun Slide(slideModifier: Modifier = Modifier) {
+        SlidePreview(
+            // SlidePreview will handle empty text properly
+            slideText = slideText.ifBlank { "" },
+            modifier = slideModifier,
+            fontSize = 18
+        )
+    }
 
     Scaffold(
         topBar = {
@@ -237,29 +284,67 @@ fun SessionClientScreen(
             SnackbarHost(hostState = snackbarHostState)
         }
     ) { paddingValues ->
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(paddingValues)
-        ) {
-            AnimatedVisibility(
-                visible = showSlideInformation,
-                enter = fadeIn() + expandVertically(),
-                exit = fadeOut() + shrinkVertically()
+        if (windowSizeClass.isWidthExpanded()) {
+            // Wide window: the running order moves beside the slide instead of under it, so
+            // the slide keeps the full height.
+            Row(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(paddingValues)
             ) {
-                SongInfo(
-                    songTitle = songTitle,
-                    currentSlide = currentSlide,
-                    totalSlideCount = totalSlideCount,
-                    modifier = Modifier.padding(horizontal = 4.dp)
-                )
-            }
+                Column(modifier = Modifier.weight(1f)) {
+                    SongInfoSection()
 
-            SlidePreview(
-                slideText = slideText.ifBlank { "" }, // SlidePreview will handle empty text properly
-                modifier = Modifier.fillMaxSize(),
-                fontSize = 18
-            )
+                    Slide(
+                        Modifier
+                            .weight(1f)
+                            .fillMaxWidth()
+                    )
+                }
+
+                AnimatedVisibility(
+                    visible = showSetlist,
+                    enter = fadeIn() + expandHorizontally(),
+                    exit = fadeOut() + shrinkHorizontally()
+                ) {
+                    setlist?.let {
+                        SessionClientSetlistList(
+                            setlist = it,
+                            modifier = Modifier
+                                .width(SETLIST_COLUMN_WIDTH)
+                                .fillMaxHeight()
+                        )
+                    }
+                }
+            }
+        } else {
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(paddingValues)
+            ) {
+                SongInfoSection()
+
+                Slide(
+                    Modifier
+                        .weight(1f)
+                        .fillMaxWidth()
+                )
+
+                AnimatedVisibility(
+                    visible = showSetlist,
+                    enter = fadeIn() + expandVertically(),
+                    exit = fadeOut() + shrinkVertically()
+                ) {
+                    // Capped, not weighted — slide must not shrink as the list grows.
+                    setlist?.let {
+                        SessionClientSetlistList(
+                            setlist = it,
+                            modifier = Modifier.height(SETLIST_LIST_HEIGHT)
+                        )
+                    }
+                }
+            }
         }
     }
 }
@@ -269,11 +354,27 @@ fun SessionClientScreen(
 private fun PreviewSessionClientScreen() {
     LyricCastTheme {
         SessionClientScreen(
-            songTitle = "Amazing Grace",
-            slideText = "Amazing grace, how sweet the sound\nThat saved a wretch like me\n" +
-                "I once was lost, but now am found\nWas blind, but now I see",
+            songTitle = SessionPreviewData.sampleSongTitle,
+            slideText = SessionPreviewData.sampleSlideText,
             currentSlide = 0, // 0-based index for SongInfo component
-            totalSlideCount = 4,
+            totalSlideCount = SessionPreviewData.sampleSlideCount,
+            setlist = null,
+            snackbarHostState = remember { SnackbarHostState() },
+            onNavigateUp = {}
+        )
+    }
+}
+
+@PreviewLightDark
+@Composable
+private fun PreviewSessionClientScreenWithSetlist() {
+    LyricCastTheme {
+        SessionClientScreen(
+            songTitle = SessionPreviewData.sampleSongTitle,
+            slideText = SessionPreviewData.sampleSlideText,
+            currentSlide = 0,
+            totalSlideCount = SessionPreviewData.sampleSlideCount,
+            setlist = SessionPreviewData.sampleSetlist,
             snackbarHostState = remember { SnackbarHostState() },
             onNavigateUp = {}
         )
@@ -289,6 +390,7 @@ private fun PreviewSessionClientScreenEmpty() {
             slideText = "",
             currentSlide = 0,
             totalSlideCount = 0,
+            setlist = null,
             snackbarHostState = remember { SnackbarHostState() },
             onNavigateUp = {}
         )

@@ -11,19 +11,19 @@ import android.net.Uri
 import android.provider.Settings
 import android.util.Log
 import androidx.activity.ComponentActivity
+import androidx.activity.compose.BackHandler
 import androidx.activity.compose.LocalActivity
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.animation.AnimatedContent
-import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.togetherWith
-import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.asPaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.rounded.Login
@@ -33,14 +33,13 @@ import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ExperimentalMaterial3ExpressiveApi
 import androidx.compose.material3.Icon
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.NavigationBar
-import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
+import androidx.compose.material3.adaptive.navigationsuite.NavigationSuiteScaffold
+import androidx.compose.material3.adaptive.navigationsuite.NavigationSuiteType
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -52,8 +51,6 @@ import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.blur
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
@@ -61,6 +58,7 @@ import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.window.core.layout.WindowSizeClass
 import dev.thomas_kiljanczyk.lyriccast.core.designsystem.theme.LyricCastTheme
 import dev.thomas_kiljanczyk.lyriccast.core.model.ImportOptions
 import dev.thomas_kiljanczyk.lyriccast.core.model.UiText
@@ -68,6 +66,8 @@ import dev.thomas_kiljanczyk.lyriccast.core.nearby.NearbyPermissions
 import dev.thomas_kiljanczyk.lyriccast.core.sync.ImportInput
 import dev.thomas_kiljanczyk.lyriccast.core.sync.PendingImport
 import dev.thomas_kiljanczyk.lyriccast.core.ui.components.ProgressDialog
+import dev.thomas_kiljanczyk.lyriccast.core.ui.util.currentWindowSizeClass
+import dev.thomas_kiljanczyk.lyriccast.core.ui.util.isWidthExpanded
 import dev.thomas_kiljanczyk.lyriccast.datatransfer.enums.ImportFormat
 import dev.thomas_kiljanczyk.lyriccast.feature.main.impl.R
 import dev.thomas_kiljanczyk.lyriccast.feature.main.impl.ui.main.import_dialog.ImportDialog
@@ -89,6 +89,9 @@ enum class MainTab(val titleRes: Int, val icon: ImageVector) {
 }
 
 private const val TAG = "MainScreen"
+
+/** Clears the bottom navigation bar so the overlaid FAB is not hidden behind it. */
+private val NAV_BAR_FAB_CLEARANCE = 80.dp
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -168,7 +171,8 @@ fun MainScreen(
     // Setlists actions
     onSetlistsExitSelectionMode: () -> Unit,
     onSetlistsDeleteSelected: suspend () -> Unit,
-    onSetlistsExportSelected: suspend (String, OutputStream) -> Unit
+    onSetlistsExportSelected: suspend (String, OutputStream) -> Unit,
+    windowSizeClass: WindowSizeClass = currentWindowSizeClass()
 ) {
     val context = LocalContext.current
     val activity = LocalActivity.current
@@ -359,15 +363,58 @@ fun MainScreen(
         }
     }
 
-    val blurRadius by animateDpAsState(
-        targetValue = if (fabExpanded) 6.dp else 0.dp,
-        animationSpec = MaterialTheme.motionScheme.slowEffectsSpec(),
-        label = "blur_radius"
-    )
+    BackHandler(enabled = fabExpanded) {
+        fabExpanded = false
+    }
+
+    // `navigationSuiteItems` is a plain builder scope, not a composable one, so anything
+    // needing composition has to be resolved out here.
+    val cannotJoinSessionString = stringResource(R.string.main_activity_cannot_join_session)
+
+    // Drives the FAB's placement too, so the two stay in sync.
+    val navLayoutType = if (windowSizeClass.isWidthExpanded()) {
+        NavigationSuiteType.NavigationRail
+    } else {
+        NavigationSuiteType.NavigationBar
+    }
+
+    val systemNavBarHeight = WindowInsets.navigationBars.asPaddingValues().calculateBottomPadding()
+    val fabBottomPadding = when (navLayoutType) {
+        // The rail sits on the start edge and never overlaps a bottom-end FAB.
+        NavigationSuiteType.NavigationRail,
+        NavigationSuiteType.NavigationDrawer -> systemNavBarHeight
+
+        else -> systemNavBarHeight + NAV_BAR_FAB_CLEARANCE
+    }
 
     Box {
-        // Blurred background content
-        Box(Modifier.blur(blurRadius)) {
+        NavigationSuiteScaffold(
+            layoutType = navLayoutType,
+            navigationSuiteItems = {
+                MainTab.entries.forEach { tab ->
+                    item(
+                        selected = state.selectedTab == tab,
+                        onClick = {
+                            if (tab != MainTab.JOIN_SESSION) {
+                                onTabSelected(tab)
+                                return@item
+                            }
+
+                            if (state.isSessionServerRunning) {
+                                coroutineScope.launch {
+                                    snackbarHostState.showSnackbar(cannotJoinSessionString)
+                                }
+                                return@item
+                            }
+
+                            onNavigateToSessionClient()
+                        },
+                        icon = { Icon(tab.icon, contentDescription = null) },
+                        label = { Text(stringResource(tab.titleRes)) }
+                    )
+                }
+            }
+        ) {
             Scaffold(
                 topBar = {
                     AnimatedContent(
@@ -456,36 +503,6 @@ fun MainScreen(
                                         permissionRequestLauncher.launch(NearbyPermissions.REQUIRED_PERMISSIONS)
                                     }
                                 }
-                            )
-                        }
-                    }
-                },
-                bottomBar = {
-                    NavigationBar {
-                        val cannotJoinSessionString =
-                            stringResource(R.string.main_activity_cannot_join_session)
-                        MainTab.entries.forEachIndexed { index, tab ->
-                            NavigationBarItem(
-                                selected = state.selectedTab == tab,
-                                onClick = {
-                                    if (tab != MainTab.JOIN_SESSION) {
-                                        onTabSelected(tab)
-                                        return@NavigationBarItem
-                                    }
-
-                                    if (state.isSessionServerRunning) {
-                                        coroutineScope.launch {
-                                            snackbarHostState.showSnackbar(
-                                                cannotJoinSessionString
-                                            )
-                                        }
-                                        return@NavigationBarItem
-                                    }
-
-                                    onNavigateToSessionClient()
-                                },
-                                icon = { Icon(tab.icon, contentDescription = null) },
-                                label = { Text(stringResource(tab.titleRes)) }
                             )
                         }
                     }
@@ -608,25 +625,13 @@ fun MainScreen(
             }
         }
 
-        // Dim overlay
-        AnimatedVisibility(
-            visible = fabExpanded,
-            enter = fadeIn(),
-            exit = fadeOut()
-        ) {
-            Box(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .background(Color.Black.copy(alpha = 0.4f))
-                    .clickable { fabExpanded = false }
-            )
-        }
-
-        // FAB menu above the blur
+        // Overlaid rather than placed in the Scaffold's FAB slot so it clears the navigation
+        // suite, which reserves no space for it. FloatingActionButtonMenu draws its own scrim
+        // and handles outside-dismiss, so no manual blur/dim layer is needed.
         Box(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(end = 16.dp, bottom = 120.dp),
+                .padding(bottom = fabBottomPadding),
             contentAlignment = Alignment.BottomEnd
         ) {
             MainScreenFloatingActionMenu(

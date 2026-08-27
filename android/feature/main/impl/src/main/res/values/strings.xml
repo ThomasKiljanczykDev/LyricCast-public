@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Duplicated from the app module: still referenced there by code that has not moved yet. -->
     <string name="app_name" translatable="false">LyricCast</string>
     <string name="dialog_fragment_start_session_title">Start session</string>
@@ -29,6 +29,8 @@
     <string name="main_activity_menu_import">Import</string>
     <string name="main_activity_button_add_song">Add song</string>
     <string name="main_activity_button_add_setlist">Add setlist</string>
+    <!-- TODO: needs translating into the other shipped locales. -->
+    <string name="main_activity_button_add" tools:ignore="MissingTranslation">Add</string>
     <string name="main_activity_loading_file">Loading file …</string>
     <string name="main_activity_setlist_is_empty">Setlist is empty!</string>
     <string name="main_activity_tab_join_session">Join Session</string>

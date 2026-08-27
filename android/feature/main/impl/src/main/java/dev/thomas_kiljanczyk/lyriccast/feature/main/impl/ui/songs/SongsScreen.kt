@@ -9,6 +9,7 @@ package dev.thomas_kiljanczyk.lyriccast.feature.main.impl.ui.songs
 import androidx.activity.compose.LocalActivity
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
@@ -31,6 +32,7 @@ import dev.thomas_kiljanczyk.lyriccast.core.model.SongItem
 import dev.thomas_kiljanczyk.lyriccast.core.ui.components.SongFilters
 import dev.thomas_kiljanczyk.lyriccast.core.ui.components.SongItem
 import dev.thomas_kiljanczyk.lyriccast.core.ui.preview.PreviewData
+import dev.thomas_kiljanczyk.lyriccast.core.ui.util.FabListBottomSpacing
 import java.util.UUID
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.toImmutableList
@@ -88,6 +90,7 @@ fun SongsScreen(
         // Songs list
         LazyColumn(
             verticalArrangement = Arrangement.spacedBy(8.dp),
+            contentPadding = PaddingValues(bottom = FabListBottomSpacing),
             modifier = Modifier
                 .fillMaxSize()
                 .padding(horizontal = 16.dp)

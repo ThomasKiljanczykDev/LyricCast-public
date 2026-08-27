@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
     <string name="title_session_client">Session</string>
+    <string name="session_client_song_item_title_template" translatable="false">%d. %s</string>
     <string name="session_client_connected">Session connected</string>
     <string name="session_client_disconnected">Session disconnected</string>
     <string name="session_client_failed_to_connect">Failed to connect to the session</string>

@@ -13,6 +13,7 @@ import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.shrinkHorizontally
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
@@ -20,6 +21,8 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.rounded.ArrowBack
 import androidx.compose.material3.Card
@@ -48,17 +51,24 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.window.core.layout.WindowSizeClass
 import dev.thomas_kiljanczyk.lyriccast.core.designsystem.theme.LyricCastTheme
 import dev.thomas_kiljanczyk.lyriccast.core.model.CategoryItem
 import dev.thomas_kiljanczyk.lyriccast.core.model.enums.NameValidationState
 import dev.thomas_kiljanczyk.lyriccast.core.ui.components.CategoryDropdown
 import dev.thomas_kiljanczyk.lyriccast.core.ui.components.LyricCastTextField
 import dev.thomas_kiljanczyk.lyriccast.core.ui.preview.PreviewData
+import dev.thomas_kiljanczyk.lyriccast.core.ui.util.currentWindowSizeClass
+import dev.thomas_kiljanczyk.lyriccast.core.ui.util.isHeightCompact
+import dev.thomas_kiljanczyk.lyriccast.core.ui.util.isWidthExpanded
 import dev.thomas_kiljanczyk.lyriccast.feature.song.impl.R
 import java.util.UUID
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.toImmutableList
 import kotlinx.coroutines.launch
+
+/** Keeps the editor usable when the window is too short to lay it out at full height. */
+private val MIN_EDITOR_CONTENT_HEIGHT = 480.dp
 
 @Composable
 fun SongEditorScreen(
@@ -130,7 +140,8 @@ fun SongEditorScreen(
     onMoveSectionRight: (suspend () -> Unit) -> Unit = { _ -> },
     onDeleteSection: () -> Unit = {},
     onAddNewSection: (String, suspend () -> Unit) -> Unit = { _, _ -> },
-    onSave: () -> Unit = {}
+    onSave: () -> Unit = {},
+    windowSizeClass: WindowSizeClass = currentWindowSizeClass()
 ) {
     Scaffold(topBar = {
         TopAppBar(
@@ -153,55 +164,121 @@ fun SongEditorScreen(
                 }
             })
     }) { paddingValues ->
-        Column(
-            verticalArrangement = Arrangement.spacedBy(16.dp),
+        BoxWithConstraints(
             modifier = Modifier
                 .padding(paddingValues)
                 .fillMaxSize()
         ) {
+            // Exact height (not weight) so the section editor's weight-based sizing still works
+            // once this scrolls.
+            val contentHeight = maxHeight.coerceAtLeast(MIN_EDITOR_CONTENT_HEIGHT)
+
             Column(
-                verticalArrangement = Arrangement.spacedBy(16.dp),
                 modifier = Modifier
-                    .padding(horizontal = 16.dp)
-                    .weight(1f)
+                    .fillMaxSize()
+                    .verticalScroll(rememberScrollState())
             ) {
-                LyricCastTextField(
-                    label = stringResource(R.string.hint_song_title),
-                    value = state.songTitle,
-                    onValueChange = onSongTitleChange,
-                    maxLength = 50,
-                    errorText = when (state.titleValidationState) {
-                        NameValidationState.EMPTY -> stringResource(R.string.song_editor_enter_title)
-                        NameValidationState.ALREADY_IN_USE -> stringResource(R.string.song_editor_title_already_used)
-                        else -> null
-                    }
-                )
-
-                SongEditorCategoryDropdown(
-                    categories = state.categories,
-                    selectedCategory = state.songCategory,
-                    onCategorySelected = onCategorySelect,
-                    modifier = Modifier.fillMaxWidth()
-                )
-
-                SongEditorLyricsSections(
-                    state = state,
-                    sectionName = state.lyricsSectionName,
-                    sectionContent = state.lyricsSectionContent,
-                    sections = state.lyricsSections,
-                    currentSectionIndex = state.currentSectionIndex,
-                    onSectionNameChange = onLyricsSectionNameChange,
-                    onSectionContentChange = onLyricsSectionContentChange,
-                    onMoveSectionLeft = onMoveSectionLeft,
-                    onMoveSectionRight = onMoveSectionRight,
-                    onDeleteSection = onDeleteSection,
-                    onSectionSelect = onSectionSelect,
-                    onAddNewSection = onAddNewSection,
+                Column(
+                    verticalArrangement = Arrangement.spacedBy(16.dp),
                     modifier = Modifier
-                        .weight(1f)
                         .fillMaxWidth()
-                )
+                        .height(contentHeight)
+                        .padding(horizontal = 16.dp)
+                ) {
+                    SongTitleAndCategoryFields(
+                        songTitle = state.songTitle,
+                        onSongTitleChange = onSongTitleChange,
+                        titleValidationState = state.titleValidationState,
+                        categories = state.categories,
+                        selectedCategory = state.songCategory,
+                        onCategorySelect = onCategorySelect,
+                        windowSizeClass = windowSizeClass
+                    )
+
+                    SongEditorLyricsSections(
+                        state = state,
+                        sectionName = state.lyricsSectionName,
+                        sectionContent = state.lyricsSectionContent,
+                        sections = state.lyricsSections,
+                        currentSectionIndex = state.currentSectionIndex,
+                        onSectionNameChange = onLyricsSectionNameChange,
+                        onSectionContentChange = onLyricsSectionContentChange,
+                        onMoveSectionLeft = onMoveSectionLeft,
+                        onMoveSectionRight = onMoveSectionRight,
+                        onDeleteSection = onDeleteSection,
+                        onSectionSelect = onSectionSelect,
+                        onAddNewSection = onAddNewSection,
+                        windowSizeClass = windowSizeClass,
+                        modifier = Modifier
+                            .weight(1f)
+                            .fillMaxWidth()
+                    )
+                }
             }
+        }
+    }
+}
+
+/**
+ * Whether the song editor should use its two-pane layout: when the window is wide enough to
+ * place panes side by side, or too short to stack them (a phone in landscape).
+ */
+internal fun WindowSizeClass.useTwoPaneEditorLayout(): Boolean =
+    isWidthExpanded() || isHeightCompact()
+
+@Composable
+private fun SongTitleAndCategoryFields(
+    songTitle: String,
+    onSongTitleChange: (String) -> Unit,
+    titleValidationState: NameValidationState,
+    categories: ImmutableList<CategoryItem?>,
+    selectedCategory: CategoryItem?,
+    onCategorySelect: (CategoryItem?) -> Unit,
+    modifier: Modifier = Modifier,
+    windowSizeClass: WindowSizeClass = currentWindowSizeClass()
+) {
+    @Composable
+    fun SongTitleField(titleModifier: Modifier = Modifier) {
+        LyricCastTextField(
+            label = stringResource(R.string.hint_song_title),
+            value = songTitle,
+            onValueChange = onSongTitleChange,
+            maxLength = 50,
+            errorText = when (titleValidationState) {
+                NameValidationState.EMPTY -> stringResource(R.string.song_editor_enter_title)
+                NameValidationState.ALREADY_IN_USE -> stringResource(R.string.song_editor_title_already_used)
+                else -> null
+            },
+            containerModifier = titleModifier
+        )
+    }
+
+    @Composable
+    fun CategoryField(categoryModifier: Modifier = Modifier) {
+        SongEditorCategoryDropdown(
+            categories = categories,
+            selectedCategory = selectedCategory,
+            onCategorySelected = onCategorySelect,
+            modifier = categoryModifier
+        )
+    }
+
+    // Share a row here to conserve vertical space on short landscape windows.
+    if (windowSizeClass.useTwoPaneEditorLayout()) {
+        Row(
+            horizontalArrangement = Arrangement.spacedBy(16.dp),
+            modifier = modifier.fillMaxWidth()
+        ) {
+            SongTitleField(Modifier.weight(1f))
+            CategoryField(Modifier.weight(1f))
+        }
+    } else {
+        Column(
+            verticalArrangement = Arrangement.spacedBy(16.dp),
+            modifier = modifier
+        ) {
+            SongTitleField()
+            CategoryField(Modifier.fillMaxWidth())
         }
     }
 }

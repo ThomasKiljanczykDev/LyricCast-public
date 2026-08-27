@@ -26,6 +26,7 @@ class SessionScreenshotTest {
                         "I once was lost, but now am found\nWas blind, but now I see",
                     currentSlide = 0,
                     totalSlideCount = 4,
+                    setlist = null,
                     snackbarHostState = remember { SnackbarHostState() },
                     onNavigateUp = {}
                 )

@@ -43,14 +43,29 @@ data class SlideContent(
     val songTitle: String, val slideText: String, val slideNumber: Int, val totalSlides: Int
 )
 
+/** A single entry of the presenter's running order, shown read-only on the client. */
+data class SetlistSongInfo(val id: String, val title: String)
+
+/**
+ * The presenter's setlist, or null when a single song is being presented. Mirrors
+ * [dev.thomas_kiljanczyk.lyriccast.core.session.SetlistContent] at the UI layer, the same way
+ * [SlideContent] mirrors the slide payload.
+ */
+data class SetlistInfo(
+    val songs: List<SetlistSongInfo>,
+    val currentSongIndex: Int
+)
+
 interface SessionClientState {
     val currentSlide: SlideContent
     val connectionState: ConnectionState
+    val setlist: SetlistInfo?
 }
 
 class MutableSessionClientState : SessionClientState {
     override var currentSlide by mutableStateOf(SlideContent("", "", 0, 0))
     override var connectionState by mutableStateOf(ConnectionState.UNKNOWN)
+    override var setlist by mutableStateOf<SetlistInfo?>(null)
 }
 
 @HiltViewModel
@@ -96,6 +111,7 @@ class SessionClientViewModel @Inject constructor(
                 _state.apply {
                     connectionState = ConnectionState.DISCONNECTED
                     currentSlide = SlideContent("", "", 0, 0)
+                    setlist = null
                 }
             }
 
@@ -116,6 +132,12 @@ class SessionClientViewModel @Inject constructor(
                 _state.currentSlide = SlideContent(
                     content.songTitle, content.slideText, content.slideNumber, content.totalSlides
                 )
+                _state.setlist = content.setlist?.let { setlist ->
+                    SetlistInfo(
+                        songs = setlist.songs.map { SetlistSongInfo(it.id, it.title) },
+                        currentSongIndex = setlist.currentSongIndex
+                    )
+                }
             }
         }
     }

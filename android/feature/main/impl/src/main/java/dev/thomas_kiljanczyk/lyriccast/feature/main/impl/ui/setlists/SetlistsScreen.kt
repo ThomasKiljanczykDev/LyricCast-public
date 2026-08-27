@@ -13,6 +13,7 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -47,6 +48,7 @@ import dev.thomas_kiljanczyk.lyriccast.core.designsystem.theme.LyricCastTheme
 import dev.thomas_kiljanczyk.lyriccast.core.model.SetlistItem
 import dev.thomas_kiljanczyk.lyriccast.core.ui.components.LyricCastTextField
 import dev.thomas_kiljanczyk.lyriccast.core.ui.preview.PreviewData
+import dev.thomas_kiljanczyk.lyriccast.core.ui.util.FabListBottomSpacing
 import dev.thomas_kiljanczyk.lyriccast.feature.main.impl.R
 import java.util.UUID
 import kotlinx.coroutines.launch
@@ -107,6 +109,7 @@ fun SetlistsScreen(
         // Setlists list
         LazyColumn(
             verticalArrangement = Arrangement.spacedBy(8.dp),
+            contentPadding = PaddingValues(bottom = FabListBottomSpacing),
             modifier = Modifier
                 .fillMaxSize()
                 .padding(horizontal = 16.dp)

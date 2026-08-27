@@ -13,6 +13,7 @@ import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -48,9 +49,12 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.window.core.layout.WindowSizeClass
 import dev.thomas_kiljanczyk.lyriccast.core.designsystem.theme.LyricCastTheme
 import dev.thomas_kiljanczyk.lyriccast.core.model.enums.NameValidationState
 import dev.thomas_kiljanczyk.lyriccast.core.ui.components.LyricCastTextField
+import dev.thomas_kiljanczyk.lyriccast.core.ui.util.currentWindowSizeClass
+import dev.thomas_kiljanczyk.lyriccast.core.ui.util.isWidthExpanded
 import dev.thomas_kiljanczyk.lyriccast.feature.setlist.impl.R
 import dev.thomas_kiljanczyk.lyriccast.feature.setlist.impl.ui.setlist_editor.songs.SetlistSongSelectionDialog
 import dev.thomas_kiljanczyk.lyriccast.feature.setlist.impl.ui.shared.preview.SetlistPreviewData
@@ -140,10 +144,48 @@ fun SetlistEditorScreen(
     onRemoveSong: (Int) -> Unit,
     onDuplicateSong: (Int) -> Unit,
     onSaveSetlist: () -> Unit,
-    onBackPressed: () -> Boolean
+    onBackPressed: () -> Boolean,
+    windowSizeClass: WindowSizeClass = currentWindowSizeClass()
 ) {
     BackHandler(enabled = state.isInSelectionMode) {
         onBackPressed()
+    }
+
+    @Composable
+    fun SetlistNameField(fieldModifier: Modifier = Modifier) {
+        LyricCastTextField(
+            value = state.setlistName,
+            onValueChange = { newValue ->
+                if (newValue.length <= 30) {
+                    onSetlistNameChanged(newValue)
+                }
+            },
+            label = stringResource(R.string.setlist_name),
+            maxLength = 30,
+            errorText = when (state.nameValidationState) {
+                NameValidationState.EMPTY -> stringResource(R.string.error_name_empty)
+                NameValidationState.ALREADY_IN_USE -> stringResource(R.string.error_name_already_in_use)
+                else -> null
+            },
+            containerModifier = fieldModifier
+                .fillMaxWidth()
+                .padding(start = 16.dp, end = 16.dp, bottom = 4.dp, top = 8.dp),
+            singleLine = true
+        )
+    }
+
+    @Composable
+    fun SongList(listModifier: Modifier = Modifier) {
+        SetlistEditorSongList(
+            songs = state.songs,
+            isInSelectionMode = state.isInSelectionMode,
+            onMoveSong = onMoveSong,
+            onSelectSong = onSelectSong,
+            onRemoveSong = { index -> onRemoveSong(index) },
+            onDuplicateSong = onDuplicateSong,
+            onToggleSelectionMode = onToggleSelectionMode,
+            modifier = listModifier
+        )
     }
 
     val scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior()
@@ -171,43 +213,27 @@ fun SetlistEditorScreen(
             }
         }
     }, snackbarHost = { SnackbarHost(snackbarHostState) }) { paddingValues ->
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(paddingValues)
-        ) {
-            // Setlist name input
-            LyricCastTextField(
-                value = state.setlistName,
-                onValueChange = { newValue ->
-                    if (newValue.length <= 30) {
-                        onSetlistNameChanged(newValue)
-                    }
-                },
-                label = stringResource(R.string.setlist_name),
-                maxLength = 30,
-                errorText = when (state.nameValidationState) {
-                    NameValidationState.EMPTY -> stringResource(R.string.error_name_empty)
-                    NameValidationState.ALREADY_IN_USE -> stringResource(R.string.error_name_already_in_use)
-                    else -> null
-                },
-                containerModifier = Modifier
-                    .fillMaxWidth()
-                    .padding(start = 16.dp, end = 16.dp, bottom = 4.dp, top = 8.dp),
-                singleLine = true
-            )
+        if (windowSizeClass.isWidthExpanded()) {
+            // Song list gets more width since it's the primary content.
+            Row(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(paddingValues)
+            ) {
+                SetlistNameField(Modifier.weight(1f))
 
-            SetlistEditorSongList(
-                songs = state.songs,
-                isInSelectionMode = state.isInSelectionMode,
-                onMoveSong = onMoveSong,
-                onSelectSong = onSelectSong,
-                onRemoveSong = { index ->
-                    onRemoveSong(index)
-                },
-                onDuplicateSong = onDuplicateSong,
-                onToggleSelectionMode = onToggleSelectionMode
-            )
+                SongList(Modifier.weight(2f))
+            }
+        } else {
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(paddingValues)
+            ) {
+                SetlistNameField()
+
+                SongList()
+            }
         }
     }
 }

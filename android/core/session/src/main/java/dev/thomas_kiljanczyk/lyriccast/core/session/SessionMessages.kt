@@ -36,11 +36,35 @@ data class ReceivedPayload(
 /**
  * The slide content shown to Cast and Nearby session clients: the current slide's text plus
  * enough song metadata to render a header/progress indicator on the receiving side.
+ *
+ * [setlist] is null in single-song mode. Optional on the wire (`ignoreUnknownKeys`) so old/new
+ * clients stay compatible.
  */
 @Serializable
 data class ShowLyricsContent(
     val songTitle: String,
     val slideText: String,
     val slideNumber: Int,
-    val totalSlides: Int
+    val totalSlides: Int,
+    val setlist: SetlistContent? = null
+)
+
+/**
+ * The setlist a session server is presenting from, so clients can show the running order and
+ * where the presenter currently is in it.
+ */
+@Serializable
+data class SetlistContent(
+    val songs: List<SetlistSongContent>,
+    val currentSongIndex: Int
+)
+
+/**
+ * Identity and display title only — clients render the running order read-only and never need
+ * the lyrics of songs other than the one currently on screen.
+ */
+@Serializable
+data class SetlistSongContent(
+    val id: String,
+    val title: String
 )

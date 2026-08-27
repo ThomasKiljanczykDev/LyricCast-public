@@ -22,6 +22,7 @@ dependencies {
 
     implementation(libs.androidx.datastore)
     implementation(libs.androidx.compose.activity)
+    implementation(libs.androidx.compose.material3.adaptive)
     implementation(libs.google.castFramework)
     implementation(libs.reorderable)
     testImplementation(libs.kotlinx.coroutines.test)

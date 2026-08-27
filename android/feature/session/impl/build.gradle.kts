@@ -19,6 +19,7 @@ dependencies {
     implementation(projects.core.session)
 
     implementation(libs.androidx.compose.activity)
+    implementation(libs.androidx.compose.material3.adaptive)
     implementation(libs.play.services.nearby)
     implementation(libs.kotlinx.collections.immutable)
 

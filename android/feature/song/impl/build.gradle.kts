@@ -19,6 +19,7 @@ dependencies {
     implementation(projects.core.cast)
     implementation(projects.core.playback)
 
+    implementation(libs.androidx.compose.material3.adaptive)
     implementation(libs.google.castFramework)
 
     testImplementation(libs.kotlinx.coroutines.test)
