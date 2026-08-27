@@ -124,7 +124,7 @@ class SetlistSongSelectionDialogViewModel @Inject constructor(
         if (songIndex == -1) return
 
         val currentSongItem = state.allAvailableSongs[songIndex]
-        state.allAvailableSongs = state.allAvailableSongs.set(
+        state.allAvailableSongs = state.allAvailableSongs.replacingAt(
             songIndex, currentSongItem.copy(isSelected = !currentSongItem.isSelected)
         )
     }

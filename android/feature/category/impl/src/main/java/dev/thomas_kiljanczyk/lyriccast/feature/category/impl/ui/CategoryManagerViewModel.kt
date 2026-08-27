@@ -77,6 +77,6 @@ class CategoryManagerViewModel @Inject constructor(
 
         val category = state.categories[categoryIndex]
         state.categories =
-            state.categories.set(categoryIndex, category.copy(isSelected = selected))
+            state.categories.replacingAt(categoryIndex, category.copy(isSelected = selected))
     }
 }
