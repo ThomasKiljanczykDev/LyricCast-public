@@ -47,6 +47,7 @@ import dev.thomas_kiljanczyk.lyriccast.core.model.settings.ThemeOption
 import dev.thomas_kiljanczyk.lyriccast.core.ui.components.Loading
 import dev.thomas_kiljanczyk.lyriccast.feature.settings.impl.R
 import dev.thomas_kiljanczyk.lyriccast.feature.settings.impl.domain.LanguageOption
+import kotlin.time.Duration.Companion.milliseconds
 import kotlinx.collections.immutable.toImmutableList
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -93,7 +94,7 @@ fun SettingsScreen(
         }
 
         showLoading = false
-        delay(500)
+        delay(500.milliseconds)
         showLoading = true
     }
 

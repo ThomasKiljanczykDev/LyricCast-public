@@ -35,6 +35,7 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import kotlin.time.Duration.Companion.milliseconds
 
 interface SongsScreenState {
     val isInSelectionMode: Boolean
@@ -63,7 +64,7 @@ class MutableSongsScreenState : SongsScreenState {
     }
 }
 
-private const val SEARCH_DEBOUNCE_MS = 300L
+private val SEARCH_DEBOUNCE = 300.milliseconds
 
 @OptIn(FlowPreview::class)
 @HiltViewModel
@@ -90,7 +91,7 @@ class SongsScreenViewModel @Inject constructor(
             _state.debouncedFilterState.selectedCategory = category
         }.launchIn(viewModelScope)
 
-        searchQueryFlow.debounce(SEARCH_DEBOUNCE_MS).onEach {
+        searchQueryFlow.debounce(SEARCH_DEBOUNCE).onEach {
             _state.debouncedFilterState.searchText = _state.filterState.searchText
         }.launchIn(viewModelScope)
 

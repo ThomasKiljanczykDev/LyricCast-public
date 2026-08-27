@@ -48,6 +48,7 @@ import androidx.compose.ui.unit.dp
 import dev.thomas_kiljanczyk.lyriccast.core.designsystem.theme.LyricCastTheme
 import dev.thomas_kiljanczyk.lyriccast.core.model.settings.ControlButtonHeightOption
 import dev.thomas_kiljanczyk.lyriccast.core.ui.R
+import kotlin.time.Duration.Companion.milliseconds
 
 @OptIn(ExperimentalMaterial3ExpressiveApi::class)
 @Composable
@@ -81,7 +82,7 @@ private fun AnimatedFilledIconButton(
             isAnimating = true
         } else if (isAnimating) {
             // When released, wait a bit then return to normal
-            kotlinx.coroutines.delay(100) // Brief delay to ensure animation completes
+            kotlinx.coroutines.delay(100.milliseconds)
             isAnimating = false
         }
     }

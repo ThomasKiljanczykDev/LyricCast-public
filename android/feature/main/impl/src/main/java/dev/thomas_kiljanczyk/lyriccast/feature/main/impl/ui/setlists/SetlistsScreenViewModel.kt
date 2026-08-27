@@ -32,6 +32,7 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import kotlin.time.Duration.Companion.milliseconds
 
 interface SetlistsScreenState {
     val searchQuery: String
@@ -61,7 +62,7 @@ class MutableSetlistsScreenState : SetlistsScreenState {
     }
 }
 
-private const val SEARCH_DEBOUNCE_MS = 300L
+private val SEARCH_DEBOUNCE = 300.milliseconds
 
 @OptIn(FlowPreview::class)
 @HiltViewModel
@@ -81,7 +82,7 @@ class SetlistsScreenViewModel @Inject constructor(
             _state.searchQuery = query
         }.launchIn(viewModelScope)
 
-        searchQueryFlow.debounce(SEARCH_DEBOUNCE_MS).onEach {
+        searchQueryFlow.debounce(SEARCH_DEBOUNCE).onEach {
             _state.debouncedSearchQuery = _state.searchQuery
         }.launchIn(viewModelScope)
 

@@ -33,6 +33,7 @@ import kotlinx.coroutines.flow.debounce
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import kotlin.time.Duration.Companion.milliseconds
 
 interface SetlistSongSelectionDialogState {
     val allAvailableSongs: ImmutableList<SongItem>
@@ -52,7 +53,7 @@ class MutableSetlistSongSelectionDialogState : SetlistSongSelectionDialogState {
     }
 }
 
-private const val SEARCH_DEBOUNCE_MS = 300L
+private val SEARCH_DEBOUNCE = 300.milliseconds
 
 @OptIn(FlowPreview::class)
 @HiltViewModel
@@ -73,7 +74,7 @@ class SetlistSongSelectionDialogViewModel @Inject constructor(
             _state.filterState.searchText = query
         }.launchIn(viewModelScope)
 
-        searchQueryFlow.debounce(SEARCH_DEBOUNCE_MS).onEach {
+        searchQueryFlow.debounce(SEARCH_DEBOUNCE).onEach {
             _state.debouncedFilterState.searchText = _state.filterState.searchText
         }.launchIn(viewModelScope)
 
