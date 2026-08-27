@@ -655,8 +655,8 @@ private fun MainScreenPreview() {
         // Note: Preview cannot show permission functionality since it requires a real ComponentActivity
         MainScreen(
             state = MutableMainScreenState(),
-            songsState = dev.thomas_kiljanczyk.lyriccast.feature.main.impl.ui.songs.MutableSongsScreenState(),
-            setlistsState = dev.thomas_kiljanczyk.lyriccast.feature.main.impl.ui.setlists.MutableSetlistsScreenState(),
+            songsState = dev.thomas_kiljanczyk.lyriccast.feature.main.impl.ui.songs.PreviewSongsScreenState,
+            setlistsState = dev.thomas_kiljanczyk.lyriccast.feature.main.impl.ui.setlists.PreviewSetlistsScreenState,
             onTabSelected = { },
             onShowProgressDialog = {},
             onHideProgressDialog = {},

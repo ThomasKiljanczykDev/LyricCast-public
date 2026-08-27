@@ -13,53 +13,38 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import dev.thomas_kiljanczyk.lyriccast.common.di.Dispatcher
+import dev.thomas_kiljanczyk.lyriccast.common.di.LyricCastDispatchers
 import dev.thomas_kiljanczyk.lyriccast.common.extensions.normalize
 import dev.thomas_kiljanczyk.lyriccast.core.data.repository.SetlistsRepository
 import dev.thomas_kiljanczyk.lyriccast.core.domain.use_case.main.DeleteSetlistsUseCase
 import dev.thomas_kiljanczyk.lyriccast.core.domain.use_case.main.ExportSetlistsUseCase
 import dev.thomas_kiljanczyk.lyriccast.core.model.DeleteSetlistsResult
 import dev.thomas_kiljanczyk.lyriccast.core.model.SetlistItem
+import dev.thomas_kiljanczyk.lyriccast.core.ui.list.SelectionListController
 import java.io.OutputStream
 import javax.inject.Inject
+import kotlin.time.Duration.Companion.milliseconds
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.toImmutableList
-import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.debounce
 import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onEach
-import kotlin.time.Duration.Companion.milliseconds
+import kotlinx.coroutines.withContext
 
 interface SetlistsScreenState {
     val searchQuery: String
     val isInSelectionMode: Boolean
-    val selectedSetlists: List<SetlistItem>
+    val selectedSetlists: ImmutableList<SetlistItem>
     val isExporting: Boolean
     val setlists: ImmutableList<SetlistItem>
-}
-
-class MutableSetlistsScreenState : SetlistsScreenState {
-    override var searchQuery by mutableStateOf("")
-    var debouncedSearchQuery by mutableStateOf("")
-    override var isInSelectionMode by mutableStateOf(false)
-    override var isExporting by mutableStateOf(false)
-    var allSetlists by mutableStateOf<List<SetlistItem>>(emptyList())
-
-    override val selectedSetlists by derivedStateOf {
-        allSetlists.filter { it.isSelected }
-    }
-
-    override val setlists by derivedStateOf {
-        val normalizedQuery = debouncedSearchQuery.normalize()
-
-        allSetlists.filter {
-            it.normalizedName.contains(normalizedQuery, ignoreCase = true)
-        }.sorted().toImmutableList()
-    }
+    val filteredSetlists: ImmutableList<SetlistItem>
 }
 
 private val SEARCH_DEBOUNCE = 300.milliseconds
@@ -69,68 +54,74 @@ private val SEARCH_DEBOUNCE = 300.milliseconds
 class SetlistsScreenViewModel @Inject constructor(
     setlistsRepository: SetlistsRepository,
     private val exportSetlistsUseCase: ExportSetlistsUseCase,
-    private val deleteSetlistsUseCase: DeleteSetlistsUseCase
-) : ViewModel() {
+    private val deleteSetlistsUseCase: DeleteSetlistsUseCase,
+    @param:Dispatcher(LyricCastDispatchers.Default)
+    private val defaultDispatcher: CoroutineDispatcher
+) : ViewModel(), SetlistsScreenState {
 
-    val state: SetlistsScreenState
-        field = MutableSetlistsScreenState()
+    private val controller = SelectionListController<SetlistItem>(
+        idOf = { it.id },
+        withSelection = { item, selected -> item.copy(isSelected = selected) },
+        sort = { it.sorted() }
+    )
+
+    override var searchQuery: String by mutableStateOf("")
+        private set
+
+    private var debouncedSearchQuery: String by mutableStateOf("")
+
+    override var isExporting: Boolean by mutableStateOf(false)
+        private set
+
+    override val setlists: ImmutableList<SetlistItem> get() = controller.projectedItems
+    override val isInSelectionMode: Boolean get() = controller.isInSelectionMode
+    override val selectedSetlists: ImmutableList<SetlistItem> get() = controller.selectedItems
+
+    override val filteredSetlists: ImmutableList<SetlistItem> by derivedStateOf {
+        val normalizedQuery = debouncedSearchQuery.normalize()
+
+        setlists.filter {
+            it.normalizedName.contains(normalizedQuery, ignoreCase = true)
+        }.toImmutableList()
+    }
+
+    val state: SetlistsScreenState get() = this
 
     private val searchQueryFlow = MutableStateFlow("")
 
     init {
         searchQueryFlow.onEach { query ->
-            state.searchQuery = query
+            searchQuery = query
         }.launchIn(viewModelScope)
 
         searchQueryFlow.debounce(SEARCH_DEBOUNCE).onEach {
-            state.debouncedSearchQuery = state.searchQuery
+            debouncedSearchQuery = searchQuery
         }.launchIn(viewModelScope)
 
-        setlistsRepository.getAllSetlists().onEach { allSetlists ->
-            state.allSetlists = allSetlists.map {
-                SetlistItem.fromSetlist(it)
-            }.sorted()
-        }.flowOn(Dispatchers.Default)
-            .launchIn(viewModelScope)
+        controller.bind(
+            viewModelScope,
+            setlistsRepository.getAllSetlists()
+                .map { allSetlists ->
+                    withContext(defaultDispatcher) {
+                        allSetlists.map { SetlistItem.fromSetlist(it) }
+                    }
+                }
+        )
     }
 
     fun updateSearchQuery(query: String) {
         searchQueryFlow.value = query
     }
 
-    fun enterSelectionMode() {
-        state.isInSelectionMode = true
-    }
+    fun enterSelectionMode() = controller.enterSelectionMode()
 
-    fun exitSelectionMode() {
-        state.isInSelectionMode = false
-        // Clear all selections
-        state.allSetlists = state.allSetlists.map { setlistItem ->
-            setlistItem.copy(
-                isSelected = false
-            )
-        }
-    }
+    fun exitSelectionMode() = controller.exitSelectionMode()
 
-    fun toggleSetlistSelection(setlistItem: SetlistItem) {
-        state.allSetlists = state.allSetlists.map { setlist ->
-            if (setlist.id == setlistItem.id) {
-                setlist.copy(
-                    isSelected = !setlist.isSelected
-                )
-            } else {
-                setlist
-            }
-        }
-
-        // Exit selection mode if no setlists are selected
-        if (state.selectedSetlists.isEmpty() && state.isInSelectionMode) {
-            exitSelectionMode()
-        }
-    }
+    fun toggleSetlistSelection(setlistItem: SetlistItem) =
+        controller.toggleSelection(setlistItem.id)
 
     suspend fun deleteSelectedSetlists(): DeleteSetlistsResult {
-        val selectedSetlistIds = state.selectedSetlists.map { it.id }
+        val selectedSetlistIds = controller.selectedItems.map { it.id }
         val result = deleteSetlistsUseCase(selectedSetlistIds)
 
         if (result is DeleteSetlistsResult.Success) {
@@ -142,17 +133,17 @@ class SetlistsScreenViewModel @Inject constructor(
 
     fun exportSelectedSetlists(cacheDir: String, outputStream: OutputStream): Flow<Int> =
         flow {
-            state.isExporting = true
+            isExporting = true
             try {
                 exportSetlistsUseCase(
                     cacheDir,
                     outputStream,
-                    state.selectedSetlists
+                    controller.selectedItems
                 ).collect { progressResId ->
                     emit(progressResId)
                 }
             } finally {
-                state.isExporting = false
+                isExporting = false
             }
         }
 }

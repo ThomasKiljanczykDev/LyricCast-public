@@ -32,8 +32,6 @@ import dev.thomas_kiljanczyk.lyriccast.feature.setlist.impl.model.LoadSetlistRes
 import dev.thomas_kiljanczyk.lyriccast.feature.setlist.impl.model.SetlistSongItem
 import java.util.UUID
 import javax.inject.Inject
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 
@@ -78,7 +76,7 @@ class SetlistEditorViewModel @Inject constructor(
     init {
         getSetlistNamesUseCase()
             .onEach { names -> setlistNames = names }
-            .flowOn(Dispatchers.Default).launchIn(viewModelScope)
+            .launchIn(viewModelScope)
     }
 
     fun getSetlistSongIds(): List<UUID> {

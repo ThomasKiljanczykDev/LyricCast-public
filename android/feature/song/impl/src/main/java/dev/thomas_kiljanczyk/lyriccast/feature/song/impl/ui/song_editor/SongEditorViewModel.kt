@@ -29,8 +29,6 @@ import java.util.UUID
 import javax.inject.Inject
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.persistentListOf
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 
@@ -97,11 +95,11 @@ class SongEditorViewModel @Inject constructor(
     init {
         getSongTitlesUseCase()
             .onEach { titles -> songTitles = titles }
-            .flowOn(Dispatchers.Default).launchIn(viewModelScope)
+            .launchIn(viewModelScope)
 
         getCategoriesWithNullOptionUseCase()
             .onEach { categoryItems -> state.categories = categoryItems }
-            .flowOn(Dispatchers.Default).launchIn(viewModelScope)
+            .launchIn(viewModelScope)
     }
 
     fun setSongTitle(newSongTitle: String) {

@@ -76,12 +76,10 @@ private fun AnimatedFilledIconButton(
         label = "buttonCornerRadius"
     )
 
-    // Trigger animation on click even for single taps
     LaunchedEffect(isPressed) {
         if (isPressed) {
             isAnimating = true
         } else if (isAnimating) {
-            // When released, wait a bit then return to normal
             kotlinx.coroutines.delay(100.milliseconds)
             isAnimating = false
         }

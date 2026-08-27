@@ -32,9 +32,12 @@ import dev.thomas_kiljanczyk.lyriccast.core.model.SongItem
 import dev.thomas_kiljanczyk.lyriccast.core.ui.components.SongFilters
 import dev.thomas_kiljanczyk.lyriccast.core.ui.components.SongItem
 import dev.thomas_kiljanczyk.lyriccast.core.ui.preview.PreviewData
+import dev.thomas_kiljanczyk.lyriccast.core.ui.state.MutableSongFilterState
+import dev.thomas_kiljanczyk.lyriccast.core.ui.state.SongFilterState
 import dev.thomas_kiljanczyk.lyriccast.core.ui.util.FabListBottomSpacing
 import java.util.UUID
 import kotlinx.collections.immutable.ImmutableList
+import kotlinx.collections.immutable.persistentListOf
 import kotlinx.collections.immutable.toImmutableList
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -128,7 +131,7 @@ private fun SongsScreenPreview() {
     LyricCastTheme {
         Surface {
             SongsScreen(
-                state = MutableSongsScreenState(),
+                state = PreviewSongsScreenState,
                 songs = PreviewData.sampleSongs.take(3),
                 categories = PreviewData.sampleCategoriesWithNull.toImmutableList(),
                 onUpdateSearchQuery = {},
@@ -138,4 +141,13 @@ private fun SongsScreenPreview() {
             )
         }
     }
+}
+
+object PreviewSongsScreenState : SongsScreenState {
+    override val isInSelectionMode: Boolean = false
+    override val selectedSongs: List<SongItem> = emptyList()
+    override val isExporting: Boolean = false
+    override val filterState: SongFilterState = MutableSongFilterState()
+    override val songs: ImmutableList<SongItem> = persistentListOf()
+    override val filteredSongs: ImmutableList<SongItem> = persistentListOf()
 }

@@ -22,8 +22,6 @@ import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.PersistentList
 import kotlinx.collections.immutable.persistentListOf
 import kotlinx.collections.immutable.toPersistentList
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 
@@ -47,12 +45,11 @@ class CategoryManagerViewModel @Inject constructor(
     init {
         categoriesRepository.getAllCategories()
             .onEach { categories ->
-                val categoryItems = categories
+                state.categories = categories
                     .sortedBy { category -> category.name }
                     .map { category -> CategoryItem(category) }
-                state.categories = categoryItems.toPersistentList()
+                    .toPersistentList()
             }
-            .flowOn(Dispatchers.Default)
             .launchIn(viewModelScope)
     }
 

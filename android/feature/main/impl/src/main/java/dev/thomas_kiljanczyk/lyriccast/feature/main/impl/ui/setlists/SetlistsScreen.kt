@@ -51,6 +51,8 @@ import dev.thomas_kiljanczyk.lyriccast.core.ui.preview.PreviewData
 import dev.thomas_kiljanczyk.lyriccast.core.ui.util.FabListBottomSpacing
 import dev.thomas_kiljanczyk.lyriccast.feature.main.impl.R
 import java.util.UUID
+import kotlinx.collections.immutable.ImmutableList
+import kotlinx.collections.immutable.persistentListOf
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -66,7 +68,7 @@ fun SetlistsScreen(
 
     SetlistsScreen(
         state = state,
-        setlists = state.setlists,
+        setlists = state.filteredSetlists,
         snackbarHostState = snackbarHostState,
         onUpdateSearchQuery = viewModel::updateSearchQuery,
         onEnterSelectionMode = viewModel::enterSelectionMode,
@@ -195,7 +197,7 @@ private fun SetlistsScreenPreview() {
     LyricCastTheme {
         Surface {
             SetlistsScreen(
-                state = MutableSetlistsScreenState(),
+                state = PreviewSetlistsScreenState,
                 setlists = PreviewData.sampleSetlists,
                 snackbarHostState = remember { SnackbarHostState() },
                 onUpdateSearchQuery = {},
@@ -204,4 +206,13 @@ private fun SetlistsScreenPreview() {
             )
         }
     }
+}
+
+object PreviewSetlistsScreenState : SetlistsScreenState {
+    override val searchQuery: String = ""
+    override val isInSelectionMode: Boolean = false
+    override val selectedSetlists: ImmutableList<SetlistItem> = persistentListOf()
+    override val isExporting: Boolean = false
+    override val setlists: ImmutableList<SetlistItem> = persistentListOf()
+    override val filteredSetlists: ImmutableList<SetlistItem> = persistentListOf()
 }

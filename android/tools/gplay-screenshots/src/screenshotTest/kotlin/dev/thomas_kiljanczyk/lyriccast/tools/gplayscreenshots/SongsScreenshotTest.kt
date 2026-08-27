@@ -22,7 +22,7 @@ import dev.thomas_kiljanczyk.lyriccast.core.designsystem.theme.LyricCastTheme
 import dev.thomas_kiljanczyk.lyriccast.core.ui.preview.PreviewData
 import dev.thomas_kiljanczyk.lyriccast.feature.main.impl.ui.main.MainScreenTopBar
 import dev.thomas_kiljanczyk.lyriccast.feature.main.impl.ui.main.MainTab
-import dev.thomas_kiljanczyk.lyriccast.feature.main.impl.ui.songs.MutableSongsScreenState
+import dev.thomas_kiljanczyk.lyriccast.feature.main.impl.ui.songs.PreviewSongsScreenState
 import dev.thomas_kiljanczyk.lyriccast.feature.main.impl.ui.songs.SongsScreen
 import kotlinx.collections.immutable.toImmutableList
 
@@ -59,7 +59,7 @@ class SongsScreenshotTest {
                 ) { paddingValues ->
                     Box(modifier = Modifier.padding(paddingValues)) {
                         SongsScreen(
-                            state = MutableSongsScreenState(),
+                            state = PreviewSongsScreenState,
                             songs = PreviewData.sampleSongs,
                             categories = PreviewData.sampleCategoriesWithNull.toImmutableList(),
                             onUpdateSearchQuery = {},

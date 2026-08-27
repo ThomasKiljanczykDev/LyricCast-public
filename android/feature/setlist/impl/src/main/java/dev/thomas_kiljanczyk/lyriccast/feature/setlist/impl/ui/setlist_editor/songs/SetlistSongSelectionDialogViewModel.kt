@@ -21,19 +21,19 @@ import dev.thomas_kiljanczyk.lyriccast.core.ui.state.MutableSongFilterState
 import dev.thomas_kiljanczyk.lyriccast.core.ui.state.SongFilterState
 import java.util.UUID
 import javax.inject.Inject
+import kotlin.time.Duration.Companion.milliseconds
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.PersistentList
 import kotlinx.collections.immutable.persistentListOf
 import kotlinx.collections.immutable.toImmutableList
 import kotlinx.collections.immutable.toPersistentList
-import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.debounce
-import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
-import kotlin.time.Duration.Companion.milliseconds
 
 interface SetlistSongSelectionDialogState {
     val allAvailableSongs: ImmutableList<SongItem>
@@ -42,55 +42,62 @@ interface SetlistSongSelectionDialogState {
     val filterState: SongFilterState
 }
 
+/** Plain holder used by previews and tests; the ViewModel implements the interface itself. */
 class MutableSetlistSongSelectionDialogState : SetlistSongSelectionDialogState {
-    override var allAvailableSongs by mutableStateOf<PersistentList<SongItem>>(persistentListOf())
+    override var allAvailableSongs by mutableStateOf<ImmutableList<SongItem>>(persistentListOf())
+    override var filteredAvailableSongs by mutableStateOf<ImmutableList<SongItem>>(
+        persistentListOf()
+    )
     override var categories by mutableStateOf<ImmutableList<CategoryItem?>>(persistentListOf(null))
     override val filterState = MutableSongFilterState()
-    val debouncedFilterState = MutableSongFilterState()
-
-    override val filteredAvailableSongs by derivedStateOf {
-        debouncedFilterState.filterSongs(allAvailableSongs).sorted().toImmutableList()
-    }
 }
 
 private val SEARCH_DEBOUNCE = 300.milliseconds
 
-@OptIn(FlowPreview::class)
+@OptIn(FlowPreview::class, ExperimentalCoroutinesApi::class)
 @HiltViewModel
 class SetlistSongSelectionDialogViewModel @Inject constructor(
-    private val getAllSongsForSelectionUseCase: GetAllSongsForSelectionUseCase,
+    getAllSongsForSelectionUseCase: GetAllSongsForSelectionUseCase,
     getCategoriesWithNullOptionUseCase: GetCategoriesWithNullOptionUseCase
-) : ViewModel() {
+) : ViewModel(), SetlistSongSelectionDialogState {
 
-    val state: SetlistSongSelectionDialogState
-        field = MutableSetlistSongSelectionDialogState()
+    private var availableSongs: PersistentList<SongItem> by mutableStateOf(persistentListOf())
+    override val allAvailableSongs: ImmutableList<SongItem> get() = availableSongs
+
+    override var categories: ImmutableList<CategoryItem?> by mutableStateOf(persistentListOf(null))
+        private set
+
+    private val mutableFilterState = MutableSongFilterState()
+    private val debouncedFilterState = MutableSongFilterState()
+
+    override val filterState: SongFilterState get() = mutableFilterState
+
+    override val filteredAvailableSongs: ImmutableList<SongItem> by derivedStateOf {
+        debouncedFilterState.filterSongs(availableSongs).sorted().toImmutableList()
+    }
+
+    val state: SetlistSongSelectionDialogState get() = this
 
     private val searchQueryFlow = MutableStateFlow("")
 
-    private var initialSongIds: Set<UUID> = emptySet()
+    private val initialSongIds = MutableStateFlow<Set<UUID>>(emptySet())
 
     init {
         searchQueryFlow.onEach { query ->
-            state.filterState.searchText = query
+            mutableFilterState.searchText = query
         }.launchIn(viewModelScope)
 
         searchQueryFlow.debounce(SEARCH_DEBOUNCE).onEach {
-            state.debouncedFilterState.searchText = state.filterState.searchText
+            debouncedFilterState.searchText = mutableFilterState.searchText
         }.launchIn(viewModelScope)
 
-        // Initialize song selection data
-        getAllSongsForSelectionUseCase(initialSongIds)
-            .onEach { songItems ->
-                state.allAvailableSongs = songItems.toPersistentList()
-            }
-            .flowOn(Dispatchers.Default)
+        initialSongIds
+            .flatMapLatest { ids -> getAllSongsForSelectionUseCase(ids) }
+            .onEach { songItems -> availableSongs = songItems.toPersistentList() }
             .launchIn(viewModelScope)
 
         getCategoriesWithNullOptionUseCase()
-            .onEach { categoryItems ->
-                state.categories = categoryItems
-            }
-            .flowOn(Dispatchers.Default)
+            .onEach { categoryItems -> categories = categoryItems }
             .launchIn(viewModelScope)
     }
 
@@ -99,37 +106,30 @@ class SetlistSongSelectionDialogViewModel @Inject constructor(
     }
 
     fun updateSelectedCategory(category: CategoryItem?) {
-        state.filterState.selectedCategory = category
-        state.debouncedFilterState.selectedCategory = category
+        mutableFilterState.selectedCategory = category
+        debouncedFilterState.selectedCategory = category
     }
 
     fun updateShowOnlySelected(show: Boolean) {
-        state.filterState.showOnlySelected = show
-        state.debouncedFilterState.showOnlySelected = show
+        mutableFilterState.showOnlySelected = show
+        debouncedFilterState.showOnlySelected = show
     }
 
     fun setInitialSelection(songIds: List<UUID>) {
-        initialSongIds = songIds.toSet()
-        // Restart the flow with new initial selection
-        getAllSongsForSelectionUseCase(initialSongIds)
-            .onEach { songItems ->
-                state.allAvailableSongs = songItems.toPersistentList()
-            }
-            .flowOn(Dispatchers.Default)
-            .launchIn(viewModelScope)
+        initialSongIds.value = songIds.toSet()
     }
 
     fun selectAvailableSong(songItem: SongItem) {
-        val songIndex = state.allAvailableSongs.indexOfFirst { it.id == songItem.id }
+        val songIndex = availableSongs.indexOfFirst { it.id == songItem.id }
         if (songIndex == -1) return
 
-        val currentSongItem = state.allAvailableSongs[songIndex]
-        state.allAvailableSongs = state.allAvailableSongs.replacingAt(
+        val currentSongItem = availableSongs[songIndex]
+        availableSongs = availableSongs.replacingAt(
             songIndex, currentSongItem.copy(isSelected = !currentSongItem.isSelected)
         )
     }
 
     fun getSelectedSongIds(): List<UUID> {
-        return state.allAvailableSongs.filter { it.isSelected }.map { it.id }
+        return availableSongs.filter { it.isSelected }.map { it.id }
     }
 }

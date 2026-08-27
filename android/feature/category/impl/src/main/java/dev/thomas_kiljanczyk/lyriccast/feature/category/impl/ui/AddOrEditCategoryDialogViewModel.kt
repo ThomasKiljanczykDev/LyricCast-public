@@ -20,8 +20,6 @@ import dev.thomas_kiljanczyk.lyriccast.core.model.ColorItem
 import dev.thomas_kiljanczyk.lyriccast.core.model.UiText
 import java.util.UUID
 import javax.inject.Inject
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 
@@ -58,7 +56,7 @@ class AddOrEditCategoryDialogViewModel @Inject constructor(
     init {
         getCategoryNamesUseCase()
             .onEach { newCategoryNames -> categoryNamesState = newCategoryNames }
-            .flowOn(Dispatchers.Default).launchIn(viewModelScope)
+            .launchIn(viewModelScope)
     }
 
     suspend fun onEvent(event: AddOrEditCategoryFormEvent) {
