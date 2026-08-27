@@ -59,8 +59,8 @@ class MainScreenViewModel @Inject constructor(
     private val pendingImportHolder: PendingImportHolder,
     payloadTransport: PayloadTransport
 ) : ViewModel() {
-    private val _state = MutableMainScreenState()
-    val state: MainScreenState get() = _state
+    val state: MainScreenState
+        field = MutableMainScreenState()
 
     /** A file handed in from outside (e.g. via `ACTION_VIEW`/`ACTION_SEND`), if one is waiting. */
     val pendingImport: StateFlow<PendingImport?> = pendingImportHolder.pendingImport
@@ -73,43 +73,43 @@ class MainScreenViewModel @Inject constructor(
     init {
         // Monitor session server status
         payloadTransport.serverIsRunning
-            .onEach { _state.isSessionServerRunning = it }
+            .onEach { state.isSessionServerRunning = it }
             .launchIn(viewModelScope)
     }
 
     fun selectTab(tab: MainTab) {
-        _state.selectedTab = tab
+        state.selectedTab = tab
     }
 
     fun showProgressDialog(message: UiText) {
-        _state.progressMessage = message
-        _state.showProgressDialog = true
-        _state.progressCompleted = false
+        state.progressMessage = message
+        state.showProgressDialog = true
+        state.progressCompleted = false
     }
 
     fun updateProgressMessage(message: UiText) {
-        _state.progressMessage = message
+        state.progressMessage = message
     }
 
     fun completeProgress() {
-        _state.progressCompleted = true
+        state.progressCompleted = true
     }
 
     fun hideProgressDialog() {
-        _state.showProgressDialog = false
-        _state.progressMessage = null
-        _state.progressCompleted = false
+        state.showProgressDialog = false
+        state.progressMessage = null
+        state.progressCompleted = false
     }
 
     suspend fun exportAll(cacheDir: String, outputStream: OutputStream) {
-        _state.isExporting = true
+        state.isExporting = true
         try {
             exportDataUseCase(cacheDir, outputStream).collect { resId ->
                 updateProgressMessage(UiText.StringResource(resId))
             }
             completeProgress()
         } finally {
-            _state.isExporting = false
+            state.isExporting = false
         }
     }
 

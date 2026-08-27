@@ -62,8 +62,8 @@ class SetlistSongSelectionDialogViewModel @Inject constructor(
     getCategoriesWithNullOptionUseCase: GetCategoriesWithNullOptionUseCase
 ) : ViewModel() {
 
-    private val _state = MutableSetlistSongSelectionDialogState()
-    val state: SetlistSongSelectionDialogState get() = _state
+    val state: SetlistSongSelectionDialogState
+        field = MutableSetlistSongSelectionDialogState()
 
     private val searchQueryFlow = MutableStateFlow("")
 
@@ -71,24 +71,24 @@ class SetlistSongSelectionDialogViewModel @Inject constructor(
 
     init {
         searchQueryFlow.onEach { query ->
-            _state.filterState.searchText = query
+            state.filterState.searchText = query
         }.launchIn(viewModelScope)
 
         searchQueryFlow.debounce(SEARCH_DEBOUNCE).onEach {
-            _state.debouncedFilterState.searchText = _state.filterState.searchText
+            state.debouncedFilterState.searchText = state.filterState.searchText
         }.launchIn(viewModelScope)
 
         // Initialize song selection data
         getAllSongsForSelectionUseCase(initialSongIds)
             .onEach { songItems ->
-                _state.allAvailableSongs = songItems.toPersistentList()
+                state.allAvailableSongs = songItems.toPersistentList()
             }
             .flowOn(Dispatchers.Default)
             .launchIn(viewModelScope)
 
         getCategoriesWithNullOptionUseCase()
             .onEach { categoryItems ->
-                _state.categories = categoryItems
+                state.categories = categoryItems
             }
             .flowOn(Dispatchers.Default)
             .launchIn(viewModelScope)
@@ -99,13 +99,13 @@ class SetlistSongSelectionDialogViewModel @Inject constructor(
     }
 
     fun updateSelectedCategory(category: CategoryItem?) {
-        _state.filterState.selectedCategory = category
-        _state.debouncedFilterState.selectedCategory = category
+        state.filterState.selectedCategory = category
+        state.debouncedFilterState.selectedCategory = category
     }
 
     fun updateShowOnlySelected(show: Boolean) {
-        _state.filterState.showOnlySelected = show
-        _state.debouncedFilterState.showOnlySelected = show
+        state.filterState.showOnlySelected = show
+        state.debouncedFilterState.showOnlySelected = show
     }
 
     fun setInitialSelection(songIds: List<UUID>) {
@@ -113,23 +113,23 @@ class SetlistSongSelectionDialogViewModel @Inject constructor(
         // Restart the flow with new initial selection
         getAllSongsForSelectionUseCase(initialSongIds)
             .onEach { songItems ->
-                _state.allAvailableSongs = songItems.toPersistentList()
+                state.allAvailableSongs = songItems.toPersistentList()
             }
             .flowOn(Dispatchers.Default)
             .launchIn(viewModelScope)
     }
 
     fun selectAvailableSong(songItem: SongItem) {
-        val songIndex = _state.allAvailableSongs.indexOfFirst { it.id == songItem.id }
+        val songIndex = state.allAvailableSongs.indexOfFirst { it.id == songItem.id }
         if (songIndex == -1) return
 
-        val currentSongItem = _state.allAvailableSongs[songIndex]
-        _state.allAvailableSongs = _state.allAvailableSongs.set(
+        val currentSongItem = state.allAvailableSongs[songIndex]
+        state.allAvailableSongs = state.allAvailableSongs.set(
             songIndex, currentSongItem.copy(isSelected = !currentSongItem.isSelected)
         )
     }
 
     fun getSelectedSongIds(): List<UUID> {
-        return _state.allAvailableSongs.filter { it.isSelected }.map { it.id }
+        return state.allAvailableSongs.filter { it.isSelected }.map { it.id }
     }
 }

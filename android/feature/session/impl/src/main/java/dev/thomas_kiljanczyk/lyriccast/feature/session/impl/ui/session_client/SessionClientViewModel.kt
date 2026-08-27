@@ -78,8 +78,8 @@ class SessionClientViewModel @Inject constructor(
         private const val TAG = "SessionClientModel"
     }
 
-    private val _state = MutableSessionClientState()
-    val state: SessionClientState get() = _state
+    val state: SessionClientState
+        field = MutableSessionClientState()
 
     private var currentEndpointId: String? = null
 
@@ -99,16 +99,16 @@ class SessionClientViewModel @Inject constructor(
                 if (event.success) {
                     currentEndpointId = event.endpointId
                     requestLatestSlide()
-                    _state.connectionState = ConnectionState.CONNECTED
+                    state.connectionState = ConnectionState.CONNECTED
                 } else {
                     currentEndpointId = null
-                    _state.connectionState = ConnectionState.FAILED
+                    state.connectionState = ConnectionState.FAILED
                 }
             }
 
             is ClientConnectionEvent.Disconnected -> {
                 currentEndpointId = null
-                _state.apply {
+                state.apply {
                     connectionState = ConnectionState.DISCONNECTED
                     currentSlide = SlideContent("", "", 0, 0)
                     setlist = null
@@ -129,10 +129,10 @@ class SessionClientViewModel @Inject constructor(
         when (message.command) {
             SessionClientCommand.SHOW_SLIDE -> {
                 val content = message.content
-                _state.currentSlide = SlideContent(
+                state.currentSlide = SlideContent(
                     content.songTitle, content.slideText, content.slideNumber, content.totalSlides
                 )
-                _state.setlist = content.setlist?.let { setlist ->
+                state.setlist = content.setlist?.let { setlist ->
                     SetlistInfo(
                         songs = setlist.songs.map { SetlistSongInfo(it.id, it.title) },
                         currentSongIndex = setlist.currentSongIndex
@@ -161,7 +161,7 @@ class SessionClientViewModel @Inject constructor(
             payloadTransport.startClient(endpointId, deviceName, TransportConfig.Session)
         } catch (ex: SecurityException) {
             Log.e(TAG, "Failed to get device name", ex)
-            _state.connectionState = ConnectionState.FAILED
+            state.connectionState = ConnectionState.FAILED
         }
     }
 

@@ -41,8 +41,8 @@ class CategoryManagerViewModel @Inject constructor(
     private val deleteCategoriesUseCase: DeleteCategoriesUseCase
 ) : ViewModel() {
 
-    private val _state = MutableCategoryManagerState()
-    val state: CategoryManagerState get() = _state
+    val state: CategoryManagerState
+        field = MutableCategoryManagerState()
 
     init {
         categoriesRepository.getAllCategories()
@@ -50,7 +50,7 @@ class CategoryManagerViewModel @Inject constructor(
                 val categoryItems = categories
                     .sortedBy { category -> category.name }
                     .map { category -> CategoryItem(category) }
-                _state.categories = categoryItems.toPersistentList()
+                state.categories = categoryItems.toPersistentList()
             }
             .flowOn(Dispatchers.Default)
             .launchIn(viewModelScope)
@@ -65,18 +65,18 @@ class CategoryManagerViewModel @Inject constructor(
     }
 
     fun cancelSelection() {
-        _state.categories = _state.categories.map { categoryItem ->
+        state.categories = state.categories.map { categoryItem ->
             categoryItem.copy(isSelected = false)
         }.toPersistentList()
     }
 
     fun selectCategory(categoryId: UUID, selected: Boolean) {
         val categoryIndex =
-            _state.categories.indexOfFirst { categoryItem -> categoryItem.id == categoryId }
+            state.categories.indexOfFirst { categoryItem -> categoryItem.id == categoryId }
         if (categoryIndex == -1) return
 
-        val category = _state.categories[categoryIndex]
-        _state.categories =
-            _state.categories.set(categoryIndex, category.copy(isSelected = selected))
+        val category = state.categories[categoryIndex]
+        state.categories =
+            state.categories.set(categoryIndex, category.copy(isSelected = selected))
     }
 }

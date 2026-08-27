@@ -72,22 +72,22 @@ class SetlistsScreenViewModel @Inject constructor(
     private val deleteSetlistsUseCase: DeleteSetlistsUseCase
 ) : ViewModel() {
 
-    private val _state = MutableSetlistsScreenState()
-    val state: SetlistsScreenState get() = _state
+    val state: SetlistsScreenState
+        field = MutableSetlistsScreenState()
 
     private val searchQueryFlow = MutableStateFlow("")
 
     init {
         searchQueryFlow.onEach { query ->
-            _state.searchQuery = query
+            state.searchQuery = query
         }.launchIn(viewModelScope)
 
         searchQueryFlow.debounce(SEARCH_DEBOUNCE).onEach {
-            _state.debouncedSearchQuery = _state.searchQuery
+            state.debouncedSearchQuery = state.searchQuery
         }.launchIn(viewModelScope)
 
         setlistsRepository.getAllSetlists().onEach { allSetlists ->
-            _state.allSetlists = allSetlists.map {
+            state.allSetlists = allSetlists.map {
                 SetlistItem.fromSetlist(it)
             }.sorted()
         }.flowOn(Dispatchers.Default)
@@ -99,13 +99,13 @@ class SetlistsScreenViewModel @Inject constructor(
     }
 
     fun enterSelectionMode() {
-        _state.isInSelectionMode = true
+        state.isInSelectionMode = true
     }
 
     fun exitSelectionMode() {
-        _state.isInSelectionMode = false
+        state.isInSelectionMode = false
         // Clear all selections
-        _state.allSetlists = _state.allSetlists.map { setlistItem ->
+        state.allSetlists = state.allSetlists.map { setlistItem ->
             setlistItem.copy(
                 isSelected = false
             )
@@ -113,7 +113,7 @@ class SetlistsScreenViewModel @Inject constructor(
     }
 
     fun toggleSetlistSelection(setlistItem: SetlistItem) {
-        _state.allSetlists = _state.allSetlists.map { setlist ->
+        state.allSetlists = state.allSetlists.map { setlist ->
             if (setlist.id == setlistItem.id) {
                 setlist.copy(
                     isSelected = !setlist.isSelected
@@ -124,13 +124,13 @@ class SetlistsScreenViewModel @Inject constructor(
         }
 
         // Exit selection mode if no setlists are selected
-        if (_state.selectedSetlists.isEmpty() && _state.isInSelectionMode) {
+        if (state.selectedSetlists.isEmpty() && state.isInSelectionMode) {
             exitSelectionMode()
         }
     }
 
     suspend fun deleteSelectedSetlists(): DeleteSetlistsResult {
-        val selectedSetlistIds = _state.selectedSetlists.map { it.id }
+        val selectedSetlistIds = state.selectedSetlists.map { it.id }
         val result = deleteSetlistsUseCase(selectedSetlistIds)
 
         if (result is DeleteSetlistsResult.Success) {
@@ -142,17 +142,17 @@ class SetlistsScreenViewModel @Inject constructor(
 
     fun exportSelectedSetlists(cacheDir: String, outputStream: OutputStream): Flow<Int> =
         flow {
-            _state.isExporting = true
+            state.isExporting = true
             try {
                 exportSetlistsUseCase(
                     cacheDir,
                     outputStream,
-                    _state.selectedSetlists
+                    state.selectedSetlists
                 ).collect { progressResId ->
                     emit(progressResId)
                 }
             } finally {
-                _state.isExporting = false
+                state.isExporting = false
             }
         }
 }

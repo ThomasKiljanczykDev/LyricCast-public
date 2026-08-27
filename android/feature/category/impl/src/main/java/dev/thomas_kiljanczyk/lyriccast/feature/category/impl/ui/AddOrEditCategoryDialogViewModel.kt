@@ -50,8 +50,8 @@ class AddOrEditCategoryDialogViewModel @Inject constructor(
     private val validateCategoryNameUseCase: ValidateCategoryNameUseCase
 ) : ViewModel() {
 
-    private val _state = MutableAddOrEditCategoryState()
-    val state: AddOrEditCategoryState get() = _state
+    val state: AddOrEditCategoryState
+        field = MutableAddOrEditCategoryState()
 
     private var categoryNamesState: Set<String> = setOf()
 
@@ -68,7 +68,7 @@ class AddOrEditCategoryDialogViewModel @Inject constructor(
                     it.value == event.category.color
                 } ?: colorItems.first()
 
-                _state.apply {
+                state.apply {
                     id = event.category.id
                     name = event.category.name
                     initialName = event.category.name
@@ -77,13 +77,13 @@ class AddOrEditCategoryDialogViewModel @Inject constructor(
             }
 
             is AddOrEditCategoryFormEvent.CategoryIdChanged -> {
-                _state.id = event.id
+                state.id = event.id
             }
 
             is AddOrEditCategoryFormEvent.CategoryNameChanged -> {
                 val newName = event.name.take(ValidateCategoryNameUseCase.MAX_LENGTH).uppercase()
 
-                val initialName = _state.initialName
+                val initialName = state.initialName
                 val categoryNames = if (initialName == null) {
                     categoryNamesState
                 } else {
@@ -92,18 +92,18 @@ class AddOrEditCategoryDialogViewModel @Inject constructor(
 
                 val validationResult =
                     validateCategoryNameUseCase(newName, categoryNames)
-                _state.apply {
+                state.apply {
                     name = newName
                     nameError = validationResult.errorMessage
                 }
             }
 
             is AddOrEditCategoryFormEvent.CategoryColorChanged -> {
-                _state.color = event.colorItem
+                state.color = event.colorItem
             }
 
             is AddOrEditCategoryFormEvent.Submit -> {
-                if (!_state.isValid) {
+                if (!state.isValid) {
                     return
                 }
 
@@ -113,6 +113,6 @@ class AddOrEditCategoryDialogViewModel @Inject constructor(
     }
 
     private suspend fun submit() {
-        saveCategoryUseCase(_state.name, _state.color.value, _state.id)
+        saveCategoryUseCase(state.name, state.color.value, state.id)
     }
 }

@@ -57,8 +57,8 @@ class StartSessionServerDialogViewModel @Inject constructor(
     private val payloadTransport: PayloadTransport
 ) : ViewModel() {
 
-    private val _state = MutableStartSessionServerDialogState()
-    val state: StartSessionServerDialogState get() = _state
+    val state: StartSessionServerDialogState
+        field = MutableStartSessionServerDialogState()
 
     init {
         // Monitor advertising state changes
@@ -74,9 +74,9 @@ class StartSessionServerDialogViewModel @Inject constructor(
                     null
                 }
 
-                _state.advertisingState = advertisingStateInfo.state
-                _state.errorMessageRes = errorRes
-                _state.isStartingSession =
+                state.advertisingState = advertisingStateInfo.state
+                state.errorMessageRes = errorRes
+                state.isStartingSession =
                     advertisingStateInfo.state == AdvertisingState.NOT_ADVERTISING
 
                 advertisingStateInfo
@@ -86,7 +86,7 @@ class StartSessionServerDialogViewModel @Inject constructor(
     }
 
     fun updateSessionName(name: String) {
-        _state.sessionName = name
+        state.sessionName = name
     }
 
     fun startSessionServer(): Boolean {
@@ -94,14 +94,14 @@ class StartSessionServerDialogViewModel @Inject constructor(
             return false
         }
 
-        _state.isStartingSession = true
-        _state.errorMessageRes = null
+        state.isStartingSession = true
+        state.errorMessageRes = null
 
         payloadTransport.startServer(state.sessionName.trim(), TransportConfig.Session)
         return true
     }
 
     fun clearError() {
-        _state.errorMessageRes = null
+        state.errorMessageRes = null
     }
 }

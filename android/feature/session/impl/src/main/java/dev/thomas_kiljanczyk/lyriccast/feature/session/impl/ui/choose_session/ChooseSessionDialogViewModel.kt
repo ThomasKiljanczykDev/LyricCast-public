@@ -58,8 +58,8 @@ class ChooseSessionDialogViewModel @Inject constructor(
         const val TAG: String = "ChooseSessionDialogModel"
     }
 
-    private val _state = MutableChooseSessionDialogState()
-    val state: ChooseSessionDialogState get() = _state
+    val state: ChooseSessionDialogState
+        field = MutableChooseSessionDialogState()
 
     private val deviceMap = mutableMapOf<String, GmsNearbySessionItem>()
     private var discoveryJob: Job? = null
@@ -68,7 +68,7 @@ class ChooseSessionDialogViewModel @Inject constructor(
         when (event) {
             is ChooseSessionDialogEvent.Reset -> {
                 deviceMap.clear()
-                _state.apply {
+                state.apply {
                     devices = persistentListOf()
                     hasError = false
                     selectedEndpointId = null
@@ -89,11 +89,11 @@ class ChooseSessionDialogViewModel @Inject constructor(
             is ChooseSessionDialogEvent.DeviceFound -> {
                 val deviceItem = GmsNearbySessionItem(event.deviceName, event.endpointId)
                 deviceMap[event.endpointId] = deviceItem
-                _state.devices = deviceMap.values.toImmutableList()
+                state.devices = deviceMap.values.toImmutableList()
             }
 
             is ChooseSessionDialogEvent.DevicePicked -> {
-                _state.apply {
+                state.apply {
                     selectedEndpointId = event.device.endpointId
                     isConnecting = true
                 }
@@ -102,7 +102,7 @@ class ChooseSessionDialogViewModel @Inject constructor(
 
             is ChooseSessionDialogEvent.DiscoveryError -> {
                 Log.e(TAG, "Failed to start discovering")
-                _state.hasError = true
+                state.hasError = true
             }
         }
     }

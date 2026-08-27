@@ -68,8 +68,8 @@ class SetlistEditorViewModel @Inject constructor(
     private val getSongsByIdsUseCase: GetSongsByIdsUseCase
 ) : ViewModel() {
 
-    private val _state = MutableSetlistEditorState()
-    val state: SetlistEditorState get() = _state
+    val state: SetlistEditorState
+        field = MutableSetlistEditorState()
 
     private var setlistId: UUID = UUIDv7.randomUUID()
     private var editedSetlist: Setlist? = null
@@ -82,20 +82,20 @@ class SetlistEditorViewModel @Inject constructor(
     }
 
     fun getSetlistSongIds(): List<UUID> {
-        return _state.songs.map { it.song.id }
+        return state.songs.map { it.song.id }
     }
 
     suspend fun loadSetlist(setlistId: UUID, presentation: List<UUID>) {
         when (val result = loadSetlistUseCase(setlistId)) {
             is LoadSetlistResult.Success -> {
                 this.setlistId = setlistId
-                _state.setlistName = result.setlist.name
+                state.setlistName = result.setlist.name
 
                 // Use custom presentation order if provided, otherwise use setlist's presentation
                 if (presentation.isNotEmpty()) {
                     updatePresentation(presentation)
                 } else {
-                    _state.songs = result.setlistSongItems
+                    state.songs = result.setlistSongItems
                 }
             }
 
@@ -115,7 +115,7 @@ class SetlistEditorViewModel @Inject constructor(
 
     suspend fun updatePresentation(presentation: List<UUID>) {
         val songs = getSongsByIdsUseCase(presentation)
-        _state.songs = songs.map { song ->
+        state.songs = songs.map { song ->
             SetlistSongItem(SongItem.fromSong(song))
         }
     }
@@ -125,8 +125,8 @@ class SetlistEditorViewModel @Inject constructor(
             is LoadSetlistResult.Success -> {
                 this.setlistId = setlistId
                 editedSetlist = result.setlist
-                _state.songs = result.setlistSongItems
-                _state.setlistName = result.setlist.name
+                state.songs = result.setlistSongItems
+                state.setlistName = result.setlist.name
             }
 
             is LoadSetlistResult.Error -> {
@@ -140,21 +140,21 @@ class SetlistEditorViewModel @Inject constructor(
     }
 
     fun setSetlistName(name: String) {
-        _state.setlistName = name
-        _state.nameValidationState = validateSetlistName(name)
+        state.setlistName = name
+        state.nameValidationState = validateSetlistName(name)
     }
 
     fun toggleSelectionMode() {
-        _state.isInSelectionMode = !_state.isInSelectionMode
+        state.isInSelectionMode = !state.isInSelectionMode
 
-        if (!_state.isInSelectionMode) {
+        if (!state.isInSelectionMode) {
             // Clear selection when exiting selection mode
-            _state.songs = _state.songs.map { it.copy(isSelected = false) }
+            state.songs = state.songs.map { it.copy(isSelected = false) }
         }
     }
 
     fun selectSong(songId: UUID, selected: Boolean) {
-        _state.songs = _state.songs.map { song ->
+        state.songs = state.songs.map { song ->
             if (song.id == songId) {
                 song.copy(isSelected = selected)
             } else {
@@ -163,37 +163,37 @@ class SetlistEditorViewModel @Inject constructor(
         }
 
         // Exit selection mode if no songs are selected
-        if (_state.isInSelectionMode && _state.songs.none { it.isSelected }) {
-            _state.isInSelectionMode = false
+        if (state.isInSelectionMode && state.songs.none { it.isSelected }) {
+            state.isInSelectionMode = false
         }
     }
 
     fun clearSelection() {
-        _state.songs = _state.songs.map { it.copy(isSelected = false) }
-        _state.isInSelectionMode = false
+        state.songs = state.songs.map { it.copy(isSelected = false) }
+        state.isInSelectionMode = false
     }
 
     fun moveSong(fromIndex: Int, toIndex: Int) {
         if (fromIndex == toIndex) return
 
-        val currentSongs = _state.songs.toMutableList()
+        val currentSongs = state.songs.toMutableList()
         currentSongs.add(toIndex, currentSongs.removeAt(fromIndex))
-        _state.songs = currentSongs
+        state.songs = currentSongs
     }
 
     fun removeSongAt(index: Int) {
-        _state.songs = _state.songs.filterIndexed { i, _ -> i != index }
+        state.songs = state.songs.filterIndexed { i, _ -> i != index }
     }
 
     fun removeSelectedSongs() {
-        _state.songs = _state.songs.filter { !it.isSelected }
-        _state.isInSelectionMode = false
+        state.songs = state.songs.filter { !it.isSelected }
+        state.isInSelectionMode = false
     }
 
     fun duplicateSelectedSongs() {
         val songsAfterDuplicate = mutableListOf<SetlistSongItem>()
 
-        _state.songs.forEach { song ->
+        state.songs.forEach { song ->
             songsAfterDuplicate.add(song)
             if (song.isSelected) {
                 songsAfterDuplicate.add(
@@ -204,22 +204,22 @@ class SetlistEditorViewModel @Inject constructor(
             }
         }
 
-        _state.songs = songsAfterDuplicate
+        state.songs = songsAfterDuplicate
         clearSelection()
     }
 
     fun duplicateSongAt(index: Int) {
-        if (index !in _state.songs.indices) return
+        if (index !in state.songs.indices) return
 
-        val songToDuplicate = _state.songs[index]
+        val songToDuplicate = state.songs[index]
         val duplicatedSong = songToDuplicate.copy(
             id = UUIDv7.randomUUID(),
             isSelected = false
         )
 
-        val currentSongs = _state.songs.toMutableList()
+        val currentSongs = state.songs.toMutableList()
         currentSongs.add(index + 1, duplicatedSong)
-        _state.songs = currentSongs
+        state.songs = currentSongs
     }
 
     suspend fun saveSetlist(): SaveSetlistResult {
@@ -229,7 +229,7 @@ class SetlistEditorViewModel @Inject constructor(
             )
         }
 
-        val presentation = _state.songs.map { setlistSongItem ->
+        val presentation = state.songs.map { setlistSongItem ->
             Song(
                 id = setlistSongItem.song.id,
                 title = setlistSongItem.song.title,
@@ -248,7 +248,7 @@ class SetlistEditorViewModel @Inject constructor(
         }
         return saveSetlistUseCase(
             setlistId = setlistId,
-            name = _state.setlistName,
+            name = state.setlistName,
             songs = presentation,
             existingNames = setlistNames,
             currentName = editedSetlist?.name
@@ -264,7 +264,7 @@ class SetlistEditorViewModel @Inject constructor(
     }
 
     fun onBackPressed(): Boolean {
-        return if (_state.isInSelectionMode) {
+        return if (state.isInSelectionMode) {
             toggleSelectionMode()
             true
         } else {
@@ -278,11 +278,11 @@ class SetlistEditorViewModel @Inject constructor(
         val removedSongIds = currentSongIdsSet.filter { it !in selectedSongIdsSet }
         val addedSongIds = selectedSongIdsSet.filter { it !in currentSongIdsSet }
 
-        val remainingSongs = _state.songs.filter { it.song.id !in removedSongIds }
+        val remainingSongs = state.songs.filter { it.song.id !in removedSongIds }
         val addedSongs = getSongsByIdsUseCase(addedSongIds).map { song ->
             SetlistSongItem(SongItem.fromSong(song), UUIDv7.randomUUID())
         }
 
-        _state.songs = remainingSongs + addedSongs
+        state.songs = remainingSongs + addedSongs
     }
 }

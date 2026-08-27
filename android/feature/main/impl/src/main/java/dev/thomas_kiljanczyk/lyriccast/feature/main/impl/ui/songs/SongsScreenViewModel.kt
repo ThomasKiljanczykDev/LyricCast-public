@@ -75,30 +75,30 @@ class SongsScreenViewModel @Inject constructor(
     private val deleteSongsUseCase: DeleteSongsUseCase
 ) : ViewModel() {
 
-    private val _state = MutableSongsScreenState()
-    val state: SongsScreenState get() = _state
+    val state: SongsScreenState
+        field = MutableSongsScreenState()
 
     private val searchQueryFlow = MutableStateFlow("")
     private val selectedCategoryFlow = MutableStateFlow<CategoryItem?>(null)
 
     init {
         searchQueryFlow.onEach { query ->
-            _state.filterState.searchText = query
+            state.filterState.searchText = query
         }.launchIn(viewModelScope)
 
         selectedCategoryFlow.onEach { category ->
-            _state.filterState.selectedCategory = category
-            _state.debouncedFilterState.selectedCategory = category
+            state.filterState.selectedCategory = category
+            state.debouncedFilterState.selectedCategory = category
         }.launchIn(viewModelScope)
 
         searchQueryFlow.debounce(SEARCH_DEBOUNCE).onEach {
-            _state.debouncedFilterState.searchText = _state.filterState.searchText
+            state.debouncedFilterState.searchText = state.filterState.searchText
         }.launchIn(viewModelScope)
 
         // Monitor songs and filters
         songsRepository.getAllSongs().onEach { allSongs ->
             // Use filter state to filter songs
-            _state.songs = allSongs.map {
+            state.songs = allSongs.map {
                 SongItem.fromSong(it, false)
             }.sorted()
         }.flowOn(Dispatchers.Default)
@@ -117,19 +117,19 @@ class SongsScreenViewModel @Inject constructor(
     }
 
     fun enterSelectionMode() {
-        _state.isInSelectionMode = true
+        state.isInSelectionMode = true
     }
 
     fun exitSelectionMode() {
-        _state.isInSelectionMode = false
+        state.isInSelectionMode = false
         // Clear all selections
-        _state.songs = _state.songs.map {
+        state.songs = state.songs.map {
             it.copy(isSelected = false)
         }
     }
 
     fun toggleSongSelection(songItem: SongItem) {
-        _state.songs = _state.songs.map { song ->
+        state.songs = state.songs.map { song ->
             if (song.id == songItem.id) {
                 song.copy(isSelected = !song.isSelected)
             } else {
@@ -138,13 +138,13 @@ class SongsScreenViewModel @Inject constructor(
         }
 
         // Exit selection mode if no songs are selected
-        if (_state.selectedSongs.isEmpty() && _state.isInSelectionMode) {
+        if (state.selectedSongs.isEmpty() && state.isInSelectionMode) {
             exitSelectionMode()
         }
     }
 
     suspend fun deleteSelectedSongs(): DeleteSongsResult {
-        val selectedSongIds = _state.selectedSongs.map { it.id }
+        val selectedSongIds = state.selectedSongs.map { it.id }
         val result = deleteSongsUseCase(selectedSongIds)
 
         if (result is DeleteSongsResult.Success) {
@@ -156,17 +156,17 @@ class SongsScreenViewModel @Inject constructor(
 
     fun exportSelectedSongs(cacheDir: String, outputStream: OutputStream): Flow<Int> =
         flow {
-            _state.isExporting = true
+            state.isExporting = true
             try {
                 exportSongsUseCase(
                     cacheDir,
                     outputStream,
-                    _state.selectedSongs
+                    state.selectedSongs
                 ).collect { progressResId ->
                     emit(progressResId)
                 }
             } finally {
-                _state.isExporting = false
+                state.isExporting = false
             }
         }
 }

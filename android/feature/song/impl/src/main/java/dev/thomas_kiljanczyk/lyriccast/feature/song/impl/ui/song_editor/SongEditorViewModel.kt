@@ -89,8 +89,8 @@ class SongEditorViewModel @Inject constructor(
 
     private var songTitles: Set<String> = setOf()
 
-    private val _state = MutableSongEditorState()
-    val state: SongEditorState get() = _state
+    val state: SongEditorState
+        field = MutableSongEditorState()
 
     private val sections: MutableList<LyricsSection> = mutableListOf()
 
@@ -100,21 +100,21 @@ class SongEditorViewModel @Inject constructor(
             .flowOn(Dispatchers.Default).launchIn(viewModelScope)
 
         getCategoriesWithNullOptionUseCase()
-            .onEach { categoryItems -> _state.categories = categoryItems }
+            .onEach { categoryItems -> state.categories = categoryItems }
             .flowOn(Dispatchers.Default).launchIn(viewModelScope)
     }
 
     fun setSongTitle(newSongTitle: String) {
         val validationState = validateSongTitle(newSongTitle)
 
-        _state.apply {
+        state.apply {
             songTitle = newSongTitle
             titleValidationState = validationState
         }
     }
 
     fun setCategory(categoryItem: CategoryItem?) {
-        _state.songCategory = categoryItem
+        state.songCategory = categoryItem
     }
 
     fun selectSection(index: Int) {
@@ -123,7 +123,7 @@ class SongEditorViewModel @Inject constructor(
         val section = sections[index]
         val validationState = validateSectionName(section.name)
 
-        _state.apply {
+        state.apply {
             currentSectionIndex = index
             lyricsSectionName = section.name
             lyricsSectionContent = section.content
@@ -141,7 +141,7 @@ class SongEditorViewModel @Inject constructor(
         val section = sections.removeAt(currentIndex)
         sections.add(currentIndex - 1, section)
 
-        _state.apply {
+        state.apply {
             currentSectionIndex = currentIndex - 1
             lyricsSections = sections.map { it.name }
         }
@@ -156,7 +156,7 @@ class SongEditorViewModel @Inject constructor(
         val section = sections.removeAt(currentIndex)
         sections.add(currentIndex + 1, section)
 
-        _state.apply {
+        state.apply {
             currentSectionIndex = currentIndex + 1
             lyricsSections = sections.map { it.name }
         }
@@ -176,7 +176,7 @@ class SongEditorViewModel @Inject constructor(
             selectSection(newIndex)
         }
 
-        _state.lyricsSections = sections.map { it.name }
+        state.lyricsSections = sections.map { it.name }
     }
 
     fun addNewSection(name: String) {
@@ -187,7 +187,7 @@ class SongEditorViewModel @Inject constructor(
 
         val newIndex = sections.size - 1
 
-        _state.apply {
+        state.apply {
             lyricsSections = sections.map { it.name }
             lyricsSectionName = newSection.name
             lyricsSectionContent = newSection.content
@@ -217,7 +217,7 @@ class SongEditorViewModel @Inject constructor(
                 // Set category in state
                 val categoryItem = song.category?.let { CategoryItem(it) }
 
-                _state.apply {
+                state.apply {
                     songCategory = categoryItem
                     songTitle = song.title
                 }
@@ -239,7 +239,7 @@ class SongEditorViewModel @Inject constructor(
             songId = songId,
             title = state.songTitle,
             sections = sections,
-            category = _state.songCategory,
+            category = state.songCategory,
             existingTitles = songTitles,
             currentTitle = editedSong?.title
         )
@@ -253,7 +253,7 @@ class SongEditorViewModel @Inject constructor(
 
         // Just update validation state if name hasn't changed
         if (section.name == newSectionName) {
-            _state.sectionNameValidationState = validationState
+            state.sectionNameValidationState = validationState
             return
         }
 
@@ -267,7 +267,7 @@ class SongEditorViewModel @Inject constructor(
             )
         }
 
-        _state.apply {
+        state.apply {
             lyricsSectionName = newSectionName
             sectionNameValidationState = validationState
             if (validationState == NameValidationState.VALID) {
@@ -292,6 +292,6 @@ class SongEditorViewModel @Inject constructor(
         if (currentIndex !in sections.indices) return
 
         sections[currentIndex] = sections[currentIndex].copy(content = sectionText)
-        _state.lyricsSectionContent = sectionText
+        state.lyricsSectionContent = sectionText
     }
 }
