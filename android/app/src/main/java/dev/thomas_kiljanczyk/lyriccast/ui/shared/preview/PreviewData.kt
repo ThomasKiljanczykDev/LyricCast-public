@@ -7,12 +7,12 @@
 package dev.thomas_kiljanczyk.lyriccast.ui.shared.preview
 
 import dev.thomas_kiljanczyk.lyriccast.common.helpers.UUIDv7
-import dev.thomas_kiljanczyk.lyriccast.datamodel.models.Category
-import dev.thomas_kiljanczyk.lyriccast.domain.models.CategoryItem
-import dev.thomas_kiljanczyk.lyriccast.domain.models.SetlistItem
-import dev.thomas_kiljanczyk.lyriccast.domain.models.SongItem
+import dev.thomas_kiljanczyk.lyriccast.core.designsystem.color.BaseColors
+import dev.thomas_kiljanczyk.lyriccast.core.model.Category
+import dev.thomas_kiljanczyk.lyriccast.core.model.CategoryItem
+import dev.thomas_kiljanczyk.lyriccast.core.model.SetlistItem
+import dev.thomas_kiljanczyk.lyriccast.core.model.SongItem
 import dev.thomas_kiljanczyk.lyriccast.ui.setlist_editor.SetlistSongItem
-import dev.thomas_kiljanczyk.lyriccast.ui.shared.misc.BaseColors
 import kotlinx.collections.immutable.persistentListOf
 import kotlinx.collections.immutable.persistentMapOf
 import kotlinx.collections.immutable.toImmutableList

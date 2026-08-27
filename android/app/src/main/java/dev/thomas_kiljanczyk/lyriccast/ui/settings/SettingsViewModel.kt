@@ -13,12 +13,12 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import dev.thomas_kiljanczyk.lyriccast.core.model.UiText
+import dev.thomas_kiljanczyk.lyriccast.core.model.settings.ColorOption
+import dev.thomas_kiljanczyk.lyriccast.core.model.settings.ControlButtonHeightOption
+import dev.thomas_kiljanczyk.lyriccast.core.model.settings.ThemeOption
 import dev.thomas_kiljanczyk.lyriccast.data.SettingsRepository
-import dev.thomas_kiljanczyk.lyriccast.domain.models.UiText
-import dev.thomas_kiljanczyk.lyriccast.ui.shared.misc.settings.ColorOption
-import dev.thomas_kiljanczyk.lyriccast.ui.shared.misc.settings.ControlButtonHeightOption
 import dev.thomas_kiljanczyk.lyriccast.ui.shared.misc.settings.SettingsConstants
-import dev.thomas_kiljanczyk.lyriccast.ui.shared.misc.settings.ThemeOption
 import javax.inject.Inject
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.persistentListOf

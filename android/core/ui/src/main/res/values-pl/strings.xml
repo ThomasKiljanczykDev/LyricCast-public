@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="all_categories">Wszystkie kategorie</string>
+    <string name="category_label">Kategoria</string>
+    <string name="controls_next">Następny</string>
+    <string name="controls_previous">Poprzedni</string>
+    <string name="field_error">Błąd pola</string>
+    <string name="main_activity_export_preparing_data">Przygotowywanie danych …</string>
+    <string name="main_activity_import_successful">Import zakończony pomyślnie</string>
+    <string name="hint_song_title">Tytuł piosenki</string>
+    <string name="setlist_editor_hint_selected">Zaznaczone</string>
+</resources>

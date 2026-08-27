@@ -9,7 +9,7 @@ package dev.thomas_kiljanczyk.lyriccast.shared.cast
 import android.util.Log
 import com.google.android.gms.cast.framework.CastContext
 import dev.thomas_kiljanczyk.lyriccast.application.CastConfiguration
-import dev.thomas_kiljanczyk.lyriccast.shared.enums.ControlAction
+import dev.thomas_kiljanczyk.lyriccast.core.model.enums.ControlAction
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow

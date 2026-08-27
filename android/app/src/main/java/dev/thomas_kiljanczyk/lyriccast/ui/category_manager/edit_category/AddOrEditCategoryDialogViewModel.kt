@@ -13,11 +13,11 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import dev.thomas_kiljanczyk.lyriccast.domain.models.ColorItem
-import dev.thomas_kiljanczyk.lyriccast.domain.models.UiText
-import dev.thomas_kiljanczyk.lyriccast.domain.use_case.category_manager.GetCategoryNamesUseCase
-import dev.thomas_kiljanczyk.lyriccast.domain.use_case.category_manager.SaveCategoryUseCase
-import dev.thomas_kiljanczyk.lyriccast.domain.use_case.category_manager.ValidateCategoryNameUseCase
+import dev.thomas_kiljanczyk.lyriccast.core.domain.use_case.category_manager.GetCategoryNamesUseCase
+import dev.thomas_kiljanczyk.lyriccast.core.domain.use_case.category_manager.SaveCategoryUseCase
+import dev.thomas_kiljanczyk.lyriccast.core.domain.use_case.category_manager.ValidateCategoryNameUseCase
+import dev.thomas_kiljanczyk.lyriccast.core.model.ColorItem
+import dev.thomas_kiljanczyk.lyriccast.core.model.UiText
 import dev.thomas_kiljanczyk.lyriccast.ui.shared.misc.colorItems
 import java.util.UUID
 import javax.inject.Inject

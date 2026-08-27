@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="all_categories">All categories</string>
+    <string name="category_label">Category</string>
+    <string name="controls_next">Next</string>
+    <string name="controls_off" translatable="false">OFF</string>
+    <string name="controls_on" translatable="false">ON</string>
+    <string name="controls_previous">Previous</string>
+    <string name="field_error">Field error</string>
+    <string name="main_activity_export_preparing_data">Preparing data …</string>
+    <string name="main_activity_import_successful">Import completed successfully</string>
+    <string name="hint_song_title">Song title</string>
+    <string name="setlist_editor_hint_selected">Selected</string>
+</resources>

@@ -32,9 +32,9 @@ import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.DialogProperties
 import dev.thomas_kiljanczyk.lyriccast.R
+import dev.thomas_kiljanczyk.lyriccast.core.designsystem.theme.LyricCastTheme
+import dev.thomas_kiljanczyk.lyriccast.core.ui.components.LyricCastSpinner
 import dev.thomas_kiljanczyk.lyriccast.datatransfer.enums.ImportFormat
-import dev.thomas_kiljanczyk.lyriccast.ui.shared.components.LyricCastSpinner
-import dev.thomas_kiljanczyk.lyriccast.ui.shared.theme.LyricCastTheme
 import kotlinx.collections.immutable.toImmutableList
 
 @Stable

@@ -19,11 +19,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import dev.thomas_kiljanczyk.lyriccast.datamodel.models.Category
-import dev.thomas_kiljanczyk.lyriccast.domain.models.CategoryItem
+import dev.thomas_kiljanczyk.lyriccast.core.designsystem.theme.LyricCastTheme
+import dev.thomas_kiljanczyk.lyriccast.core.model.Category
+import dev.thomas_kiljanczyk.lyriccast.core.model.CategoryItem
 import dev.thomas_kiljanczyk.lyriccast.ui.category_manager.edit_category.AddOrEditCategoryDialog
 import dev.thomas_kiljanczyk.lyriccast.ui.shared.preview.PreviewData
-import dev.thomas_kiljanczyk.lyriccast.ui.shared.theme.LyricCastTheme
 import kotlinx.collections.immutable.toPersistentList
 import kotlinx.coroutines.launch
 

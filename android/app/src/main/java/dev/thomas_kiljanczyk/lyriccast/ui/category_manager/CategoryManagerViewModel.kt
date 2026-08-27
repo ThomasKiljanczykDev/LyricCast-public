@@ -12,10 +12,10 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import dev.thomas_kiljanczyk.lyriccast.datamodel.repositiories.CategoriesRepository
-import dev.thomas_kiljanczyk.lyriccast.domain.models.CategoryItem
-import dev.thomas_kiljanczyk.lyriccast.domain.models.DeleteCategoriesResult
-import dev.thomas_kiljanczyk.lyriccast.domain.use_case.category_manager.DeleteCategoriesUseCase
+import dev.thomas_kiljanczyk.lyriccast.core.data.repository.CategoriesRepository
+import dev.thomas_kiljanczyk.lyriccast.core.domain.use_case.category_manager.DeleteCategoriesUseCase
+import dev.thomas_kiljanczyk.lyriccast.core.model.CategoryItem
+import dev.thomas_kiljanczyk.lyriccast.core.model.DeleteCategoriesResult
 import java.util.UUID
 import javax.inject.Inject
 import kotlinx.collections.immutable.ImmutableList

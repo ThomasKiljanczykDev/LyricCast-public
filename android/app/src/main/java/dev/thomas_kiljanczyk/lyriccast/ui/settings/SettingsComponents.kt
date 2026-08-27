@@ -37,8 +37,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
-import dev.thomas_kiljanczyk.lyriccast.domain.models.UiText
-import dev.thomas_kiljanczyk.lyriccast.ui.shared.theme.LyricCastTheme
+import dev.thomas_kiljanczyk.lyriccast.core.designsystem.theme.LyricCastTheme
+import dev.thomas_kiljanczyk.lyriccast.core.model.UiText
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.toImmutableList
 

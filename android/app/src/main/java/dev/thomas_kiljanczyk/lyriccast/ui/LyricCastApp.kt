@@ -12,12 +12,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import dev.thomas_kiljanczyk.lyriccast.application.AppSettings
+import dev.thomas_kiljanczyk.lyriccast.core.designsystem.theme.LyricCastTheme
+import dev.thomas_kiljanczyk.lyriccast.core.model.settings.ThemeOption
 import dev.thomas_kiljanczyk.lyriccast.data.SettingsRepository
+import dev.thomas_kiljanczyk.lyriccast.datastore.proto.AppSettings
 import dev.thomas_kiljanczyk.lyriccast.navigation.LyricCastNavHost
 import dev.thomas_kiljanczyk.lyriccast.navigation.rememberLyricCastAppState
-import dev.thomas_kiljanczyk.lyriccast.ui.shared.misc.settings.ThemeOption
-import dev.thomas_kiljanczyk.lyriccast.ui.shared.theme.LyricCastTheme
 
 @Composable
 fun LyricCastApp(

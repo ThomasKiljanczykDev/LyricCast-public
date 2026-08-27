@@ -13,11 +13,11 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dev.thomas_kiljanczyk.lyriccast.R
-import dev.thomas_kiljanczyk.lyriccast.datamodel.models.ImportOptions
+import dev.thomas_kiljanczyk.lyriccast.core.domain.use_case.main.ExportDataUseCase
+import dev.thomas_kiljanczyk.lyriccast.core.domain.use_case.main.ImportDataUseCase
+import dev.thomas_kiljanczyk.lyriccast.core.model.ImportOptions
+import dev.thomas_kiljanczyk.lyriccast.core.model.UiText
 import dev.thomas_kiljanczyk.lyriccast.datatransfer.enums.ImportFormat
-import dev.thomas_kiljanczyk.lyriccast.domain.models.UiText
-import dev.thomas_kiljanczyk.lyriccast.domain.use_case.main.ExportDataUseCase
-import dev.thomas_kiljanczyk.lyriccast.domain.use_case.main.ImportDataUseCase
 import dev.thomas_kiljanczyk.lyriccast.shared.gms_nearby.GmsNearbySessionServerContext
 import java.io.InputStream
 import java.io.OutputStream

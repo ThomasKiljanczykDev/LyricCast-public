@@ -7,7 +7,10 @@
 package dev.thomas_kiljanczyk.lyriccast.ui.shared.misc.settings
 
 import dev.thomas_kiljanczyk.lyriccast.R
-import dev.thomas_kiljanczyk.lyriccast.domain.models.UiText
+import dev.thomas_kiljanczyk.lyriccast.core.model.UiText
+import dev.thomas_kiljanczyk.lyriccast.core.model.settings.ColorOption
+import dev.thomas_kiljanczyk.lyriccast.core.model.settings.ControlButtonHeightOption
+import dev.thomas_kiljanczyk.lyriccast.core.model.settings.ThemeOption
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.toImmutableList
 

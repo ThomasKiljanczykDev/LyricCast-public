@@ -29,13 +29,13 @@ import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import dev.thomas_kiljanczyk.lyriccast.R
+import dev.thomas_kiljanczyk.lyriccast.core.designsystem.theme.LyricCastTheme
+import dev.thomas_kiljanczyk.lyriccast.core.model.settings.ControlButtonHeightOption
+import dev.thomas_kiljanczyk.lyriccast.core.ui.components.ControlButtons
+import dev.thomas_kiljanczyk.lyriccast.core.ui.components.SlidePreview
+import dev.thomas_kiljanczyk.lyriccast.core.ui.components.SongInfo
 import dev.thomas_kiljanczyk.lyriccast.ui.shared.components.CastButton
-import dev.thomas_kiljanczyk.lyriccast.ui.shared.components.ControlButtons
-import dev.thomas_kiljanczyk.lyriccast.ui.shared.components.SlidePreview
-import dev.thomas_kiljanczyk.lyriccast.ui.shared.components.SongInfo
-import dev.thomas_kiljanczyk.lyriccast.ui.shared.misc.settings.ControlButtonHeightOption
 import dev.thomas_kiljanczyk.lyriccast.ui.shared.preview.PreviewData
-import dev.thomas_kiljanczyk.lyriccast.ui.shared.theme.LyricCastTheme
 import java.util.UUID
 import kotlinx.coroutines.launch
 

@@ -7,10 +7,10 @@
 package dev.thomas_kiljanczyk.lyriccast.data
 
 import androidx.datastore.core.DataStore
-import dev.thomas_kiljanczyk.lyriccast.application.AppSettings
-import dev.thomas_kiljanczyk.lyriccast.ui.shared.misc.settings.ColorOption
-import dev.thomas_kiljanczyk.lyriccast.ui.shared.misc.settings.ControlButtonHeightOption
-import dev.thomas_kiljanczyk.lyriccast.ui.shared.misc.settings.ThemeOption
+import dev.thomas_kiljanczyk.lyriccast.core.model.settings.ColorOption
+import dev.thomas_kiljanczyk.lyriccast.core.model.settings.ControlButtonHeightOption
+import dev.thomas_kiljanczyk.lyriccast.core.model.settings.ThemeOption
+import dev.thomas_kiljanczyk.lyriccast.datastore.proto.AppSettings
 import javax.inject.Inject
 import javax.inject.Singleton
 import kotlinx.coroutines.flow.Flow

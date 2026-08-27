@@ -4,15 +4,12 @@
  * Last modified 03/01/2022, 23:13
  */
 
-import com.google.protobuf.gradle.id
-
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.serialization)
     alias(libs.plugins.ksp)
     alias(libs.plugins.androidx.navigationSafeArgs)
     alias(libs.plugins.hilt)
-    alias(libs.plugins.protobuf)
     alias(libs.plugins.google.googleServices)
     alias(libs.plugins.firebase.crashlytics)
     alias(libs.plugins.compose.compiler)
@@ -41,7 +38,7 @@ android {
         versionCode = major * 100_000_000 + minor * 100_000 + patch * 100 + revision
         versionName = "$major.$minor.$patch${if (revision > 0) ".$revision" else ""}"
 
-        testInstrumentationRunner = "dev.thomas_kiljanczyk.lyriccast.HiltTestRunner"
+        testInstrumentationRunner = "dev.thomas_kiljanczyk.lyriccast.core.testing.LyricCastTestRunner"
         androidResources {
             localeFilters.addAll(listOf("en", "pl"))
         }
@@ -70,6 +67,7 @@ android {
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_21
         targetCompatibility = JavaVersion.VERSION_21
+        isCoreLibraryDesugaringEnabled = true
     }
 
     testOptions {
@@ -86,9 +84,15 @@ android {
 
 dependencies {
     // Submodules
-    implementation(project(":common"))
-    implementation(project(":data-transfer"))
-    implementation(project(":data-model"))
+    implementation(projects.core.common)
+    implementation(projects.core.model)
+    implementation(projects.core.designsystem)
+    implementation(projects.core.ui)
+    implementation(projects.core.dataTransfer)
+    implementation(projects.core.datastoreProto)
+    implementation(projects.core.database)
+    implementation(projects.core.data)
+    implementation(projects.core.domain)
 
     // App dependencies
     implementation(libs.kotlinx.coroutines)
@@ -97,7 +101,6 @@ dependencies {
 
     // Architecture Components
     implementation(libs.androidx.datastore)
-    implementation(libs.protobuf.kotlinLite)
 
     // AndroidX
     implementation(libs.android.material)
@@ -132,6 +135,10 @@ dependencies {
     androidTestImplementation(libs.hiltTesting)
     kspAndroidTest(libs.hiltCompiler)
 
+    // Test infrastructure submodules
+    androidTestImplementation(projects.core.testing)
+    androidTestImplementation(projects.core.dataTest)
+
     // LeakCanary
 //    debugImplementation(libs.squareup.leakCanary)
 
@@ -158,26 +165,6 @@ dependencies {
     // Other dependencies
     implementation(libs.apache.commonsLang)
     implementation(libs.zip4j)
-}
 
-protobuf {
-    protoc {
-        artifact = libs.protobuf.protoc.get().toString()
-    }
-
-    // Generates the java Protobuf-lite code for the Protobufs in this project. See
-    // https://github.com/google/protobuf-gradle-plugin#customizing-protobuf-compilation
-    // for more information.
-    generateProtoTasks {
-        all().forEach { task ->
-            task.builtins {
-                id("java") {
-                    option("lite")
-                }
-                id("kotlin") {
-                    option("lite")
-                }
-            }
-        }
-    }
+    coreLibraryDesugaring(libs.android.desugarJdkLibs)
 }

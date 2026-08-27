@@ -8,9 +8,9 @@ package dev.thomas_kiljanczyk.lyriccast.domain.use_case.song_editor
 
 import android.util.Log
 import dev.thomas_kiljanczyk.lyriccast.R
-import dev.thomas_kiljanczyk.lyriccast.datamodel.repositiories.SongsRepository
+import dev.thomas_kiljanczyk.lyriccast.core.data.repository.SongsRepository
+import dev.thomas_kiljanczyk.lyriccast.core.model.UiText
 import dev.thomas_kiljanczyk.lyriccast.domain.models.LoadSongResult
-import dev.thomas_kiljanczyk.lyriccast.domain.models.UiText
 import dev.thomas_kiljanczyk.lyriccast.ui.song_editor.LyricsSection
 import java.util.UUID
 import javax.inject.Inject

@@ -31,7 +31,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
 import dev.thomas_kiljanczyk.lyriccast.R
-import dev.thomas_kiljanczyk.lyriccast.ui.shared.theme.LyricCastTheme
+import dev.thomas_kiljanczyk.lyriccast.core.designsystem.theme.LyricCastTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

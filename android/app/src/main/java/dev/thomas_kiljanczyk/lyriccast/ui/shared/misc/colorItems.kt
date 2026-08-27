@@ -7,8 +7,9 @@
 package dev.thomas_kiljanczyk.lyriccast.ui.shared.misc
 
 import dev.thomas_kiljanczyk.lyriccast.R
-import dev.thomas_kiljanczyk.lyriccast.domain.models.ColorItem
-import dev.thomas_kiljanczyk.lyriccast.domain.models.UiText
+import dev.thomas_kiljanczyk.lyriccast.core.designsystem.color.BaseColors
+import dev.thomas_kiljanczyk.lyriccast.core.model.ColorItem
+import dev.thomas_kiljanczyk.lyriccast.core.model.UiText
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.persistentListOf
 

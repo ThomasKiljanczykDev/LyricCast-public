@@ -49,11 +49,11 @@ import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import dev.thomas_kiljanczyk.lyriccast.R
-import dev.thomas_kiljanczyk.lyriccast.shared.enums.NameValidationState
+import dev.thomas_kiljanczyk.lyriccast.core.designsystem.theme.LyricCastTheme
+import dev.thomas_kiljanczyk.lyriccast.core.model.enums.NameValidationState
+import dev.thomas_kiljanczyk.lyriccast.core.ui.components.LyricCastTextField
 import dev.thomas_kiljanczyk.lyriccast.ui.setlist_editor.songs.SetlistSongSelectionDialog
-import dev.thomas_kiljanczyk.lyriccast.ui.shared.components.LyricCastTextField
 import dev.thomas_kiljanczyk.lyriccast.ui.shared.preview.PreviewData
-import dev.thomas_kiljanczyk.lyriccast.ui.shared.theme.LyricCastTheme
 import java.util.UUID
 import kotlinx.coroutines.launch
 

@@ -25,12 +25,12 @@ import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.ViewModelStoreOwner
-import dev.thomas_kiljanczyk.lyriccast.domain.models.CategoryItem
-import dev.thomas_kiljanczyk.lyriccast.domain.models.SongItem
-import dev.thomas_kiljanczyk.lyriccast.ui.shared.components.SongFilters
-import dev.thomas_kiljanczyk.lyriccast.ui.shared.components.SongItem
+import dev.thomas_kiljanczyk.lyriccast.core.designsystem.theme.LyricCastTheme
+import dev.thomas_kiljanczyk.lyriccast.core.model.CategoryItem
+import dev.thomas_kiljanczyk.lyriccast.core.model.SongItem
+import dev.thomas_kiljanczyk.lyriccast.core.ui.components.SongFilters
+import dev.thomas_kiljanczyk.lyriccast.core.ui.components.SongItem
 import dev.thomas_kiljanczyk.lyriccast.ui.shared.preview.PreviewData
-import dev.thomas_kiljanczyk.lyriccast.ui.shared.theme.LyricCastTheme
 import java.util.UUID
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.toImmutableList

@@ -36,7 +36,15 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "LyricCast"
-include(":common")
-include(":data-transfer")
-include(":data-model")
+include(":core:common")
+include(":core:model")
+include(":core:designsystem")
+include(":core:ui")
+include(":core:datastore-proto")
+include(":core:database")
+include(":core:data")
+include(":core:domain")
+include(":core:data-transfer")
+include(":core:testing")
+include(":core:data-test")
 include(":app")

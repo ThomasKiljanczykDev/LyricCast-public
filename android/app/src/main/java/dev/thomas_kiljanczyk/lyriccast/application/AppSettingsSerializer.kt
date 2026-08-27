@@ -13,8 +13,9 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.core.Serializer
 import androidx.datastore.dataStore
 import com.google.protobuf.InvalidProtocolBufferException
-import dev.thomas_kiljanczyk.lyriccast.ui.shared.misc.settings.ColorOption
-import dev.thomas_kiljanczyk.lyriccast.ui.shared.misc.settings.ControlButtonHeightOption
+import dev.thomas_kiljanczyk.lyriccast.core.model.settings.ColorOption
+import dev.thomas_kiljanczyk.lyriccast.core.model.settings.ControlButtonHeightOption
+import dev.thomas_kiljanczyk.lyriccast.datastore.proto.AppSettings
 import java.io.InputStream
 import java.io.OutputStream
 

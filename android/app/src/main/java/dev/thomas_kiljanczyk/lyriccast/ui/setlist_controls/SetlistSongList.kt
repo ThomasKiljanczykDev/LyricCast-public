@@ -26,9 +26,9 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
 import dev.thomas_kiljanczyk.lyriccast.R
-import dev.thomas_kiljanczyk.lyriccast.datamodel.models.Song
-import dev.thomas_kiljanczyk.lyriccast.domain.models.SongItem
-import dev.thomas_kiljanczyk.lyriccast.ui.shared.theme.LyricCastTheme
+import dev.thomas_kiljanczyk.lyriccast.core.designsystem.theme.LyricCastTheme
+import dev.thomas_kiljanczyk.lyriccast.core.model.Song
+import dev.thomas_kiljanczyk.lyriccast.core.model.SongItem
 
 @Composable
 fun SongListItem(

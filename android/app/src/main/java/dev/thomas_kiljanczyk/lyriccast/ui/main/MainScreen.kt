@@ -64,9 +64,11 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
 import dev.thomas_kiljanczyk.lyriccast.R
 import dev.thomas_kiljanczyk.lyriccast.application.LyricCastApplication
-import dev.thomas_kiljanczyk.lyriccast.datamodel.models.ImportOptions
+import dev.thomas_kiljanczyk.lyriccast.core.designsystem.theme.LyricCastTheme
+import dev.thomas_kiljanczyk.lyriccast.core.model.ImportOptions
+import dev.thomas_kiljanczyk.lyriccast.core.model.UiText
+import dev.thomas_kiljanczyk.lyriccast.core.ui.components.ProgressDialog
 import dev.thomas_kiljanczyk.lyriccast.datatransfer.enums.ImportFormat
-import dev.thomas_kiljanczyk.lyriccast.domain.models.UiText
 import dev.thomas_kiljanczyk.lyriccast.ui.main.import_dialog.ImportDialog
 import dev.thomas_kiljanczyk.lyriccast.ui.main.setlists.SetlistsScreen
 import dev.thomas_kiljanczyk.lyriccast.ui.main.setlists.SetlistsScreenState
@@ -74,9 +76,7 @@ import dev.thomas_kiljanczyk.lyriccast.ui.main.setlists.SetlistsScreenViewModel
 import dev.thomas_kiljanczyk.lyriccast.ui.main.songs.SongsScreen
 import dev.thomas_kiljanczyk.lyriccast.ui.main.songs.SongsScreenState
 import dev.thomas_kiljanczyk.lyriccast.ui.main.songs.SongsScreenViewModel
-import dev.thomas_kiljanczyk.lyriccast.ui.shared.components.ProgressDialog
 import dev.thomas_kiljanczyk.lyriccast.ui.shared.menu.gms_nearby_session.dialog.StartSessionServerDialog
-import dev.thomas_kiljanczyk.lyriccast.ui.shared.theme.LyricCastTheme
 import java.io.OutputStream
 import java.util.UUID
 import kotlinx.coroutines.Dispatchers

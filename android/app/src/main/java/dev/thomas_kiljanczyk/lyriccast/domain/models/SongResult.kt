@@ -6,9 +6,9 @@
 
 package dev.thomas_kiljanczyk.lyriccast.domain.models
 
-import dev.thomas_kiljanczyk.lyriccast.datamodel.models.Song
+import dev.thomas_kiljanczyk.lyriccast.core.model.Song
+import dev.thomas_kiljanczyk.lyriccast.core.model.UiText
 import dev.thomas_kiljanczyk.lyriccast.ui.song_editor.LyricsSection
-import java.util.UUID
 
 /**
  * Result of saving a song operation.
@@ -29,13 +29,4 @@ sealed class LoadSongResult {
     ) : LoadSongResult()
 
     data class Error(val message: UiText) : LoadSongResult()
-}
-
-/**
- * Result of deleting songs operation.
- */
-sealed class DeleteSongsResult {
-    data class Success(val deletedCount: Int) : DeleteSongsResult()
-    data class SongsInUse(val songIds: List<UUID>) : DeleteSongsResult()
-    data class Error(val message: UiText) : DeleteSongsResult()
 }

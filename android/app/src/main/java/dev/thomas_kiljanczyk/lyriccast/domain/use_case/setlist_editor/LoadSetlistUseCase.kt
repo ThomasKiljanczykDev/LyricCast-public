@@ -8,10 +8,11 @@ package dev.thomas_kiljanczyk.lyriccast.domain.use_case.setlist_editor
 
 import android.util.Log
 import dev.thomas_kiljanczyk.lyriccast.R
-import dev.thomas_kiljanczyk.lyriccast.datamodel.repositiories.SetlistsRepository
+import dev.thomas_kiljanczyk.lyriccast.core.data.repository.SetlistsRepository
+import dev.thomas_kiljanczyk.lyriccast.core.domain.use_case.setlist_editor.GetSongsByIdsUseCase
+import dev.thomas_kiljanczyk.lyriccast.core.model.SongItem
+import dev.thomas_kiljanczyk.lyriccast.core.model.UiText
 import dev.thomas_kiljanczyk.lyriccast.domain.models.LoadSetlistResult
-import dev.thomas_kiljanczyk.lyriccast.domain.models.SongItem
-import dev.thomas_kiljanczyk.lyriccast.domain.models.UiText
 import dev.thomas_kiljanczyk.lyriccast.ui.setlist_editor.SetlistSongItem
 import java.util.UUID
 import javax.inject.Inject

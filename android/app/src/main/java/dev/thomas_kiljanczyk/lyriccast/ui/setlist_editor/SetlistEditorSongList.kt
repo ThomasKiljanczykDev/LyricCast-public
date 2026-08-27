@@ -45,9 +45,9 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.zIndex
-import dev.thomas_kiljanczyk.lyriccast.domain.models.SongItem
-import dev.thomas_kiljanczyk.lyriccast.ui.shared.components.SwipeToRevealBox
-import dev.thomas_kiljanczyk.lyriccast.ui.shared.theme.LyricCastTheme
+import dev.thomas_kiljanczyk.lyriccast.core.designsystem.theme.LyricCastTheme
+import dev.thomas_kiljanczyk.lyriccast.core.model.SongItem
+import dev.thomas_kiljanczyk.lyriccast.core.ui.components.SwipeToRevealBox
 import java.util.UUID
 import kotlinx.collections.immutable.persistentListOf
 import kotlinx.collections.immutable.persistentMapOf

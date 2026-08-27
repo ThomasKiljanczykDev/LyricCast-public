@@ -20,11 +20,11 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.SmallTest
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
-import dev.thomas_kiljanczyk.lyriccast.datamodel.models.Category
-import dev.thomas_kiljanczyk.lyriccast.datamodel.models.Song
-import dev.thomas_kiljanczyk.lyriccast.datamodel.repositiories.CategoriesRepository
-import dev.thomas_kiljanczyk.lyriccast.datamodel.repositiories.SongsRepository
-import dev.thomas_kiljanczyk.lyriccast.shared.testing.TestTags
+import dev.thomas_kiljanczyk.lyriccast.core.model.Category
+import dev.thomas_kiljanczyk.lyriccast.core.model.Song
+import dev.thomas_kiljanczyk.lyriccast.core.data.repository.CategoriesRepository
+import dev.thomas_kiljanczyk.lyriccast.core.data.repository.SongsRepository
+import dev.thomas_kiljanczyk.lyriccast.core.ui.testing.TestTags
 import dev.thomas_kiljanczyk.lyriccast.ui.main.MainActivity
 import kotlinx.coroutines.test.runTest
 import org.junit.Before

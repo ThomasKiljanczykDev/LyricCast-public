@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="category_manager_delete_failed">Nie udało się usunąć kategorii</string>
+    <string name="category_manager_enter_name">Proszę podać nazwę kategorii</string>
+    <string name="category_manager_name_already_used">Nazwa kategorii jest już zajęta</string>
+    <string name="category_manager_name_too_long">Nazwa kategorii przekracza maksymalną długość %d znaków</string>
+    <string name="category_manager_save_failed">Nie udało się zapisać kategorii</string>
+    <string name="delete_setlists_failed">Usuwanie listy nie powiodło się</string>
+    <string name="delete_songs_failed">Usuwanie piosenki nie powiodło się</string>
+    <string name="export_cleaning_temp">Usuwanie plików tymczasowych…</string>
+    <string name="export_creating_zip">Tworzenie pliku ZIP…</string>
+    <string name="export_saving_json">Zapisywanie danych JSON…</string>
+    <string name="main_activity_export_deleting_temp">Usuwanie tymczasowego katalogu …</string>
+    <string name="main_activity_export_preparing_data">Przygotowywanie danych …</string>
+    <string name="main_activity_export_saving_json">Zapisywanie do tymczasowego katalogu …</string>
+    <string name="main_activity_export_saving_zip">Zapisywanie paczki zip …</string>
+    <string name="setlist_editor_enter_name">Proszę podać nazwę listy</string>
+    <string name="setlist_editor_must_have_songs">Lista musi zawierać co najmniej jedną piosenkę</string>
+    <string name="setlist_editor_name_already_used">Nazwa listy już zajęta</string>
+    <string name="setlist_editor_save_failed">Nie udało się zapisać listy</string>
+</resources>

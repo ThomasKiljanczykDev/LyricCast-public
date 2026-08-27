@@ -16,13 +16,14 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.google.android.gms.cast.framework.CastContext
 import dagger.hilt.android.lifecycle.HiltViewModel
-import dev.thomas_kiljanczyk.lyriccast.application.AppSettings
 import dev.thomas_kiljanczyk.lyriccast.application.CastConfiguration
 import dev.thomas_kiljanczyk.lyriccast.application.getCastConfiguration
-import dev.thomas_kiljanczyk.lyriccast.datamodel.models.Category
-import dev.thomas_kiljanczyk.lyriccast.datamodel.models.Song
-import dev.thomas_kiljanczyk.lyriccast.datamodel.repositiories.SetlistsRepository
-import dev.thomas_kiljanczyk.lyriccast.domain.models.SongItem
+import dev.thomas_kiljanczyk.lyriccast.core.data.repository.SetlistsRepository
+import dev.thomas_kiljanczyk.lyriccast.core.model.Category
+import dev.thomas_kiljanczyk.lyriccast.core.model.Song
+import dev.thomas_kiljanczyk.lyriccast.core.model.SongItem
+import dev.thomas_kiljanczyk.lyriccast.core.model.settings.ControlButtonHeightOption
+import dev.thomas_kiljanczyk.lyriccast.datastore.proto.AppSettings
 import dev.thomas_kiljanczyk.lyriccast.shared.cast.CastMessagingContext
 import dev.thomas_kiljanczyk.lyriccast.shared.cast.CastSessionListener
 import dev.thomas_kiljanczyk.lyriccast.shared.gms_nearby.ReceivedPayload
@@ -30,7 +31,6 @@ import dev.thomas_kiljanczyk.lyriccast.shared.gms_nearby.ShowLyricsContent
 import dev.thomas_kiljanczyk.lyriccast.shared.misc.LyricCastMessagingContext
 import dev.thomas_kiljanczyk.lyriccast.shared.misc.SessionServerCommand
 import dev.thomas_kiljanczyk.lyriccast.shared.misc.SessionServerMessage
-import dev.thomas_kiljanczyk.lyriccast.ui.shared.misc.settings.ControlButtonHeightOption
 import java.util.UUID
 import javax.inject.Inject
 import kotlinx.coroutines.CoroutineScope

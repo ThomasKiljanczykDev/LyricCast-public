@@ -17,10 +17,10 @@ import androidx.test.filters.LargeTest
 import androidx.test.platform.app.InstrumentationRegistry
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
-import dev.thomas_kiljanczyk.lyriccast.datamodel.repositiories.CategoriesRepository
+import dev.thomas_kiljanczyk.lyriccast.core.data.repository.CategoriesRepository
 import dev.thomas_kiljanczyk.lyriccast.ui.category_manager.CategoryManagerScreen
 import dev.thomas_kiljanczyk.lyriccast.ui.shared.misc.colorItems
-import dev.thomas_kiljanczyk.lyriccast.ui.shared.theme.LyricCastTheme
+import dev.thomas_kiljanczyk.lyriccast.core.designsystem.theme.LyricCastTheme
 import kotlinx.coroutines.test.runTest
 import org.junit.Before
 import org.junit.Ignore

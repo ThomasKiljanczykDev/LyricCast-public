@@ -6,8 +6,8 @@
 
 package dev.thomas_kiljanczyk.lyriccast.ui.category_manager.edit_category
 
-import dev.thomas_kiljanczyk.lyriccast.datamodel.models.Category
-import dev.thomas_kiljanczyk.lyriccast.domain.models.ColorItem
+import dev.thomas_kiljanczyk.lyriccast.core.model.Category
+import dev.thomas_kiljanczyk.lyriccast.core.model.ColorItem
 import java.util.UUID
 
 sealed class AddOrEditCategoryFormEvent {

@@ -35,9 +35,9 @@ import androidx.compose.ui.window.DialogProperties
 import androidx.hilt.navigation.compose.hiltViewModel
 import dev.thomas_kiljanczyk.lyriccast.R
 import dev.thomas_kiljanczyk.lyriccast.application.LyricCastApplication
+import dev.thomas_kiljanczyk.lyriccast.core.designsystem.theme.LyricCastTheme
+import dev.thomas_kiljanczyk.lyriccast.core.ui.components.LyricCastTextField
 import dev.thomas_kiljanczyk.lyriccast.shared.gms_nearby.GmsNearbySessionServerContext
-import dev.thomas_kiljanczyk.lyriccast.ui.shared.components.LyricCastTextField
-import dev.thomas_kiljanczyk.lyriccast.ui.shared.theme.LyricCastTheme
 
 @Composable
 fun StartSessionServerDialog(

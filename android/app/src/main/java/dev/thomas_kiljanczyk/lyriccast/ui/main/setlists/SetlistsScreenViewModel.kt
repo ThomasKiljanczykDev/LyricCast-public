@@ -14,11 +14,11 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dev.thomas_kiljanczyk.lyriccast.common.extensions.normalize
-import dev.thomas_kiljanczyk.lyriccast.datamodel.repositiories.SetlistsRepository
-import dev.thomas_kiljanczyk.lyriccast.domain.models.DeleteSetlistsResult
-import dev.thomas_kiljanczyk.lyriccast.domain.models.SetlistItem
-import dev.thomas_kiljanczyk.lyriccast.domain.use_case.main.DeleteSetlistsUseCase
-import dev.thomas_kiljanczyk.lyriccast.domain.use_case.main.ExportSetlistsUseCase
+import dev.thomas_kiljanczyk.lyriccast.core.data.repository.SetlistsRepository
+import dev.thomas_kiljanczyk.lyriccast.core.domain.use_case.main.DeleteSetlistsUseCase
+import dev.thomas_kiljanczyk.lyriccast.core.domain.use_case.main.ExportSetlistsUseCase
+import dev.thomas_kiljanczyk.lyriccast.core.model.DeleteSetlistsResult
+import dev.thomas_kiljanczyk.lyriccast.core.model.SetlistItem
 import java.io.OutputStream
 import javax.inject.Inject
 import kotlinx.collections.immutable.ImmutableList

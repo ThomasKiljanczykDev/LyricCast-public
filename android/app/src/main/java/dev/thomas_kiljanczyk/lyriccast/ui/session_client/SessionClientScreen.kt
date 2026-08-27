@@ -51,10 +51,10 @@ import androidx.core.content.ContextCompat
 import androidx.hilt.navigation.compose.hiltViewModel
 import dev.thomas_kiljanczyk.lyriccast.R
 import dev.thomas_kiljanczyk.lyriccast.application.LyricCastApplication
+import dev.thomas_kiljanczyk.lyriccast.core.designsystem.theme.LyricCastTheme
+import dev.thomas_kiljanczyk.lyriccast.core.ui.components.SlidePreview
+import dev.thomas_kiljanczyk.lyriccast.core.ui.components.SongInfo
 import dev.thomas_kiljanczyk.lyriccast.ui.session_client.choose_session.ChooseSessionDialog
-import dev.thomas_kiljanczyk.lyriccast.ui.shared.components.SlidePreview
-import dev.thomas_kiljanczyk.lyriccast.ui.shared.components.SongInfo
-import dev.thomas_kiljanczyk.lyriccast.ui.shared.theme.LyricCastTheme
 import kotlinx.coroutines.launch
 
 @Composable

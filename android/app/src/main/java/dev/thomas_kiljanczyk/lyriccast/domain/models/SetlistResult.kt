@@ -6,17 +6,9 @@
 
 package dev.thomas_kiljanczyk.lyriccast.domain.models
 
-import dev.thomas_kiljanczyk.lyriccast.datamodel.models.Setlist
+import dev.thomas_kiljanczyk.lyriccast.core.model.Setlist
+import dev.thomas_kiljanczyk.lyriccast.core.model.UiText
 import dev.thomas_kiljanczyk.lyriccast.ui.setlist_editor.SetlistSongItem
-
-/**
- * Result of saving a setlist operation.
- */
-sealed class SaveSetlistResult {
-    data class Success(val setlist: Setlist) : SaveSetlistResult()
-    data class ValidationError(val message: UiText) : SaveSetlistResult()
-    data class Error(val message: UiText) : SaveSetlistResult()
-}
 
 /**
  * Result of loading a setlist operation.
@@ -29,16 +21,3 @@ sealed class LoadSetlistResult {
 
     data class Error(val message: UiText) : LoadSetlistResult()
 }
-
-/**
- * Result of deleting setlists operation.
- */
-sealed class DeleteSetlistsResult {
-    data class Success(val deletedCount: Int) : DeleteSetlistsResult()
-    data class Error(val message: UiText) : DeleteSetlistsResult()
-}
-
-data class CategoryNameValidationResult(
-    val successful: Boolean,
-    val errorMessage: UiText? = null
-)
