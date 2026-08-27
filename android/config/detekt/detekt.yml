@@ -1,167 +1,151 @@
 # LyricCast detekt configuration.
 #
-# Layered on top of detekt's default config (`buildUponDefaultConfig = true`), so only deviations
-# are listed here. Every deactivated or relaxed rule carries a one-line reason.
-# No baseline file is used - findings are either tuned away here with a reason, fixed in source,
-# or suppressed locally with a reason.
+# Layered on detekt's defaults (`buildUponDefaultConfig = true`): only deviations appear here, never
+# a value that already matches the default. Every relaxed or disabled rule carries a one-line reason
+# (AGENTS.md). No baseline file - findings are tuned away here, fixed, or locally suppressed.
 #
-# NOTE: type resolution is intentionally off (see build-logic .../buildlogic/Detekt.kt). Rules that
-# require it silently do not fire; they are kept active so they start working if TR is ever enabled.
-
-comments:
-  UndocumentedPublicClass:
-    active: false # This is an app, not a published library - KDoc on every public class is noise.
-  UndocumentedPublicFunction:
-    active: false # Same reason as above.
-  UndocumentedPublicProperty:
-    active: false # Same reason as above.
+# Type resolution is off (build-logic .../buildlogic/Detekt.kt), so rules requiring it never fire;
+# they stay active to start working if TR is ever enabled.
 
 complexity:
   CyclomaticComplexMethod:
-    active: true # The real complexity gate - kept strict; existing hotspots carry a local @Suppress.
     allowedComplexity: 15
-    ignoreSingleWhenExpression: true # A flat `when` dispatch is not complexity worth splitting.
-    ignoreAnnotated: ['Composable'] # Composable branching is layout, measured by nesting not logic.
+    # A flat `when` dispatch is not complexity worth splitting.
+    ignoreSingleWhenExpression: true
+    # Composable branching is layout, measured by nesting not logic.
+    ignoreAnnotated: [ 'Composable' ]
+  # Character classification in the chord/lyrics parsers.
   ComplexCondition:
-    active: true
-    allowedConditions: 4 # Character-classification conditions in the chord/lyrics parsers read fine at 4.
+    allowedConditions: 4
+  # Combinatorial sweeps in tests nest by design.
   NestedBlockDepth:
-    active: true
-    # Exhaustive combinatorial sweeps in tests nest loops by design.
-    excludes: ['**/test/**', '**/androidTest/**', '**/screenshotTest/**']
+    excludes: [ '**/test/**', '**/androidTest/**', '**/screenshotTest/**' ]
+  # Screen-level Compose files run long.
   LargeClass:
-    active: true
-    allowedLines: 800 # Screen-level Compose files legitimately run long; still catches runaways.
+    allowedLines: 800
   LongMethod:
-    active: true
     allowedLines: 80
-    ignoreAnnotated: ['Composable'] # Declarative composables are long by construction, not complex.
+    # Composables are long by construction, not complex.
+    ignoreAnnotated: [ 'Composable' ]
   LongParameterList:
-    active: true
     allowedFunctionParameters: 7
     allowedConstructorParameters: 8
     ignoreDefaultParameters: true
-    ignoreAnnotated: ['Composable'] # Composable state/callback parameter lists are the Compose idiom.
+    # State/callback parameter lists are the Compose idiom.
+    ignoreAnnotated: [ 'Composable' ]
   TooManyFunctions:
-    active: true
-    ignoreAnnotatedFunctions: ['Composable', 'Preview'] # Many small composables per file is intended.
+    # Many small composables per file is intended.
+    ignoreAnnotatedFunctions: [ 'Composable', 'Preview' ]
     ignorePrivate: true
     allowedFunctionsPerFile: 20
     allowedFunctionsPerClass: 20
-    # Room DAOs and the repository facades over them legitimately expose one function per query.
+    # Room DAOs and their repository facades: one function per query.
     allowedFunctionsPerInterface: 35
-    allowedFunctionsPerObject: 25 # No-op action objects used by @Preview fixtures mirror a whole interface.
+    # @Preview no-op action objects mirror a whole interface.
+    allowedFunctionsPerObject: 25
 
 exceptions:
+  # A stack trace in a failing test is diagnostics.
   PrintStackTrace:
-    active: true
-    excludes: ['**/test/**', '**/androidTest/**'] # Printing a stack trace in a failing test is diagnostics.
+    excludes: [ '**/test/**', '**/androidTest/**' ]
+  # Tests catch-and-assert without rethrowing.
   SwallowedException:
-    active: true
-    excludes: ['**/test/**', '**/androidTest/**'] # Tests catch-and-assert without rethrowing on purpose.
+    excludes: [ '**/test/**', '**/androidTest/**' ]
+  # Import/export, Cast and Nearby boundaries catch-all into a user-facing error.
   TooGenericExceptionCaught:
-    active: false # Import/export, Cast and Nearby boundaries deliberately catch-all and surface a user error.
+    active: false
+  # Setup failures throw bare Exception.
   TooGenericExceptionThrown:
-    active: true
-    # Benchmarks/tests throw bare Exception for setup failures; that never reaches production code.
-    excludes: ['**/test/**', '**/androidTest/**', '**/baselineprofile/**']
+    excludes: [ '**/test/**', '**/androidTest/**', '**/baselineprofile/**' ]
 
 naming:
+  # Composables are PascalCase.
   FunctionNaming:
-    active: true
-    ignoreAnnotated: ['Composable'] # Composables are PascalCase by convention.
+    ignoreAnnotated: [ 'Composable' ]
+  # Navigation files pair a route type with its navigate/section helpers.
   MatchingDeclarationName:
-    active: false # Navigation files pair a @Serializable route type with its navigate/section helpers.
+    active: false
+  # `dev.thomas_kiljanczyk` - the underscore is in the published id.
   PackageNaming:
-    active: true
-    # The root package is `dev.thomas_kiljanczyk.*` - underscores are part of the published id.
     packagePattern: '[a-z]+(\.[a-z_][A-Za-z0-9_]*)*'
+  # Private top-level Compose constants are camelCase.
   TopLevelPropertyNaming:
-    active: true
-    constantPattern: '[A-Z][_A-Z0-9]*|[a-z][A-Za-z0-9]*' # Private top-level Compose constants use camelCase.
+    constantPattern: '[A-Z][_A-Z0-9]*|[a-z][A-Za-z0-9]*'
 
 style:
   MagicNumber:
-    active: true
-    # Compose lays out with literal `.dp` / `.sp` values; those are extension-property receivers and
-    # are covered by ignoreExtensionFunctions. Benchmarks are excluded - iteration/timeout counts
-    # there are the parameter being tuned, not a hidden constant.
-    excludes: ['**/test/**', '**/androidTest/**', '**/screenshotTest/**', '**/baselineprofile/**', '**/*.kts']
-    ignoreNumbers: ['-1', '0', '1', '2', '100']
-    ignoreExtensionFunctions: true
-    ignoreNamedArgument: true
+    # Benchmark iteration/timeout counts are the parameter being tuned, not hidden constants. The
+    # default's KMP-only test globs are dropped; this build is Android-only.
+    excludes: [ '**/test/**', '**/androidTest/**', '**/screenshotTest/**', '**/baselineprofile/**', '**/*.kts' ]
+    ignoreNumbers: [ '-1', '0', '1', '2', '100' ]
     ignoreEnums: true
     ignoreRanges: true
     ignoreAnnotation: true
-    ignorePropertyDeclaration: true
-    ignoreLocalVariableDeclaration: true
-    ignoreCompanionObjectPropertyDeclaration: true
-    # Compose UI expresses layout with literal values (rotations, weights, alphas, `.dp`); the rule
-    # keeps guarding non-UI logic, where an unexplained number really is a problem.
-    ignoreAnnotated: ['Composable', 'Preview']
-  MaxLineLength:
-    active: true
-    maxLineLength: 120
+    # Compose states layout as literals (rotations, weights, alphas).
+    ignoreAnnotated: [ 'Composable', 'Preview' ]
+  # Redundant with ktlint>FinalNewline.
   NewLineAtEndOfFile:
-    active: false # Redundant with ktlint>FinalNewline, which enforces the same thing.
+    active: false
+  # Hand-written tokenizers skip and terminate with continue/break.
   LoopWithTooManyJumpStatements:
-    active: true
-    maxJumpCount: 3 # Hand-written tokenizers use continue/break to skip and terminate.
+    maxJumpCount: 3
+  # Guard-clause-heavy parsers.
   ReturnCount:
-    active: true
-    max: 4 # Guard-clause-heavy parsers legitimately return early more than twice.
-    excludeGuardClauses: true # An early-return guard is not a second exit path worth counting.
+    max: 4
+    excludeGuardClauses: true
+  # @Preview composables are tooling entry points, never called.
   UnusedPrivateFunction:
-    active: true
-    ignoreAnnotated: ['Preview'] # @Preview composables are entry points for tooling, never called.
+    ignoreAnnotated: [ 'Preview' ]
 
 empty-blocks:
+  # Empty overrides narrow the Cast/Nearby listener interfaces.
   EmptyFunctionBlock:
-    active: true
-    ignoreOverridden: true # Empty overrides are how the Cast/Nearby listener interfaces are narrowed.
+    ignoreOverridden: true
 
-# Compose rule set (io.nlopez.compose.rules). The correctness/API rules are on; the purely
-# stylistic ones that disagree with this codebase's established conventions are off.
+# Compose rule set (io.nlopez.compose.rules). Correctness/API rules stay on; the stylistic ones that
+# disagree with this codebase's conventions are off.
 Compose:
   CompositionLocalAllowlist:
-    active: true
-    # The tour/tutorial overlay, the preview harness, and the analytics helper are exactly the
-    # implicit-context cases a CompositionLocal is for; everything else must still be passed
-    # explicitly.
+    # The tour overlay, the preview harness and the analytics helper are the implicit-context cases a
+    # CompositionLocal is for; everything else is passed explicitly.
     allowedCompositionLocals:
       - 'LocalTourAnchorRegistry'
       - 'LocalTourExpansion'
       - 'LocalTourSpotlight'
       - 'LocalPreviewSpinnerExpanded'
       - 'LocalAnalyticsHelper'
+  # Components take a `content` slot plus further optional slots; one cannot be trailing.
   ContentTrailingLambda:
-    active: false # Components here take a `content` slot plus further optional slots; one cannot be trailing.
+    active: false
+  # Nested local composables use `fieldModifier`/`chipModifier` to avoid shadowing.
   ModifierNaming:
-    active: false # Nested local composables use `fieldModifier`/`chipModifier` to avoid shadowing the outer `modifier`.
+    active: false
+  # Same nested-local case: the caller always supplies the modifier.
   ModifierWithoutDefault:
-    active: false # Same nested-local-composable case: the caller always supplies the modifier.
+    active: false
+  # LyricCastTextField's modifier sizes the field, not the column holding its error row.
   ModifierNotUsedAtRoot:
-    active: false # LyricCastTextField's modifier sizes the field itself, not the column holding its error row.
+    active: false
+  # Event lambdas are past tense (`onSongClicked`).
   ParameterNaming:
-    active: false # This codebase names event lambdas in past tense (`onSongClicked`) throughout.
+    active: false
+  # Parameters follow the state/actions split used across all screens.
   ComposableParamOrder:
-    active: false # Parameter grouping follows the state/actions split used across all screens here.
+    active: false
+  # Private/internal leaf composables are never re-styled.
   ModifierMissing:
-    active: false # Most composables here are private/internal leaves that are never re-styled.
-  LambdaParameterInRestartableEffect:
-    active: true
+    active: false
+  # hiltViewModel() placement is being reworked separately.
   ViewModelInjection:
-    active: false # hiltViewModel() placement is being reworked separately; would fail on existing screens.
+    active: false
 
 # ktlint rule set, via detekt's bundled wrapper. Formatting settings live in the root .editorconfig;
 # only rule activation is decided here.
 ktlint:
-  active: true
   code_style: 'android_studio'
   # --- Wrapping / signature layout ---------------------------------------------------------------
-  # These rules encode the `ktlint_official` layout, which disagrees with the Android Studio
-  # formatter this codebase is written with. Turning them on would reflow essentially every file
-  # for no behavioural gain. Line length is still enforced by style>MaxLineLength.
+  # These encode the `ktlint_official` layout, which disagrees with the Android Studio formatter this
+  # codebase is written with. Line length is still enforced by style>MaxLineLength.
   ArgumentListWrapping:
     active: false
   ParameterListWrapping:
@@ -191,17 +175,21 @@ ktlint:
   FunctionLiteral:
     active: false
   # --- Rules covered elsewhere / conflicting with project identifiers ----------------------------
+  # Also disabled in .editorconfig.
   TrailingCommaOnCallSite:
-    active: false # Multi-line lists have no trailing comma in this codebase; also disabled in .editorconfig.
+    active: false
+  # Same as above.
   TrailingCommaOnDeclarationSite:
-    active: false # Same reason as above.
-  FunctionName:
-    active: false # Composables are PascalCase; naming>FunctionNaming covers real violations.
+    active: false
+  # `dev.thomas_kiljanczyk` contains an underscore by design.
   PackageName:
-    active: false # The root package `dev.thomas_kiljanczyk` contains an underscore by design.
+    active: false
+  # Redundant with style>MaxLineLength.
   MaximumLineLength:
-    active: false # Redundant with style>MaxLineLength, configured to 120 above.
+    active: false
+  # naming>ObjectPropertyNaming/TopLevelPropertyNaming allow the camelCase preview constants.
   PropertyName:
-    active: false # naming>ObjectPropertyNaming/TopLevelPropertyNaming govern this and allow the camelCase preview constants.
+    active: false
+  # Same as naming>MatchingDeclarationName above.
   Filename:
-    active: false # Same reason as naming>MatchingDeclarationName above.
+    active: false
