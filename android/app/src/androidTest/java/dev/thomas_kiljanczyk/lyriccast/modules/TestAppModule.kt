@@ -9,6 +9,7 @@ package dev.thomas_kiljanczyk.lyriccast.modules
 import android.content.Context
 import androidx.datastore.core.DataStore
 import androidx.datastore.core.DataStoreFactory
+import androidx.datastore.core.Serializer
 import androidx.datastore.dataStoreFile
 import dagger.Module
 import dagger.Provides
@@ -25,6 +26,7 @@ import dev.thomas_kiljanczyk.lyriccast.core.cast.SlidePresentationBus
 import dev.thomas_kiljanczyk.lyriccast.core.nearby.PayloadTransport
 import dev.thomas_kiljanczyk.lyriccast.core.playback.PlaybackController
 import dev.thomas_kiljanczyk.lyriccast.core.session.SessionMessageCodec
+import dev.thomas_kiljanczyk.lyriccast.core.tutorial.CURRENT_ONBOARDING_VERSION
 import dev.thomas_kiljanczyk.lyriccast.datastore.proto.AppSettings
 import dev.thomas_kiljanczyk.lyriccast.di.AppModule
 import dev.thomas_kiljanczyk.lyriccast.shared.misc.PlaybackControllerImpl
@@ -39,44 +41,59 @@ import kotlinx.coroutines.CoroutineScope
     components = [SingletonComponent::class],
     replaces = [AppModule::class]
 )
-class TestAppModule {
+object TestAppModule {
+    private const val TEST_DATASTORE_FILENAME = "settings"
 
-    companion object {
-        private const val TEST_DATASTORE_FILENAME = "settings"
+    var dataStore: DataStore<AppSettings>? = null
+    var dataStoreFile: File? = null
 
-        var dataStore: DataStore<AppSettings>? = null
-        var dataStoreFile: File? = null
+    /**
+     * Defaults to "already onboarded":
+     * tests start from a blank DataStore and an empty library,
+     * exactly the state that triggers the tutorial,
+     * so every UI test would otherwise open on the carousel.
+     *
+     * Tests that want the tutorial set this before launching.
+     */
+    var initialOnboardingVersion: Int = CURRENT_ONBOARDING_VERSION
 
-        fun initializeDataStore(appContext: Context) {
-            if (dataStoreFile == null) {
-                cleanupDataStore()
-            }
+    private val testSerializer = object : Serializer<AppSettings> by AppSettingsSerializer {
+        override val defaultValue: AppSettings
+            get() = AppSettingsSerializer.defaultValue.toBuilder()
+                .setOnboardingCompletedVersion(initialOnboardingVersion)
+                .build()
+    }
 
-            val newDataStoreFile =
-                appContext.dataStoreFile("$TEST_DATASTORE_FILENAME-${UUIDv7.randomUUID()}")
-            dataStoreFile = newDataStoreFile
+    fun initializeDataStore(appContext: Context): DataStore<AppSettings> {
+        dataStoreFile?.delete()
 
-            dataStore = DataStoreFactory.create(
-                produceFile = { newDataStoreFile },
-                serializer = AppSettingsSerializer
-            )
-        }
+        val newDataStoreFile =
+            appContext.dataStoreFile("$TEST_DATASTORE_FILENAME-${UUIDv7.randomUUID()}")
+        dataStoreFile = newDataStoreFile
 
-        fun cleanupDataStore() {
-            dataStoreFile?.delete()
-            dataStoreFile = null
-            dataStore = null
-        }
+        return DataStoreFactory.create(
+            produceFile = { newDataStoreFile },
+            serializer = testSerializer
+        )
+    }
+
+    fun cleanupDataStore() {
+        dataStoreFile?.delete()
+        dataStoreFile = null
+        dataStore = null
+        initialOnboardingVersion = CURRENT_ONBOARDING_VERSION
     }
 
     @Provides
     @Singleton
     fun provideDataStore(@ApplicationContext appContext: Context): DataStore<AppSettings> {
+        var dataStore = dataStore
         if (dataStore == null) {
-            initializeDataStore(appContext)
+            dataStore = initializeDataStore(appContext)
+            this.dataStore = dataStore
         }
 
-        return dataStore!!
+        return dataStore
     }
 
     @Provides
