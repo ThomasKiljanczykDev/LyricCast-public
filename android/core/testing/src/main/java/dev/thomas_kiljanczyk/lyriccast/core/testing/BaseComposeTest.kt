@@ -6,7 +6,7 @@
 
 package dev.thomas_kiljanczyk.lyriccast.core.testing
 
-import androidx.compose.ui.test.junit4.createComposeRule
+import androidx.compose.ui.test.junit4.v2.createComposeRule
 import dagger.hilt.android.testing.HiltAndroidRule
 import org.junit.Before
 import org.junit.Rule
