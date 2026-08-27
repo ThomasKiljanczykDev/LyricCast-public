@@ -26,4 +26,6 @@
     <string name="preference_color_blue">Biru</string>
     <string name="preference_color_red">Merah</string>
     <string name="preference_color_pink">Merah muda</string>
+    <string name="preference_donate_title">Traktir saya kopi</string>
+    <string name="preference_donate_summary">Dukung pengembangan aplikasi ini</string>
 </resources>

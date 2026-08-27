@@ -39,4 +39,6 @@
     <string name="preference_color_blue">Niebieski</string>
     <string name="preference_color_red">Czerwony</string>
     <string name="preference_color_pink">Różowy</string>
+    <string name="preference_donate_title">Postaw mi kawę</string>
+    <string name="preference_donate_summary">Wesprzyj rozwój aplikacji</string>
 </resources>

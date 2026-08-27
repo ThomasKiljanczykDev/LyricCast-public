@@ -26,4 +26,6 @@
     <string name="preference_color_blue">Azul</string>
     <string name="preference_color_red">Vermelho</string>
     <string name="preference_color_pink">Rosa</string>
+    <string name="preference_donate_title">Me pague um café</string>
+    <string name="preference_donate_summary">Apoie o desenvolvimento deste app</string>
 </resources>

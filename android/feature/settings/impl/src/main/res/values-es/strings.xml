@@ -26,4 +26,6 @@
     <string name="preference_color_blue">Azul</string>
     <string name="preference_color_red">Rojo</string>
     <string name="preference_color_pink">Rosa</string>
+    <string name="preference_donate_title">Invítame a un café</string>
+    <string name="preference_donate_summary">Apoya el desarrollo de esta app</string>
 </resources>

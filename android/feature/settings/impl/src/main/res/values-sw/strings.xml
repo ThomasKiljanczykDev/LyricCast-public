@@ -28,4 +28,6 @@
     <string name="preference_color_blue">Buluu</string>
     <string name="preference_color_red">Nyekundu</string>
     <string name="preference_color_pink">Waridi</string>
+    <string name="preference_donate_title">Ninunulie kahawa</string>
+    <string name="preference_donate_summary">Unga mkono maendeleo ya programu hii</string>
 </resources>

@@ -6,6 +6,7 @@
 
 package dev.thomas_kiljanczyk.lyriccast.feature.settings.impl.ui
 
+import android.content.Intent
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.Crossfade
 import androidx.compose.animation.core.tween
@@ -30,9 +31,13 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
+import androidx.core.net.toUri
 import androidx.hilt.navigation.compose.hiltViewModel
 import dev.thomas_kiljanczyk.lyriccast.core.designsystem.theme.LyricCastTheme
 import dev.thomas_kiljanczyk.lyriccast.core.model.UiText
@@ -45,6 +50,8 @@ import dev.thomas_kiljanczyk.lyriccast.feature.settings.impl.domain.LanguageOpti
 import kotlinx.collections.immutable.toImmutableList
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+
+private const val DONATE_URL = "https://buymeacoffee.com/thomas.kiljanczyk.dev"
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -164,6 +171,19 @@ fun SettingsScreen(
                             value = state.buttonHeight,
                             options = state.buttonHeightOptions,
                             onValueChange = onButtonHeightChange
+                        )
+                    }
+                    item {
+                        val context = LocalContext.current
+                        SettingsRowButton(
+                            title = stringResource(R.string.preference_donate_title),
+                            subtitle = stringResource(R.string.preference_donate_summary),
+                            icon = ImageVector.vectorResource(R.drawable.coffee),
+                            onClick = {
+                                context.startActivity(
+                                    Intent(Intent.ACTION_VIEW, DONATE_URL.toUri())
+                                )
+                            }
                         )
                     }
                 }

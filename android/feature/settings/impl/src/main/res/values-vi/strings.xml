@@ -28,4 +28,6 @@
     <string name="preference_color_blue">Xanh dương</string>
     <string name="preference_color_red">Đỏ</string>
     <string name="preference_color_pink">Hồng</string>
+    <string name="preference_donate_title">Mời tôi một ly cà phê</string>
+    <string name="preference_donate_summary">Hỗ trợ việc phát triển ứng dụng này</string>
 </resources>

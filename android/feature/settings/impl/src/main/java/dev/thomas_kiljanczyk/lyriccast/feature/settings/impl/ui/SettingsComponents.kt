@@ -14,13 +14,16 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Slider
 import androidx.compose.material3.SliderDefaults
@@ -34,6 +37,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
@@ -41,6 +45,9 @@ import dev.thomas_kiljanczyk.lyriccast.core.designsystem.theme.LyricCastTheme
 import dev.thomas_kiljanczyk.lyriccast.core.model.UiText
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.toImmutableList
+
+/** Standard minimum height for a settings row, so rows line up across the screen. */
+private val SettingsTileMinHeight = 64.dp
 
 @Composable
 fun SettingsCategory(
@@ -168,6 +175,48 @@ fun <T> SettingsRowWithDialog(
             onOptionSelected = { onValueChange(it) },
             onDismiss = { showDialog = false }
         )
+    }
+}
+
+/**
+ * A settings row that acts as a button: a title, a subtitle explaining what tapping does, and an
+ * optional leading icon. Unlike the other rows it holds no value — it just performs [onClick].
+ */
+@Composable
+fun SettingsRowButton(
+    title: String,
+    subtitle: String,
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier,
+    icon: ImageVector? = null
+) {
+    Row(
+        modifier = modifier
+            .fillMaxWidth()
+            // Min rather than fixed height: the subtitle wraps to two lines in some locales.
+            .defaultMinSize(minHeight = SettingsTileMinHeight)
+            .clickable(
+                onClick = onClick,
+                indication = LocalIndication.current,
+                interactionSource = remember { MutableInteractionSource() }
+            )
+            .padding(vertical = 4.dp, horizontal = 16.dp),
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        if (icon != null) {
+            Icon(imageVector = icon, contentDescription = null)
+            Spacer(modifier = Modifier.width(16.dp))
+        }
+        Column(verticalArrangement = Arrangement.Center) {
+            Text(
+                text = title,
+                style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.Bold)
+            )
+            Text(
+                text = subtitle,
+                style = MaterialTheme.typography.bodySmall
+            )
+        }
     }
 }
 

@@ -28,4 +28,6 @@
     <string name="preference_color_blue">Blu</string>
     <string name="preference_color_red">Rosso</string>
     <string name="preference_color_pink">Rosa</string>
+    <string name="preference_donate_title">Offrimi un caffè</string>
+    <string name="preference_donate_summary">Sostieni lo sviluppo di questa app</string>
 </resources>

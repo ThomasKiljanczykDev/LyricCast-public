@@ -28,4 +28,6 @@
     <string name="preference_color_blue">ሰማያዊ</string>
     <string name="preference_color_red">ቀይ</string>
     <string name="preference_color_pink">ሮዝ</string>
+    <string name="preference_donate_title">ቡና ግዙልኝ</string>
+    <string name="preference_donate_summary">የዚህን መተግበሪያ ልማት ይደግፉ</string>
 </resources>

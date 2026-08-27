@@ -26,4 +26,6 @@
     <string name="preference_color_blue">Asul</string>
     <string name="preference_color_red">Pula</string>
     <string name="preference_color_pink">Rosas</string>
+    <string name="preference_donate_title">Ipagbili mo ako ng kape</string>
+    <string name="preference_donate_summary">Suportahan ang pagpapaunlad ng app na ito</string>
 </resources>
