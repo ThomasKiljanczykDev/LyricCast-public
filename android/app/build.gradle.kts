@@ -14,6 +14,7 @@ plugins {
     alias(libs.plugins.firebase.crashlytics)
     alias(libs.plugins.compose.compiler)
     alias(libs.plugins.lyriccast.kotlin.quality)
+    alias(libs.plugins.baselineprofile)
 }
 
 android {
@@ -62,6 +63,25 @@ android {
                 debugSymbolLevel = "FULL"
             }
         }
+
+        // Used only to generate/benchmark the baseline profile (see :baselineprofile). Signed
+        // with the debug key so CI and local runs don't need a release signing config.
+        create("seededRelease") {
+            initWith(getByName("release"))
+            matchingFallbacks.add("release")
+            signingConfig = signingConfigs.getByName("debug")
+        }
+    }
+
+    // Wired by name, because the baseline-profile plugin derives benchmark* and nonMinified*
+    // build types from both release and seededRelease: four per-build-type source sets to keep
+    // in step otherwise. It cannot live in main, which every variant compiles.
+    sourceSets.configureEach {
+        if (name == "main" || name.startsWith("test") || name.startsWith("androidTest")) {
+            return@configureEach
+        }
+        val defaults = if (name.contains("seeded", ignoreCase = true)) "seeded" else "notSeeded"
+        kotlin.directories.add("src/$defaults/java")
     }
 
     buildFeatures {
@@ -82,12 +102,85 @@ android {
             isReturnDefaultValues = true
             isIncludeAndroidResources = true
         }
+
+        // Gradle Managed Devices for the instrumented-test matrix.
+        // Each device launches in its natural orientation, so device choice encodes
+        // orientation: phones (Pixel 2) are portrait, large tablets (Pixel Tablet) are
+        // landscape.
+        //
+        // ATD ("aosp-atd") images are headless and only published for API 30+, so the matrix
+        // spans API 30 (lowest ATD) and 36 (latest).
+        @Suppress("UnstableApiUsage")
+        managedDevices {
+            localDevices {
+                create("pixel2Api30") {
+                    device = "Pixel 2"
+                    apiLevel = 30
+                    systemImageSource = "aosp-atd"
+                    // API 30 ATD still ships a 32-bit x86 image, which GMD selects by default
+                    // (require64Bit defaults to false). That image can't boot headless on the
+                    // CI runner ("Unable to find device serial"), so force the x86_64 image.
+                    // testedAbi only pins the tested APK's ABI (no native code here, so it's a
+                    // no-op for image selection) and pre-answers AGP 10.0's default flip to
+                    // arm64-v8a.
+                    require64Bit = true
+                    testedAbi = "x86_64"
+                }
+                create("pixel2Api36") {
+                    device = "Pixel 2"
+                    apiLevel = 36
+                    systemImageSource = "aosp-atd"
+                    require64Bit = true
+                    testedAbi = "x86_64"
+                }
+                create("pixelTabletApi30") {
+                    device = "Pixel Tablet"
+                    apiLevel = 30
+                    systemImageSource = "aosp-atd"
+                    require64Bit = true
+                    testedAbi = "x86_64"
+                }
+                create("pixelTabletApi36") {
+                    device = "Pixel Tablet"
+                    apiLevel = 36
+                    systemImageSource = "aosp-atd"
+                    require64Bit = true
+                    testedAbi = "x86_64"
+                }
+            }
+
+            // Convenience group to run the whole matrix locally with
+            // `./gradlew ciMatrixGroupDebugAndroidTest`. CI runs the per-device tasks instead
+            // so each cell is an isolated, parallel matrix job.
+            val matrixDevices = localDevices
+            groups.create("ciMatrix") {
+                targetDevices.addAll(
+                    listOf(
+                        "pixel2Api30",
+                        "pixel2Api36",
+                        "pixelTabletApi30",
+                        "pixelTabletApi36"
+                        //noinspection WrongGradleMethod
+                    ).map { matrixDevices.getByName(it) }
+                )
+            }
+        }
     }
     namespace = "dev.thomas_kiljanczyk.lyriccast"
     compileSdk = 37
 }
 
+baselineProfile {
+    variants {
+        create("seededRelease") {
+            mergeIntoMain = true
+        }
+    }
+}
+
 dependencies {
+    baselineProfile(projects.baselineprofile)
+
     // Submodules
     implementation(projects.core.common)
     implementation(projects.core.model)
@@ -120,6 +213,9 @@ dependencies {
 
     // Architecture Components
     implementation(libs.androidx.datastore)
+
+    // Baseline profile
+    implementation(libs.androidx.profileinstaller)
 
     // AndroidX
     implementation(libs.android.material)

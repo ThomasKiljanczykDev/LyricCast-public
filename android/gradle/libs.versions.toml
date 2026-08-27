@@ -59,6 +59,7 @@ benchmarkMacroJunit4 = "1.4.1"
 baselineprofile = "1.5.0-rc01"
 profileinstaller = "1.4.1"
 foundationLayout = "1.12.0"
+composeScreenshot = "0.0.1-alpha16"
 
 [libraries]
 # Build-logic plugins
@@ -138,6 +139,7 @@ androidx-uiautomator = { group = "androidx.test.uiautomator", name = "uiautomato
 androidx-benchmark-macro-junit4 = { group = "androidx.benchmark", name = "benchmark-macro-junit4", version.ref = "benchmarkMacroJunit4" }
 androidx-profileinstaller = { group = "androidx.profileinstaller", name = "profileinstaller", version.ref = "profileinstaller" }
 androidx-compose-foundation-layout = { group = "androidx.compose.foundation", name = "foundation-layout", version.ref = "foundationLayout" }
+android-screenshot-validation-api = { module = "com.android.tools.screenshot:screenshot-validation-api", version.ref = "composeScreenshot" }
 
 [plugins]
 detekt = { id = "dev.detekt", version.ref = "detekt" }
@@ -155,6 +157,7 @@ google-googleServices = { id = "com.google.gms.google-services", version.ref = "
 firebase-crashlytics = { id = "com.google.firebase.crashlytics", version.ref = "firebaseCrashlytics" }
 room = { id = "androidx.room", version.ref = "room" }
 baselineprofile = { id = "androidx.baselineprofile", version.ref = "baselineprofile" }
+android-compose-screenshot = { id = "com.android.compose.screenshot", version.ref = "composeScreenshot" }
 
 # Convention plugins
 lyriccast-android-application = { id = "lyriccast.android.application" }
