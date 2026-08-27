@@ -1,5 +1,6 @@
 ![LyricCast](docs/images/LyricCast-splash.png "LyricCast")
 
+[![CI android](https://github.com/ThomasKiljanczykDev/LyricCast-public/actions/workflows/ci-android.yml/badge.svg)](https://github.com/ThomasKiljanczykDev/LyricCast-public/actions/workflows/ci-android.yml)
 [<img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" height="70" title="Coming soon!" alt="Get it on Google Play. Coming soon!">](https://play.google.com/store/apps/details?id=dev.thomas_kiljanczyk.lyriccast)
 
 # LyricCast Android Client
@@ -21,11 +22,6 @@ Category manager is accessible through the action menu on the main screen.
 You can name the category and set a color for easier identification.
 Category name must be unique.
 
-<p float="left">
-  <img src="docs/images/LyricCast-categories-1.png" alt="Category Editor - category list" height="640">
-  <img src="docs/images/LyricCast-categories-2.png" alt="Category Editor - add/edit category dialog" height="640">
-</p>
-
 ### Songs
 
 The app includes a song editor that allows you to create and edit songs.
@@ -33,10 +29,7 @@ The song editor allows you to set the song title, assign a category, and add lyr
 Lyrics are split in sections which can be then shown on the screen one after another.
 Song title must be unique.
 
-<p float="left">
-  <img src="docs/images/LyricCast-songs-1.png" alt="Songs - song list" height="640">
-  <img src="docs/images/LyricCast-songs-2.png" alt="Songs - song editor" height="640">
-</p>
+<img src="docs/images/LyricCast-songs-1.png" alt="Songs - song list" height="640">
 
 ### Setlists
 
@@ -50,10 +43,7 @@ You can also duplicate songs withing the setlist by long pressing the song and s
 in the action menu.
 Setlist name must be unique.
 
-<p float="left">
-  <img src="docs/images/LyricCast-setlists-1.png" alt="Setlists - setlist list" height="640">
-  <img src="docs/images/LyricCast-setlists-2.png" alt="Setlists - setlist editor" height="640">
-</p>
+<img src="docs/images/LyricCast-setlists-2.png" alt="Setlists - setlist editor" height="640">
 
 ### Import/Export
 
@@ -67,7 +57,10 @@ You can instruct the app to replace your current database on import or replace s
 setlists on conflict.
 The default import behavior is to ignore conflicts and import only new songs and setlists.
 
-<img src="docs/images/LyricCast-import-1.png" alt="Import Dialog" height="640">
+Files can be imported either through the in-app file picker, by opening a `.zip`/`.xml` export
+directly from a file manager or another app's share sheet, or via a `lyriccast://` deep link -- in
+every case the format is still confirmed explicitly in the import dialog before anything is
+written to the database.
 
 ## Cast lyrics using Google Cast.
 
@@ -79,10 +72,7 @@ You can blank the screen from the song/setlist controls if need be.
 The cast lyrics will be automatically resized to fit the screen with a maximum font size set in the
 settings.
 
-<p float="left">
-  <img src="docs/images/LyricCast-cast-1.png" alt="Controls - song" height="640">
-  <img src="docs/images/LyricCast-cast-2.png" alt="Controls - setlists" height="640">
-</p>
+<img src="docs/images/LyricCast-cast-1.png" alt="Controls - the lyrics-display/control screen" height="640">
 
 ## Start a session and let others join in.
 
@@ -92,10 +82,12 @@ The session feature is based
 on [Nearby Connections API](https://developers.google.com/nearby/connections/overview).
 A session host cannot join another session.
 
-<p float="left">
-  <img src="docs/images/LyricCast-session-1.png" alt="Controls - song" height="640">
-  <img src="docs/images/LyricCast-session-2.png" alt="Controls - setlists" height="640">
-</p>
+<img src="docs/images/LyricCast-session-1.png" alt="Session - client view" height="640">
+
+## First-run onboarding
+
+New installs are greeted with a short onboarding carousel introducing the app before landing on the
+main screen.
 
 ## Settings
 
@@ -108,6 +100,10 @@ The settings screen consists of multiple sections.
 
 In this section you can change the following settings:
 
+* Language - override the app's display language independently of the system setting. LyricCast
+  ships English and Polish alongside 12 community-style locales: Amharic, French, German,
+  Indonesian, Italian, Korean, Portuguese, Simplified Chinese, Swahili, Filipino, Spanish, and
+  Vietnamese.
 * Theme - choose between light, dark or system default theme.
 * Controls button height - set the height of the controls buttons. This option is useful if you need
   to be able to
@@ -146,19 +142,27 @@ internet (i.e. `Firebase`,
 
 ## Project structure
 
-The app project is modularized to separate concerns and make the codebase more maintainable.
+The app follows a Now-in-Android-style modularization: a thin `app` module wires together
+independent `core` and `feature` modules through Hilt, with shared Gradle setup centralized in a
+composite `build-logic` build.
 
-This project consists of modules:
+This project consists of:
 
-* app - LyricCast app:
-    * application - application related classes
-    * di - dependency injection related classes.
-    * domain - domain specific classes
-    * shared - extensions, google cast, etc.
-  * ui - Jetpack Compose UI components segregated by features (feature based structure)
-* common - it's in the name
-* dataModel - repositories, data structures
-* dataTransfer - format converters (app-json, app-xml, etc)
+* `build-logic/convention` - shared Gradle convention plugins (Android library/application, Compose,
+  Hilt, etc.) applied by every module instead of copy-pasted `build.gradle.kts` boilerplate
+* `app` - the application shell: app-level DI wiring, the nav host that stitches feature routes
+  together, and `MainActivity` (theme, deep-link/file-open intent consumption)
+* `core/*` - foundation and cross-cutting modules with no feature-specific UI, e.g. `common`,
+  `model`, `database` (Room), `data`, `domain`, `data-transfer` (LyricCast/OpenSong format
+  converters), `designsystem`, `ui`, `datastore-proto`, `session`, `nearby`, `cast`, `playback`,
+  `sync` (import/deep-link plumbing), `tutorial` (onboarding), plus `testing`/`data-test` and the
+  `*-test` fixture modules used by the modules above
+* `feature/*/impl` - one module per user-facing feature area (`category`, `main`, `session`,
+  `setlist`, `settings`, `song`), each owning its own screens, ViewModels, and navigation routes
+* `baselineprofile` - macrobenchmark module generating a baseline profile for the `app` module
+* `tools/gplay-screenshots` - a Compose Screenshot Testing module that renders store-style
+  screenshots from the app's real composables (see [Testing](#testing) below); it ships no code to
+  users
 
 ## Architecture components
 
@@ -182,7 +186,8 @@ flowchart LR
 
 # Build
 
-The app contains the usual `debug` and `release` build variants.
+The app contains the usual `debug` and `release` build variants, plus a `seededRelease` variant
+used by the baseline-profile/macrobenchmark module.
 
 For development use the `debug` variant. For UI performance testing use the `release` variant.
 
@@ -200,8 +205,11 @@ In tests, **LyricCast** notably does _not_ use any mocking libraries.
 Instead, the production implementations can be replaced with test doubles using Hilt's testing APIs
 (or via manual constructor injection for `ViewModel` tests).
 
-These test doubles implement the same interface as the production implementations and generally
-provide a simplified implementation with additional testing hooks.
+`core/testing` and `core/data-test` (plus the `core/nearby-test` and `core/cast-test` fixture
+modules) hold the shared test doubles: fake repository implementations
+(`SongsRepositoryFakeImpl`, `CategoriesRepositoryFakeImpl`, `SetlistsRepositoryFakeImpl`,
+`DataTransferRepositoryFakeImpl`), a `TestDataModule`/`TestDispatchersModule` pair that swaps them
+into the Hilt graph, and a `BaseComposeTest` base class for instrumented Compose UI tests.
 
 ## Compose Testing
 
@@ -211,22 +219,31 @@ tests:
 * **Compose Test Rule** - Uses `createAndroidComposeRule<MainActivity>()` for full app testing
 * **Semantic tree testing** - Tests interact with UI elements using semantics rather than
   implementation details
-* **Fake implementations** - Repository implementations use `MutableList` instead of Room database
+* **Fake implementations** - Repository fakes back the database with an in-memory `MutableList`
   for predictable test data
-* **Hilt test modules** - `FakeAppModule` and `FakeDataModelModule` replace production dependencies
+* **Hilt test modules** - `TestDataModule` replaces production repositories
 
 ### Test Examples
 
-* **FilterSongsComposeTest** - Tests song filtering by title and category
+* **FilterSongsComposeTest** / **FilterSetlistsComposeTest** - Test song/setlist filtering
 * **NavigationTabComposeTest** - Tests tab navigation between Songs and Setlists
-* **DeleteSongComposeTest** - Tests song deletion functionality
+* **DeleteSongComposeTest** / **DeleteSetlistComposeTest** - Test deletion functionality
+
+## Screenshot Testing
+
+`tools/gplay-screenshots` uses [Compose Screenshot
+Testing](https://developer.android.com/studio/preview/compose-screenshot-testing) to render a
+handful of hero screens (Songs, Setlist editor, Settings, Session client, the lyrics-display/
+controls screen) against the real production composables and `PreviewData` fixtures, in every
+locale the app ships. It is where the images on this page come from; it contributes no code to the
+shipped app.
 
 ## Test Structure
 
-Following projects contain tests:
-
-* `app` - a set of instrumented Compose UI tests
-* `common` - a set of unit tests
+Unit tests live alongside the module they test (`core/*/src/test`, `feature/*/impl/src/test`).
+Instrumented Compose UI tests live in `app/src/androidTest`. CI (`ci-android.yml`) runs
+lint/detekt/unit tests on every push and pull request, plus an instrumented test matrix on Gradle
+Managed Devices.
 
 To run the tests go to the corresponding module and run the whole test directory or selected tests
 using the IDE.

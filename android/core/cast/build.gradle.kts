@@ -25,6 +25,8 @@ dependencies {
     implementation(libs.androidx.mediaRouter)
     implementation(libs.androidx.appcompat)
     implementation(libs.androidx.compose.foundation.layout)
+    implementation(libs.androidx.compose.material3)
+    implementation(libs.androidx.compose.material.iconsExtended)
 
     testImplementation(libs.junit)
     testImplementation(libs.google.truth)
