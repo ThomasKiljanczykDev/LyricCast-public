@@ -3,6 +3,7 @@
   -->
 
 <resources>
+    <string name="tutorial_previous">Kembali</string>
     <string name="tutorial_next">Lanjut</string>
     <string name="tutorial_done">Selesai</string>
     <string name="tutorial_skip">Lewati</string>
@@ -48,8 +49,6 @@
     <string name="tour_settings_appearance_body">Warna latar, warna huruf, dan ukuran huruf maksimum menentukan apa yang tampil di TV atau di perangkat yang mengikuti.</string>
     <string name="tour_settings_blank_title">Mulai dengan layar kosong</string>
     <string name="tour_settings_blank_body">Jika dinyalakan, layar tetap kosong saat Anda membuka lagu, sehingga tidak ada yang tampil sebelum Anda siap.</string>
-    <string name="tour_settings_auto_session_title">Setelan bawaan sesi</string>
-    <string name="tour_settings_auto_session_body">Mulai sesi otomatis saat aplikasi dibuka, dan beri nama bawaan agar perangkat yang bergabung mengenalinya.</string>
     <string name="tour_settings_donate_title">Suka dengan LyricCast?</string>
     <string name="tour_settings_donate_body">Kalau bermanfaat bagi Anda, pertimbangkan untuk mentraktir saya kopi guna mendukung pengembangannya.</string>
 </resources>

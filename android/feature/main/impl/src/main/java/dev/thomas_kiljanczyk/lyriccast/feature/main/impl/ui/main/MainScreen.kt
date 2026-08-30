@@ -65,6 +65,8 @@ import dev.thomas_kiljanczyk.lyriccast.core.model.UiText
 import dev.thomas_kiljanczyk.lyriccast.core.nearby.NearbyPermissions
 import dev.thomas_kiljanczyk.lyriccast.core.sync.ImportInput
 import dev.thomas_kiljanczyk.lyriccast.core.sync.PendingImport
+import dev.thomas_kiljanczyk.lyriccast.core.tutorial.TourAnchor
+import dev.thomas_kiljanczyk.lyriccast.core.tutorial.tourAnchor
 import dev.thomas_kiljanczyk.lyriccast.core.ui.components.ProgressDialog
 import dev.thomas_kiljanczyk.lyriccast.core.ui.util.currentWindowSizeClass
 import dev.thomas_kiljanczyk.lyriccast.core.ui.util.isWidthExpanded
@@ -394,6 +396,18 @@ fun MainScreen(
                             }
 
                             onNavigateToSessionClient()
+                        },
+                        // The rail and the bottom bar publish the same ids, so a window size
+                        // change mid-tour just republishes bounds. Setlists carries no anchor
+                        // because Songs stands in for the navigation group as a whole, and two
+                        // elements must never publish the same id.
+                        modifier = when (tab) {
+                            MainTab.SONGS -> Modifier.tourAnchor(TourAnchor.MAIN_TABS)
+
+                            MainTab.JOIN_SESSION ->
+                                Modifier.tourAnchor(TourAnchor.MAIN_JOIN_SESSION_TAB)
+
+                            MainTab.SETLISTS -> Modifier
                         },
                         icon = { Icon(tab.icon, contentDescription = null) },
                         label = { Text(stringResource(tab.titleRes)) }

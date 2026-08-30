@@ -39,6 +39,8 @@
     <string name="preference_color_blue">Niebieski</string>
     <string name="preference_color_red">Czerwony</string>
     <string name="preference_color_pink">Różowy</string>
+    <string name="preference_show_tutorial_title">Pokaż samouczek ponownie</string>
+    <string name="preference_show_tutorial_summary">Odtwórz wprowadzenie i przewodnik po aplikacji</string>
     <string name="preference_donate_title">Postaw mi kawę</string>
     <string name="preference_donate_summary">Wesprzyj rozwój aplikacji</string>
 </resources>

@@ -44,6 +44,8 @@ import dev.thomas_kiljanczyk.lyriccast.core.model.UiText
 import dev.thomas_kiljanczyk.lyriccast.core.model.settings.ColorOption
 import dev.thomas_kiljanczyk.lyriccast.core.model.settings.ControlButtonHeightOption
 import dev.thomas_kiljanczyk.lyriccast.core.model.settings.ThemeOption
+import dev.thomas_kiljanczyk.lyriccast.core.tutorial.TourAnchor
+import dev.thomas_kiljanczyk.lyriccast.core.tutorial.tourAnchor
 import dev.thomas_kiljanczyk.lyriccast.core.ui.components.Loading
 import dev.thomas_kiljanczyk.lyriccast.feature.settings.impl.R
 import dev.thomas_kiljanczyk.lyriccast.feature.settings.impl.domain.LanguageOption
@@ -117,7 +119,8 @@ fun SettingsScreen(
                 onBlankEnabledChange = { scope.launch { viewModel.updateBlankEnabled(it) } },
                 onBackgroundColorChange = { scope.launch { viewModel.updateBackgroundColor(it) } },
                 onFontColorChange = { scope.launch { viewModel.updateFontColor(it) } },
-                onMaxFontSizeChange = { scope.launch { viewModel.updateMaxFontSize(it) } }
+                onMaxFontSizeChange = { scope.launch { viewModel.updateMaxFontSize(it) } },
+                onReplayTutorial = { scope.launch { viewModel.replayTutorial() } }
             )
         }
     }
@@ -134,7 +137,8 @@ fun SettingsScreen(
     onBlankEnabledChange: (Boolean) -> Unit,
     onBackgroundColorChange: (ColorOption?) -> Unit,
     onFontColorChange: (ColorOption?) -> Unit,
-    onMaxFontSizeChange: (Int) -> Unit
+    onMaxFontSizeChange: (Int) -> Unit,
+    onReplayTutorial: () -> Unit
 ) {
     Scaffold(
         topBar = {
@@ -175,6 +179,13 @@ fun SettingsScreen(
                         )
                     }
                     item {
+                        SettingsRowButton(
+                            title = stringResource(R.string.preference_show_tutorial_title),
+                            subtitle = stringResource(R.string.preference_show_tutorial_summary),
+                            onClick = onReplayTutorial
+                        )
+                    }
+                    item {
                         val context = LocalContext.current
                         SettingsRowButton(
                             title = stringResource(R.string.preference_donate_title),
@@ -184,7 +195,8 @@ fun SettingsScreen(
                                 context.startActivity(
                                     Intent(Intent.ACTION_VIEW, DONATE_URL.toUri())
                                 )
-                            }
+                            },
+                            modifier = Modifier.tourAnchor(TourAnchor.SETTINGS_DONATE)
                         )
                     }
                 }
@@ -193,13 +205,15 @@ fun SettingsScreen(
             // Chromecast Settings Section
             SettingsCategory(
                 title = stringResource(R.string.preference_section_chromecast),
+                modifier = Modifier.tourAnchor(TourAnchor.SETTINGS_APPEARANCE),
                 content = {
                     SettingsCardGroup {
                         item {
                             SettingsCheckbox(
                                 title = stringResource(R.string.preference_blank_title),
                                 checked = state.isBlankEnabled,
-                                onCheckedChange = onBlankEnabledChange
+                                onCheckedChange = onBlankEnabledChange,
+                                modifier = Modifier.tourAnchor(TourAnchor.SETTINGS_BLANK_ON_START)
                             )
                         }
                         item {
@@ -281,7 +295,8 @@ private fun PreviewSettingsScreen() {
             onBlankEnabledChange = {},
             onBackgroundColorChange = {},
             onFontColorChange = {},
-            onMaxFontSizeChange = {}
+            onMaxFontSizeChange = {},
+            onReplayTutorial = {}
         )
     }
 }

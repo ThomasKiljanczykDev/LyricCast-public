@@ -20,6 +20,7 @@ dependencies {
     implementation(projects.core.sync)
     implementation(projects.core.cast)
     implementation(projects.core.dataTransfer)
+    implementation(projects.core.tutorial)
 
     implementation(libs.androidx.compose.activity)
     implementation(libs.kotlinx.collections.immutable)

@@ -19,7 +19,6 @@ import dev.thomas_kiljanczyk.lyriccast.core.data.repository.settings.SettingsRep
 import dev.thomas_kiljanczyk.lyriccast.core.tutorial.CURRENT_ONBOARDING_VERSION
 import dev.thomas_kiljanczyk.lyriccast.core.tutorial.OnboardingOutcome
 import dev.thomas_kiljanczyk.lyriccast.core.tutorial.decideOnboarding
-import dev.thomas_kiljanczyk.lyriccast.feature.main.impl.navigation.MainRoute
 import javax.inject.Inject
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
@@ -50,16 +49,6 @@ class TutorialViewModel @Inject constructor(
 
     var stepIndex by mutableIntStateOf(0)
         private set
-
-    /**
-     * Where the NavHost should start once [phase] leaves [TutorialPhase.LOADING].
-     *
-     * Read once by the caller when it first composes the graph, not observed continuously: the
-     * NavHost's own `startDestination` is fixed at composition time, so this only needs to be
-     * correct the moment the graph is allowed to appear.
-     */
-    val startDestination: Any
-        get() = if (phase == TutorialPhase.CAROUSEL) OnboardingRoute else MainRoute
 
     init {
         viewModelScope.launch {

@@ -3,6 +3,7 @@
   -->
 
 <resources>
+    <string name="tutorial_previous">Atrás</string>
     <string name="tutorial_next">Siguiente</string>
     <string name="tutorial_done">Listo</string>
     <string name="tutorial_skip">Omitir</string>
@@ -48,8 +49,6 @@
     <string name="tour_settings_appearance_body">El color de fondo, el color de la letra y el tamaño máximo de fuente definen lo que aparece en la tele o en el dispositivo que sigue la sesión.</string>
     <string name="tour_settings_blank_title">Empezar en negro</string>
     <string name="tour_settings_blank_body">Con esta opción activada, la pantalla sigue vacía al abrir una canción, así que no aparece nada antes de que estés listo.</string>
-    <string name="tour_settings_auto_session_title">Valores por defecto de la sesión</string>
-    <string name="tour_settings_auto_session_body">Inicia una sesión automáticamente al abrir la app y dale un nombre por defecto para que los dispositivos que se unan la reconozcan.</string>
     <string name="tour_settings_donate_title">¿Te gusta LyricCast?</string>
     <string name="tour_settings_donate_body">Si te resulta útil, puedes invitarme a un café para apoyar el desarrollo.</string>
 </resources>

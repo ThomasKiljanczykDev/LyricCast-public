@@ -5,6 +5,7 @@
   -->
 
 <resources>
+    <string name="tutorial_previous">Quay lại</string>
     <string name="tutorial_next">Tiếp</string>
     <string name="tutorial_done">Xong</string>
     <string name="tutorial_skip">Bỏ qua</string>
@@ -71,8 +72,6 @@
     <string name="tour_settings_blank_title">Mở đầu bằng màn hình trống</string>
     <string name="tour_settings_blank_body">Khi bật, màn hình vẫn trống lúc bạn mở một bài hát, nên không có gì hiện ra trước khi bạn sẵn sàng.</string>
 
-    <string name="tour_settings_auto_session_title">Mặc định cho phiên</string>
-    <string name="tour_settings_auto_session_body">Tự động bắt đầu phiên khi mở ứng dụng và đặt tên mặc định để các thiết bị tham gia nhận ra.</string>
     <string name="tour_settings_donate_title">Bạn thấy LyricCast hữu ích?</string>
     <string name="tour_settings_donate_body">Nếu ứng dụng có ích cho bạn, hãy mời tôi một ly cà phê để hỗ trợ phát triển.</string>
 </resources>

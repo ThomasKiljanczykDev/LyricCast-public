@@ -21,4 +21,5 @@ object TestTags {
     const val ONBOARDING_PAGER = "onboarding_pager"
     const val ONBOARDING_SKIP_BUTTON = "onboarding_skip_button"
     const val ONBOARDING_NEXT_BUTTON = "onboarding_next_button"
+    const val ONBOARDING_PREVIOUS_BUTTON = "onboarding_previous_button"
 }

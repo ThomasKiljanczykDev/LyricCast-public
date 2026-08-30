@@ -3,6 +3,7 @@
   -->
 
 <resources>
+    <string name="tutorial_previous">Voltar</string>
     <string name="tutorial_next">Avançar</string>
     <string name="tutorial_done">Concluir</string>
     <string name="tutorial_skip">Pular</string>
@@ -48,8 +49,6 @@
     <string name="tour_settings_appearance_body">A cor de fundo, a cor da fonte e o tamanho máximo da fonte definem o que aparece na TV ou no aparelho que acompanha.</string>
     <string name="tour_settings_blank_title">Começar com a tela escura</string>
     <string name="tour_settings_blank_body">Com isso ativado, a tela continua vazia quando você abre uma música, então nada aparece antes de você estar pronto.</string>
-    <string name="tour_settings_auto_session_title">Padrões da sessão</string>
-    <string name="tour_settings_auto_session_body">Inicie uma sessão automaticamente ao abrir o app e dê a ela um nome padrão para que os aparelhos que entram a reconheçam.</string>
     <string name="tour_settings_donate_title">Gostando do LyricCast?</string>
     <string name="tour_settings_donate_body">Se ele é útil para você, considere me pagar um café para apoiar o desenvolvimento.</string>
 </resources>

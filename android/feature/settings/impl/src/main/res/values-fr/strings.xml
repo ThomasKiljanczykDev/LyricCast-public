@@ -26,6 +26,8 @@
     <string name="preference_color_blue">Bleu</string>
     <string name="preference_color_red">Rouge</string>
     <string name="preference_color_pink">Rose</string>
+    <string name="preference_show_tutorial_title">Revoir le tutoriel</string>
+    <string name="preference_show_tutorial_summary">Rejouer l\'introduction et la visite guidée</string>
     <string name="preference_donate_title">Offrez-moi un café</string>
     <string name="preference_donate_summary">Soutenez le développement de cette application</string>
 </resources>

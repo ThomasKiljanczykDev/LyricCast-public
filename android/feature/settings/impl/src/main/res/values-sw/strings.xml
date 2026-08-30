@@ -28,6 +28,8 @@
     <string name="preference_color_blue">Buluu</string>
     <string name="preference_color_red">Nyekundu</string>
     <string name="preference_color_pink">Waridi</string>
+    <string name="preference_show_tutorial_title">Onyesha mafunzo tena</string>
+    <string name="preference_show_tutorial_summary">Rudia utangulizi na ziara ya mwongozo</string>
     <string name="preference_donate_title">Ninunulie kahawa</string>
     <string name="preference_donate_summary">Unga mkono maendeleo ya programu hii</string>
 </resources>

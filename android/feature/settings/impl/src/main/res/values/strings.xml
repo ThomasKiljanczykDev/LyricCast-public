@@ -40,6 +40,8 @@
     <string name="preference_color_blue">Blue</string>
     <string name="preference_color_red">Red</string>
     <string name="preference_color_pink">Pink</string>
+    <string name="preference_show_tutorial_title">Show tutorial again</string>
+    <string name="preference_show_tutorial_summary">Replay the introduction and guided tour</string>
     <string name="preference_donate_title">Buy me a coffee</string>
     <string name="preference_donate_summary">Support development of this app</string>
 </resources>

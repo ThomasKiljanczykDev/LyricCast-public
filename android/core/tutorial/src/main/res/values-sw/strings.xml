@@ -5,6 +5,7 @@
   -->
 
 <resources>
+    <string name="tutorial_previous">Rudi</string>
     <string name="tutorial_next">Endelea</string>
     <string name="tutorial_done">Imekamilika</string>
     <string name="tutorial_skip">Ruka</string>
@@ -71,8 +72,6 @@
     <string name="tour_settings_blank_title">Anza na skrini tupu</string>
     <string name="tour_settings_blank_body">Ukiwasha hii, skrini hubaki tupu unapofungua wimbo, hivyo hakuna kinachoonekana kabla hujawa tayari.</string>
 
-    <string name="tour_settings_auto_session_title">Chaguo-msingi za kipindi</string>
-    <string name="tour_settings_auto_session_body">Anzisha kipindi kiotomatiki programu inapofunguka, na uipe jina la chaguo-msingi ili vifaa vinavyojiunga vikitambue.</string>
     <string name="tour_settings_donate_title">Unafurahia LyricCast?</string>
     <string name="tour_settings_donate_body">Ikiwa inakusaidia, fikiria kuninunulia kahawa ili kuunga mkono maendeleo yake.</string>
 </resources>
