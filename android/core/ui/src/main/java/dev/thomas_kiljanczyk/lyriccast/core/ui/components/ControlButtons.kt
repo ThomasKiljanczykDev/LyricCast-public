@@ -40,11 +40,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
+import dev.thomas_kiljanczyk.lyriccast.core.designsystem.color.StatusColors
 import dev.thomas_kiljanczyk.lyriccast.core.designsystem.theme.LyricCastTheme
 import dev.thomas_kiljanczyk.lyriccast.core.model.settings.ControlButtonHeightOption
 import dev.thomas_kiljanczyk.lyriccast.core.ui.R
@@ -173,9 +173,6 @@ fun ControlButtons(
         ) {
             val buttonSize = (buttonHeight - 16).dp // Account for padding
 
-            val redColor = colorResource(R.color.red)
-            val greenColor = colorResource(R.color.green)
-
             AnimatedFilledIconButton(
                 onClick = onPreviousClick,
                 enabled = isPreviousEnabled,
@@ -198,8 +195,8 @@ fun ControlButtons(
             AnimatedButton(
                 onClick = onBlankClick,
                 isOn = !isBlanked, // Reverse logic: ON when not blanked
-                onColor = greenColor,
-                offColor = redColor,
+                onColor = StatusColors.On,
+                offColor = StatusColors.Off,
                 modifier = Modifier
                     .size(height = buttonSize, width = ControlButtonHeightOption.DEFAULT.value.dp)
             ) {

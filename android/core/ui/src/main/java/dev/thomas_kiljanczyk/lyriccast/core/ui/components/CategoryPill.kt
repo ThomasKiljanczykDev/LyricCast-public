@@ -15,11 +15,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
-import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.core.graphics.ColorUtils
-import dev.thomas_kiljanczyk.lyriccast.core.ui.R
+import dev.thomas_kiljanczyk.lyriccast.core.designsystem.color.ContrastTextColors
 
 @Composable
 fun CategoryPill(
@@ -27,8 +26,8 @@ fun CategoryPill(
     categoryColor: Color?,
     modifier: Modifier = Modifier
 ) {
-    val brightTextColor = colorResource(R.color.bright_text)
-    val darkTextColor = colorResource(R.color.dark_text)
+    val brightTextColor = ContrastTextColors.Bright
+    val darkTextColor = ContrastTextColors.Dark
 
     val backgroundColor = categoryColor?.toArgb()
     val brightTextContrast = if (backgroundColor != null)

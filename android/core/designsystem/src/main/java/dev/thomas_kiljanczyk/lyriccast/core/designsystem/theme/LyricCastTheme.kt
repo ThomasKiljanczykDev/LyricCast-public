@@ -7,6 +7,7 @@
 package dev.thomas_kiljanczyk.lyriccast.core.designsystem.theme
 
 import android.os.Build
+import androidx.annotation.ChecksSdkIntAtLeast
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.ExperimentalMaterial3ExpressiveApi
 import androidx.compose.material3.MaterialExpressiveTheme
@@ -16,6 +17,8 @@ import androidx.compose.material3.dynamicDarkColorScheme
 import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import dev.thomas_kiljanczyk.lyriccast.core.model.settings.ThemeOption
@@ -104,7 +107,15 @@ private fun ThemeOption?.shouldUseDarkTheme(): Boolean = when (this) {
  * Checks if dynamic colors are supported on the current device
  * Dynamic colors are available on Android 12 (API 31) and above
  */
+@ChecksSdkIntAtLeast(api = Build.VERSION_CODES.S)
 fun isDynamicColorSupported(): Boolean = Build.VERSION.SDK_INT >= Build.VERSION_CODES.S
+
+/**
+ * Whether [LyricCastTheme] is drawing its dark scheme. Not the same as `isSystemInDarkTheme()`:
+ * the app's theme setting overrides the system one. Colours outside the Material scheme ask this
+ * instead of reading a `-night` qualifier.
+ */
+val LocalUseDarkTheme = staticCompositionLocalOf { false }
 
 @OptIn(ExperimentalMaterial3ExpressiveApi::class)
 @Composable
@@ -126,9 +137,11 @@ fun LyricCastTheme(
         else -> lightScheme
     }
 
-    MaterialExpressiveTheme(
-        colorScheme = colors,
-        motionScheme = MotionScheme.expressive(),
-        content = content
-    )
+    CompositionLocalProvider(LocalUseDarkTheme provides useDarkTheme) {
+        MaterialExpressiveTheme(
+            colorScheme = colors,
+            motionScheme = MotionScheme.expressive(),
+            content = content
+        )
+    }
 }

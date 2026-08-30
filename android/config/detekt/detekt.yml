@@ -106,9 +106,10 @@ empty-blocks:
 # disagree with this codebase's conventions are off.
 Compose:
   CompositionLocalAllowlist:
-    # The tour overlay, the preview harness and the analytics helper are the implicit-context cases a
-    # CompositionLocal is for; everything else is passed explicitly.
+    # The tour overlay, the preview harness, the analytics helper and the theme's dark flag are the
+    # implicit-context cases a CompositionLocal is for; everything else is passed explicitly.
     allowedCompositionLocals:
+      - 'LocalUseDarkTheme'
       - 'LocalTourAnchorRegistry'
       - 'LocalTourExpansion'
       - 'LocalTourSpotlight'
