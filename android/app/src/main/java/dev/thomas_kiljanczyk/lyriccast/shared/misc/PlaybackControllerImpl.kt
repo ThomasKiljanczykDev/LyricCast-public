@@ -122,6 +122,10 @@ class PlaybackControllerImpl(
             _state.update { it.copy(isSessionRunning = running) }
         }.launchIn(scope)
 
+        bus.isCastConnected.onEach { connected ->
+            _state.update { it.copy(isCastConnected = connected) }
+        }.launchIn(scope)
+
         if (castContext != null) {
             val listener = CastSessionListener(onStarted = {
                 scope.launch {

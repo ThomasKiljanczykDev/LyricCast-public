@@ -121,11 +121,14 @@ class LyricCastApplication : Application() {
         castContext?.let { context ->
             messageTransport?.let { messaging ->
                 context.sessionManager.addSessionManagerListener(CastSessionListener(onStarted = {
+                    messaging.onSessionStarted()
                     applicationScope.launch(ioDispatcher) {
                         val blankOnStart = dataStore.data.first().blankOnStart
                         messaging.sendBlank(blankOnStart)
                     }
-                }, onEnded = { messaging.onSessionEnded() }))
+                }, onEnded = { messaging.onSessionEnded() },
+                    onResumed = { messaging.onSessionStarted() },
+                    onSuspended = { messaging.onSessionEnded() }))
             }
         }
 

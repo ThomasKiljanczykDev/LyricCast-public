@@ -144,6 +144,7 @@ fun SetlistControlsScreen(
             isPreviousEnabled = state.currentSlide > 0 || state.currentSongPosition > 0,
             isNextEnabled = state.currentSlide < state.totalSlideCount - 1 ||
                 state.currentSongPosition < state.songs.size - 1,
+            isBlankEnabled = state.isCastConnected,
             modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)
         )
     }

@@ -155,7 +155,9 @@ fun ControlButtons(
     onBlankClick: () -> Unit,
     modifier: Modifier = Modifier,
     isPreviousEnabled: Boolean = true,
-    isNextEnabled: Boolean = true
+    isNextEnabled: Boolean = true,
+    /** Blanking only exists over Cast; the control is inert without a session. */
+    isBlankEnabled: Boolean = true
 ) {
     Card(
         modifier
@@ -194,6 +196,7 @@ fun ControlButtons(
 
             AnimatedButton(
                 onClick = onBlankClick,
+                enabled = isBlankEnabled,
                 isOn = !isBlanked, // Reverse logic: ON when not blanked
                 onColor = StatusColors.On,
                 offColor = StatusColors.Off,
