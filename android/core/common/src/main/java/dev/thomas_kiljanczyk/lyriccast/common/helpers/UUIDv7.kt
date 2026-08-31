@@ -1,26 +1,14 @@
-/*
- * Created by Tomasz Kiljanczyk on 9/7/25, 2:43 PM
- * Copyright (c) 2025 . All rights reserved.
- * Last modified 9/7/25, 1:38 PM
- */
-
 package dev.thomas_kiljanczyk.lyriccast.common.helpers
 
 import java.security.SecureRandom
 import java.util.UUID
 
 /**
- * Provides a utility for generating UUID version 7 values.
- * This implementation generates UUIDs based on the current timestamp
- * and a cryptographically secure random number generator.
  * source: https://github.com/0xShamil/uuidv7-kotlin/tree/main
  */
 object UUIDv7 {
     private val numberGenerator = SecureRandom()
 
-    /**
-     * @return A UUID object representing a UUIDv7 value.
-     */
     fun randomUUID(): UUID {
         val value = randomBytes()
         val high = value.toLong(0)
@@ -29,11 +17,8 @@ object UUIDv7 {
     }
 
     /**
-     * Generates a 16-byte array.
      * The first 6 bytes contain the current timestamp in milliseconds.
      * The next bytes are random, with specific bits set for version and variant.
-     *
-     * @return A ByteArray of 16 bytes representing the UUIDv7.
      */
     @Suppress("MagicNumber") // Byte-level bit-packing masks/shifts read clearer as literals than named constants.
     private fun randomBytes(): ByteArray {
@@ -56,10 +41,6 @@ object UUIDv7 {
         return value
     }
 
-    /**
-     * @param offset The starting index in the ByteArray.
-     * @return A Long value constructed from 8 bytes starting at the given offset.
-     */
     @Suppress("MagicNumber") // Byte-level bit-packing masks/shifts read clearer as literals than named constants.
     private fun ByteArray.toLong(offset: Int = 0): Long {
         return ((this[offset].toLong() and 0xFF) shl 56) or

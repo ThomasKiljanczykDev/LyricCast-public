@@ -1,8 +1,3 @@
-/*
- * Created by Tomasz Kiljanczyk on 9/12/25, 7:11 PM
- * Copyright (c) 2025 . All rights reserved.
- * Last modified 9/12/25, 6:41 PM
- */
 
 package dev.thomas_kiljanczyk.lyriccast.feature.session.impl.ui.choose_session
 
@@ -125,7 +120,6 @@ class ChooseSessionDialogViewModel @Inject constructor(
         payloadTransport.startDiscovery(TransportConfig.Session)
     }
 
-    // Backward compatibility functions
     fun reset() = onEvent(ChooseSessionDialogEvent.Reset)
     fun startDiscovery() = onEvent(ChooseSessionDialogEvent.StartDiscovery)
     fun stopDiscovery() = onEvent(ChooseSessionDialogEvent.StopDiscovery)

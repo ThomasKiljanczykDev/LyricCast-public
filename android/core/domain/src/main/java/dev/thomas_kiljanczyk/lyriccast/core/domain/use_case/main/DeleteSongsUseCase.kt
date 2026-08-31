@@ -1,9 +1,3 @@
-/*
- * Created by Tomasz Kiljanczyk on 9/7/25, 3:41 PM
- * Copyright (c) 2025 . All rights reserved.
- * Last modified 9/7/25, 3:35 PM
- */
-
 package dev.thomas_kiljanczyk.lyriccast.core.domain.use_case.main
 
 import android.util.Log
@@ -16,10 +10,6 @@ import java.util.UUID
 import javax.inject.Inject
 import kotlinx.coroutines.flow.first
 
-/**
- * Use case for deleting songs with business logic validation.
- * Checks if songs are in use by setlists before deletion.
- */
 class DeleteSongsUseCase @Inject constructor(
     private val songsRepository: SongsRepository,
     private val setlistsRepository: SetlistsRepository
@@ -28,12 +18,6 @@ class DeleteSongsUseCase @Inject constructor(
         const val TAG = "DeleteSongsUseCase"
     }
 
-    /**
-     * Deletes the specified songs after validation.
-     *
-     * @param songIds List of song IDs to delete
-     * @return Result indicating success, songs in use, or error
-     */
     suspend operator fun invoke(
         songIds: List<UUID>
     ): DeleteSongsResult {
@@ -42,13 +26,11 @@ class DeleteSongsUseCase @Inject constructor(
         }
 
         return try {
-            // Check if any songs are currently used by setlists
             val songsInUse = checkSongsInUse(songIds)
             if (songsInUse.isNotEmpty()) {
                 return DeleteSongsResult.SongsInUse(songsInUse)
             }
 
-            // All songs are safe to delete
             songsRepository.deleteSongs(songIds)
             DeleteSongsResult.Success(songIds.size)
         } catch (e: Exception) {
@@ -60,12 +42,6 @@ class DeleteSongsUseCase @Inject constructor(
         }
     }
 
-    /**
-     * Checks which of the given song IDs are currently in use by setlists.
-     *
-     * @param songIds List of song IDs to check
-     * @return List of song IDs that are in use
-     */
     private suspend fun checkSongsInUse(songIds: List<UUID>): List<UUID> {
         return try {
             val allSetlists = setlistsRepository.getAllSetlists().first()

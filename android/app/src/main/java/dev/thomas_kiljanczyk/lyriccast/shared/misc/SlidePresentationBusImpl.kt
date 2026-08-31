@@ -1,9 +1,3 @@
-/*
- * Created by Tomasz Kiljanczyk on 6/6/26, 11:17 PM
- * Copyright (c) 2026 . All rights reserved.
- * Last modified 6/6/26, 11:11 PM
- */
-
 package dev.thomas_kiljanczyk.lyriccast.shared.misc
 
 import dev.thomas_kiljanczyk.lyriccast.core.cast.CastConfiguration

@@ -1,9 +1,3 @@
-/*
- * Created by Tomasz Kiljanczyk on 9/6/25, 10:24 PM
- * Copyright (c) 2025 . All rights reserved.
- * Last modified 9/6/25, 10:21 PM
- */
-
 package dev.thomas_kiljanczyk.lyriccast.core.domain.use_case.category_manager
 
 import dev.thomas_kiljanczyk.lyriccast.core.data.repository.CategoriesRepository
@@ -18,11 +12,6 @@ import kotlinx.coroutines.flow.map
 class GetCategoryNamesUseCase @Inject constructor(
     private val categoriesRepository: CategoriesRepository
 ) {
-    /**
-     * Returns a flow of category names.
-     *
-     * @return Flow emitting a set of all category names
-     */
     operator fun invoke(): Flow<Set<String>> =
         categoriesRepository.getAllCategories()
             .map { categories -> categories.map { it.name }.toSet() }

@@ -48,7 +48,6 @@ android {
     }
 }
 
-// This is the configuration block for the Baseline Profile plugin.
 // Generation runs on the Gradle Managed Device defined above (not connected devices), so CI can
 // generate the profile headlessly and the GMD path is exercised end to end.
 baselineProfile {

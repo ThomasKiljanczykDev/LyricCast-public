@@ -1,9 +1,3 @@
-/*
- * Created by Tomasz Kiljanczyk on 9/7/25, 3:52 PM
- * Copyright (c) 2025 . All rights reserved.
- * Last modified 9/7/25, 3:43 PM
- */
-
 package dev.thomas_kiljanczyk.lyriccast.core.sync.use_case
 
 import android.util.Log
@@ -49,10 +43,7 @@ class ImportDataUseCase @Inject constructor(
     /**
      * Imports data from the specified format.
      *
-     * @param cacheDir The cache directory path for temporary file storage
-     * @param inputStream The input stream containing the data to import
      * @param format The format of the data being imported, as picked by the user
-     * @param options Import options specifying how to handle conflicts
      * @return Flow emitting resource IDs for progress messages, or null if import fails
      */
     suspend operator fun invoke(

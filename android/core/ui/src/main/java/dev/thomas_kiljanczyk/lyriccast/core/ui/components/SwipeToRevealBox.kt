@@ -1,9 +1,3 @@
-/*
- * Created by Tomasz Kiljanczyk on 9/2/25, 8:59 PM
- * Copyright (c) 2025 . All rights reserved.
- * Last modified 9/2/25, 8:58 PM
- */
-
 package dev.thomas_kiljanczyk.lyriccast.core.ui.components
 
 import androidx.compose.animation.animateColorAsState
@@ -184,22 +178,6 @@ private fun SwipeBackground(
     }
 }
 
-/**
- * A composable that provides swipe-to-reveal functionality with built-in styled backgrounds.
- *
- * @param modifier Modifier to be applied to the container
- * @param state The state object managing the swipe behavior
- * @param swipeDirection Direction(s) allowed for swiping
- * @param leftSwipeThreshold Threshold distance for triggering left swipe action (negative value)
- * @param rightSwipeThreshold Threshold distance for triggering right swipe action (positive value)
- * @param maxSwipeDistance Maximum distance the content can be swiped
- * @param enableSwipe Whether swiping is enabled
- * @param onSwipeLeft Callback invoked when left swipe threshold is reached
- * @param onSwipeRight Callback invoked when right swipe threshold is reached
- * @param leftIcon Icon to show in left swipe background (defaults to Delete)
- * @param rightIcon Icon to show in right swipe background (defaults to Archive)
- * @param content The main swipeable content
- */
 @Composable
 fun SwipeToRevealBox(
     modifier: Modifier = Modifier,
@@ -222,14 +200,12 @@ fun SwipeToRevealBox(
         label = "swipe_offset"
     )
 
-    // Use current offset during drag, animated offset otherwise
     val displayOffsetX = if (state.targetOffsetX == state.currentOffsetX)
         animatedOffsetX
     else
         state.currentOffsetX
 
     Box(modifier = modifier.fillMaxWidth()) {
-        // Left swipe background (revealed when swiping left)
         if (displayOffsetX < 0.dp && (swipeDirection == SwipeDirection.LEFT || swipeDirection == SwipeDirection.BOTH)) {
             SwipeBackground(
                 modifier = Modifier.matchParentSize(),
@@ -244,7 +220,6 @@ fun SwipeToRevealBox(
             )
         }
 
-        // Right swipe background (revealed when swiping right)
         if (displayOffsetX > 0.dp &&
             (swipeDirection == SwipeDirection.RIGHT || swipeDirection == SwipeDirection.BOTH)
         ) {
@@ -261,7 +236,6 @@ fun SwipeToRevealBox(
             )
         }
 
-        // Main swipeable content
         Box(
             modifier = Modifier
                 .fillMaxWidth()
@@ -293,7 +267,6 @@ fun SwipeToRevealBox(
                         ) { _, dragAmount ->
                             val newOffset = state.currentOffsetX + (dragAmount / 1.dp.toPx()).dp
 
-                            // Apply direction constraints
                             val constrainedOffset = when (swipeDirection) {
                                 SwipeDirection.LEFT -> newOffset.coerceAtMost(0.dp)
                                 SwipeDirection.RIGHT -> newOffset.coerceAtLeast(0.dp)
@@ -306,7 +279,6 @@ fun SwipeToRevealBox(
                                 maxOffset = maxSwipeDistance
                             )
 
-                            // Check for haptic feedback triggers
                             if (swipeDirection != SwipeDirection.RIGHT &&
                                 state.checkLeftThresholdHaptic(leftSwipeThreshold)
                             ) {
@@ -325,8 +297,6 @@ fun SwipeToRevealBox(
         }
     }
 }
-
-// Preview Composables
 
 @PreviewLightDark
 @Composable

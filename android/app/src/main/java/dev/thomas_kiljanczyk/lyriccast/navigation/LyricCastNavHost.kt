@@ -1,9 +1,3 @@
-/*
- * Created by Tomasz Kiljanczyk on 9/7/25, 2:49 PM
- * Copyright (c) 2025 . All rights reserved.
- * Last modified 9/7/25, 2:44 PM
- */
-
 package dev.thomas_kiljanczyk.lyriccast.navigation
 
 import androidx.activity.ComponentActivity
@@ -39,8 +33,6 @@ import dev.thomas_kiljanczyk.lyriccast.ui.shared.menu.gms_nearby_session.dialog.
  *
  * @param appState Application state containing navigation controller and app-level state
  * @param activity Component activity reference for screens that require it
- * @param modifier Modifier for the NavHost
- * @param startDestination Starting destination for the navigation graph
  * @param onOnboardingComplete called once the first-run onboarding carousel finishes
  * @param onOnboardingSkip called if the user skips the first-run onboarding carousel
  */
@@ -78,7 +70,6 @@ fun LyricCastNavHost(
             onSkip = onOnboardingSkip
         )
 
-        // Main screen with nested destinations
         mainSection(
             activity = activity,
             onNavigateToSettings = navController::navigateToSettings,
@@ -91,12 +82,10 @@ fun LyricCastNavHost(
             onStartSessionServer = { showStartSessionDialog = true },
         )
 
-        // Settings screen
         settingsScreen(
             onNavigateUp = navController::popBackStack,
         )
 
-        // Song-related screens
         songEditorScreen(
             onNavigateUp = navController::popBackStack,
         )
@@ -106,7 +95,6 @@ fun LyricCastNavHost(
             onNavigateToSettings = navController::navigateToSettings,
         )
 
-        // Setlist-related screens
         setlistEditorScreen(
             onNavigateBack = navController::popBackStack,
         )
@@ -116,12 +104,10 @@ fun LyricCastNavHost(
             onNavigateToSettings = navController::navigateToSettings,
         )
 
-        // Category management screen
         categoryManagerScreen(
             onNavigateUp = navController::popBackStack,
         )
 
-        // Session client screen
         sessionClientScreen(
             onNavigateUp = navController::popBackStack,
         )

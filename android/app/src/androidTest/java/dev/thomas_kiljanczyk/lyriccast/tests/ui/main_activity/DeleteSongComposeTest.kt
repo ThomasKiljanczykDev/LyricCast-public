@@ -1,9 +1,3 @@
-/*
- * Created by Tomasz Kiljanczyk on 9/7/25, 8:53 PM
- * Copyright (c) 2025 . All rights reserved.
- * Last modified 9/7/25, 8:09 PM
- */
-
 package dev.thomas_kiljanczyk.lyriccast.tests.ui.main_activity
 
 import androidx.compose.ui.test.assertIsDisplayed
@@ -53,7 +47,6 @@ class DeleteSongComposeTest {
     fun setup() = runTest {
         hiltRule.inject()
 
-        // Add test songs to repository
         songsRepository.upsertSong(song1)
         songsRepository.upsertSong(song2)
         songsRepository.upsertSong(song3)
@@ -61,29 +54,24 @@ class DeleteSongComposeTest {
 
     @Test
     fun songIsDeleted() {
-        // Wait for songs to appear
         composeTestRule.waitUntil(5000) {
             composeTestRule
                 .onAllNodes(hasText(song1.title))
                 .fetchSemanticsNodes().isNotEmpty()
         }
 
-        // Verify all songs are displayed
         composeTestRule.onNodeWithText(song1.title).assertIsDisplayed()
         composeTestRule.onNodeWithText(song2.title).assertIsDisplayed()
         composeTestRule.onNodeWithText(song3.title).assertIsDisplayed()
 
-        // Long click on song2 to enter selection mode
         composeTestRule
             .onNodeWithText(song2.title)
             .performTouchInput { longClick() }
 
-        // Click delete action
         composeTestRule
             .onNodeWithContentDescription("Delete")
             .performClick()
 
-        // Verify song2 is deleted, others remain
         composeTestRule.waitUntil(5000) {
             try {
                 composeTestRule
@@ -101,34 +89,28 @@ class DeleteSongComposeTest {
 
     @Test
     fun multipleSongsAreDeleted() {
-        // Wait for songs to appear
         composeTestRule.waitUntil(5000) {
             composeTestRule
                 .onAllNodes(hasText(song1.title))
                 .fetchSemanticsNodes().isNotEmpty()
         }
 
-        // Verify all songs are displayed
         composeTestRule.onNodeWithText(song1.title).assertIsDisplayed()
         composeTestRule.onNodeWithText(song2.title).assertIsDisplayed()
         composeTestRule.onNodeWithText(song3.title).assertIsDisplayed()
 
-        // Long click on song1 to enter selection mode
         composeTestRule
             .onNodeWithText(song1.title)
             .performTouchInput { longClick() }
 
-        // Click on song2 to add to selection
         composeTestRule
             .onNodeWithText(song2.title)
             .performClick()
 
-        // Click delete action
         composeTestRule
             .onNodeWithContentDescription("Delete")
             .performClick()
 
-        // Verify song1 and song2 are deleted, song3 remains
         composeTestRule.waitUntil(5000) {
             try {
                 composeTestRule

@@ -1,8 +1,3 @@
-/*
- * Created by Tomasz Kiljanczyk on 9/7/25, 4:29 PM
- * Copyright (c) 2025 . All rights reserved.
- * Last modified 9/7/25, 4:04 PM
- */
 
 package dev.thomas_kiljanczyk.lyriccast.feature.main.impl.ui.main
 
@@ -84,7 +79,6 @@ fun MainScreenTopBar(
     TopAppBar(
         title = { Text(stringResource(R.string.app_name)) },
         actions = {
-            // Start session button
             Box(Modifier.tourAnchor(TourAnchor.MAIN_SESSION_BUTTON)) {
                 IconButton(onClick = onStartSession) {
                     Icon(
@@ -96,12 +90,10 @@ fun MainScreenTopBar(
                 }
             }
 
-            // Cast button - always visible
             Box(Modifier.tourAnchor(TourAnchor.MAIN_CAST_BUTTON)) {
                 CastButton(size = 48.dp)
             }
 
-            // Three-dots menu
             Box {
                 IconButton(
                     onClick = { showMenu = true },
@@ -221,7 +213,6 @@ fun SongsActionModeTopBar(
             }
         },
         actions = {
-            // Show edit button only when exactly one song is selected
             AnimatedVisibility(
                 visible = selectedCount == 1,
                 enter = fadeIn(animationSpec = MaterialTheme.motionScheme.defaultEffectsSpec()),
@@ -282,7 +273,6 @@ fun SetlistsActionModeTopBar(
             }
         },
         actions = {
-            // Show edit button only when exactly one setlist is selected
             AnimatedVisibility(
                 visible = selectedCount == 1,
                 enter = fadeIn(animationSpec = MaterialTheme.motionScheme.defaultEffectsSpec()),

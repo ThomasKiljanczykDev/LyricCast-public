@@ -1,9 +1,3 @@
-/*
- * Created by Tomasz Kiljanczyk on 7/28/26, 6:42 PM
- * Copyright (c) 2026 . All rights reserved.
- * Last modified 7/28/26, 5:17 PM
- */
-
 package dev.thomas_kiljanczyk.lyriccast.core.tutorial
 
 import com.google.common.truth.Truth.assertThat

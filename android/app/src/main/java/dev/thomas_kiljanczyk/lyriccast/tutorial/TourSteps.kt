@@ -1,9 +1,3 @@
-/*
- * Created by Tomasz Kiljanczyk on 7/30/26, 12:10 AM
- * Copyright (c) 2026 . All rights reserved.
- * Last modified 7/30/26, 12:06 AM
- */
-
 package dev.thomas_kiljanczyk.lyriccast.tutorial
 
 import androidx.compose.runtime.Composable
@@ -37,7 +31,6 @@ fun rememberTourSteps(appState: LyricCastAppState): ImmutableList<TourStep> =
         }
 
         persistentListOf(
-            // --- Main screen ---------------------------------------------------------
             TourStep(
                 id = "main_tabs",
                 titleRes = R.string.tour_main_tabs_title,
@@ -86,7 +79,6 @@ fun rememberTourSteps(appState: LyricCastAppState): ImmutableList<TourStep> =
                 anchor = TourAnchor.MAIN_SESSION_BUTTON
             ),
 
-            // --- Song editor ---------------------------------------------------------
             TourStep(
                 id = "song_editor_title",
                 titleRes = R.string.tour_song_editor_title_title,
@@ -107,7 +99,6 @@ fun rememberTourSteps(appState: LyricCastAppState): ImmutableList<TourStep> =
                 anchor = TourAnchor.SONG_EDITOR_SAVE
             ),
 
-            // --- Setlist editor ------------------------------------------------------
             TourStep(
                 id = "setlist_editor_name",
                 titleRes = R.string.tour_setlist_editor_name_title,
@@ -128,7 +119,6 @@ fun rememberTourSteps(appState: LyricCastAppState): ImmutableList<TourStep> =
                 keepWhenAnchorMissing = true
             ),
 
-            // --- Settings ------------------------------------------------------------
             TourStep(
                 id = "settings_appearance",
                 titleRes = R.string.tour_settings_appearance_title,

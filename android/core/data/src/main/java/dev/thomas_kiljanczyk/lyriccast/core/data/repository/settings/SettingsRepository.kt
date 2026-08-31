@@ -1,9 +1,3 @@
-/*
- * Created by Tomasz Kiljanczyk on 8/17/25, 11:14 PM
- * Copyright (c) 2025 . All rights reserved.
- * Last modified 8/17/25, 10:50 PM
- */
-
 package dev.thomas_kiljanczyk.lyriccast.core.data.repository.settings
 
 import androidx.datastore.core.DataStore

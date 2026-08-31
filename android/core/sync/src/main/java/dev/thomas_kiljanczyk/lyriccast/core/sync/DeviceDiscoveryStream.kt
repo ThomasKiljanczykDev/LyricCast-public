@@ -1,9 +1,3 @@
-/*
- * Created by Tomasz Kiljanczyk on 5/27/26, 11:45 AM
- * Copyright (c) 2026 . All rights reserved.
- * Last modified 5/27/26, 11:45 AM
- */
-
 package dev.thomas_kiljanczyk.lyriccast.core.sync
 
 import dev.thomas_kiljanczyk.lyriccast.core.nearby.PayloadTransport

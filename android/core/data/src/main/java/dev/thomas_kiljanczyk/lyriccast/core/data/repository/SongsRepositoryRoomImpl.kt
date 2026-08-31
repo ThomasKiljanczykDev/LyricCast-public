@@ -1,9 +1,3 @@
-/*
- * Created by Tomasz Kiljanczyk on 9/7/25, 8:53 PM
- * Copyright (c) 2025 . All rights reserved.
- * Last modified 9/7/25, 8:18 PM
- */
-
 package dev.thomas_kiljanczyk.lyriccast.core.data.repository
 
 import dev.thomas_kiljanczyk.lyriccast.common.di.Dispatcher

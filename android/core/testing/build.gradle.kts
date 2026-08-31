@@ -23,7 +23,6 @@ dependencies {
     api(libs.androidx.rules)
     api(libs.hiltTesting)
 
-    // Compose testing
     api(libs.androidx.compose.ui.test.junit4)
     debugApi(libs.androidx.compose.ui.test.manifest)
 }

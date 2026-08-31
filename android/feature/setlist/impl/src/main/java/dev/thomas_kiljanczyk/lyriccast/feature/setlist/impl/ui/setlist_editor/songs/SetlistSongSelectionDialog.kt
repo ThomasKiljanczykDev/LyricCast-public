@@ -1,8 +1,3 @@
-/*
- * Created by Tomasz Kiljanczyk on 9/7/25, 7:42 PM
- * Copyright (c) 2025 . All rights reserved.
- * Last modified 9/7/25, 7:34 PM
- */
 
 package dev.thomas_kiljanczyk.lyriccast.feature.setlist.impl.ui.setlist_editor.songs
 
@@ -59,7 +54,6 @@ fun SetlistSongSelectionDialog(
 ) {
     val state = viewModel.state
 
-    // Set initial selection when dialog opens
     LaunchedEffect(currentSongIds) {
         viewModel.setInitialSelection(currentSongIds)
     }
@@ -129,7 +123,6 @@ fun SetlistSongSelectionDialog(
                         .fillMaxSize()
                         .padding(paddingValues)
                 ) {
-                    // Search and filter section
                     SongFilters(
                         state = state.filterState,
                         onSearchTextChanged = onSearchTextChanged,
@@ -139,7 +132,6 @@ fun SetlistSongSelectionDialog(
                         showSelectedFilter = true
                     )
 
-                    // Songs list
                     if (state.filteredAvailableSongs.isEmpty()) {
                         Box(
                             modifier = Modifier
@@ -226,7 +218,6 @@ private fun SetlistSongSelectionDialogPreview() {
             filterState.showOnlySelected = false
         }
 
-        // Use the props-only version for preview
         Surface {
             SetlistSongSelectionDialog(
                 state = sampleState,

@@ -1,8 +1,3 @@
-/*
- * Created by Tomasz Kiljanczyk on 9/8/25, 6:08 PM
- * Copyright (c) 2025 . All rights reserved.
- * Last modified 9/8/25, 2:03 PM
- */
 
 package dev.thomas_kiljanczyk.lyriccast.feature.main.impl.ui.songs
 
@@ -81,7 +76,6 @@ fun SongsScreen(
     Column(
         modifier = Modifier.fillMaxSize()
     ) {
-        // Filters
         SongFilters(
             state = state.filterState,
             onSearchTextChanged = onUpdateSearchQuery,
@@ -90,7 +84,6 @@ fun SongsScreen(
             showSelectedFilter = false
         )
 
-        // Songs list
         LazyColumn(
             verticalArrangement = Arrangement.spacedBy(8.dp),
             contentPadding = PaddingValues(bottom = FabListBottomSpacing),

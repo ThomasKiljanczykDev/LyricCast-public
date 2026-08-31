@@ -1,8 +1,3 @@
-/*
- * Created by Tomasz Kiljanczyk on 9/7/25, 7:28 PM
- * Copyright (c) 2025 . All rights reserved.
- * Last modified 9/7/25, 7:27 PM
- */
 
 package dev.thomas_kiljanczyk.lyriccast.feature.settings.impl.ui
 
@@ -151,7 +146,6 @@ fun SettingsScreen(
                 .padding(paddingValues)
                 .padding(horizontal = 16.dp)
         ) {
-            // App Settings Section
             SettingsCategory(title = stringResource(R.string.preference_section_app), content = {
                 SettingsCardGroup {
                     item {
@@ -202,7 +196,6 @@ fun SettingsScreen(
                 }
             })
 
-            // Chromecast Settings Section
             SettingsCategory(
                 title = stringResource(R.string.preference_section_chromecast),
                 modifier = Modifier.tourAnchor(TourAnchor.SETTINGS_APPEARANCE),

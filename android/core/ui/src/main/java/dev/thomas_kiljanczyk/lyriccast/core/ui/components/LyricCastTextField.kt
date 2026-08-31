@@ -1,9 +1,3 @@
-/*
- * Created by Tomasz Kiljanczyk on 9/7/25, 4:29 PM
- * Copyright (c) 2025 . All rights reserved.
- * Last modified 9/7/25, 3:59 PM
- */
-
 package dev.thomas_kiljanczyk.lyriccast.core.ui.components
 
 import androidx.compose.foundation.layout.Arrangement
@@ -159,4 +153,3 @@ private fun PreviewLyricCastTextField_Multiline() {
         }
     }
 }
-// endregion

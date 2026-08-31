@@ -1,9 +1,3 @@
-/*
- * Created by Tomasz Kiljanczyk on 9/11/25, 9:27 AM
- * Copyright (c) 2025 . All rights reserved.
- * Last modified 9/11/25, 9:25 AM
- */
-
 package dev.thomas_kiljanczyk.lyriccast.core.database.dao
 
 import androidx.room.Dao
@@ -62,10 +56,8 @@ interface SongDao {
 
     @Transaction
     suspend fun upsertSongsWithLyrics(songsWithLyrics: Map<SongEntity, List<LyricsSectionEntity>>) {
-        // Insert all songs in bulk
         insertSongs(songsWithLyrics.keys.toList())
 
-        // Delete existing lyrics for all songs in bulk
         val songIds = songsWithLyrics.keys.map { it.id }
         if (songIds.isNotEmpty()) {
             songIds.chunked(DELETE_CHUNK_SIZE).forEach { songIdsChunk ->
@@ -73,7 +65,6 @@ interface SongDao {
             }
         }
 
-        // Insert all lyrics sections in bulk
         val allLyricsSections = songsWithLyrics.values.flatten()
         if (allLyricsSections.isNotEmpty()) {
             insertLyricsSections(allLyricsSections)

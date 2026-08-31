@@ -8,7 +8,6 @@ kotlin {
     jvmToolchain(17)
 }
 
-// Setup protobuf configuration, generating lite Java and Kotlin classes
 protobuf {
     protoc {
         artifact = libs.protobuf.protoc.get().toString()

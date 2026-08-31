@@ -1,9 +1,3 @@
-/*
- * Created by Tomasz Kiljanczyk on 9/12/25, 12:07 AM
- * Copyright (c) 2025 . All rights reserved.
- * Last modified 9/12/25, 12:07 AM
- */
-
 package dev.thomas_kiljanczyk.lyriccast.core.designsystem.theme
 
 import android.os.Build
@@ -23,7 +17,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import dev.thomas_kiljanczyk.lyriccast.core.model.settings.ThemeOption
 
-// Light theme colors for Android 11 and below
 private val lightScheme = lightColorScheme(
     primary = Color(0xFF00668B),
     onPrimary = Color(0xFFFFFFFF),
@@ -58,7 +51,6 @@ private val lightScheme = lightColorScheme(
     scrim = Color(0xFF000000)
 )
 
-// Dark theme colors for Android 11 and below
 private val darkScheme = darkColorScheme(
     primary = Color(0xFF76D1FF),
     onPrimary = Color(0xFF003549),
@@ -93,9 +85,6 @@ private val darkScheme = darkColorScheme(
     scrim = Color(0xFF000000)
 )
 
-/**
- * Converts ThemeOption to boolean for dark theme usage
- */
 @Composable
 private fun ThemeOption?.shouldUseDarkTheme(): Boolean = when (this) {
     ThemeOption.LIGHT -> false
@@ -103,10 +92,6 @@ private fun ThemeOption?.shouldUseDarkTheme(): Boolean = when (this) {
     ThemeOption.SYSTEM, null -> isSystemInDarkTheme()
 }
 
-/**
- * Checks if dynamic colors are supported on the current device
- * Dynamic colors are available on Android 12 (API 31) and above
- */
 @ChecksSdkIntAtLeast(api = Build.VERSION_CODES.S)
 fun isDynamicColorSupported(): Boolean = Build.VERSION.SDK_INT >= Build.VERSION_CODES.S
 

@@ -1,9 +1,3 @@
-/*
- * Created by Tomasz Kiljanczyk on 6/7/26, 8:13 PM
- * Copyright (c) 2026 . All rights reserved.
- * Last modified 6/7/26, 8:10 PM
- */
-
 package dev.thomas_kiljanczyk.lyriccast.core.nearby_test.di
 
 import com.google.android.gms.nearby.connection.ConnectionsClient

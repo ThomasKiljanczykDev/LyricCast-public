@@ -1,8 +1,3 @@
-/*
- * Created by Tomasz Kiljanczyk on 9/12/25, 7:11 PM
- * Copyright (c) 2025 . All rights reserved.
- * Last modified 9/12/25, 6:44 PM
- */
 
 package dev.thomas_kiljanczyk.lyriccast.feature.session.impl.ui.choose_session
 
@@ -90,7 +85,6 @@ fun ChooseSessionDialog(
                 onSessionSelected = onSessionSelected
             )
         }, confirmButton = {
-            // No confirm button needed
         }, dismissButton = {
             TextButton(onClick = onDismiss) {
                 Text(text = stringResource(R.string.close))
@@ -115,7 +109,6 @@ private fun ChooseSessionDialogContent(
             .height(200.dp)
     ) {
         if (devices.isEmpty()) {
-            // Loading state
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -140,7 +133,6 @@ private fun ChooseSessionDialogContent(
                 )
             }
         } else {
-            // Device list
             Card(
                 modifier = Modifier
                     .fillMaxWidth()

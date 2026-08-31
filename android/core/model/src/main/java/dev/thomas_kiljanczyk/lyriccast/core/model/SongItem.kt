@@ -1,9 +1,3 @@
-/*
- * Created by Tomasz Kiljanczyk on 9/8/25, 6:08 PM
- * Copyright (c) 2025 . All rights reserved.
- * Last modified 9/8/25, 2:08 PM
- */
-
 package dev.thomas_kiljanczyk.lyriccast.core.model
 
 import dev.thomas_kiljanczyk.lyriccast.common.extensions.normalize
@@ -14,15 +8,9 @@ import kotlinx.collections.immutable.toImmutableList
 import kotlinx.collections.immutable.toImmutableMap
 
 /**
- * Represents a song item, including metadata, lyrics, and presentation details.
- *
- * @param id The unique identifier for the song.
- * @param title The title of the song.
  * @param lyricsMap A map containing lyrics sections where the key is the section name and the value is the
  * section text.
  * @param presentation A list defining the order of lyrics sections for presentation purposes.
- * @param category The category associated with this song, if any.
- * @param isSelected Indicates whether this song item is currently selected.
  */
 data class SongItem(
     val id: UUID,

@@ -1,8 +1,3 @@
-/*
- * Created by Tomasz Kiljanczyk on 9/8/25, 6:08 PM
- * Copyright (c) 2025 . All rights reserved.
- * Last modified 9/8/25, 2:02 PM
- */
 
 package dev.thomas_kiljanczyk.lyriccast.feature.setlist.impl.ui.setlist_editor
 
@@ -76,7 +71,6 @@ fun SetlistEditorScreen(
     val snackbarHostState = remember { SnackbarHostState() }
     var showSongSelectionDialog by remember { mutableStateOf(false) }
 
-    // Load setlist data
     LaunchedEffect(setlistId, presentation) {
         when {
             setlistId != null && presentation != null -> {
@@ -93,7 +87,6 @@ fun SetlistEditorScreen(
         }
     }
 
-    // Show song selection dialog
     if (showSongSelectionDialog) {
         SetlistSongSelectionDialog(
             onDismiss = { showSongSelectionDialog = false },
@@ -258,7 +251,6 @@ private fun SetlistEditorTopBar(
         targetState = isInSelectionMode, label = "topbar_crossfade"
     ) { inSelectionMode ->
         if (inSelectionMode) {
-            // Selection Mode TopBar (inlined)
             TopAppBar(
                 title = { },
                 navigationIcon = {
@@ -293,7 +285,6 @@ private fun SetlistEditorTopBar(
                 )
             )
         } else {
-            // Normal Mode TopBar (inlined)
             TopAppBar(
                 title = { Text(stringResource(R.string.setlist_editor_title)) },
                 navigationIcon = {

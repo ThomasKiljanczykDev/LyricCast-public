@@ -1,9 +1,3 @@
-/*
- * Created by Tomasz Kiljanczyk on 8/7/26, 10:47 PM
- * Copyright (c) 2026 . All rights reserved.
- * Last modified 8/7/26, 10:47 PM
- */
-
 package dev.thomas_kiljanczyk.lyriccast.core.nearby
 
 import android.Manifest
@@ -12,14 +6,7 @@ import android.content.pm.PackageManager
 import android.os.Build
 import androidx.core.content.ContextCompat
 
-/**
- * Utility object containing permissions required for GMS Nearby features.
- */
 object NearbyPermissions {
-    /**
-     * Array of all permissions required for GMS Nearby Connections features.
-     * The permissions vary based on Android version.
-     */
     val REQUIRED_PERMISSIONS: Array<String> = preparePermissionArray()
 
     private fun preparePermissionArray(): Array<String> {
@@ -51,11 +38,6 @@ object NearbyPermissions {
         return result.toTypedArray()
     }
 
-    /**
-     * Checks if all required permissions for GMS Nearby features are granted.
-     * @param context The context to check permissions against
-     * @return true if all permissions are granted, false otherwise
-     */
     fun areAllPermissionsGranted(context: Context): Boolean {
         return REQUIRED_PERMISSIONS.all { permission ->
             ContextCompat.checkSelfPermission(

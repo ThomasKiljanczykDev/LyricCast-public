@@ -1,8 +1,3 @@
-/*
- * Created by Tomasz Kiljanczyk on 9/7/25, 3:52 PM
- * Copyright (c) 2025 . All rights reserved.
- * Last modified 9/7/25, 3:49 PM
- */
 
 package dev.thomas_kiljanczyk.lyriccast.feature.main.impl.ui.main
 
@@ -73,7 +68,6 @@ class MainScreenViewModel @Inject constructor(
     }
 
     init {
-        // Monitor session server status
         payloadTransport.serverIsRunning
             .onEach { state.isSessionServerRunning = it }
             .launchIn(viewModelScope)

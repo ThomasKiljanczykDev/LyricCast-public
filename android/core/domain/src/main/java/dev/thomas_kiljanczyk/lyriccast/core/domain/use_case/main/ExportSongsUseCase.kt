@@ -1,9 +1,3 @@
-/*
- * Created by Tomasz Kiljanczyk on 9/7/25, 7:42 PM
- * Copyright (c) 2025 . All rights reserved.
- * Last modified 9/7/25, 7:30 PM
- */
-
 package dev.thomas_kiljanczyk.lyriccast.core.domain.use_case.main
 
 import dev.thomas_kiljanczyk.lyriccast.common.di.Dispatcher
@@ -23,20 +17,9 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.serialization.json.Json
 
-/**
- * Use case for exporting selected songs to a ZIP file.
- */
 class ExportSongsUseCase @Inject constructor(
     @param:Dispatcher(LyricCastDispatchers.IO) private val ioDispatcher: CoroutineDispatcher
 ) {
-    /**
-     * Exports selected songs to a ZIP file.
-     *
-     * @param cacheDir The cache directory path for temporary file storage
-     * @param outputStream The output stream to write the exported ZIP file to
-     * @param selectedSongs The list of songs to export
-     * @return Flow emitting string resource IDs for progress messages
-     */
     operator fun invoke(
         cacheDir: String,
         outputStream: OutputStream,
@@ -48,7 +31,6 @@ class ExportSongsUseCase @Inject constructor(
 
         emit(R.string.main_activity_export_preparing_data)
 
-        // Create transfer data with only selected songs
         val transferData = DatabaseTransferData(
             songDtos = selectedSongs.map { songItem ->
                 SongDto(
@@ -65,7 +47,7 @@ class ExportSongsUseCase @Inject constructor(
                         color = category.color
                     )
                 },
-            setlistDtos = null // Don't export setlists for selected songs
+            setlistDtos = null
         )
 
         emit(R.string.main_activity_export_saving_json)

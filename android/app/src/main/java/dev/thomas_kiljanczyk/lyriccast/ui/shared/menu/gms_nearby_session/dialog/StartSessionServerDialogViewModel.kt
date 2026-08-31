@@ -1,9 +1,3 @@
-/*
- * Created by Tomasz Kiljanczyk on 9/7/25, 3:52 PM
- * Copyright (c) 2025 . All rights reserved.
- * Last modified 9/7/25, 3:50 PM
- */
-
 package dev.thomas_kiljanczyk.lyriccast.ui.shared.menu.gms_nearby_session.dialog
 
 import androidx.compose.runtime.derivedStateOf
@@ -61,10 +55,8 @@ class StartSessionServerDialogViewModel @Inject constructor(
         field = MutableStartSessionServerDialogState()
 
     init {
-        // Monitor advertising state changes
         payloadTransport.advertisingState
             .map { advertisingStateInfo ->
-                // Handle error messages
                 val exception = advertisingStateInfo.exception
                 val errorRes = if (exception is ApiException && exception.status.statusCode == 8038) {
                     R.string.dialog_fragment_start_session_session_start_missing_permissions

@@ -1,8 +1,3 @@
-/*
- * Created by Tomasz Kiljanczyk on 9/7/25, 8:05 PM
- * Copyright (c) 2025 . All rights reserved.
- * Last modified 9/7/25, 7:58 PM
- */
 
 package dev.thomas_kiljanczyk.lyriccast.feature.setlist.impl.ui.setlist_editor
 
@@ -140,7 +135,6 @@ private fun SetlistSongItem(
         leftIcon = Icons.Rounded.Delete,
         rightIcon = Icons.Rounded.Queue
     ) {
-        // Main card content
         Card(
             modifier = Modifier
                 .zIndex(if (isDragging) 1f else 0f)

@@ -1,9 +1,3 @@
-/*
- * Created by Tomasz Kiljanczyk on 6/7/26, 7:21 PM
- * Copyright (c) 2026 . All rights reserved.
- * Last modified 6/7/26, 7:19 PM
- */
-
 package dev.thomas_kiljanczyk.lyriccast.core.nearby_test.fake
 
 import dev.thomas_kiljanczyk.lyriccast.core.nearby.AdvertisingState
@@ -98,7 +92,6 @@ class FakePayloadTransport : PayloadTransport {
         _discoveryState.value = DiscoveryStateInfo(DiscoveryState.NOT_DISCOVERING, null)
     }
 
-    /** Test helper: emit a discovered device. */
     fun emitDiscovered(endpointId: String, endpointName: String) {
         _discoveredDevices.tryEmit(DiscoveredDevice(endpointId, endpointName))
     }

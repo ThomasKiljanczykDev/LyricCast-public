@@ -6,10 +6,6 @@ import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.dependencies
 import org.gradle.kotlin.dsl.getByType
 
-/**
- * Convention plugin for Compose-enabled library modules.
- * Sets up Compose compiler and common Compose dependencies.
- */
 class ComposeLibraryConventionPlugin : Plugin<Project> {
     override fun apply(target: Project) {
         with(target) {

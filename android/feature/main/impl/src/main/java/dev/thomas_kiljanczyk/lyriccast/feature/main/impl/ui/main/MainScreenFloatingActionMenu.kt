@@ -1,8 +1,3 @@
-/*
- * Created by Tomasz Kiljanczyk on 8/5/26, 2:30 PM
- * Copyright (c) 2026 . All rights reserved.
- * Last modified 8/5/26, 1:08 PM
- */
 
 package dev.thomas_kiljanczyk.lyriccast.feature.main.impl.ui.main
 

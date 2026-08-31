@@ -1,9 +1,3 @@
-/*
- * Created by Tomasz Kiljanczyk on 5/27/26, 9:55 AM
- * Copyright (c) 2026 . All rights reserved.
- * Last modified 5/27/26, 9:55 AM
- */
-
 package dev.thomas_kiljanczyk.lyriccast.core.nearby
 
 enum class AdvertisingState {

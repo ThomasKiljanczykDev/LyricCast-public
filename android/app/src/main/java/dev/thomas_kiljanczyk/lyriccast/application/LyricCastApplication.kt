@@ -1,9 +1,3 @@
-/*
- * Created by Tomasz Kiljanczyk on 9/12/25, 12:35 AM
- * Copyright (c) 2025 . All rights reserved.
- * Last modified 9/12/25, 12:35 AM
- */
-
 package dev.thomas_kiljanczyk.lyriccast.application
 
 import android.Manifest
@@ -134,7 +128,6 @@ class LyricCastApplication : Application() {
 
         DynamicColors.applyToActivitiesIfAvailable(this)
 
-        // Initialize default values in DataStore
         applicationScope.launch(ioDispatcher) {
             dataStore.updateData { currentSettings ->
                 if (currentSettings == AppSettings.getDefaultInstance()) {

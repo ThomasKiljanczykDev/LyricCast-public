@@ -1,8 +1,3 @@
-/*
- * Created by Tomasz Kiljanczyk on 9/7/25, 8:05 PM
- * Copyright (c) 2025 . All rights reserved.
- * Last modified 9/7/25, 7:57 PM
- */
 
 package dev.thomas_kiljanczyk.lyriccast.feature.setlist.impl.domain
 
@@ -17,9 +12,6 @@ import dev.thomas_kiljanczyk.lyriccast.feature.setlist.impl.model.SetlistSongIte
 import java.util.UUID
 import javax.inject.Inject
 
-/**
- * Use case for loading setlists and transforming them to editing format.
- */
 class LoadSetlistUseCase @Inject constructor(
     private val setlistsRepository: SetlistsRepository,
     private val getSongsByIdsUseCase: GetSongsByIdsUseCase
@@ -28,12 +20,6 @@ class LoadSetlistUseCase @Inject constructor(
         const val TAG = "LoadSetlistUseCase"
     }
 
-    /**
-     * Loads a setlist by ID and transforms it to editing format.
-     *
-     * @param setlistId The ID of the setlist to load
-     * @return LoadSetlistResult containing the loaded setlist data or error
-     */
     suspend operator fun invoke(
         setlistId: UUID
     ): LoadSetlistResult {
@@ -45,7 +31,6 @@ class LoadSetlistUseCase @Inject constructor(
 
             Log.v(TAG, "Loaded setlist: $setlist")
 
-            // Transform setlist songs to editing format
             val songIds = setlist.presentation.map { it.id }
             val songs = getSongsByIdsUseCase(songIds)
 

@@ -1,9 +1,3 @@
-/*
- * Created by Tomasz Kiljanczyk on 9/6/25, 5:33 PM
- * Copyright (c) 2025 . All rights reserved.
- * Last modified 9/6/25, 5:23 PM
- */
-
 package dev.thomas_kiljanczyk.lyriccast.core.ui.components
 
 import androidx.compose.foundation.layout.Arrangement

@@ -1,9 +1,3 @@
-/*
- * Created by Tomasz Kiljanczyk on 9/12/25, 7:11 PM
- * Copyright (c) 2025 . All rights reserved.
- * Last modified 9/12/25, 6:24 PM
- */
-
 package dev.thomas_kiljanczyk.lyriccast.core.ui.components
 
 import androidx.compose.animation.animateColorAsState

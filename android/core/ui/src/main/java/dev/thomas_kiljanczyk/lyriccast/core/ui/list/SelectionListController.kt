@@ -1,9 +1,3 @@
-/*
- * Created by Tomasz Kiljanczyk on 5/27/26, 1:00 PM
- * Copyright (c) 2026 . All rights reserved.
- * Last modified 5/27/26, 1:00 PM
- */
-
 package dev.thomas_kiljanczyk.lyriccast.core.ui.list
 
 import androidx.compose.runtime.derivedStateOf

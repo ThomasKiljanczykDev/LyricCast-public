@@ -1,8 +1,3 @@
-/*
- * Created by Tomasz Kiljanczyk on 9/12/25, 12:35 AM
- * Copyright (c) 2025 . All rights reserved.
- * Last modified 9/12/25, 12:26 AM
- */
 
 package dev.thomas_kiljanczyk.lyriccast.feature.setlist.impl.ui.setlist_editor
 
@@ -89,7 +84,6 @@ class SetlistEditorViewModel @Inject constructor(
                 this.setlistId = setlistId
                 state.setlistName = result.setlist.name
 
-                // Use custom presentation order if provided, otherwise use setlist's presentation
                 if (presentation.isNotEmpty()) {
                     updatePresentation(presentation)
                 } else {
@@ -146,7 +140,6 @@ class SetlistEditorViewModel @Inject constructor(
         state.isInSelectionMode = !state.isInSelectionMode
 
         if (!state.isInSelectionMode) {
-            // Clear selection when exiting selection mode
             state.songs = state.songs.map { it.copy(isSelected = false) }
         }
     }
@@ -160,7 +153,6 @@ class SetlistEditorViewModel @Inject constructor(
             }
         }
 
-        // Exit selection mode if no songs are selected
         if (state.isInSelectionMode && state.songs.none { it.isSelected }) {
             state.isInSelectionMode = false
         }

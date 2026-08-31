@@ -1,8 +1,3 @@
-/*
- * Created by Tomasz Kiljanczyk on 9/2/25, 9:08 PM
- * Copyright (c) 2025 . All rights reserved.
- * Last modified 9/2/25, 9:03 PM
- */
 
 package dev.thomas_kiljanczyk.lyriccast.feature.category.impl.ui
 
@@ -53,7 +48,6 @@ fun CategoryManagerTopBar(
         label = "topbar_crossfade"
     ) { inSelectionMode ->
         if (inSelectionMode) {
-            // Selection Mode TopBar (inlined)
             TopAppBar(
                 title = { },
                 navigationIcon = {
@@ -89,7 +83,6 @@ fun CategoryManagerTopBar(
                 )
             )
         } else {
-            // Normal Mode TopBar (inlined)
             TopAppBar(
                 title = { Text(stringResource(R.string.title_categories)) },
                 navigationIcon = {

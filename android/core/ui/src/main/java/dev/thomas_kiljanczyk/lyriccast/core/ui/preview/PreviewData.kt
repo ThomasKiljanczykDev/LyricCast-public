@@ -1,9 +1,3 @@
-/*
- * Created by Tomasz Kiljanczyk on 9/11/25, 9:27 AM
- * Copyright (c) 2025 . All rights reserved.
- * Last modified 9/11/25, 1:33 AM
- */
-
 package dev.thomas_kiljanczyk.lyriccast.core.ui.preview
 
 import dev.thomas_kiljanczyk.lyriccast.common.helpers.UUIDv7
@@ -21,7 +15,6 @@ import kotlinx.collections.immutable.toImmutableList
  */
 object PreviewData {
 
-    // Individual Sample Categories
     val hymnsCategory = CategoryItem(Category(name = "Hymns", color = BaseColors.NavajoWhite))
     val contemporaryCategory =
         CategoryItem(Category(name = "Contemporary", color = BaseColors.LightSteelBlue))
@@ -29,7 +22,6 @@ object PreviewData {
     val rockCategory = CategoryItem(Category(name = "Rock", color = BaseColors.RoyalBlue))
     val jazzCategory = CategoryItem(Category(name = "Jazz", color = BaseColors.SlateGray))
 
-    // Sample Categories Collection
     val sampleCategories = listOf(
         hymnsCategory,
         contemporaryCategory,
@@ -43,7 +35,6 @@ object PreviewData {
         *sampleCategories.toTypedArray()
     ).toImmutableList()
 
-    // Individual Sample Songs
     val amazingGrace = SongItem(
         id = UUIDv7.randomUUID(),
         title = "Amazing Grace",
@@ -116,7 +107,6 @@ object PreviewData {
         category = null
     )
 
-    // Sample Songs Collection
     val sampleSongs = listOf(
         amazingGrace,
         howGreatThouArt,
@@ -126,7 +116,6 @@ object PreviewData {
         sampleSong3
     ).toImmutableList()
 
-    // Sample Setlists
     val sampleSetlists = listOf(
         SetlistItem(
             id = UUIDv7.randomUUID(),
@@ -151,7 +140,6 @@ object PreviewData {
         )
     ).toImmutableList()
 
-    // Sample category list for CategoryManager
     val categoryColors = listOf(
         BaseColors.Maroon,
         BaseColors.Tomato,
@@ -166,7 +154,6 @@ object PreviewData {
         )
     }
 
-    // Sample songs with lyrics for controls screens
     val sampleSongsWithLyrics = listOf(
         amazingGrace,
         howGreatThouArt.copy(isSelected = true),

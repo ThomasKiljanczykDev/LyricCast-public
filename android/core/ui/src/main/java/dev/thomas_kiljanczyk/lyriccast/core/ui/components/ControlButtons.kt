@@ -1,9 +1,3 @@
-/*
- * Created by Tomasz Kiljanczyk on 9/6/25, 7:23 PM
- * Copyright (c) 2025 . All rights reserved.
- * Last modified 9/6/25, 7:18 PM
- */
-
 package dev.thomas_kiljanczyk.lyriccast.core.ui.components
 
 import androidx.compose.animation.animateColorAsState
@@ -113,7 +107,6 @@ private fun AnimatedButton(
     val roundRadius = (ControlButtonHeightOption.DEFAULT.value / 2).dp
     val squareRadius = (ControlButtonHeightOption.DEFAULT.value / 4).dp
 
-    // Reverse the radius logic based on isOn state
     val targetRadius = when {
         isPressed -> if (isOn) roundRadius else squareRadius
         else -> if (isOn) squareRadius else roundRadius
@@ -173,7 +166,7 @@ fun ControlButtons(
             horizontalArrangement = Arrangement.Center,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            val buttonSize = (buttonHeight - 16).dp // Account for padding
+            val buttonSize = (buttonHeight - 16).dp
 
             AnimatedFilledIconButton(
                 onClick = onPreviousClick,
@@ -197,7 +190,7 @@ fun ControlButtons(
             AnimatedButton(
                 onClick = onBlankClick,
                 enabled = isBlankEnabled,
-                isOn = !isBlanked, // Reverse logic: ON when not blanked
+                isOn = !isBlanked,
                 onColor = StatusColors.On,
                 offColor = StatusColors.Off,
                 modifier = Modifier

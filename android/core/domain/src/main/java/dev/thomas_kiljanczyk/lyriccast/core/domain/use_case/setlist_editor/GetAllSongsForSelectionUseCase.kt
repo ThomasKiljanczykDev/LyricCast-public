@@ -1,9 +1,3 @@
-/*
- * Created by Tomasz Kiljanczyk on 9/7/25, 7:42 PM
- * Copyright (c) 2025 . All rights reserved.
- * Last modified 9/7/25, 7:35 PM
- */
-
 package dev.thomas_kiljanczyk.lyriccast.core.domain.use_case.setlist_editor
 
 import dev.thomas_kiljanczyk.lyriccast.common.di.Dispatcher
@@ -31,12 +25,6 @@ class GetAllSongsForSelectionUseCase @Inject constructor(
     @param:Dispatcher(LyricCastDispatchers.Default)
     private val defaultDispatcher: CoroutineDispatcher
 ) {
-    /**
-     * Returns a flow of all songs as SongItems with initial selection state.
-     *
-     * @param initialSelectedIds Set of song IDs that should be initially selected
-     * @return Flow emitting a sorted list of SongItems
-     */
     operator fun invoke(initialSelectedIds: Set<UUID> = emptySet()): Flow<List<SongItem>> {
         return songsRepository.getAllSongs()
             .map { songs ->

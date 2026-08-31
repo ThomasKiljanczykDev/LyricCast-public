@@ -1,9 +1,3 @@
-/*
- * Created by Tomasz Kiljanczyk on 9/6/25, 11:00 PM
- * Copyright (c) 2025 . All rights reserved.
- * Last modified 9/6/25, 10:58 PM
- */
-
 package dev.thomas_kiljanczyk.lyriccast.core.domain.use_case.shared
 
 import dev.thomas_kiljanczyk.lyriccast.core.data.repository.CategoriesRepository
@@ -21,11 +15,6 @@ import kotlinx.coroutines.flow.map
 class GetCategoriesWithNullOptionUseCase @Inject constructor(
     private val categoriesRepository: CategoriesRepository
 ) {
-    /**
-     * Returns a flow of categories with null as the first option.
-     *
-     * @return Flow emitting an immutable list with null + sorted CategoryItems
-     */
     operator fun invoke(): Flow<ImmutableList<CategoryItem?>> {
         return categoriesRepository.getAllCategories()
             .map { categories ->

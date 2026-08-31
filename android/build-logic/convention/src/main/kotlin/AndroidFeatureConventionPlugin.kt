@@ -6,11 +6,6 @@ import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.dependencies
 import org.gradle.kotlin.dsl.getByType
 
-/**
- * Convention plugin for feature modules.
- * Combines Android library, Compose, and Hilt configurations.
- * Also adds common feature module dependencies.
- */
 class AndroidFeatureConventionPlugin : Plugin<Project> {
     override fun apply(target: Project) {
         with(target) {
