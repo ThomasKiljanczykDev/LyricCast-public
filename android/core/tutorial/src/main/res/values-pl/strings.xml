@@ -1,9 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><!--
-  ~ Created by Tomasz Kiljanczyk on 7/30/26, 12:10 AM
-  ~ Copyright (c) 2026 . All rights reserved.
-  ~ Last modified 7/30/26, 12:06 AM
-  -->
-
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Shared tour chrome -->
     <string name="tutorial_previous">Wstecz</string>

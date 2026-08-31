@@ -1,9 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><!--
-  ~ Created by Tomasz Kiljanczyk on 2/8/26, 1:18 AM
-  ~ Copyright (c) 2026 . All rights reserved.
-  ~ Last modified 2/8/26, 12:55 AM
-  -->
-
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="primary">#00668B</color>
     <color name="secondary">#4E616C</color>
