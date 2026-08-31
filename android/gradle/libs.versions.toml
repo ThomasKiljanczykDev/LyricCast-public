@@ -73,6 +73,8 @@ detekt-gradlePlugin = { module = "dev.detekt:detekt-gradle-plugin", version.ref 
 # Detekt rule sets (added to the `detektPlugins` configuration)
 detekt-formatting = { module = "dev.detekt:detekt-rules-ktlint-wrapper", version.ref = "detekt" }
 detekt-composeRules = { module = "io.nlopez.compose.rules:detekt", version.ref = "detektComposeRules" }
+# API for the house rule set in :config:detekt-rules
+detekt-api = { module = "dev.detekt:detekt-api", version.ref = "detekt" }
 
 hilt = { module = "com.google.dagger:hilt-android", version.ref = "hilt" }
 hiltCompiler = { module = "com.google.dagger:hilt-compiler", version.ref = "hilt" }

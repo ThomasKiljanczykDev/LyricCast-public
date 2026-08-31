@@ -93,6 +93,10 @@ style:
   ReturnCount:
     max: 4
     excludeGuardClauses: true
+  ForbiddenComment:
+    comments:
+      - reason: 'Comments should describe the code, not the conversation that produced it.'
+        value: '(?i)(as (requested|discussed)|per (the )?(user|conversation)|phase \d)'
   # @Preview composables are tooling entry points, never called.
   UnusedPrivateFunction:
     ignoreAnnotated: [ 'Preview' ]
@@ -102,12 +106,10 @@ empty-blocks:
   EmptyFunctionBlock:
     ignoreOverridden: true
 
-# Compose rule set (io.nlopez.compose.rules). Correctness/API rules stay on; the stylistic ones that
-# disagree with this codebase's conventions are off.
 Compose:
   CompositionLocalAllowlist:
-    # The tour overlay, the preview harness, the analytics helper and the theme's dark flag are the
-    # implicit-context cases a CompositionLocal is for; everything else is passed explicitly.
+    # The tour overlay, the preview harness, the analytics helper and the theme's own dark flag are
+    # the implicit-context cases a CompositionLocal is for; everything else is passed explicitly.
     allowedCompositionLocals:
       - 'LocalUseDarkTheme'
       - 'LocalTourAnchorRegistry'
@@ -140,11 +142,8 @@ Compose:
   ViewModelInjection:
     active: false
 
-# ktlint rule set, via detekt's bundled wrapper. Formatting settings live in the root .editorconfig;
-# only rule activation is decided here.
 ktlint:
   code_style: 'android_studio'
-  # --- Wrapping / signature layout ---------------------------------------------------------------
   # These encode the `ktlint_official` layout, which disagrees with the Android Studio formatter this
   # codebase is written with. Line length is still enforced by style>MaxLineLength.
   ArgumentListWrapping:
@@ -175,7 +174,6 @@ ktlint:
     active: false
   FunctionLiteral:
     active: false
-  # --- Rules covered elsewhere / conflicting with project identifiers ----------------------------
   # Also disabled in .editorconfig.
   TrailingCommaOnCallSite:
     active: false
@@ -194,3 +192,8 @@ ktlint:
   # Same as naming>MatchingDeclarationName above.
   Filename:
     active: false
+
+comments-house:
+  ExcessiveComment:
+    active: true
+    maxLines: 4
