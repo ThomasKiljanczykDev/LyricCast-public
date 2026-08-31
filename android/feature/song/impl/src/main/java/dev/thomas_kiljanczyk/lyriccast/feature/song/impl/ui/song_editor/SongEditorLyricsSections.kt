@@ -51,6 +51,8 @@ import dev.thomas_kiljanczyk.lyriccast.core.designsystem.theme.LyricCastTheme
 import dev.thomas_kiljanczyk.lyriccast.core.model.Category
 import dev.thomas_kiljanczyk.lyriccast.core.model.CategoryItem
 import dev.thomas_kiljanczyk.lyriccast.core.model.enums.NameValidationState
+import dev.thomas_kiljanczyk.lyriccast.core.tutorial.TourAnchor
+import dev.thomas_kiljanczyk.lyriccast.core.tutorial.tourAnchor
 import dev.thomas_kiljanczyk.lyriccast.core.ui.components.LyricCastTextField
 import dev.thomas_kiljanczyk.lyriccast.core.ui.util.currentWindowSizeClass
 import dev.thomas_kiljanczyk.lyriccast.feature.song.impl.R
@@ -97,7 +99,9 @@ fun SongEditorLyricsSections(
     @Composable
     fun LyricsContentField(fieldModifier: Modifier = Modifier) {
         Card(
-            modifier = fieldModifier.fillMaxWidth(),
+            modifier = fieldModifier
+                .fillMaxWidth()
+                .tourAnchor(TourAnchor.SONG_EDITOR_LYRICS),
             colors = CardDefaults.cardColors().copy(
                 containerColor = MaterialTheme.colorScheme.surfaceContainerHigh
             )
@@ -335,7 +339,7 @@ private fun SectionCards(
     Card(
         colors = CardDefaults.cardColors()
             .copy(containerColor = MaterialTheme.colorScheme.surfaceContainerHigh),
-        modifier = modifier
+        modifier = modifier.tourAnchor(TourAnchor.SONG_EDITOR_STRUCTURE)
     ) {
         if (vertical) {
             Column(

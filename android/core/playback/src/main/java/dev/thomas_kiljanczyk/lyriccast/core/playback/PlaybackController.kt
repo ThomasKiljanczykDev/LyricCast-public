@@ -26,6 +26,8 @@ data class PlaybackState(
     val isBlanked: Boolean = true,
     val buttonHeight: Int = ControlButtonHeightOption.DEFAULT.value,
     val isSessionRunning: Boolean = false,
+    /** A Cast session is connected. Cast-only controls (blank) are inert without one. */
+    val isCastConnected: Boolean = false,
     val songs: List<SongItem> = emptyList(),
     val currentSongPosition: Int = 0
 )

@@ -7,6 +7,11 @@
 package dev.thomas_kiljanczyk.lyriccast.core.tutorial
 
 import androidx.activity.compose.BackHandler
+import androidx.compose.animation.AnimatedContent
+import androidx.compose.animation.SizeTransform
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.togetherWith
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -35,6 +40,7 @@ import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.PreviewLightDark
+import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.unit.dp
 import dev.thomas_kiljanczyk.lyriccast.core.designsystem.theme.LyricCastTheme
 import dev.thomas_kiljanczyk.lyriccast.core.ui.testing.TestTags
@@ -107,27 +113,62 @@ fun OnboardingCarousel(
             ) {
                 PageIndicator(
                     pageCount = slides.size,
-                    currentPage = pagerState.currentPage
+                    progress = {
+                        pagerState.currentPage + pagerState.currentPageOffsetFraction
+                    }
                 )
 
-                val isLast = pagerState.currentPage >= slides.size - 1
-                Button(
-                    onClick = {
-                        if (isLast) {
-                            onComplete()
-                        } else {
-                            coroutineScope.launch {
-                                pagerState.animateScrollToPage(pagerState.currentPage + 1)
-                            }
-                        }
-                    },
-                    modifier = Modifier.testTag(TestTags.ONBOARDING_NEXT_BUTTON)
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.spacedBy(8.dp)
                 ) {
-                    Text(
-                        stringResource(
-                            if (isLast) R.string.tutorial_get_started else R.string.tutorial_next
-                        )
-                    )
+                    TextButton(
+                        onClick = {
+                            coroutineScope.launch {
+                                pagerState.animateScrollToPage(pagerState.currentPage - 1)
+                            }
+                        },
+                        enabled = pagerState.currentPage > 0,
+                        modifier = Modifier.testTag(TestTags.ONBOARDING_PREVIOUS_BUTTON)
+                    ) {
+                        Text(stringResource(R.string.tutorial_previous))
+                    }
+
+                    val isLast = pagerState.currentPage >= slides.size - 1
+                    val labelFadeSpec = MaterialTheme.motionScheme.fastEffectsSpec<Float>()
+                    val labelSizeSpec = MaterialTheme.motionScheme.fastSpatialSpec<IntSize>()
+                    Button(
+                        onClick = {
+                            if (isLast) {
+                                onComplete()
+                            } else {
+                                coroutineScope.launch {
+                                    pagerState.animateScrollToPage(pagerState.currentPage + 1)
+                                }
+                            }
+                        },
+                        modifier = Modifier.testTag(TestTags.ONBOARDING_NEXT_BUTTON)
+                    ) {
+                        // Animated so the button width does not snap on the last slide.
+                        AnimatedContent(
+                            targetState = isLast,
+                            transitionSpec = {
+                                fadeIn(labelFadeSpec) togetherWith fadeOut(labelFadeSpec) using
+                                    SizeTransform { _, _ -> labelSizeSpec }
+                            },
+                            label = "nextLabel"
+                        ) { last ->
+                            Text(
+                                stringResource(
+                                    if (last) {
+                                        R.string.tutorial_get_started
+                                    } else {
+                                        R.string.tutorial_next
+                                    }
+                                )
+                            )
+                        }
+                    }
                 }
             }
         }

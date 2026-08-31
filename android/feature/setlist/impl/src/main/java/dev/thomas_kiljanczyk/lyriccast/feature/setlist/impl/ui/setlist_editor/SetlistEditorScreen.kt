@@ -52,6 +52,8 @@ import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.window.core.layout.WindowSizeClass
 import dev.thomas_kiljanczyk.lyriccast.core.designsystem.theme.LyricCastTheme
 import dev.thomas_kiljanczyk.lyriccast.core.model.enums.NameValidationState
+import dev.thomas_kiljanczyk.lyriccast.core.tutorial.TourAnchor
+import dev.thomas_kiljanczyk.lyriccast.core.tutorial.tourAnchor
 import dev.thomas_kiljanczyk.lyriccast.core.ui.components.LyricCastTextField
 import dev.thomas_kiljanczyk.lyriccast.core.ui.util.currentWindowSizeClass
 import dev.thomas_kiljanczyk.lyriccast.core.ui.util.isWidthExpanded
@@ -169,7 +171,8 @@ fun SetlistEditorScreen(
             },
             containerModifier = fieldModifier
                 .fillMaxWidth()
-                .padding(start = 16.dp, end = 16.dp, bottom = 4.dp, top = 8.dp),
+                .padding(start = 16.dp, end = 16.dp, bottom = 4.dp, top = 8.dp)
+                .tourAnchor(TourAnchor.SETLIST_EDITOR_NAME),
             singleLine = true
         )
     }

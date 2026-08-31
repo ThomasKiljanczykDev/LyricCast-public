@@ -11,7 +11,11 @@ import com.google.android.gms.cast.framework.SessionManagerListener
 
 class CastSessionListener(
     private val onStarted: (session: Session) -> Unit,
-    private val onEnded: ((session: Session) -> Unit)? = null
+    private val onEnded: ((session: Session) -> Unit)? = null,
+    /** Session resumed after a process or connectivity gap. */
+    private val onResumed: ((session: Session) -> Unit)? = null,
+    /** Session dropped without ending; nothing can be sent until it resumes. */
+    private val onSuspended: ((session: Session) -> Unit)? = null
 ) : SessionManagerListener<Session> {
 
     override fun onSessionStarting(session: Session) {
@@ -35,11 +39,13 @@ class CastSessionListener(
     }
 
     override fun onSessionResumed(session: Session, wasSuspended: Boolean) {
+        onResumed?.invoke(session)
     }
 
     override fun onSessionResumeFailed(session: Session, error: Int) {
     }
 
     override fun onSessionSuspended(session: Session, reason: Int) {
+        onSuspended?.invoke(session)
     }
 }

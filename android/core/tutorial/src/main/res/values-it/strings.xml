@@ -5,6 +5,7 @@
   -->
 
 <resources>
+    <string name="tutorial_previous">Indietro</string>
     <string name="tutorial_next">Avanti</string>
     <string name="tutorial_done">Fine</string>
     <string name="tutorial_skip">Salta</string>
@@ -71,8 +72,6 @@
     <string name="tour_settings_blank_title">Parti a schermo vuoto</string>
     <string name="tour_settings_blank_body">Con questa opzione attiva lo schermo resta vuoto quando apri un canto, così non appare nulla prima che tu sia pronto.</string>
 
-    <string name="tour_settings_auto_session_title">Valori predefiniti della sessione</string>
-    <string name="tour_settings_auto_session_body">Avvia una sessione automaticamente all\'apertura dell\'app e dalle un nome predefinito, così i dispositivi che si collegano la riconoscono.</string>
     <string name="tour_settings_donate_title">Ti piace LyricCast?</string>
     <string name="tour_settings_donate_body">Se ti è utile, valuta di offrirmi un caffè per sostenere lo sviluppo.</string>
 </resources>

@@ -19,6 +19,7 @@ dependencies {
     implementation(projects.core.cast)
     implementation(projects.core.playback)
     implementation(projects.core.dataTransfer)
+    implementation(projects.core.tutorial)
 
     implementation(libs.androidx.datastore)
     implementation(libs.androidx.compose.activity)

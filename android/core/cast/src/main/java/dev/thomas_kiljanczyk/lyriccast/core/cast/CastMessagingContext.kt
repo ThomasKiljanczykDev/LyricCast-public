@@ -28,6 +28,9 @@ class CastMessagingContext(
     private val _isBlanked: MutableStateFlow<Boolean> = MutableStateFlow(true)
     override val isBlanked get() = _isBlanked.asStateFlow()
 
+    private val _isConnected: MutableStateFlow<Boolean> = MutableStateFlow(false)
+    override val isConnected get() = _isConnected.asStateFlow()
+
     override suspend fun sendContentMessage(message: String) {
         val formattedMessage = message.replace("\n", "<br>").replace("\r", "")
 
@@ -61,7 +64,12 @@ class CastMessagingContext(
         )
     }
 
+    override fun onSessionStarted() {
+        _isConnected.value = true
+    }
+
     override fun onSessionEnded() {
+        _isConnected.value = false
         _isBlanked.value = true
     }
 

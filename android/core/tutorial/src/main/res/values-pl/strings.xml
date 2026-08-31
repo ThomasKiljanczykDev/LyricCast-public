@@ -6,6 +6,7 @@
 
 <resources>
     <!-- Shared tour chrome -->
+    <string name="tutorial_previous">Wstecz</string>
     <string name="tutorial_next">Dalej</string>
     <string name="tutorial_done">Gotowe</string>
     <string name="tutorial_skip">Pomiń</string>
@@ -74,8 +75,6 @@
     <string name="tour_settings_blank_title">Zacznij od pustego ekranu</string>
     <string name="tour_settings_blank_body">Gdy ta opcja jest włączona, ekran pozostaje pusty po otwarciu pieśni, więc nic nie pojawia się, zanim będziesz gotowy.</string>
 
-    <string name="tour_settings_auto_session_title">Domyślne ustawienia sesji</string>
-    <string name="tour_settings_auto_session_body">Rozpoczynaj sesję automatycznie po uruchomieniu aplikacji i nadaj jej domyślną nazwę, aby dołączające urządzenia ją rozpoznały.</string>
     <string name="tour_settings_donate_title">Podoba Ci się LyricCast?</string>
     <string name="tour_settings_donate_body">Jeśli aplikacja jest dla Ciebie przydatna, możesz postawić mi kawę, aby wesprzeć jej rozwój.</string>
 </resources>

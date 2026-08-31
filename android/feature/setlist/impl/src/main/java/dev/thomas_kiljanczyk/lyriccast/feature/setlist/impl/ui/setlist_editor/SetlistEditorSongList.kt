@@ -47,6 +47,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.zIndex
 import dev.thomas_kiljanczyk.lyriccast.core.designsystem.theme.LyricCastTheme
 import dev.thomas_kiljanczyk.lyriccast.core.model.SongItem
+import dev.thomas_kiljanczyk.lyriccast.core.tutorial.TourAnchor
+import dev.thomas_kiljanczyk.lyriccast.core.tutorial.tourAnchor
 import dev.thomas_kiljanczyk.lyriccast.core.ui.components.SwipeToRevealBox
 import dev.thomas_kiljanczyk.lyriccast.feature.setlist.impl.model.SetlistSongItem
 import java.util.UUID
@@ -76,7 +78,8 @@ fun SetlistEditorSongList(
         state = lazyListState,
         modifier = modifier
             .fillMaxSize()
-            .padding(horizontal = 16.dp),
+            .padding(horizontal = 16.dp)
+            .tourAnchor(TourAnchor.SETLIST_EDITOR_SONG_PICKER),
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
         itemsIndexed(items = songs, key = { _, item -> item.id }) { index, songItem ->

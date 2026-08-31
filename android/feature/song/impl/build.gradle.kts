@@ -18,6 +18,7 @@ dependencies {
     implementation(projects.core.domain)
     implementation(projects.core.cast)
     implementation(projects.core.playback)
+    implementation(projects.core.tutorial)
 
     implementation(libs.androidx.compose.material3.adaptive)
     implementation(libs.google.castFramework)

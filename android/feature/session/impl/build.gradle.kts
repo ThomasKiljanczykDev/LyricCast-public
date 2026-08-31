@@ -20,6 +20,8 @@ dependencies {
 
     implementation(libs.androidx.compose.activity)
     implementation(libs.androidx.compose.material3.adaptive)
+    // MaterialAlertDialogBuilder in PermissionsRejectedDialogFragment.
+    implementation(libs.android.material)
     implementation(libs.play.services.nearby)
     implementation(libs.kotlinx.collections.immutable)
 

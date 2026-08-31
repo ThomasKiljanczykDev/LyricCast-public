@@ -55,6 +55,8 @@ import androidx.window.core.layout.WindowSizeClass
 import dev.thomas_kiljanczyk.lyriccast.core.designsystem.theme.LyricCastTheme
 import dev.thomas_kiljanczyk.lyriccast.core.model.CategoryItem
 import dev.thomas_kiljanczyk.lyriccast.core.model.enums.NameValidationState
+import dev.thomas_kiljanczyk.lyriccast.core.tutorial.TourAnchor
+import dev.thomas_kiljanczyk.lyriccast.core.tutorial.tourAnchor
 import dev.thomas_kiljanczyk.lyriccast.core.ui.components.CategoryDropdown
 import dev.thomas_kiljanczyk.lyriccast.core.ui.components.LyricCastTextField
 import dev.thomas_kiljanczyk.lyriccast.core.ui.preview.PreviewData
@@ -158,7 +160,9 @@ fun SongEditorScreen(
                 FilledTonalButton(
                     onClick = onSave,
                     enabled = state.canSave,
-                    modifier = Modifier.padding(end = 16.dp)
+                    modifier = Modifier
+                        .padding(end = 16.dp)
+                        .tourAnchor(TourAnchor.SONG_EDITOR_SAVE)
                 ) {
                     Text(stringResource(R.string.action_save))
                 }
@@ -249,7 +253,7 @@ private fun SongTitleAndCategoryFields(
                 NameValidationState.ALREADY_IN_USE -> stringResource(R.string.song_editor_title_already_used)
                 else -> null
             },
-            containerModifier = titleModifier
+            containerModifier = titleModifier.tourAnchor(TourAnchor.SONG_EDITOR_TITLE)
         )
     }
 
@@ -259,7 +263,7 @@ private fun SongTitleAndCategoryFields(
             categories = categories,
             selectedCategory = selectedCategory,
             onCategorySelected = onCategorySelect,
-            modifier = categoryModifier
+            modifier = categoryModifier.tourAnchor(TourAnchor.SONG_EDITOR_CATEGORIES)
         )
     }
 

@@ -14,6 +14,7 @@ android {
 dependencies {
     implementation(projects.core.model)
     implementation(projects.core.data)
+    implementation(projects.core.tutorial)
     implementation(libs.androidx.datastore)
     implementation(libs.protobuf.kotlinLite)
 }

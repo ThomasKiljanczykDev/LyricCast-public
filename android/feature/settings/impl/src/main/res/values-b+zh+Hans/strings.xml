@@ -28,6 +28,8 @@
     <string name="preference_color_blue">蓝色</string>
     <string name="preference_color_red">红色</string>
     <string name="preference_color_pink">粉色</string>
+    <string name="preference_show_tutorial_title">再次查看教程</string>
+    <string name="preference_show_tutorial_summary">重新播放简介和引导教程</string>
     <string name="preference_donate_title">请我喝杯咖啡</string>
     <string name="preference_donate_summary">支持本应用的开发</string>
 </resources>

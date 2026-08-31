@@ -6,6 +6,7 @@
 
 <resources>
     <!-- Shared tour chrome -->
+    <string name="tutorial_previous">Back</string>
     <string name="tutorial_next">Next</string>
     <string name="tutorial_done">Done</string>
     <string name="tutorial_skip">Skip</string>
@@ -74,8 +75,6 @@
     <string name="tour_settings_blank_title">Start blank</string>
     <string name="tour_settings_blank_body">With this on, the screen stays empty when you open a song, so nothing appears before you are ready.</string>
 
-    <string name="tour_settings_auto_session_title">Session defaults</string>
-    <string name="tour_settings_auto_session_body">Start a session automatically when the app opens, and give it a default name so joining devices recognise it.</string>
     <string name="tour_settings_donate_title">Enjoying LyricCast?</string>
     <string name="tour_settings_donate_body">If it\'s useful to you, consider buying me a coffee to support development.</string>
 </resources>

@@ -86,7 +86,8 @@ class SettingsScreenshotTest {
                     onBlankEnabledChange = {},
                     onBackgroundColorChange = {},
                     onFontColorChange = {},
-                    onMaxFontSizeChange = {}
+                    onMaxFontSizeChange = {},
+                    onReplayTutorial = {}
                 )
             }
         }

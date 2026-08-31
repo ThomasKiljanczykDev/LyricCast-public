@@ -118,6 +118,7 @@ fun SongControlsScreen(
             onBlankClick = onBlankClick,
             isPreviousEnabled = state.currentSlide > 0,
             isNextEnabled = state.currentSlide < state.totalSlideCount - 1,
+            isBlankEnabled = state.isCastConnected,
             modifier = controlsModifier.padding(horizontal = 16.dp, vertical = 8.dp)
         )
     }

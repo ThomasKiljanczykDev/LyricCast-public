@@ -20,6 +20,7 @@ import dev.thomas_kiljanczyk.lyriccast.core.model.UiText
 import dev.thomas_kiljanczyk.lyriccast.core.model.settings.ColorOption
 import dev.thomas_kiljanczyk.lyriccast.core.model.settings.ControlButtonHeightOption
 import dev.thomas_kiljanczyk.lyriccast.core.model.settings.ThemeOption
+import dev.thomas_kiljanczyk.lyriccast.core.tutorial.REPLAY_REQUESTED_VERSION
 import dev.thomas_kiljanczyk.lyriccast.feature.settings.impl.domain.LanguageOption
 import dev.thomas_kiljanczyk.lyriccast.feature.settings.impl.domain.LocaleManager
 import dev.thomas_kiljanczyk.lyriccast.feature.settings.impl.domain.SettingsConstants
@@ -132,5 +133,13 @@ class SettingsViewModel @Inject constructor(
 
     suspend fun updateMaxFontSize(size: Int) {
         settingsRepository.updateMaxFontSize(size)
+    }
+
+    /**
+     * Runs the carousel and tour again on next start.
+     * Otherwise the tutorial is unreachable after one dismissal.
+     */
+    suspend fun replayTutorial() {
+        settingsRepository.updateOnboardingCompletedVersion(REPLAY_REQUESTED_VERSION)
     }
 }

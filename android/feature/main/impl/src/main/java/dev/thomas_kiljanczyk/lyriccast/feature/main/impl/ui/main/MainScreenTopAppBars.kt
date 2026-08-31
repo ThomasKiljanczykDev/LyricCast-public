@@ -37,10 +37,18 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.input.pointer.PointerEventPass
+import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.window.PopupProperties
 import dev.thomas_kiljanczyk.lyriccast.core.cast.ui.CastButton
+import dev.thomas_kiljanczyk.lyriccast.core.tutorial.LocalTourExpansion
+import dev.thomas_kiljanczyk.lyriccast.core.tutorial.TourAnchor
+import dev.thomas_kiljanczyk.lyriccast.core.tutorial.TourExpandable
+import dev.thomas_kiljanczyk.lyriccast.core.tutorial.tourAnchor
+import dev.thomas_kiljanczyk.lyriccast.core.tutorial.tourSpotlight
 import dev.thomas_kiljanczyk.lyriccast.core.ui.testing.TestTags
 import dev.thomas_kiljanczyk.lyriccast.feature.main.impl.R
 
@@ -54,26 +62,52 @@ fun MainScreenTopBar(
     onStartSession: () -> Unit
 ) {
     var showMenu by remember { mutableStateOf(false) }
+    val menuForcedOpenByTour =
+        LocalTourExpansion.current.isForcedOpen(TourExpandable.MAIN_OVERFLOW_MENU)
+
+    // The menu draws in its own window above the tour overlay,
+    // so the overlay cannot swallow taps on its items.
+    // The initial pass runs outside-in,
+    // beating the item's own clickable.
+    val tourGuard = if (menuForcedOpenByTour) {
+        Modifier.pointerInput(Unit) {
+            awaitPointerEventScope {
+                while (true) {
+                    awaitPointerEvent(PointerEventPass.Initial).changes.forEach { it.consume() }
+                }
+            }
+        }
+    } else {
+        Modifier
+    }
 
     TopAppBar(
         title = { Text(stringResource(R.string.app_name)) },
         actions = {
             // Start session button
-            IconButton(onClick = onStartSession) {
-                Icon(
-                    Icons.Rounded.PresentToAll,
-                    contentDescription = stringResource(R.string.dialog_fragment_start_session_title)
-                )
+            Box(Modifier.tourAnchor(TourAnchor.MAIN_SESSION_BUTTON)) {
+                IconButton(onClick = onStartSession) {
+                    Icon(
+                        Icons.Rounded.PresentToAll,
+                        contentDescription = stringResource(
+                            R.string.dialog_fragment_start_session_title
+                        )
+                    )
+                }
             }
 
             // Cast button - always visible
-            CastButton(size = 48.dp)
+            Box(Modifier.tourAnchor(TourAnchor.MAIN_CAST_BUTTON)) {
+                CastButton(size = 48.dp)
+            }
 
             // Three-dots menu
             Box {
                 IconButton(
                     onClick = { showMenu = true },
-                    modifier = Modifier.testTag(TestTags.MAIN_MENU_BUTTON)
+                    modifier = Modifier
+                        .testTag(TestTags.MAIN_MENU_BUTTON)
+                        .tourAnchor(TourAnchor.MAIN_OVERFLOW)
                 ) {
                     Icon(
                         Icons.Rounded.MoreVert,
@@ -82,8 +116,12 @@ fun MainScreenTopBar(
                 }
 
                 DropdownMenu(
-                    expanded = showMenu,
-                    onDismissRequest = { showMenu = false }
+                    expanded = showMenu || menuForcedOpenByTour,
+                    onDismissRequest = { showMenu = false },
+                    properties = PopupProperties(
+                        focusable = !menuForcedOpenByTour,
+                        dismissOnClickOutside = !menuForcedOpenByTour
+                    )
                 ) {
                     DropdownMenuItem(
                         text = { Text(stringResource(R.string.settings_title)) },
@@ -91,6 +129,10 @@ fun MainScreenTopBar(
                             showMenu = false
                             onNavigateToSettings()
                         },
+                        modifier = Modifier
+                            .tourAnchor(TourAnchor.MAIN_MENU_SETTINGS)
+                            .tourSpotlight(TourAnchor.MAIN_MENU_SETTINGS)
+                            .then(tourGuard),
                         leadingIcon = {
                             Icon(
                                 Icons.Rounded.Settings,
@@ -105,7 +147,11 @@ fun MainScreenTopBar(
                             showMenu = false
                             onNavigateToCategoryManager()
                         },
-                        modifier = Modifier.testTag(TestTags.MAIN_MENU_MANAGE_CATEGORIES),
+                        modifier = Modifier
+                            .testTag(TestTags.MAIN_MENU_MANAGE_CATEGORIES)
+                            .tourAnchor(TourAnchor.MAIN_MENU_CATEGORIES)
+                            .tourSpotlight(TourAnchor.MAIN_MENU_CATEGORIES)
+                            .then(tourGuard),
                         leadingIcon = {
                             Icon(
                                 Icons.Rounded.Category,
@@ -120,6 +166,10 @@ fun MainScreenTopBar(
                             showMenu = false
                             onImport()
                         },
+                        modifier = Modifier
+                            .tourAnchor(TourAnchor.MAIN_MENU_IMPORT)
+                            .tourSpotlight(TourAnchor.MAIN_MENU_IMPORT)
+                            .then(tourGuard),
                         leadingIcon = {
                             Icon(
                                 Icons.Rounded.ImportExport,
@@ -134,6 +184,10 @@ fun MainScreenTopBar(
                             showMenu = false
                             onExport()
                         },
+                        modifier = Modifier
+                            .tourAnchor(TourAnchor.MAIN_MENU_EXPORT)
+                            .tourSpotlight(TourAnchor.MAIN_MENU_EXPORT)
+                            .then(tourGuard),
                         leadingIcon = {
                             Icon(
                                 Icons.Rounded.UploadFile,

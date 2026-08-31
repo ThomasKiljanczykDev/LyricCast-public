@@ -21,6 +21,9 @@ interface SlidePresentationBus {
     val receivedPayload: Flow<ReceivedPayload>
     val isBlanked: StateFlow<Boolean>?
 
+    /** False whenever nothing is being cast, so Cast-only controls can be disabled. */
+    val isCastConnected: StateFlow<Boolean>
+
     /** Broadcasts [content] to every connected Cast device and session client. */
     suspend fun presentSlide(content: ShowLyricsContent)
 

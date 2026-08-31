@@ -3,6 +3,7 @@
   -->
 
 <resources>
+    <string name="tutorial_previous">Retour</string>
     <string name="tutorial_next">Suivant</string>
     <string name="tutorial_done">Terminé</string>
     <string name="tutorial_skip">Passer</string>
@@ -48,8 +49,6 @@
     <string name="tour_settings_appearance_body">La couleur de fond, la couleur du texte et la taille de police maximale déterminent ce qui s\'affiche sur le téléviseur ou sur l\'appareil qui suit.</string>
     <string name="tour_settings_blank_title">Démarrer sur un écran vide</string>
     <string name="tour_settings_blank_body">Avec cette option, l\'écran reste vide à l\'ouverture d\'un chant : rien ne s\'affiche avant que vous soyez prêt.</string>
-    <string name="tour_settings_auto_session_title">Valeurs par défaut des sessions</string>
-    <string name="tour_settings_auto_session_body">Démarrez une session automatiquement à l\'ouverture de l\'application et donnez-lui un nom par défaut pour que les appareils qui la rejoignent la reconnaissent.</string>
     <string name="tour_settings_donate_title">LyricCast vous plaît ?</string>
     <string name="tour_settings_donate_body">Si elle vous est utile, offrez-moi un café pour soutenir son développement.</string>
 </resources>

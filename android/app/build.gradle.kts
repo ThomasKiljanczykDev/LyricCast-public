@@ -234,6 +234,10 @@ dependencies {
     implementation(libs.firebase.crashlyticsKtx)
     implementation(libs.firebase.analyticsKtx)
 
+    // Unit testing
+    testImplementation(libs.junit)
+    testImplementation(libs.google.truth)
+
     // AndroidX Test - Instrumented testing
     androidTestImplementation(libs.androidx.test.coreKtx)
     androidTestImplementation(libs.androidx.test.extJunit)

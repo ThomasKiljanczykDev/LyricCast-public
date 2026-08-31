@@ -26,6 +26,8 @@
     <string name="preference_color_blue">Blau</string>
     <string name="preference_color_red">Rot</string>
     <string name="preference_color_pink">Rosa</string>
+    <string name="preference_show_tutorial_title">Tutorial erneut anzeigen</string>
+    <string name="preference_show_tutorial_summary">Einführung und geführte Tour wiederholen</string>
     <string name="preference_donate_title">Spendier mir einen Kaffee</string>
     <string name="preference_donate_summary">Unterstütze die Entwicklung dieser App</string>
 </resources>

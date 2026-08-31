@@ -5,6 +5,7 @@
   -->
 
 <resources>
+    <string name="tutorial_previous">ተመለስ</string>
     <string name="tutorial_next">ቀጣይ</string>
     <string name="tutorial_done">ተጠናቀቀ</string>
     <string name="tutorial_skip">ዝለል</string>
@@ -71,8 +72,6 @@
     <string name="tour_settings_blank_title">በባዶ ስክሪን ጀምር</string>
     <string name="tour_settings_blank_body">ይህ ሲበራ መዝሙር ሲከፍቱ ስክሪኑ ባዶ ሆኖ ይቆያል፣ ስለዚህ ዝግጁ ከመሆንዎ በፊት ምንም አይታይም።</string>
 
-    <string name="tour_settings_auto_session_title">የክፍለ ጊዜ ነባሪዎች</string>
-    <string name="tour_settings_auto_session_body">መተግበሪያው ሲከፈት ክፍለ ጊዜውን በራስ-ሰር ይጀምሩ፣ እና የሚቀላቀሉ መሣሪያዎች እንዲያውቁት ነባሪ ስም ይስጡት።</string>
     <string name="tour_settings_donate_title">LyricCast ወደዱት?</string>
     <string name="tour_settings_donate_body">ጠቃሚ ሆኖ ካገኙት፣ ልማቱን ለመደገፍ ቡና ቢገዙልኝ ደስ ይለኛል።</string>
 </resources>

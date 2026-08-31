@@ -5,6 +5,7 @@
   -->
 
 <resources>
+    <string name="tutorial_previous">上一步</string>
     <string name="tutorial_next">下一步</string>
     <string name="tutorial_done">完成</string>
     <string name="tutorial_skip">跳过</string>
@@ -71,8 +72,6 @@
     <string name="tour_settings_blank_title">启动时黑屏</string>
     <string name="tour_settings_blank_body">开启后，打开诗歌时屏幕保持空白，在你准备好之前不会显示任何内容。</string>
 
-    <string name="tour_settings_auto_session_title">会话默认值</string>
-    <string name="tour_settings_auto_session_body">应用打开时自动开启会话，并设定默认名称，方便加入的设备识别。</string>
     <string name="tour_settings_donate_title">喜欢 LyricCast 吗？</string>
     <string name="tour_settings_donate_body">如果它对你有用，欢迎请我喝杯咖啡，支持后续开发。</string>
 </resources>

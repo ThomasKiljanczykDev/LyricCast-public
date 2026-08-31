@@ -28,6 +28,8 @@
     <string name="preference_color_blue">파랑</string>
     <string name="preference_color_red">빨강</string>
     <string name="preference_color_pink">분홍</string>
+    <string name="preference_show_tutorial_title">튜토리얼 다시 보기</string>
+    <string name="preference_show_tutorial_summary">소개와 안내 투어를 다시 재생합니다</string>
     <string name="preference_donate_title">커피 한 잔 사주기</string>
     <string name="preference_donate_summary">이 앱의 개발을 후원합니다</string>
 </resources>

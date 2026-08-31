@@ -1,7 +1,7 @@
 /*
- * Created by Tomasz Kiljanczyk on 9/6/25, 5:35 PM
- * Copyright (c) 2025 . All rights reserved.
- * Last modified 9/6/25, 5:35 PM
+ * Created by Tomasz Kiljanczyk on 8/5/26, 2:30 PM
+ * Copyright (c) 2026 . All rights reserved.
+ * Last modified 8/5/26, 1:08 PM
  */
 
 package dev.thomas_kiljanczyk.lyriccast.feature.main.impl.ui.main
@@ -27,6 +27,10 @@ import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.traversalIndex
+import dev.thomas_kiljanczyk.lyriccast.core.tutorial.LocalTourExpansion
+import dev.thomas_kiljanczyk.lyriccast.core.tutorial.TourAnchor
+import dev.thomas_kiljanczyk.lyriccast.core.tutorial.TourExpandable
+import dev.thomas_kiljanczyk.lyriccast.core.tutorial.tourAnchor
 import dev.thomas_kiljanczyk.lyriccast.feature.main.impl.R
 
 @OptIn(ExperimentalMaterial3ExpressiveApi::class)
@@ -38,15 +42,21 @@ fun MainScreenFloatingActionMenu(
     onAddSetlist: () -> Unit,
     modifier: Modifier = Modifier
 ) {
+    val effectiveExpanded =
+        expanded || LocalTourExpansion.current.isForcedOpen(TourExpandable.MAIN_FAB_MENU)
+
     FloatingActionButtonMenu(
-        modifier = modifier,
-        expanded = expanded,
+        // Anchored on the menu so the spotlight covers the toggle and its items.
+        modifier = modifier.tourAnchor(TourAnchor.MAIN_FAB_MENU),
+        expanded = effectiveExpanded,
         button = {
             ToggleFloatingActionButton(
-                checked = expanded,
+                checked = effectiveExpanded,
                 onCheckedChange = onExpandedChange,
                 // Keeps the toggle ahead of the menu items in accessibility traversal order.
-                modifier = Modifier.semantics { traversalIndex = -1f }
+                modifier = Modifier
+                    .semantics { traversalIndex = -1f }
+                    .tourAnchor(TourAnchor.MAIN_FAB)
             ) {
                 val icon by remember {
                     derivedStateOf {
@@ -67,6 +77,7 @@ fun MainScreenFloatingActionMenu(
                 onAddSetlist()
                 onExpandedChange(false)
             },
+            modifier = Modifier.tourAnchor(TourAnchor.MAIN_FAB_ADD_SETLIST),
             icon = { Icon(Icons.AutoMirrored.Rounded.PlaylistAdd, contentDescription = null) },
             text = { Text(stringResource(R.string.main_activity_button_add_setlist)) }
         )
@@ -76,6 +87,7 @@ fun MainScreenFloatingActionMenu(
                 onAddSong()
                 onExpandedChange(false)
             },
+            modifier = Modifier.tourAnchor(TourAnchor.MAIN_FAB_ADD_SONG),
             icon = { Icon(Icons.Rounded.MusicNote, contentDescription = null) },
             text = { Text(stringResource(R.string.main_activity_button_add_song)) }
         )
