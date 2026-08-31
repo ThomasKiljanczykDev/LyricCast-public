@@ -1,9 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><!--
-  ~ Created by Tomasz Kiljanczyk on 9/7/25, 9:14 PM
-  ~ Copyright (c) 2025 . All rights reserved.
-  ~ Last modified 9/7/25, 9:07 PM
-  -->
-
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Titles -->
     <string name="title_settings">Ustawienia</string>

@@ -1,9 +1,3 @@
-/*
- * Created by Tomasz Kiljanczyk on 9/7/25, 7:51 PM
- * Copyright (c) 2025 . All rights reserved.
- * Last modified 9/7/25, 7:47 PM
- */
-
 package dev.thomas_kiljanczyk.lyriccast.core.domain.use_case.main
 
 import dev.thomas_kiljanczyk.lyriccast.common.di.Dispatcher
@@ -24,20 +18,9 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.serialization.json.Json
 
-/**
- * Use case for exporting selected setlists to a ZIP file.
- */
 class ExportSetlistsUseCase @Inject constructor(
     @param:Dispatcher(LyricCastDispatchers.IO) private val ioDispatcher: CoroutineDispatcher
 ) {
-    /**
-     * Exports selected setlists to a ZIP file.
-     *
-     * @param cacheDir The cache directory path for temporary file storage
-     * @param outputStream The output stream to write the exported ZIP file to
-     * @param selectedSetlists The list of setlists to export
-     * @return Flow emitting string resource IDs for progress messages
-     */
     operator fun invoke(
         cacheDir: String,
         outputStream: OutputStream,
@@ -49,7 +32,6 @@ class ExportSetlistsUseCase @Inject constructor(
 
         emit(R.string.main_activity_export_preparing_data)
 
-        // Get all songs referenced by the selected setlists
         val allSongsInSetlists = selectedSetlists
             .flatMap { it.presentation }
             .distinctBy { it.id }
@@ -57,7 +39,6 @@ class ExportSetlistsUseCase @Inject constructor(
             .mapNotNull { it.category }
             .distinctBy { it.id }
 
-        // Create transfer data with selected setlists and their songs
         val transferData = DatabaseTransferData(
             songDtos = allSongsInSetlists.map { songItem ->
                 SongDto(

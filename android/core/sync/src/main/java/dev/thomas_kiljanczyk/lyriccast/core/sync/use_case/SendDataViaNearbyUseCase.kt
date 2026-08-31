@@ -1,9 +1,3 @@
-/*
- * Created by Tomasz Kiljanczyk on 5/27/26, 11:30 AM
- * Copyright (c) 2026 . All rights reserved.
- * Last modified 5/27/26, 11:30 AM
- */
-
 package dev.thomas_kiljanczyk.lyriccast.core.sync.use_case
 
 import android.util.Log
@@ -29,7 +23,6 @@ import kotlinx.coroutines.withTimeoutOrNull
 
 /**
  * Use case for sending all application data via GMS Nearby Connections.
- * Exports the whole database and broadcasts it to connected receivers.
  */
 class SendDataViaNearbyUseCase @Inject constructor(
     private val dataTransferRepository: DataTransferRepository,
@@ -44,9 +37,6 @@ class SendDataViaNearbyUseCase @Inject constructor(
 
     /**
      * Sends the whole application database via GMS Nearby.
-     *
-     * @param deviceName The name of this device (for sync metadata)
-     * @return Flow emitting progress message resource IDs
      */
     operator fun invoke(deviceName: String): Flow<Int> = flow {
         emit(R.string.sync_preparing_data)

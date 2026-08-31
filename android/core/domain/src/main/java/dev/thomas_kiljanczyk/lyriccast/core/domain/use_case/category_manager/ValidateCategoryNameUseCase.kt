@@ -1,9 +1,3 @@
-/*
- * Created by Tomasz Kiljanczyk on 9/6/25, 11:00 PM
- * Copyright (c) 2025 . All rights reserved.
- * Last modified 9/6/25, 10:59 PM
- */
-
 package dev.thomas_kiljanczyk.lyriccast.core.domain.use_case.category_manager
 
 import dev.thomas_kiljanczyk.lyriccast.core.domain.R
@@ -11,22 +5,11 @@ import dev.thomas_kiljanczyk.lyriccast.core.model.CategoryNameValidationResult
 import dev.thomas_kiljanczyk.lyriccast.core.model.UiText
 import javax.inject.Inject
 
-/**
- * Use case for validating category names.
- * Checks if a name is empty, already in use, or exceeds maximum length.
- */
 class ValidateCategoryNameUseCase @Inject constructor() {
     companion object {
         const val MAX_LENGTH = 30
     }
 
-    /**
-     * Validates a category name against business rules.
-     *
-     * @param input The category name to validate
-     * @param existingNames Set of already existing category names
-     * @return CategoryNameValidationResult with success/failure and error message
-     */
     operator fun invoke(
         input: String,
         existingNames: Set<String> = emptySet()

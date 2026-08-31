@@ -1,8 +1,3 @@
-/*
- * Created by Tomasz Kiljanczyk on 9/8/25, 6:08 PM
- * Copyright (c) 2025 . All rights reserved.
- * Last modified 9/8/25, 2:02 PM
- */
 
 package dev.thomas_kiljanczyk.lyriccast.feature.song.impl.ui.song_editor
 
@@ -80,7 +75,6 @@ fun SongEditorScreen(
 ) {
     val coroutineScope = rememberCoroutineScope()
 
-    // Load song if songId is provided
     val newSectionTemplate = stringResource(R.string.song_editor_input_new_section_template)
     LaunchedEffect(songId) {
         if (songId != null) {
@@ -301,7 +295,6 @@ private fun SongEditorCategoryDropdown(
     ) {
         val categoryColor = selectedCategory?.color
 
-        // Animate the color transition
         val animatedColor by animateColorAsState(
             targetValue = categoryColor?.let { Color(it) } ?: Color.Transparent,
             animationSpec = MaterialTheme.motionScheme.slowEffectsSpec(),

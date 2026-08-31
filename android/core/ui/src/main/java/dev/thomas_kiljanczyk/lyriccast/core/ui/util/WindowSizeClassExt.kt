@@ -1,9 +1,3 @@
-/*
- * Created by Tomasz Kiljanczyk on 6/3/26, 11:22 PM
- * Copyright (c) 2026 . All rights reserved.
- * Last modified 6/3/26, 11:10 PM
- */
-
 package dev.thomas_kiljanczyk.lyriccast.core.ui.util
 
 import androidx.compose.runtime.Composable

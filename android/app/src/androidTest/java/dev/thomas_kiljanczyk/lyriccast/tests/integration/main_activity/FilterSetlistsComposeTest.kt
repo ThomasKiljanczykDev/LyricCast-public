@@ -1,9 +1,3 @@
-/*
- * Created by Tomasz Kiljanczyk on 9/8/25, 12:20 AM
- * Copyright (c) 2025 . All rights reserved.
- * Last modified 9/8/25, 12:16 AM
- */
-
 package dev.thomas_kiljanczyk.lyriccast.tests.integration.main_activity
 
 import androidx.compose.ui.test.assertIsDisplayed
@@ -52,31 +46,25 @@ class FilterSetlistsComposeTest {
     fun setup() = runTest {
         hiltRule.inject()
 
-        // Add test data
         setlistsRepository.upsertSetlist(setlist1)
         setlistsRepository.upsertSetlist(setlist2)
         setlistsRepository.upsertSetlist(setlist3)
 
-        // Navigate to Setlists tab
         composeTestRule.onNodeWithText("Setlists").performClick()
     }
 
     @Test
     fun setlistsAreFilteredByName() {
-        // Wait for all setlists to appear
         composeTestRule.waitUntil(5000) {
             composeTestRule.onAllNodes(hasText(setlist1.name)).fetchSemanticsNodes().isNotEmpty()
         }
 
-        // Verify all setlists are displayed initially
         composeTestRule.onNodeWithText(setlist1.name).assertIsDisplayed()
         composeTestRule.onNodeWithText(setlist2.name).assertIsDisplayed()
         composeTestRule.onNodeWithText(setlist3.name).assertIsDisplayed()
 
-        // Filter by name
         composeTestRule.onNodeWithText("Setlist name").performTextInput(SETLIST_NAME)
 
-        // Wait for filter to apply
         composeTestRule.waitUntil(3000) {
             try {
                 composeTestRule.onNodeWithText(setlist3.name).assertDoesNotExist()
@@ -86,7 +74,6 @@ class FilterSetlistsComposeTest {
             }
         }
 
-        // Verify filtered results
         composeTestRule.onNodeWithText(setlist1.name).assertIsDisplayed()
         composeTestRule.onNodeWithText(setlist2.name).assertIsDisplayed()
         composeTestRule.onNodeWithText(setlist3.name).assertDoesNotExist()

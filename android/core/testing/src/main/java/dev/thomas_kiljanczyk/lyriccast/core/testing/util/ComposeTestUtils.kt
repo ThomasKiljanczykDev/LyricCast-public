@@ -1,9 +1,3 @@
-/*
- * Created by Tomasz Kiljanczyk on 2/22/26, 10:46 PM
- * Copyright (c) 2026 . All rights reserved.
- * Last modified 2/22/26, 10:35 PM
- */
-
 package dev.thomas_kiljanczyk.lyriccast.core.testing.util
 
 import androidx.compose.ui.test.ExperimentalTestApi
@@ -19,9 +13,6 @@ import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.performTextInput
 import androidx.compose.ui.test.performTouchInput
 
-/**
- * Utility functions for Compose UI testing
- */
 object ComposeTestUtils {
 
     @OptIn(ExperimentalTestApi::class)

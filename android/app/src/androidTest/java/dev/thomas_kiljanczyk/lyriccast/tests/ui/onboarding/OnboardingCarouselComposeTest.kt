@@ -1,9 +1,3 @@
-/*
- * Created by Tomasz Kiljanczyk on 7/28/26, 11:42 PM
- * Copyright (c) 2026 . All rights reserved.
- * Last modified 7/28/26, 11:42 PM
- */
-
 package dev.thomas_kiljanczyk.lyriccast.tests.ui.onboarding
 
 import androidx.compose.ui.test.assertIsDisplayed

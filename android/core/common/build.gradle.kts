@@ -1,9 +1,3 @@
-/*
- * Created by Tomasz Kiljanczyk on 03/01/2022, 23:12
- * Copyright (c) 2022 . All rights reserved.
- * Last modified 03/01/2022, 23:12
- */
-
 plugins {
     alias(libs.plugins.lyriccast.android.library)
     alias(libs.plugins.lyriccast.android.hilt)

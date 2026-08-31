@@ -1,9 +1,3 @@
-/*
- * Created by Tomasz Kiljanczyk on 8/26/26, 1:43 PM
- * Copyright (c) 2026 . All rights reserved.
- * Last modified 8/26/26, 1:43 PM
- */
-
 package dev.thomas_kiljanczyk.lyriccast.shared.misc
 
 import android.os.StrictMode

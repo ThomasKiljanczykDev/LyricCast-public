@@ -1,9 +1,3 @@
-/*
- * Created by Tomasz Kiljanczyk on 8/27/26, 12:00 AM
- * Copyright (c) 2026 . All rights reserved.
- * Last modified 8/27/26, 12:00 AM
- */
-
 package dev.thomas_kiljanczyk.lyriccast.baselineprofile
 
 import androidx.benchmark.macro.MacrobenchmarkScope
@@ -83,32 +77,19 @@ class BaselineProfileGenerator {
     }
 }
 
-// ============================================================================
-// UI Helper Extension Functions
-// ============================================================================
-
 private const val SHORT_TIMEOUT_MS = 2_000L
 
-/**
- * Waits for content to be displayed after navigation or async loading.
- */
 private fun MacrobenchmarkScope.waitForContent() {
     device.waitForIdle()
     Thread.sleep(500)
 }
 
-/**
- * Navigates to a specific bottom navigation tab by text.
- */
 private fun MacrobenchmarkScope.navigateToTab(tabName: String) {
     val tab = device.findObject(By.text(tabName))
     tab?.click()
     device.waitForIdle()
 }
 
-/**
- * Scrolls the main list if present to trigger prefetching and list rendering.
- */
 private fun MacrobenchmarkScope.scrollListIfPresent() {
     val scrollable = device.findObject(By.scrollable(true))
     if (scrollable != null && scrollable.isScrollable) {
@@ -119,9 +100,6 @@ private fun MacrobenchmarkScope.scrollListIfPresent() {
     }
 }
 
-/**
- * Opens the overflow menu and navigates to Settings.
- */
 private fun MacrobenchmarkScope.openSettings() {
     val moreOptions = device.findObject(By.desc("More options"))
     if (moreOptions != null) {
@@ -134,9 +112,6 @@ private fun MacrobenchmarkScope.openSettings() {
     }
 }
 
-/**
- * Scrolls the settings screen if present.
- */
 private fun MacrobenchmarkScope.scrollSettingsIfPresent() {
     val scrollable = device.findObject(By.scrollable(true))
     if (scrollable != null && scrollable.isScrollable) {
@@ -145,26 +120,17 @@ private fun MacrobenchmarkScope.scrollSettingsIfPresent() {
     }
 }
 
-/**
- * Navigates back using the system back action.
- */
 private fun MacrobenchmarkScope.navigateBack() {
     device.pressBack()
     device.waitForIdle()
 }
 
-/**
- * Opens the floating action button menu.
- */
 private fun MacrobenchmarkScope.openFabMenu() {
     val fab = device.findObject(By.desc("Add song"))
     fab?.click()
     device.waitForIdle()
 }
 
-/**
- * Dismisses the FAB menu by pressing back or tapping outside.
- */
 private fun MacrobenchmarkScope.dismissFabMenu() {
     device.pressBack()
     device.waitForIdle()

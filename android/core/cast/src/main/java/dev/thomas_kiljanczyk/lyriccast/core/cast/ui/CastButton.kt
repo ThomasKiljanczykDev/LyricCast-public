@@ -1,9 +1,3 @@
-/*
- * Created by Tomasz Kiljanczyk on 9/6/25, 6:36 PM
- * Copyright (c) 2025 . All rights reserved.
- * Last modified 9/6/25, 6:32 PM
- */
-
 package dev.thomas_kiljanczyk.lyriccast.core.cast.ui
 
 import android.view.ContextThemeWrapper

@@ -1,8 +1,3 @@
-/*
- * Created by Tomasz Kiljanczyk on 9/7/25, 3:41 PM
- * Copyright (c) 2025 . All rights reserved.
- * Last modified 9/7/25, 3:30 PM
- */
 
 package dev.thomas_kiljanczyk.lyriccast.feature.song.impl.domain
 
@@ -15,9 +10,6 @@ import dev.thomas_kiljanczyk.lyriccast.feature.song.impl.ui.song_editor.LyricsSe
 import java.util.UUID
 import javax.inject.Inject
 
-/**
- * Use case for loading songs and transforming them to editing format.
- */
 class LoadSongUseCase @Inject constructor(
     private val songsRepository: SongsRepository
 ) {
@@ -25,12 +17,6 @@ class LoadSongUseCase @Inject constructor(
         const val TAG = "LoadSongUseCase"
     }
 
-    /**
-     * Loads a song by ID and transforms it to editing format.
-     *
-     * @param songId The ID of the song to load
-     * @return LoadSongResult containing the loaded song data or error
-     */
     suspend operator fun invoke(songId: UUID): LoadSongResult {
         return try {
             val song = songsRepository.getSong(songId)
@@ -40,7 +26,6 @@ class LoadSongUseCase @Inject constructor(
 
             Log.v(TAG, "Loaded song: $song")
 
-            // Transform song data to editing format
             val sections = song.presentation.map { sectionName ->
                 val content = song.lyricsMap[sectionName] ?: ""
                 LyricsSection(name = sectionName, content = content)

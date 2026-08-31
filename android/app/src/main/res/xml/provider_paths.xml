@@ -1,9 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><!--
-  ~ Created by Tomasz Kiljanczyk on 10/8/25, 2:12 PM
-  ~ Copyright (c) 2025 . All rights reserved.
-  ~ Last modified 10/8/25, 1:44 PM
-  -->
-
+<?xml version="1.0" encoding="utf-8"?>
 <paths>
     <!--
       ~ Files handed between this app and another one as content:// URIs. The pending-import copy

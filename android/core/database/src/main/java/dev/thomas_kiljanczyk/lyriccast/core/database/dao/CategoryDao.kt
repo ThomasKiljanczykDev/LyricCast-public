@@ -1,9 +1,3 @@
-/*
- * Created by Tomasz Kiljanczyk on 9/7/25, 2:43 PM
- * Copyright (c) 2025 . All rights reserved.
- * Last modified 9/7/25, 2:35 PM
- */
-
 package dev.thomas_kiljanczyk.lyriccast.core.database.dao
 
 import androidx.room.Dao

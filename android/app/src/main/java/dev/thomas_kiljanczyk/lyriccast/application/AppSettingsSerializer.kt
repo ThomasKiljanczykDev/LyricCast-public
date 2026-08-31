@@ -1,9 +1,3 @@
-/*
- * Created by Tomasz Kiljanczyk on 8/30/25, 1:37 AM
- * Copyright (c) 2025 . All rights reserved.
- * Last modified 8/30/25, 12:07 AM
- */
-
 package dev.thomas_kiljanczyk.lyriccast.application
 
 import android.content.Context

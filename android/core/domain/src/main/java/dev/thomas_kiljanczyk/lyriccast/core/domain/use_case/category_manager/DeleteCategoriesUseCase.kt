@@ -1,9 +1,3 @@
-/*
- * Created by Tomasz Kiljanczyk on 9/11/25, 9:27 AM
- * Copyright (c) 2025 . All rights reserved.
- * Last modified 9/11/25, 9:13 AM
- */
-
 package dev.thomas_kiljanczyk.lyriccast.core.domain.use_case.category_manager
 
 import android.util.Log
@@ -16,20 +10,10 @@ import java.util.UUID
 import javax.inject.Inject
 import kotlinx.coroutines.flow.first
 
-/**
- * Use case for deleting categories with business logic validation.
- * Checks if categories are in use by songs before deletion.
- */
 class DeleteCategoriesUseCase @Inject constructor(
     private val categoriesRepository: CategoriesRepository,
     private val songsRepository: SongsRepository
 ) {
-    /**
-     * Deletes the specified categories after validation.
-     *
-     * @param categoryIds List of category IDs to delete
-     * @return Result indicating success, categories in use, or error
-     */
     suspend operator fun invoke(
         categoryIds: List<UUID>
     ): DeleteCategoriesResult {
@@ -38,7 +22,6 @@ class DeleteCategoriesUseCase @Inject constructor(
         }
 
         return try {
-            // All categories are safe to delete
             categoriesRepository.deleteCategories(categoryIds)
             DeleteCategoriesResult.Success(categoryIds.size)
         } catch (e: Exception) {
@@ -50,12 +33,6 @@ class DeleteCategoriesUseCase @Inject constructor(
         }
     }
 
-    /**
-     * Checks which of the given category IDs are currently in use by songs.
-     *
-     * @param categoryIds List of category IDs to check
-     * @return List of category IDs that are in use
-     */
     private suspend fun checkCategoriesInUse(categoryIds: List<UUID>): List<UUID> {
         return try {
             val allSongs = songsRepository.getAllSongs().first()

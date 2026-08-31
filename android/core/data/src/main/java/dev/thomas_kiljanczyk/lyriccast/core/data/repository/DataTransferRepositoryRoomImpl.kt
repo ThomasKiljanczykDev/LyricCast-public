@@ -1,9 +1,3 @@
-/*
- * Created by Tomasz Kiljanczyk on 9/7/25, 8:53 PM
- * Copyright (c) 2025 . All rights reserved.
- * Last modified 9/7/25, 8:19 PM
- */
-
 package dev.thomas_kiljanczyk.lyriccast.core.data.repository
 
 import androidx.room.Transaction
@@ -65,18 +59,13 @@ internal class DataTransferRepositoryRoomImpl @Inject constructor(
     @Transaction
     override suspend fun clearDatabase() {
         withContext(ioDispatcher) {
-            // Clear all data from all tables using bulk operations
             // Note: Due to foreign key constraints, we need to delete in the right order
-            // 1. Delete setlist songs (cross-references)
             setlistDao.deleteAllSetlistSongs()
 
-            // 2. Delete setlists
             setlistDao.deleteAllSetlists()
 
-            // 3. Delete lyrics sections
             songDao.deleteAllLyricsSections()
 
-            // 4. Delete songs
             songDao.deleteAllSongs()
 
             // 5. Delete categories (can be done last as songs reference categories)
@@ -93,7 +82,6 @@ internal class DataTransferRepositoryRoomImpl @Inject constructor(
 
     override suspend fun upsertSongs(songs: Iterable<Song>) {
         withContext(ioDispatcher) {
-            // Prepare all songs and their lyrics in a single map
             val songsWithLyrics = songs.associate { song ->
                 val songEntity = SongEntity(song)
                 val lyricsSections = song.lyrics.mapIndexed { index, section ->
@@ -107,21 +95,18 @@ internal class DataTransferRepositoryRoomImpl @Inject constructor(
                 songEntity to lyricsSections
             }
 
-            // Bulk upsert all songs and their lyrics in a single transaction
             songDao.upsertSongsWithLyrics(songsWithLyrics)
         }
     }
 
     override suspend fun upsertSetlists(setlists: Iterable<Setlist>) {
         withContext(ioDispatcher) {
-            // Prepare all setlists and their songs in a single map
             val setlistsWithSongs = setlists.associate { setlist ->
                 val setlistEntity = SetlistEntity(setlist)
                 val songIds = setlist.presentation.map { it.id }
                 setlistEntity to songIds
             }
 
-            // Bulk upsert all setlists and their songs in a single transaction
             setlistDao.upsertSetlistsWithSongs(setlistsWithSongs)
         }
     }

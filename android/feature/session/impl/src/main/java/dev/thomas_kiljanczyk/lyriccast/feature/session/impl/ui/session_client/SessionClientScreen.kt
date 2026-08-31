@@ -1,8 +1,3 @@
-/*
- * Created by Tomasz Kiljanczyk on 9/12/25, 12:35 AM
- * Copyright (c) 2025 . All rights reserved.
- * Last modified 9/12/25, 12:33 AM
- */
 
 package dev.thomas_kiljanczyk.lyriccast.feature.session.impl.ui.session_client
 
@@ -69,7 +64,6 @@ import kotlinx.coroutines.launch
 /** Caps the read-only running order so it never crowds out the slide itself. */
 private val SETLIST_LIST_HEIGHT = 200.dp
 
-/** Side-pane width for the running order on expanded-width windows. */
 private val SETLIST_COLUMN_WIDTH = 400.dp
 
 @Composable
@@ -90,7 +84,6 @@ fun SessionClientScreen(
     var showPermissionsRejectedDialog by remember { mutableStateOf(false) }
     var permissionsGranted by remember { mutableStateOf(false) }
 
-    // Permission checking
     val permissionRequestLauncher = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.RequestMultiplePermissions()
     ) { permissions ->
@@ -103,7 +96,6 @@ fun SessionClientScreen(
         }
     }
 
-    // Check permissions on startup
     LaunchedEffect(Unit) {
         if (activity != null) {
             val allPermissionsGranted = NearbyPermissions.areAllPermissionsGranted(context)
@@ -116,11 +108,9 @@ fun SessionClientScreen(
             }
         }
 
-        // Request latest slide on startup
         viewModel.requestLatestSlide()
     }
 
-    // Handle connection state changes
     LaunchedEffect(viewModel.state.connectionState) {
         when (viewModel.state.connectionState) {
             ConnectionState.CONNECTED -> {
@@ -134,7 +124,6 @@ fun SessionClientScreen(
                 scope.launch {
                     snackbarHostState.showSnackbar(disconnectedMessage)
                 }
-                // Only show choose session dialog if permissions are granted
                 if (permissionsGranted) {
                     showChooseSessionDialog = true
                 }
@@ -150,7 +139,6 @@ fun SessionClientScreen(
         }
     }
 
-    // Clean up when the composable is removed
     DisposableEffect(Unit) {
         onDispose {
             viewModel.stopClient()
@@ -186,7 +174,6 @@ fun SessionClientScreen(
         )
     }
 
-    // Permissions Rejected Dialog
     if (showPermissionsRejectedDialog) {
         AlertDialog(
             onDismissRequest = {
@@ -209,7 +196,6 @@ fun SessionClientScreen(
                 TextButton(
                     onClick = {
                         showPermissionsRejectedDialog = false
-                        // Open app settings
                         val packageName = context.packageName
                         val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
                         val uri = Uri.fromParts("package", packageName, null)

@@ -1,8 +1,3 @@
-/*
- * Created by Tomasz Kiljanczyk on 9/7/25, 3:41 PM
- * Copyright (c) 2025 . All rights reserved.
- * Last modified 9/7/25, 3:26 PM
- */
 
 package dev.thomas_kiljanczyk.lyriccast.feature.song.impl.domain
 
@@ -21,9 +16,6 @@ import dev.thomas_kiljanczyk.lyriccast.feature.song.impl.ui.song_editor.LyricsSe
 import java.util.UUID
 import javax.inject.Inject
 
-/**
- * Use case for saving songs with validation and data transformation.
- */
 class SaveSongUseCase @Inject constructor(
     private val songsRepository: SongsRepository,
     private val validateSongTitleUseCase: ValidateSongTitleUseCase
@@ -32,17 +24,6 @@ class SaveSongUseCase @Inject constructor(
         const val TAG = "SaveSongUseCase"
     }
 
-    /**
-     * Saves a song with validation.
-     *
-     * @param songId The ID of the song (empty string for new songs)
-     * @param title The song title
-     * @param sections List of lyrics sections
-     * @param category The selected category (can be null)
-     * @param existingTitles Set of existing song titles for validation
-     * @param currentTitle Current title being edited (for validation)
-     * @return SaveSongResult indicating success or validation errors
-     */
     suspend operator fun invoke(
         songId: UUID?,
         title: String,
@@ -52,14 +33,12 @@ class SaveSongUseCase @Inject constructor(
         currentTitle: String? = null
     ): SaveSongResult {
         return try {
-            // Validate all sections have non-empty names
             if (sections.any { it.name.isBlank() }) {
                 return SaveSongResult.ValidationError(
                     UiText.StringResource(R.string.song_editor_sections_must_have_names)
                 )
             }
 
-            // Validate song title
             val titleValidation = validateSongTitleUseCase(title, existingTitles, currentTitle)
             if (titleValidation != NameValidationState.VALID) {
                 val errorMessage = when (titleValidation) {
@@ -73,7 +52,6 @@ class SaveSongUseCase @Inject constructor(
                 return SaveSongResult.ValidationError(errorMessage)
             }
 
-            // Build presentation list and lyrics sections from our sections
             val presentation = sections.map { it.name }
             val lyricsMap = sections.groupBy { it.name }.map { (name, sectionList) ->
                 Song.LyricsSection(name, sectionList.first().content)

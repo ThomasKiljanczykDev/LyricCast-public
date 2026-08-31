@@ -43,6 +43,7 @@ internal fun Project.configureDetekt() {
     dependencies {
         add("detektPlugins", libs.findLibrary("detekt-formatting").get())
         add("detektPlugins", libs.findLibrary("detekt-composeRules").get())
+        add("detektPlugins", project(":config:detekt-rules"))
     }
 
     // `./gradlew detekt -PdetektAutoCorrect=true` rewrites the auto-fixable (ktlint) findings in

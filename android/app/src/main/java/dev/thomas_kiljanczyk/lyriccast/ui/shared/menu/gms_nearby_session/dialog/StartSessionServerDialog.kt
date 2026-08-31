@@ -1,9 +1,3 @@
-/*
- * Created by Tomasz Kiljanczyk on 9/7/25, 3:56 PM
- * Copyright (c) 2025 . All rights reserved.
- * Last modified 9/7/25, 3:56 PM
- */
-
 package dev.thomas_kiljanczyk.lyriccast.ui.shared.menu.gms_nearby_session.dialog
 
 import android.provider.Settings
@@ -50,7 +44,6 @@ fun StartSessionServerDialog(
     val state = viewModel.state
     val context = LocalContext.current
 
-    // Permission launcher
     val permissionLauncher = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.RequestMultiplePermissions()
     ) { permissions ->
@@ -60,7 +53,6 @@ fun StartSessionServerDialog(
         }
     }
 
-    // Auto-populate device name on first load
     LaunchedEffect(Unit) {
         if (state.sessionName.isEmpty()) {
             val deviceName = Settings.Global.getString(
@@ -70,11 +62,9 @@ fun StartSessionServerDialog(
             viewModel.updateSessionName(deviceName)
         }
 
-        // Request permissions
         permissionLauncher.launch(LyricCastApplication.PERMISSIONS)
     }
 
-    // Handle advertising state changes
     val currentOnSessionStarted by rememberUpdatedState(onSessionStarted)
     LaunchedEffect(state.advertisingState) {
         when (state.advertisingState) {
@@ -105,7 +95,6 @@ fun StartSessionServerDialog(
                     modifier = Modifier.fillMaxWidth()
                 )
 
-                // Error message from server
                 state.errorMessageRes?.let { errorRes ->
                     Text(
                         text = stringResource(errorRes),
@@ -183,7 +172,6 @@ fun StartSessionServerDialogStateless(
                     modifier = Modifier.fillMaxWidth()
                 )
 
-                // Error message from server
                 errorMessageRes?.let { errorRes ->
                     Text(
                         text = stringResource(errorRes),

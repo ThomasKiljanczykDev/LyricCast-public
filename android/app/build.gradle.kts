@@ -1,9 +1,3 @@
-/*
- * Created by Tomasz Kiljanczyk on 03/01/2022, 23:17
- * Copyright (c) 2022 . All rights reserved.
- * Last modified 03/01/2022, 23:13
- */
-
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.serialization)
@@ -181,7 +175,6 @@ baselineProfile {
 dependencies {
     baselineProfile(projects.baselineprofile)
 
-    // Submodules
     implementation(projects.core.common)
     implementation(projects.core.model)
     implementation(projects.core.designsystem)
@@ -205,40 +198,31 @@ dependencies {
     implementation(projects.feature.settings.impl)
     implementation(projects.feature.song.impl)
 
-    // App dependencies
     implementation(libs.androidx.appcompat)
     implementation(libs.kotlinx.coroutines)
     implementation(libs.kotlinx.serialization.json)
     implementation(libs.play.services.nearby)
 
-    // Architecture Components
     implementation(libs.androidx.datastore)
 
-    // Baseline profile
     implementation(libs.androidx.profileinstaller)
 
-    // AndroidX
     implementation(libs.android.material)
     implementation(libs.androidx.coreKtx)
 
-    // Chromecast
     implementation(libs.google.castFramework)
     implementation(libs.androidx.mediaRouter)
 
-    // Hilt
     implementation(libs.hilt)
     ksp(libs.hiltCompiler)
 
-    // Firebase
     implementation(platform(libs.firebase.bom))
     implementation(libs.firebase.crashlyticsKtx)
     implementation(libs.firebase.analyticsKtx)
 
-    // Unit testing
     testImplementation(libs.junit)
     testImplementation(libs.google.truth)
 
-    // AndroidX Test - Instrumented testing
     androidTestImplementation(libs.androidx.test.coreKtx)
     androidTestImplementation(libs.androidx.test.extJunit)
     androidTestImplementation(libs.androidx.test.extJunitKtx)
@@ -250,20 +234,14 @@ dependencies {
     }
     androidTestImplementation(libs.androidx.rules)
 
-    // AndroidX Test - Hilt testing
     androidTestImplementation(libs.hiltTesting)
     kspAndroidTest(libs.hiltCompiler)
 
-    // Test infrastructure submodules
     androidTestImplementation(projects.core.testing)
     androidTestImplementation(projects.core.dataTest)
     androidTestImplementation(projects.core.nearbyTest)
     androidTestImplementation(projects.core.castTest)
 
-    // LeakCanary
-//    debugImplementation(libs.squareup.leakCanary)
-
-    // Compose dependencies
     implementation(libs.androidx.compose.ui)
     implementation(libs.androidx.compose.ui.graphics)
     implementation(libs.androidx.compose.ui.tooling.preview)
@@ -278,13 +256,10 @@ dependencies {
     debugImplementation(libs.androidx.compose.ui.test.manifest)
     androidTestImplementation(libs.androidx.compose.ui.test.junit4)
 
-    // Reorderable for drag and drop
     implementation(libs.reorderable)
 
-    // Kotlinx collections immutable
     implementation(libs.kotlinx.collections.immutable)
 
-    // Other dependencies
     implementation(libs.apache.commonsLang)
     implementation(libs.zip4j)
 

@@ -1,9 +1,3 @@
-/*
- * Created by Tomasz Kiljanczyk on 9/8/25, 12:15 AM
- * Copyright (c) 2025 . All rights reserved.
- * Last modified 9/7/25, 10:16 PM
- */
-
 package dev.thomas_kiljanczyk.lyriccast.tests.ui.main_activity
 
 import androidx.compose.ui.test.assertIsDisplayed
@@ -54,34 +48,27 @@ class DeleteSetlistComposeTest {
     fun setup() = runTest {
         hiltRule.inject()
 
-        // Add test data
         setlistsRepository.upsertSetlist(setlist1)
         setlistsRepository.upsertSetlist(setlist2)
         setlistsRepository.upsertSetlist(setlist3)
 
-        // Navigate to Setlists tab
         composeTestRule.onNodeWithText("Setlists").performClick()
     }
 
     @Test
     fun setlistIsDeleted() {
-        // Wait for all setlists to appear
         composeTestRule.waitUntil(5000) {
             composeTestRule.onAllNodes(hasText(setlist1.name)).fetchSemanticsNodes().isNotEmpty()
         }
 
-        // Verify all setlists are displayed initially
         composeTestRule.onNodeWithText(setlist1.name).assertIsDisplayed()
         composeTestRule.onNodeWithText(setlist2.name).assertIsDisplayed()
         composeTestRule.onNodeWithText(setlist3.name).assertIsDisplayed()
 
-        // Long click on setlist2 to select it
         composeTestRule.onNodeWithText(setlist2.name).performTouchInput { longClick() }
 
-        // Click delete button
         composeTestRule.onNodeWithContentDescription("Delete").performClick()
 
-        // Wait for setlist to be deleted
         composeTestRule.waitUntil(3000) {
             try {
                 composeTestRule.onNodeWithText(setlist2.name).assertIsNotDisplayed()
@@ -91,7 +78,6 @@ class DeleteSetlistComposeTest {
             }
         }
 
-        // Verify setlist2 was deleted and others remain
         composeTestRule.onNodeWithText(setlist1.name).assertIsDisplayed()
         composeTestRule.onNodeWithText(setlist2.name).assertIsNotDisplayed()
         composeTestRule.onNodeWithText(setlist3.name).assertIsDisplayed()
@@ -99,26 +85,20 @@ class DeleteSetlistComposeTest {
 
     @Test
     fun multipleSetlistsAreDeleted() {
-        // Wait for all setlists to appear
         composeTestRule.waitUntil(5000) {
             composeTestRule.onAllNodes(hasText(setlist1.name)).fetchSemanticsNodes().isNotEmpty()
         }
 
-        // Verify all setlists are displayed initially
         composeTestRule.onNodeWithText(setlist1.name).assertIsDisplayed()
         composeTestRule.onNodeWithText(setlist2.name).assertIsDisplayed()
         composeTestRule.onNodeWithText(setlist3.name).assertIsDisplayed()
 
-        // Long click on setlist1 to enter selection mode
         composeTestRule.onNodeWithText(setlist1.name).performTouchInput { longClick() }
 
-        // Click on setlist2 to add it to selection
         composeTestRule.onNodeWithText(setlist2.name).performClick()
 
-        // Click delete button
         composeTestRule.onNodeWithContentDescription("Delete").performClick()
 
-        // Wait for setlists to be deleted
         composeTestRule.waitUntil(3000) {
             try {
                 composeTestRule.onNodeWithText(setlist1.name).assertIsNotDisplayed()
@@ -129,7 +109,6 @@ class DeleteSetlistComposeTest {
             }
         }
 
-        // Verify setlist1 and setlist2 were deleted, setlist3 remains
         composeTestRule.onNodeWithText(setlist1.name).assertIsNotDisplayed()
         composeTestRule.onNodeWithText(setlist2.name).assertIsNotDisplayed()
         composeTestRule.onNodeWithText(setlist3.name).assertIsDisplayed()

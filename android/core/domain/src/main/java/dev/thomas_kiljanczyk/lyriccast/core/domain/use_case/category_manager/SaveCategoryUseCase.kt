@@ -1,9 +1,3 @@
-/*
- * Created by Tomasz Kiljanczyk on 9/7/25, 3:41 PM
- * Copyright (c) 2025 . All rights reserved.
- * Last modified 9/7/25, 3:31 PM
- */
-
 package dev.thomas_kiljanczyk.lyriccast.core.domain.use_case.category_manager
 
 import dev.thomas_kiljanczyk.lyriccast.common.helpers.UUIDv7
@@ -15,20 +9,9 @@ import dev.thomas_kiljanczyk.lyriccast.core.model.UiText
 import java.util.UUID
 import javax.inject.Inject
 
-/**
- * Use case for saving (creating or updating) a category.
- */
 class SaveCategoryUseCase @Inject constructor(
     private val categoriesRepository: CategoriesRepository
 ) {
-    /**
-     * Saves a category with the provided details.
-     *
-     * @param name The category name
-     * @param colorValue The color value for the category
-     * @param categoryId The existing category ID (null for new categories)
-     * @return Result indicating success or failure
-     */
     suspend operator fun invoke(
         name: String,
         colorValue: Int,

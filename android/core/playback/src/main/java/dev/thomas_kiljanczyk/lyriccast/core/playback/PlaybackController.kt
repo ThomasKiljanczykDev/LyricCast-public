@@ -1,9 +1,3 @@
-/*
- * Created by Tomasz Kiljanczyk on 5/27/26, 12:30 PM
- * Copyright (c) 2026 . All rights reserved.
- * Last modified 5/27/26, 12:30 PM
- */
-
 package dev.thomas_kiljanczyk.lyriccast.core.playback
 
 import com.google.android.gms.cast.framework.CastContext
@@ -42,10 +36,10 @@ data class PlaybackState(
 interface PlaybackController {
     val state: StateFlow<PlaybackState>
 
-    /** Wire up flow subscriptions + Cast session listener. Call from ViewModel init. */
+    /** Call from ViewModel init. */
     fun bind(scope: CoroutineScope, castContext: CastContext?)
 
-    /** Unwire the Cast session listener. Call from ViewModel onCleared. */
+    /** Call from ViewModel onCleared. */
     fun unbind(castContext: CastContext?)
 
     suspend fun loadSong(song: Song)

@@ -1,9 +1,3 @@
-/*
- * Created by Tomasz Kiljanczyk on 9/7/25, 3:41 PM
- * Copyright (c) 2025 . All rights reserved.
- * Last modified 9/7/25, 3:33 PM
- */
-
 package dev.thomas_kiljanczyk.lyriccast.core.domain.use_case.setlist_editor
 
 import android.util.Log
@@ -17,9 +11,6 @@ import dev.thomas_kiljanczyk.lyriccast.core.model.enums.NameValidationState
 import java.util.UUID
 import javax.inject.Inject
 
-/**
- * Use case for saving setlists with validation.
- */
 class SaveSetlistUseCase @Inject constructor(
     private val setlistsRepository: SetlistsRepository,
     private val validateSetlistNameUseCase: ValidateSetlistNameUseCase
@@ -28,16 +19,6 @@ class SaveSetlistUseCase @Inject constructor(
         const val TAG = "SaveSetlistUseCase"
     }
 
-    /**
-     * Saves a setlist with validation.
-     *
-     * @param setlistId The ID of the setlist (empty string for new setlists)
-     * @param name The setlist name
-     * @param songs List of songs in the setlist
-     * @param existingNames Set of existing setlist names for validation
-     * @param currentName Current name being edited (for validation)
-     * @return SaveSetlistResult indicating success or validation errors
-     */
     suspend operator fun invoke(
         setlistId: UUID,
         name: String,
@@ -46,7 +27,6 @@ class SaveSetlistUseCase @Inject constructor(
         currentName: String? = null
     ): SaveSetlistResult {
         return try {
-            // Validate setlist name
             val nameValidation = validateSetlistNameUseCase(name, existingNames, currentName)
             if (nameValidation != NameValidationState.VALID) {
                 val errorMessage = when (nameValidation) {
@@ -61,7 +41,6 @@ class SaveSetlistUseCase @Inject constructor(
                 return SaveSetlistResult.ValidationError(errorMessage)
             }
 
-            // Validate setlist has songs
             if (songs.isEmpty()) {
                 return SaveSetlistResult.ValidationError(
                     UiText.StringResource(R.string.setlist_editor_must_have_songs)

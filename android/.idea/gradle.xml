@@ -25,6 +25,8 @@
             <option value="$PROJECT_DIR$/baselineprofile" />
             <option value="$PROJECT_DIR$/build-logic" />
             <option value="$PROJECT_DIR$/build-logic/convention" />
+            <option value="$PROJECT_DIR$/config" />
+            <option value="$PROJECT_DIR$/config/detekt-rules" />
             <option value="$PROJECT_DIR$/core" />
             <option value="$PROJECT_DIR$/core/cast" />
             <option value="$PROJECT_DIR$/core/cast-test" />

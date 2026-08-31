@@ -1,8 +1,3 @@
-/*
- * Created by Tomasz Kiljanczyk on 9/8/25, 6:08 PM
- * Copyright (c) 2025 . All rights reserved.
- * Last modified 9/8/25, 2:02 PM
- */
 
 package dev.thomas_kiljanczyk.lyriccast.feature.setlist.impl.ui.setlist_controls
 
@@ -107,7 +102,6 @@ fun SetlistControlsScreen(
 ) {
     val listState = rememberLazyListState()
 
-    // Auto-scroll to current song when position changes
     LaunchedEffect(state.currentSongPosition) {
         listState.animateScrollToItem(state.currentSongPosition)
     }

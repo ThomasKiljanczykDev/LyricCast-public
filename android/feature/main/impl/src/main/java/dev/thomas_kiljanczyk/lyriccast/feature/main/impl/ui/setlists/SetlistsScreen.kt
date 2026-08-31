@@ -1,8 +1,3 @@
-/*
- * Created by Tomasz Kiljanczyk on 9/12/25, 7:11 PM
- * Copyright (c) 2025 . All rights reserved.
- * Last modified 9/12/25, 6:15 PM
- */
 
 package dev.thomas_kiljanczyk.lyriccast.feature.main.impl.ui.setlists
 
@@ -94,7 +89,6 @@ fun SetlistsScreen(
     Column(
         modifier = Modifier.fillMaxSize()
     ) {
-        // Search filter
         LyricCastTextField(
             value = state.searchQuery,
             onValueChange = onUpdateSearchQuery,
@@ -108,7 +102,6 @@ fun SetlistsScreen(
             )
         )
 
-        // Setlists list
         LazyColumn(
             verticalArrangement = Arrangement.spacedBy(8.dp),
             contentPadding = PaddingValues(bottom = FabListBottomSpacing),

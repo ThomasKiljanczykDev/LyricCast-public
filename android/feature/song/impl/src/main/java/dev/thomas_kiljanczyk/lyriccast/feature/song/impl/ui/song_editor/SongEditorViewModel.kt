@@ -1,8 +1,3 @@
-/*
- * Created by Tomasz Kiljanczyk on 9/12/25, 7:11 PM
- * Copyright (c) 2025 . All rights reserved.
- * Last modified 9/12/25, 6:34 PM
- */
 
 package dev.thomas_kiljanczyk.lyriccast.feature.song.impl.ui.song_editor
 
@@ -135,7 +130,6 @@ class SongEditorViewModel @Inject constructor(
 
         if (currentIndex <= 0 || sections.isEmpty()) return
 
-        // Swap with previous section
         val section = sections.removeAt(currentIndex)
         sections.add(currentIndex - 1, section)
 
@@ -150,7 +144,6 @@ class SongEditorViewModel @Inject constructor(
 
         if (currentIndex >= sections.size - 1 || sections.isEmpty()) return
 
-        // Swap with next section
         val section = sections.removeAt(currentIndex)
         sections.add(currentIndex + 1, section)
 
@@ -161,7 +154,6 @@ class SongEditorViewModel @Inject constructor(
     }
 
     fun deleteCurrentSection() {
-        // Don't allow deleting the last section
         if (sections.size <= 1) return
 
         val currentIndex = state.currentSectionIndex
@@ -208,11 +200,9 @@ class SongEditorViewModel @Inject constructor(
                 editedSong = song
                 this.songId = song.id
 
-                // Clear existing sections
                 sections.clear()
                 sections.addAll(result.sections)
 
-                // Set category in state
                 val categoryItem = song.category?.let { CategoryItem(it) }
 
                 state.apply {
@@ -220,7 +210,6 @@ class SongEditorViewModel @Inject constructor(
                     songTitle = song.title
                 }
 
-                // Select first section if available
                 if (sections.isNotEmpty()) {
                     selectSection(0)
                 }
@@ -249,7 +238,6 @@ class SongEditorViewModel @Inject constructor(
         val validationState = validateSectionName(newSectionName)
         val section = sections[index]
 
-        // Just update validation state if name hasn't changed
         if (section.name == newSectionName) {
             state.sectionNameValidationState = validationState
             return
@@ -257,7 +245,6 @@ class SongEditorViewModel @Inject constructor(
 
         val existingSectionWithSameName = sections.find { it.name == newSectionName }
 
-        // Update the section name only if it's valid, but always update the UI state
         if (validationState == NameValidationState.VALID) {
             sections[index] = section.copy(
                 name = newSectionName,

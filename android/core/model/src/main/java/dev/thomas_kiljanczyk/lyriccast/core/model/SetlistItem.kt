@@ -1,9 +1,3 @@
-/*
- * Created by Tomasz Kiljanczyk on 9/7/25, 7:51 PM
- * Copyright (c) 2025 . All rights reserved.
- * Last modified 9/7/25, 7:47 PM
- */
-
 package dev.thomas_kiljanczyk.lyriccast.core.model
 
 import dev.thomas_kiljanczyk.lyriccast.common.extensions.normalize

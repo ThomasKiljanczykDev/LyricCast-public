@@ -1,8 +1,3 @@
-/*
- * Created by Tomasz Kiljanczyk on 9/12/25, 12:07 AM
- * Copyright (c) 2025 . All rights reserved.
- * Last modified 9/12/25, 12:05 AM
- */
 
 package dev.thomas_kiljanczyk.lyriccast.feature.main.impl.ui.main
 
@@ -130,11 +125,9 @@ fun MainScreen(
         onNavigateToSongControls = onNavigateToSongControls,
         onNavigateToSetlistControls = onNavigateToSetlistControls,
         onStartSessionServer = onStartSessionServer,
-        // Songs actions
         onSongsExitSelectionMode = songsViewModel::exitSelectionMode,
         onSongsDeleteSelected = songsViewModel::deleteSelectedSongs,
         onSongsExportSelected = songsViewModel::exportSelectedSongs,
-        // Setlists actions
         onSetlistsExitSelectionMode = setlistsViewModel::exitSelectionMode,
         onSetlistsDeleteSelected = setlistsViewModel::deleteSelectedSetlists,
         onSetlistsExportSelected = setlistsViewModel::exportSelectedSetlists
@@ -164,11 +157,9 @@ fun MainScreen(
     // This module never invokes another feature module's screens/navigation directly: the caller
     // (the app-level NavHost) decides what "start a session as server" actually navigates to.
     onStartSessionServer: () -> Unit = {},
-    // Songs actions
     onSongsExitSelectionMode: () -> Unit,
     onSongsDeleteSelected: suspend () -> Unit,
     onSongsExportSelected: suspend (Uri) -> Unit,
-    // Setlists actions
     onSetlistsExitSelectionMode: () -> Unit,
     onSetlistsDeleteSelected: suspend () -> Unit,
     onSetlistsExportSelected: suspend (Uri) -> Unit,
@@ -192,11 +183,9 @@ fun MainScreen(
     var showPermissionsRejectedDialog by remember { mutableStateOf(false) }
     var fabExpanded by remember { mutableStateOf(false) }
 
-    // Import state to store between dialog and file picker
     var pendingImportFormat by remember { mutableStateOf<ImportFormat?>(null) }
     var pendingImportOptions by remember { mutableStateOf<ImportOptions?>(null) }
 
-    // Permission checking state
     var pendingStartSessionDialog by remember { mutableStateOf(false) }
 
     // A file handed in from outside (ACTION_VIEW/ACTION_SEND) is shown pre-attached, so the user
@@ -207,27 +196,23 @@ fun MainScreen(
         }
     }
 
-    // Reset selection modes when switching tabs
     val currentOnSongsExitSelectionMode by rememberUpdatedState(onSongsExitSelectionMode)
     val currentOnSetlistsExitSelectionMode by rememberUpdatedState(onSetlistsExitSelectionMode)
     LaunchedEffect(state.selectedTab) {
         when (state.selectedTab) {
             MainTab.SONGS -> {
-                // Exit setlists selection mode when switching to songs
                 if (setlistsState.isInSelectionMode) {
                     currentOnSetlistsExitSelectionMode()
                 }
             }
 
             MainTab.SETLISTS -> {
-                // Exit songs selection mode when switching to setlists
                 if (songsState.isInSelectionMode) {
                     currentOnSongsExitSelectionMode()
                 }
             }
 
             MainTab.JOIN_SESSION -> {
-                // Exit both selection modes when switching to join session
                 if (songsState.isInSelectionMode) {
                     currentOnSongsExitSelectionMode()
                 }
@@ -238,7 +223,6 @@ fun MainScreen(
         }
     }
 
-    // Permission checking
     val permissionRequestLauncher = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.RequestMultiplePermissions()
     ) { permissions ->
@@ -253,14 +237,11 @@ fun MainScreen(
                 pendingStartSessionDialog = false
             }
         } else {
-            // Reset pending state if permissions were denied
             pendingStartSessionDialog = false
-            // Show permissions rejected dialog
             showPermissionsRejectedDialog = true
         }
     }
 
-    // Activity launchers
     val exportAllLauncher = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.CreateDocument("application/zip")
     ) { uri ->
@@ -342,7 +323,6 @@ fun MainScreen(
                     try {
                         performImport(ImportInput.FromUri(selectedUri), format, options)
                     } finally {
-                        // Clear pending import state
                         pendingImportFormat = null
                         pendingImportOptions = null
                     }
@@ -492,7 +472,6 @@ fun MainScreen(
                                 onStartSession = {
                                     if (activity == null) return@MainScreenTopBar
 
-                                    // Check if all required permissions are granted
                                     val allPermissionsGranted =
                                         NearbyPermissions.areAllPermissionsGranted(context)
 
@@ -509,7 +488,6 @@ fun MainScreen(
                 },
                 snackbarHost = { SnackbarHost(snackbarHostState) }
             ) { paddingValues ->
-                // Progress Dialog
                 if (state.showProgressDialog) {
                     ProgressDialog(
                         message = state.progressMessage
@@ -519,7 +497,6 @@ fun MainScreen(
                     )
                 }
 
-                // Import Dialog
                 if (showImportDialog) {
                     ImportDialog(
                         onDismiss = {
@@ -547,10 +524,8 @@ fun MainScreen(
                                     onClearPendingImport()
                                 }
                             } else {
-                                // Store import options for when file is selected
                                 pendingImportFormat = importDialogState.importFormat
                                 pendingImportOptions = options
-                                // Launch file picker with the right MIME type based on format
                                 val mimeType = when (importDialogState.importFormat) {
                                     ImportFormat.LYRIC_CAST -> "application/zip"
                                     ImportFormat.OPEN_SONG -> "application/zip"
@@ -563,7 +538,6 @@ fun MainScreen(
                     )
                 }
 
-                // Permissions Rejected Dialog
                 if (showPermissionsRejectedDialog) {
                     AlertDialog(
                         onDismissRequest = { showPermissionsRejectedDialog = false },
@@ -579,7 +553,6 @@ fun MainScreen(
                             TextButton(
                                 onClick = {
                                     showPermissionsRejectedDialog = false
-                                    // Open app settings
                                     val packageName = context.packageName
                                     val intent =
                                         Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)

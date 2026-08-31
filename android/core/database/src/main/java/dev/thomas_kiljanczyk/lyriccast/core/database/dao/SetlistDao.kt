@@ -1,9 +1,3 @@
-/*
- * Created by Tomasz Kiljanczyk on 9/11/25, 9:27 AM
- * Copyright (c) 2025 . All rights reserved.
- * Last modified 9/11/25, 9:26 AM
- */
-
 package dev.thomas_kiljanczyk.lyriccast.core.database.dao
 
 import androidx.room.Dao
@@ -77,10 +71,8 @@ interface SetlistDao {
 
     @Transaction
     suspend fun upsertSetlistsWithSongs(setlistsWithSongs: Map<SetlistEntity, List<UUID>>) {
-        // Insert all setlists in bulk
         insertSetlists(setlistsWithSongs.keys.toList())
 
-        // Delete existing songs for all setlists in bulk
         val setlistIds = setlistsWithSongs.keys.map { it.id }
         if (setlistIds.isNotEmpty()) {
             setlistIds.chunked(DELETE_CHUNK_SIZE).forEach { setlistIdsChunk ->
@@ -88,7 +80,6 @@ interface SetlistDao {
             }
         }
 
-        // Insert all setlist songs in bulk
         val allCrossRefs = setlistsWithSongs.flatMap { (setlist, songIds) ->
             songIds.mapIndexed { index, songId ->
                 SetlistSongCrossRef(

@@ -1,9 +1,3 @@
-/*
- * Created by Tomasz Kiljanczyk on 8/27/26, 12:00 AM
- * Copyright (c) 2026 . All rights reserved.
- * Last modified 8/27/26, 12:00 AM
- */
-
 package dev.thomas_kiljanczyk.lyriccast.baselineprofile
 
 import androidx.benchmark.macro.BaselineProfileMode
@@ -48,20 +42,10 @@ class JourneyBenchmarks {
         get() = InstrumentationRegistry.getArguments().getString("targetAppId")
             ?: throw Exception("targetAppId not passed as instrumentation runner arg")
 
-    // =========================================================================
-    // Scroll Performance Benchmarks
-    // =========================================================================
-
-    /**
-     * Measures scroll performance without baseline profiles.
-     */
     @Test
     fun scrollPerformanceNone() =
         benchmarkScroll(CompilationMode.None())
 
-    /**
-     * Measures scroll performance with baseline profiles.
-     */
     @Test
     fun scrollPerformanceBaselineProfiles() =
         benchmarkScroll(CompilationMode.Partial(BaselineProfileMode.Require))
@@ -83,20 +67,10 @@ class JourneyBenchmarks {
         )
     }
 
-    // =========================================================================
-    // Navigation Performance Benchmarks
-    // =========================================================================
-
-    /**
-     * Measures tab navigation performance without baseline profiles.
-     */
     @Test
     fun navigationPerformanceNone() =
         benchmarkNavigation(CompilationMode.None())
 
-    /**
-     * Measures tab navigation performance with baseline profiles.
-     */
     @Test
     fun navigationPerformanceBaselineProfiles() =
         benchmarkNavigation(CompilationMode.Partial(BaselineProfileMode.Require))
@@ -118,10 +92,6 @@ class JourneyBenchmarks {
         )
     }
 }
-
-// ============================================================================
-// Helper Functions
-// ============================================================================
 
 private fun MacrobenchmarkScope.waitForContent() {
     device.waitForIdle()

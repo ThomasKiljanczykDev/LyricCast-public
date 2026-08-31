@@ -1,9 +1,3 @@
-/*
- * Created by Tomasz Kiljanczyk on 1/29/26, 8:53 PM
- * Copyright (c) 2026 . All rights reserved.
- * Last modified 1/29/26, 8:49 PM
- */
-
 package dev.thomas_kiljanczyk.lyriccast.common.di
 
 import dagger.Module

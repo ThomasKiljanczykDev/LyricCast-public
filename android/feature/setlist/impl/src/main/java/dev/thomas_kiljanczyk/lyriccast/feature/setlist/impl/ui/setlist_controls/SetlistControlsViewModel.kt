@@ -1,8 +1,3 @@
-/*
- * Created by Tomasz Kiljanczyk on 9/8/25, 6:08 PM
- * Copyright (c) 2025 . All rights reserved.
- * Last modified 9/8/25, 2:44 PM
- */
 
 package dev.thomas_kiljanczyk.lyriccast.feature.setlist.impl.ui.setlist_controls
 

@@ -1,9 +1,3 @@
-/*
- * Created by Tomasz Kiljanczyk on 9/8/25, 12:20 AM
- * Copyright (c) 2025 . All rights reserved.
- * Last modified 9/8/25, 12:16 AM
- */
-
 package dev.thomas_kiljanczyk.lyriccast.tests.integration.main_activity
 
 import android.graphics.Color
@@ -69,7 +63,6 @@ class FilterSongsComposeTest {
     fun setup() = runTest {
         hiltRule.inject()
 
-        // Add test data
         categoriesRepository.upsertCategory(category)
         songsRepository.upsertSong(song1)
         songsRepository.upsertSong(song2)
@@ -82,20 +75,16 @@ class FilterSongsComposeTest {
             onNodeWithText(song1.title).assertExists()
         }
 
-        // Verify all songs are displayed initially
         composeTestRule.onNodeWithText(song1.title).assertIsDisplayed()
         composeTestRule.onNodeWithText(song2.title).assertIsDisplayed()
         composeTestRule.onNodeWithText(song3.title).assertIsDisplayed()
 
-        // Filter by title
         composeTestRule.onNodeWithTag(TestTags.SONG_TITLE_FILTER).performTextInput(SONG_TITLE)
 
-        // Wait for filter to apply
         composeTestRule.waitUntilAsserted(3000) {
             onNodeWithText(song3.title).assertDoesNotExist()
         }
 
-        // Verify filtered results
         composeTestRule.onNodeWithText(song1.title).assertIsDisplayed()
         composeTestRule.onNodeWithText(song2.title).assertIsDisplayed()
         composeTestRule.onNodeWithText(song3.title).assertDoesNotExist()
@@ -107,23 +96,19 @@ class FilterSongsComposeTest {
             onNodeWithText(song1.title).assertExists()
         }
 
-        // Verify all songs are displayed initially
         composeTestRule.onNodeWithText(song1.title).assertIsDisplayed()
         composeTestRule.onNodeWithText(song2.title).assertIsDisplayed()
         composeTestRule.onNodeWithText(song3.title).assertIsDisplayed()
 
-        // Click on category dropdown
         composeTestRule.onNodeWithTag(TestTags.CATEGORY_DROPDOWN).performClick()
 
         composeTestRule.onNode(hasText(category.name) and hasAnyAncestor(isPopup())).performClick()
 
-        // Wait for filter to apply
         composeTestRule.waitUntilAsserted(3000) {
             onNodeWithText(song2.title).assertDoesNotExist()
             onNodeWithText(song3.title).assertDoesNotExist()
         }
 
-        // Verify only song with category is shown
         composeTestRule.onNodeWithText(song1.title).assertIsDisplayed()
         composeTestRule.onNodeWithText(song2.title).assertDoesNotExist()
         composeTestRule.onNodeWithText(song3.title).assertDoesNotExist()

@@ -1,9 +1,3 @@
-/*
- * Created by Tomasz Kiljanczyk on 5/27/26, 11:30 AM
- * Copyright (c) 2026 . All rights reserved.
- * Last modified 5/27/26, 11:30 AM
- */
-
 package dev.thomas_kiljanczyk.lyriccast.core.sync
 
 import android.os.Build
@@ -31,17 +25,11 @@ import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
-/**
- * Represents a discovered sync device
- */
 data class DiscoveredSyncDevice(
     val endpointId: String,
     val endpointName: String
 )
 
-/**
- * Single source of truth for sync session state
- */
 data class SyncSessionState(
     val isSending: Boolean = false,
     val isReceiving: Boolean = false,
@@ -59,10 +47,6 @@ data class SyncSessionState(
         get() = isSending || isReceiving
 }
 
-/**
- * Manages sync sessions for GMS Nearby import/export.
- * Provides a single source of truth for sync state and handles all sync operations.
- */
 @Singleton
 class SyncSessionManager @Inject constructor(
     private val payloadTransport: PayloadTransport,
@@ -85,10 +69,6 @@ class SyncSessionManager @Inject constructor(
     private var receivedPayloadJob: Job? = null
     private var managerScope: CoroutineScope? = null
 
-    /**
-     * Initialize the manager with a scope for coroutine operations.
-     * Call this from ViewModel's init block.
-     */
     fun initialize(scope: CoroutineScope) {
         discoveryJob?.cancel()
         discoveryErrorJob?.cancel()

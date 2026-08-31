@@ -1,8 +1,3 @@
-/*
- * Created by Tomasz Kiljanczyk on 9/6/25, 6:54 PM
- * Copyright (c) 2025 . All rights reserved.
- * Last modified 9/6/25, 6:53 PM
- */
 
 package dev.thomas_kiljanczyk.lyriccast.feature.main.impl.ui.main.import_dialog
 
@@ -69,7 +64,6 @@ fun ImportDialog(
         onImportFormatChange = { state.importFormat = it },
         onDeleteAllChange = { checked ->
             state.deleteAll = checked
-            // Clear replaceOnConflict if deleteAll is enabled
             if (checked) {
                 state.replaceOnConflict = false
             }
@@ -118,7 +112,6 @@ fun ImportDialogStateless(
                     )
                 }
 
-                // Import Format Spinner
                 LyricCastSpinner(
                     options = availableFormats,
                     value = state.importFormat.displayName,
@@ -130,7 +123,6 @@ fun ImportDialogStateless(
                     modifier = Modifier.fillMaxWidth()
                 )
 
-                // Options
                 Column(
                     verticalArrangement = Arrangement.spacedBy(8.dp)
                 ) {

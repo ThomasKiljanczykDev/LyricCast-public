@@ -1,9 +1,3 @@
-/*
- * Created by Tomasz Kiljanczyk on 3/1/26, 4:06 PM
- * Copyright (c) 2026 . All rights reserved.
- * Last modified 3/1/26, 4:00 PM
- */
-
 package dev.thomas_kiljanczyk.lyriccast.core.sync.use_case
 
 import android.util.Log
@@ -19,7 +13,6 @@ import kotlinx.coroutines.flow.flow
 
 /**
  * Use case for receiving and importing application data from GMS Nearby Connections.
- * Handles validation and importing of received sync data.
  */
 class ReceiveDataViaNearbyUseCase @Inject constructor(
     private val dataTransferRepository: DataTransferRepository
@@ -31,9 +24,7 @@ class ReceiveDataViaNearbyUseCase @Inject constructor(
     /**
      * Imports received sync data with the specified import options
      *
-     * @param syncMessage The received sync message containing the data
      * @param importOptions Options specifying how to handle conflicts (replace, skip, etc.)
-     * @return Flow emitting progress messages
      */
     operator fun invoke(
         syncMessage: GmsSyncMessage,

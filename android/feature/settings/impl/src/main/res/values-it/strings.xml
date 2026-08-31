@@ -1,9 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><!--
-  ~ Created by Tomasz Kiljanczyk on 8/6/26, 1:20 PM
-  ~ Copyright (c) 2026 . All rights reserved.
-  ~ Last modified 8/6/26, 1:20 PM
-  -->
-
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="settings_title">Impostazioni</string>
     <string name="navigate_up">Torna su</string>

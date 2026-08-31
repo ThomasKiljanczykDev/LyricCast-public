@@ -1,9 +1,3 @@
-/*
- * Created by Tomasz Kiljanczyk on 9/7/25, 9:14 PM
- * Copyright (c) 2025 . All rights reserved.
- * Last modified 9/7/25, 9:13 PM
- */
-
 package dev.thomas_kiljanczyk.lyriccast.core.database.model
 
 import androidx.room.Entity

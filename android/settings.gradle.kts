@@ -1,9 +1,3 @@
-/*
- * Created by Tomasz Kiljanczyk on 4/5/21 1:02 AM
- * Copyright (c) 2021 . All rights reserved.
- * Last modified 4/5/21 12:21 AM
- */
-
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
 pluginManagement {
@@ -64,3 +58,4 @@ include(":feature:song:impl")
 include(":app")
 include(":baselineprofile")
 include(":tools:readme-screenshots")
+include(":config:detekt-rules")

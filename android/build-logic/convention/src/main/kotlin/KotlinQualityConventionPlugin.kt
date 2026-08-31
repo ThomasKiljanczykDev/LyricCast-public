@@ -1,7 +1,3 @@
-/*
- * Convention plugin that adds only the Kotlin quality gate (detekt).
- */
-
 import dev.thomas_kiljanczyk.lyriccast.buildlogic.configureDetekt
 import org.gradle.api.Plugin
 import org.gradle.api.Project

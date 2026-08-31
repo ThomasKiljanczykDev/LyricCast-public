@@ -1,9 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><!--
-  ~ Created by Tomasz Kiljanczyk on 25/01/2025, 18:55
-  ~ Copyright (c) 2025 . All rights reserved.
-  ~ Last modified 07/05/2024, 23:59
-  -->
-
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="settings_title">Ustawienia</string>
     <string name="navigate_up">Wróć</string>
