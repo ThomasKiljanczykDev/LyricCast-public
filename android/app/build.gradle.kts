@@ -21,7 +21,7 @@ android {
     defaultConfig {
         applicationId = "dev.thomas_kiljanczyk.lyriccast"
         minSdk = 27
-        targetSdk = 35
+        targetSdk = 37
 
         // Versioning
         // Max version code is 2,100,000,000
