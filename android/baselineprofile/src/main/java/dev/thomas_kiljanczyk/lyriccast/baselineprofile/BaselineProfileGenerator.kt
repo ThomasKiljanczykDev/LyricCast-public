@@ -1,5 +1,6 @@
 package dev.thomas_kiljanczyk.lyriccast.baselineprofile
 
+import android.net.Uri
 import androidx.benchmark.macro.MacrobenchmarkScope
 import androidx.benchmark.macro.junit4.BaselineProfileRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -42,8 +43,16 @@ class BaselineProfileGenerator {
         get() = InstrumentationRegistry.getArguments().getString("targetAppId")
             ?: throw Exception("targetAppId not passed as instrumentation runner arg")
 
+    private fun triggerSeeding() {
+        val uri = Uri.parse("content://$packageName.baselineprofileseeding")
+        InstrumentationRegistry.getInstrumentation().targetContext.contentResolver
+            .call(uri, "seed", null, null)
+    }
+
     @Test
     fun generate() {
+        triggerSeeding()
+
         rule.collect(
             packageName = packageName,
             includeInStartupProfile = true

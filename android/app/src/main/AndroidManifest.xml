@@ -60,6 +60,13 @@
                 android:resource="@xml/provider_paths" />
         </provider>
 
+        <provider
+            android:name=".application.testing.SeedingContentProvider"
+            android:authorities="dev.thomas_kiljanczyk.lyriccast.baselineprofileseeding"
+            android:enabled="${enableBaselineProfileSeeding}"
+            android:exported="true"
+            tools:ignore="ExportedContentProvider" />
+
         <activity
             android:name=".ui.main.MainActivity"
             android:exported="true"

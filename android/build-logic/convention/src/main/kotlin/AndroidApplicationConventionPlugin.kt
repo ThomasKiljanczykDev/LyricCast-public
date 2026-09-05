@@ -34,11 +34,6 @@ class AndroidApplicationConventionPlugin : Plugin<Project> {
                             debugSymbolLevel = "FULL"
                         }
                     }
-
-                    create("seededRelease") {
-                        initWith(getByName("release"))
-                        matchingFallbacks.add("release")
-                    }
                 }
 
                 testOptions {

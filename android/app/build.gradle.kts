@@ -21,7 +21,7 @@ android {
     defaultConfig {
         applicationId = "dev.thomas_kiljanczyk.lyriccast"
         minSdk = 27
-        targetSdk = 35
+        targetSdk = 37
 
         // Versioning
         // Max version code is 2,100,000,000
@@ -34,6 +34,11 @@ android {
         versionName = "$major.$minor.$patch${if (revision > 0) ".$revision" else ""}"
 
         testInstrumentationRunner = "dev.thomas_kiljanczyk.lyriccast.core.testing.LyricCastTestRunner"
+
+        val enableSeeding = (findProperty("enableSeeding") as? String).toBoolean()
+        buildConfigField("boolean", "ENABLE_SEEDING", enableSeeding.toString())
+        manifestPlaceholders["enableBaselineProfileSeeding"] = enableSeeding.toString()
+
         androidResources {
             localeFilters.addAll(
                 listOf(
@@ -57,30 +62,12 @@ android {
                 debugSymbolLevel = "FULL"
             }
         }
-
-        // Used only to generate/benchmark the baseline profile (see :baselineprofile). Signed
-        // with the debug key so CI and local runs don't need a release signing config.
-        create("seededRelease") {
-            initWith(getByName("release"))
-            matchingFallbacks.add("release")
-            signingConfig = signingConfigs.getByName("debug")
-        }
-    }
-
-    // Wired by name, because the baseline-profile plugin derives benchmark* and nonMinified*
-    // build types from both release and seededRelease: four per-build-type source sets to keep
-    // in step otherwise. It cannot live in main, which every variant compiles.
-    sourceSets.configureEach {
-        if (name == "main" || name.startsWith("test") || name.startsWith("androidTest")) {
-            return@configureEach
-        }
-        val defaults = if (name.contains("seeded", ignoreCase = true)) "seeded" else "notSeeded"
-        kotlin.directories.add("src/$defaults/java")
     }
 
     buildFeatures {
         viewBinding = true
         compose = true
+        buildConfig = true
     }
 
     compileOptions {
@@ -165,11 +152,7 @@ android {
 }
 
 baselineProfile {
-    variants {
-        create("seededRelease") {
-            mergeIntoMain = true
-        }
-    }
+    mergeIntoMain = true
 }
 
 dependencies {
