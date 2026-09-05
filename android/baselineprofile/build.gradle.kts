@@ -19,14 +19,10 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
-    buildTypes {
-        create("seededRelease") {
-        }
-    }
     targetProjectPath = ":app"
 
     // Gradle Managed Device used to generate the baseline profile in CI. "Latest" API (36) on a
-    // representative phone; google-atd so the seeded release app's Firebase/Cast init has Play
+    // representative phone; google-atd so the release app's Firebase/Cast init has Play
     // Services available during the generation journeys.
     @Suppress("UnstableApiUsage")
     testOptions {
